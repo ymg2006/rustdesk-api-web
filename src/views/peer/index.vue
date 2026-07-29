@@ -2,9 +2,9 @@
   <div>
     <el-card class="list-query query-card" shadow="hover">
       <div style="margin-bottom:12px;">
-        <el-button :type="quickFilter === 'all' ? 'primary' : 'default'" size="small" @click="setQuickFilter('all')">全部</el-button>
-        <el-button :type="quickFilter === 'online' ? 'success' : 'default'" size="small" @click="setQuickFilter('online')">在线</el-button>
-        <el-button :type="quickFilter === 'offline' ? 'danger' : 'default'" size="small" @click="setQuickFilter('offline')">离线</el-button>
+        <el-button :type="quickFilter === 'all' ? 'primary' : 'default'" size="small" @click="setQuickFilter('all')">All</el-button>
+        <el-button :type="quickFilter === 'online' ? 'success' : 'default'" size="small" @click="setQuickFilter('online')">Online</el-button>
+        <el-button :type="quickFilter === 'offline' ? 'danger' : 'default'" size="small" @click="setQuickFilter('offline')">Offline</el-button>
       </div>
       <el-form inline label-width="60px">
         <el-form-item :label="T('ID')">
@@ -67,7 +67,7 @@
       </el-form>
     </el-card>
     <el-card class="list-body" shadow="hover">
-      <!-- 桌面端：列设置 + 表格 -->
+      <!-- Desktop: column settings + table -->
       <div class="table-view">
         <div style="text-align: right; margin-bottom: 10px">
           <el-button :icon="Setting" @click="showColumnSetting"></el-button>
@@ -118,7 +118,7 @@
         </el-table>
       </div>
 
-      <!-- 手机端：卡片列表 -->
+      <!-- Mobile: card list -->
       <div class="mobile-card-view" v-loading="listRes.loading">
         <div v-for="row in listRes.list" :key="row.row_id" class="peer-card">
           <div class="card-header">
@@ -263,23 +263,23 @@
 
 <script setup>
   import { computed, onActivated, onMounted, reactive, ref, watch } from 'vue'
-  import { useRoute } from 'vue-router'
-  import { batchRemove, create, list, remove, update } from '@/api/peer'
-  import { list as groupList } from '@/api/device_group'
-  import { ElMessage, ElMessageBox } from 'element-plus'
-  import { toWebClientLink } from '@/utils/webclient'
-  import { T } from '@/utils/i18n'
-  import { timeAgo } from '@/utils/time'
-  import { jsonToCsv, downBlob } from '@/utils/file'
-  import { loadAllUsers } from '@/global'
-  import { useAppStore } from '@/store/app'
-  import { connectByClient } from '@/utils/peer'
-  import { ArrowDown, ArrowUp, CopyDocument, Setting } from '@element-plus/icons'
-  import { handleClipboard } from '@/utils/clipboard'
-  import { batchCreateFromPeers } from '@/api/address_book'
-  import { useRepositories as useCollectionRepositories } from '@/views/address_book/collection'
-  import createABForm from '@/views/peer/createABForm.vue'
-  import { UploadFilled } from '@element-plus/icons-vue'
+import { useRoute } from 'vue-router'
+import { batchRemove, create, list, remove, update } from '@/api/peer'
+import { list as groupList } from '@/api/device_group'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { toWebClientLink } from '@/utils/webclient'
+import { T } from '@/utils/i18n'
+import { timeAgo } from '@/utils/time'
+import { jsonToCsv, downBlob } from '@/utils/file'
+import { loadAllUsers } from '@/global'
+import { useAppStore } from '@/store/app'
+import { connectByClient } from '@/utils/peer'
+import { ArrowDown, ArrowUp, CopyDocument, Setting } from '@element-plus/icons'
+import { handleClipboard } from '@/utils/clipboard'
+import { batchCreateFromPeers } from '@/api/address_book'
+import { useRepositories as useCollectionRepositories } from '@/views/address_book/collection'
+import createABForm from '@/views/peer/createABForm.vue'
+import { UploadFilled } from '@element-plus/icons-vue'
 
   const appStore = useAppStore()
   const route = useRoute()
@@ -316,7 +316,7 @@
     handlerQuery()
   }
 
-  // 监听后续 query 变化（keep-alive 下 setup 不重跑，必须用 watch 同步过滤条件）
+  // Watch subsequent query changes (setup does not rerun under keep-alive, so filters must be synced with watch)
   watch(() => route.query.time_ago, applyTimeAgoQuery)
 
   //group
@@ -369,7 +369,7 @@
     }
   }
 
-  // 首次进入时应用首页跳转带来的 time_ago 过滤（必须在 listQuery / handlerQuery 定义之后，避免 TDZ 崩溃）
+  // Apply time_ago filter from home-page navigation on first entry (must run after listQuery / handlerQuery to avoid TDZ crashes)
   applyTimeAgoQuery()
 
   const del = async (row) => {
@@ -389,7 +389,7 @@
     }
   }
 onMounted(() => {
-  // query 过滤已在 setup 末尾的 applyTimeAgoQuery 中处理；无 query 时才在此加载全部
+  // Query filtering is handled by applyTimeAgoQuery at the end of setup; load all here only when there is no query
   if (route.query.time_ago == null) getList()
 })
 onActivated(() => {
@@ -417,14 +417,14 @@ onActivated(() => {
 
   const toEdit = (row) => {
     formVisible.value = true
-    //将row中的数据赋值给formData
+    // Copy row data into formData
     Object.keys(formData).forEach(key => {
       formData[key] = row[key]
     })
   }
   const toAdd = () => {
     formVisible.value = true
-    //重置formData
+    // Reset formData
     formData.row_id = 0
     formData.cpu = ''
     formData.hostname = ''
@@ -487,20 +487,20 @@ onActivated(() => {
     reader.onload = async (e) => {
       const data = e.target.result
       console.log(data)
-      //组装数据
+      // Assemble data
       const rows = data.split('\n')
       const keys = rows[0].split(',')
       console.log(keys, rows.slice(1).map(row => row.split(',')))
       const values = rows.slice(1).map(row => {
         const obj = {}
         row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).forEach((v, i) => {
-          //去掉两边的"
+          // Remove surrounding quotes
           obj[keys[i]] = v.trim().replace(/^"|"$/g, '')
         })
         return obj
       }).filter(item => item.id)
       // console.log(values)
-      //移除不需要的key
+      // Remove unnecessary keys
       values.forEach(item => {
         item.group_id = parseInt(item.group_id)
         Object.keys(item).forEach(key => {
@@ -525,7 +525,7 @@ onActivated(() => {
     return false
   }
   const toImport = () => {
-    ElMessage.warning('暂未实现')
+    ElMessage.warning('Not implemented yet')
   }
 
   const ABFormVisible = ref(false)
@@ -560,7 +560,7 @@ onActivated(() => {
     }
   }
 
-  // 批量添加到地址簿 start
+  // Batch add to address book start
   const { allUsers, getAllUsers } = loadAllUsers()
   onMounted(getAllUsers)
   const {
@@ -601,7 +601,7 @@ onActivated(() => {
       batchABFormVisible.value = false
     }
   }
-  // 批量添加到地址簿 end
+  // Batch add to address book end
 
   const columnSettingVisible = ref(false)
   const allColumns = ref([
@@ -678,7 +678,7 @@ onActivated(() => {
   }
 }
 
-// 手机端：表格换卡片列表
+// Mobile: replace table with card list
 .table-view { display: block; }
 .mobile-card-view { display: none; }
 

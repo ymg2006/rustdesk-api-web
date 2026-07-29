@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 /**
- * 获取可选时长的定价列表
+ * Get pricing for available durations
  */
 export function getPlans () {
   return request({
@@ -11,9 +11,9 @@ export function getPlans () {
 }
 
 /**
- * 创建订阅订单
- * @param {string} channel - 支付渠道: wechat | alipay
- * @param {string} planKey - 时长 key: 1m / 3m / 6m / 12m
+ * Create a subscription order
+ * @param {string} channel - Payment channel: wechat | alipay
+ * @param {string} planKey - Duration key: 1m / 3m / 6m / 12m
  */
 export function createOrder (channel, planKey) {
   return request({
@@ -24,8 +24,8 @@ export function createOrder (channel, planKey) {
 }
 
 /**
- * 查询订单状态
- * @param {string} outTradeNo - 商户订单号
+ * Query order status
+ * @param {string} outTradeNo - Merchant order number
  */
 export function queryOrder (outTradeNo) {
   return request({
@@ -35,8 +35,8 @@ export function queryOrder (outTradeNo) {
 }
 
 /**
- * 订单号认领授权码（兜底）
- * @param {string} outTradeNo - 商户订单号
+ * Claim an invite code by order number (fallback)
+ * @param {string} outTradeNo - Merchant order number
  */
 export function claimCode (outTradeNo) {
   return request({
@@ -47,8 +47,8 @@ export function claimCode (outTradeNo) {
 }
 
 /**
- * 兑换授权码
- * @param {string} code - 授权码
+ * Redeem an invite code
+ * @param {string} code - Invite code
  */
 export function redeemCode (code) {
   return request({
@@ -59,7 +59,7 @@ export function redeemCode (code) {
 }
 
 /**
- * 获取当前用户的订阅信息
+ * Get subscription information for the current user
  */
 export function getMine () {
   return request({
@@ -68,10 +68,10 @@ export function getMine () {
   })
 }
 
-// ========== 后台管理 ==========
+// ========== Admin Management ==========
 
 /**
- * 分页查询授权码列表
+ * Paginated invite-code list query
  * @param {Object} params - { status, plan, page, size }
  */
 export function adminListCodes (params) {
@@ -83,7 +83,7 @@ export function adminListCodes (params) {
 }
 
 /**
- * 手动生成授权码
+ * Manually generate an invite code
  * @param {Object} req - { plan, expire_days, remark }
  */
 export function adminCreateCode (req) {
@@ -95,8 +95,8 @@ export function adminCreateCode (req) {
 }
 
 /**
- * 失效授权码
- * @param {number} id - 授权码 ID
+ * Revoke an invite code
+ * @param {number} id - Invite code ID
  */
 export function adminRevokeCode (id) {
   return request({
@@ -106,8 +106,8 @@ export function adminRevokeCode (id) {
 }
 
 /**
- * 删除授权码
- * @param {number} id - 授权码 ID
+ * Delete an invite code
+ * @param {number} id - Invite code ID
  */
 export function adminDeleteCode (id) {
   return request({
@@ -117,7 +117,7 @@ export function adminDeleteCode (id) {
 }
 
 /**
- * 导出授权码 CSV
+ * Export invite-code CSV
  * @param {Object} params - { status, plan }
  */
 export function adminExportCodes (params) {
@@ -129,10 +129,10 @@ export function adminExportCodes (params) {
   })
 }
 
-// ========== 后台订单管理 ==========
+// ========== Admin Order Management ==========
 
 /**
- * 分页查询订单列表
+ * Paginated order list query
  * @param {Object} params - { status, keyword, page, size }
  */
 export function adminListOrders (params) {
@@ -144,8 +144,8 @@ export function adminListOrders (params) {
 }
 
 /**
- * 手动确认到账
- * @param {number} id - 订单 ID
+ * Manually confirm payment receipt
+ * @param {number} id - Order ID
  */
 export function adminConfirmOrder (id) {
   return request({
@@ -155,8 +155,8 @@ export function adminConfirmOrder (id) {
 }
 
 /**
- * 关闭订单
- * @param {number} id - 订单 ID
+ * Close an order
+ * @param {number} id - Order ID
  */
 export function adminCloseOrder (id) {
   return request({
@@ -165,10 +165,10 @@ export function adminCloseOrder (id) {
   })
 }
 
-// ========== 后台会员管理 ==========
+// ========== Admin Subscription Management ==========
 
 /**
- * 分页查询会员列表
+ * Paginated subscription/member list query
  * @param {Object} params - { status, keyword, page, size }
  */
 export function adminListSubscriptions (params) {
@@ -180,7 +180,7 @@ export function adminListSubscriptions (params) {
 }
 
 /**
- * 延长会员
+ * Extend a subscription/member period
  * @param {Object} data - { user_id, plan, plan_key }
  */
 export function adminExtendSubscription (data) {

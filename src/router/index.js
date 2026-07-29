@@ -32,7 +32,7 @@ const constantRoutes = [
   },
 ]
 export const asyncRoutes = [
-  // ========== 首页 ==========
+  // ========== Home ==========
   {
     path: '/',
     name: 'Home',
@@ -48,7 +48,7 @@ export const asyncRoutes = [
       },
     ],
   },
-  // ========== 我的 ==========
+  // ========== My ==========
   {
     path: '/my',
     name: 'My',
@@ -106,7 +106,7 @@ export const asyncRoutes = [
       },
     ],
   },
-  // ========== 设备管理 ==========
+  // ========== Device Management ==========
   {
     path: '/device',
     name: 'Device',
@@ -128,7 +128,7 @@ export const asyncRoutes = [
       },
     ],
   },
-  // ========== 用户管理 ==========
+  // ========== User Management ==========
   {
     path: '/user',
     name: 'UserMgmt',
@@ -174,7 +174,7 @@ export const asyncRoutes = [
       },
     ],
   },
-  // ========== 地址簿管理 ==========
+  // ========== Address Book Management ==========
   {
     path: '/ab',
     name: 'AbMgmt',
@@ -202,7 +202,7 @@ export const asyncRoutes = [
       },
     ],
   },
-  // ========== 系统管理 ==========
+  // ========== System Management ==========
   {
     path: '/system',
     name: 'SystemMgmt',
@@ -284,7 +284,7 @@ export const asyncRoutes = [
       },
     ],
   },
-  // ========== 审计日志 ==========
+  // ========== Audit Logs ==========
   {
     path: '/audit',
     name: 'AuditMgmt',

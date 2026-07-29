@@ -267,28 +267,36 @@
     "One": "刚刚"
   },
   "MinutesAgo": {
-    "One": "{param} 分钟前"
+    "One": "{param} 分钟前",
+    "Other": "{param} 分钟前"
   },
   "HoursAgo": {
-    "One": "{param} 小时前"
+    "One": "{param} 小时前",
+    "Other": "{param} 小时前"
   },
   "DaysAgo": {
-    "One": "{param} 天前"
+    "One": "{param} 天前",
+    "Other": "{param} 天前"
   },
   "MonthsAgo": {
-    "One": "{param} 月前"
+    "One": "{param} 月前",
+    "Other": "{param} 月前"
   },
   "YearsAgo": {
-    "One": "{param} 年前"
+    "One": "{param} 年前",
+    "Other": "{param} 年前"
   },
   "MinutesLess": {
-    "One": "{param} 分钟内"
+    "One": "{param} 分钟内",
+    "Other": "{param} 分钟内"
   },
   "HoursLess": {
-    "One": "{param} 小时内"
+    "One": "{param} 小时内",
+    "Other": "{param} 小时内"
   },
   "DaysLess": {
-    "One": "{param} 天内"
+    "One": "{param} 天内",
+    "Other": "{param} 天内"
   },
   "Export": {
     "One": "导出"
@@ -333,19 +341,24 @@
     "One": "通过 Web Client 分享"
   },
   "Minutes": {
-    "One": "{param} 分钟"
+    "One": "{param} 分钟",
+    "Other": "{param} 分钟"
   },
   "Hours": {
-    "One": "{param} 小时"
+    "One": "{param} 小时",
+    "Other": "{param} 小时"
   },
   "Days": {
-    "One": "{param} 天"
+    "One": "{param} 天",
+    "Other": "{param} 天"
   },
   "Weeks": {
-    "One": "{param} 周"
+    "One": "{param} 周",
+    "Other": "{param} 周"
   },
   "Months": {
-    "One": "{param} 月"
+    "One": "{param} 月",
+    "Other": "{param} 月"
   },
   "Forever": {
     "One": "永久"
@@ -381,7 +394,8 @@
     "One": "连接日志"
   },
   "Peer": {
-    "One": "设备"
+    "One": "设备",
+    "Other": "设备"
   },
   "FromPeer": {
     "One": "来源设备"
@@ -428,9 +442,6 @@
   "AddressBookName": {
     "One": "地址簿名称"
   },
-  "AddressBookCollection": {
-    "One": "地址簿集"
-  },
   "AddRule": {
     "One": "添加规则"
   },
@@ -467,26 +478,14 @@
   "LastOnlineIp": {
     "One": "最后在线IP"
   },
-  "or login in with": {
-    "One": "或使用以下登陆"
-  },
-  "Optional, default is": {
-    "One": "可选, 默认值是"
-  },
-  "Check your IdP docs, without": {
-    "One": "检查IdP的文档, 不包含"
-  },
-  "For OIDC login without a password, enter any 4-20 letters": {
-    "One": "如果通过 OIDC 登录且未设置密码，请输入任意 4-20 个字符"
-  },
   "OldPassword": {
     "One": "旧密码"
   },
-  "NewPassword": {
-    "One": "新密码"
-  },
   "NewPasswordEqualOldPassword": {
     "One": "新密码不能与旧密码相同"
+  },
+  "NewPassword": {
+    "One": "新密码"
   },
   "ConfirmPassword": {
     "One": "确认密码"
@@ -499,18 +498,6 @@
   },
   "UserToken": {
     "One": "用户Token"
-  },
-  "Email": {
-    "One": "邮箱"
-  },
-  "MyPeer": {
-    "One": "我的设备"
-  },
-  "View": {
-    "One": "查看"
-  },
-  "Information": {
-    "One": "信息"
   },
   "BatchAddToAB": {
     "One": "批量添加到地址簿"
@@ -557,6 +544,24 @@
   "Reset": {
     "One": "重置"
   },
+  "ConfigFile": {
+    "One": "配置文件"
+  },
+  "ConfigFileTip": {
+    "One": "此处直接编辑后端 config.yaml 配置文件，保存后需重启服务生效。"
+  },
+  "ConfigFilePath": {
+    "One": "配置文件路径"
+  },
+  "RestartService": {
+    "One": "重启服务"
+  },
+  "ServiceRestartTip": {
+    "One": "修改配置保存后，点击此处重启后端服务进程使配置生效。"
+  },
+  "ServiceRestarting": {
+    "One": "服务正在重启，稍后将自动刷新页面"
+  },
   "SendCustom": {
     "One": "发送自定义"
   },
@@ -571,9 +576,6 @@
   },
   "DeviceGroupManage": {
     "One": "设备组管理"
-  },
-  "Import": {
-    "One": "导入"
   },
   "Drop file here or click to upload": {
     "One": "将文件拖到此处或单击上传"
@@ -637,24 +639,6 @@
   },
   "AlertChannel": {
     "One": "告警通道"
-  },
-  "ConfigFile": {
-    "One": "配置文件"
-  },
-  "ConfigFileTip": {
-    "One": "此处直接编辑后端 config.yaml 配置文件，保存后需重启服务生效。"
-  },
-  "ConfigFilePath": {
-    "One": "配置文件路径"
-  },
-  "RestartService": {
-    "One": "重启服务"
-  },
-  "ServiceRestartTip": {
-    "One": "修改配置保存后，点击此处重启后端服务进程使配置生效。"
-  },
-  "ServiceRestarting": {
-    "One": "服务正在重启，稍后将自动刷新页面"
   },
   "Channel": {
     "One": "推送通道"
@@ -872,9 +856,6 @@
   "ServerNotConfigured": {
     "One": "未配置"
   },
-  "ServerHost": {
-    "One": "地址"
-  },
   "Latency": {
     "One": "延迟"
   },
@@ -897,7 +878,7 @@
     "One": "地址"
   },
   "ServerHost": {
-    "One": "主机 / IP"
+    "One": "地址"
   },
   "ServerPort": {
     "One": "端口"
@@ -928,9 +909,6 @@
   },
   "Enabled": {
     "One": "启用"
-  },
-  "AutoRefresh": {
-    "One": "自动刷新"
   },
   "MfaRecoveryCode": {
     "One": "恢复码"
@@ -1106,7 +1084,6 @@
   "InviteCodePlaceholder": {
     "One": "请联系管理员获取"
   },
-
   "GenerateCount": {
     "One": "生成数量"
   },
@@ -1166,6 +1143,9 @@
   },
   "Active": {
     "One": "有效"
+  },
+  "Administrator": {
+    "One": "行政人员"
   },
   "AccountExpired": {
     "One": "账户已过期，请联系管理员"
@@ -1457,5 +1437,35 @@
   },
   "Backend": {
     "One": "后端"
+  },
+  "AddressBookCollection": {
+    "One": "地址簿集"
+  },
+  "or login in with": {
+    "One": "或使用以下登陆"
+  },
+  "Optional, default is": {
+    "One": "可选, 默认值是"
+  },
+  "Check your IdP docs, without": {
+    "One": "检查IdP的文档, 不包含"
+  },
+  "For OIDC login without a password, enter any 4-20 letters": {
+    "One": "如果通过 OIDC 登录且未设置密码，请输入任意 4-20 个字符"
+  },
+  "Email": {
+    "One": "邮箱"
+  },
+  "MyPeer": {
+    "One": "我的设备"
+  },
+  "View": {
+    "One": "查看"
+  },
+  "Information": {
+    "One": "信息"
+  },
+  "Import": {
+    "One": "导入"
   }
 }

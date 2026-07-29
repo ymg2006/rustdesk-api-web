@@ -1,12 +1,5 @@
 <template>
   <div class="profile-page">
-    <!-- 背景装饰光斑：为毛玻璃卡片提供虚化底色 -->
-    <div class="bg-blobs">
-      <span class="blob blob-1"></span>
-      <span class="blob blob-2"></span>
-      <span class="blob blob-3"></span>
-    </div>
-    <!-- ====== 毛玻璃个人资料横幅 ====== -->
     <div class="profile-hero apple-glass">
       <div class="hero-avatar">
         <div class="avatar-ring">
@@ -15,12 +8,12 @@
       </div>
       <div class="hero-info">
         <h1 class="hero-name">{{ userStore.username }}</h1>
-        <p class="hero-email">
+        <p v-if="userStore.email" class="hero-email">
           <svg class="hero-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           {{ userStore.email }}
         </p>
         <p class="hero-role">
-          <el-tag type="primary" size="small" effect="dark" round>管理员</el-tag>
+          <el-tag type="primary" size="small" effect="dark" round>{{T('Administrator')}}</el-tag>
         </p>
       </div>
       <div class="hero-actions">
@@ -163,15 +156,15 @@
 
 <script setup>
   import changePwdDialog from '@/components/changePwdDialog.vue'
-  import { computed, ref } from 'vue'
-  import { useUserStore } from '@/store/user'
-  import { useAppStore } from '@/store/app'
-  import { bind, unbind } from '@/api/oauth'
-  import { myOauth, mfaSetup, mfaEnable, mfaDisable, mfaStatus } from '@/api/user'
-  import { ElMessage, ElMessageBox } from 'element-plus'
-  import { T } from '@/utils/i18n'
-  import { marked } from 'marked'
-  import DOMPurify from 'dompurify'
+import { computed, ref } from 'vue'
+import { useUserStore } from '@/store/user'
+import { useAppStore } from '@/store/app'
+import { bind, unbind } from '@/api/oauth'
+import { myOauth, mfaSetup, mfaEnable, mfaDisable, mfaStatus } from '@/api/user'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { T } from '@/utils/i18n'
+import { marked } from 'marked'
+import DOMPurify from 'dompurify'
 
   const appStore = useAppStore()
   const userStore = useUserStore()
@@ -290,55 +283,16 @@
 <style scoped lang="scss">
 .profile-page {
   position: relative;
-  max-width: 1100px;
   margin: 0 auto;
   padding: var(--apple-spacing-6);
   min-height: calc(100vh - 130px);
   border-radius: var(--apple-radius-lg);
   overflow: hidden;
   background: linear-gradient(135deg, #eef2ff 0%, #faf5ff 48%, #ecfeff 100%);
-
-  // 背景装饰光斑（毛玻璃的虚化底色）
-  .bg-blobs {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-  }
-  .blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(70px);
-    opacity: 0.85;
-  }
-  .blob-1 {
-    top: -90px;
-    left: -70px;
-    width: 380px;
-    height: 380px;
-    background: radial-gradient(circle, rgba(0, 122, 255, 0.55), transparent 70%);
-  }
-  .blob-2 {
-    bottom: -110px;
-    right: -50px;
-    width: 440px;
-    height: 440px;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.50), transparent 70%);
-  }
-  .blob-3 {
-    top: 40%;
-    left: 30%;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(236, 72, 153, 0.40), transparent 70%);
-  }
 }
 
 html.dark .profile-page {
-  background: linear-gradient(135deg, #161827 0%, #1c1830 48%, #101a26 100%);
-  .blob-1 { background: radial-gradient(circle, rgba(10, 132, 255, 0.55), transparent 70%); }
-  .blob-2 { background: radial-gradient(circle, rgba(168, 85, 247, 0.48), transparent 70%); }
-  .blob-3 { background: radial-gradient(circle, rgba(236, 72, 153, 0.40), transparent 70%); }
+  background: transparent;
 }
 
 /* ========== 毛玻璃英雄横幅 ========== */
@@ -464,8 +418,7 @@ html.dark .profile-page {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+    box-shadow: var(--el-box-shadow-light);
   }
 }
 

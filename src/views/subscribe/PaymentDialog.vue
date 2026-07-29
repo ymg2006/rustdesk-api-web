@@ -7,7 +7,7 @@
     @update:model-value="$emit('update:visible', $event)"
     @closed="handleClosed"
   >
-    <!-- 步骤1：选择时长和支付渠道 -->
+    <!-- Step 1: select duration and payment channel -->
     <template v-if="step === 'select'">
       <div class="plan-section">
         <div class="section-label">{{ T('SubscribeSelectDuration') }}</div>
@@ -50,74 +50,74 @@
       </div>
     </template>
 
-    <!-- 步骤2：展示收款码（收银台） -->
+    <!-- Step 2: show payment QR code (cashier) -->
     <template v-if="step === 'qrcode'">
       <div class="cashier">
-        <!-- 商品信息 -->
+        <!-- Product information -->
         <div class="cashier-header">
-          <div class="cashier-product">{{ selectedPlanName }} · RustDesk 订阅</div>
+          <div class="cashier-product">{{ selectedPlanName }} · RustDesk Subscription</div>
           <div class="cashier-amount">
             <span class="amount-symbol">¥</span>
             <span class="amount-value">{{ displayAmount }}</span>
           </div>
         </div>
 
-        <!-- 二维码区域 -->
+        <!-- QR code area -->
         <div class="cashier-qr">
           <div class="qrcode-wrapper" v-loading="!qrPayload">
             <div class="qrcode-inner" :class="{ 'qr-expired': countdownExpired }">
-              <img v-if="qrPayload" :src="qrImageSrc" alt="收款码" class="qrcode-img" />
+              <img v-if="qrPayload" :src="qrImageSrc" alt="Payment QR code" class="qrcode-img" />
               <div v-if="countdownExpired" class="qr-overlay">
                 <el-icon class="overlay-icon"><el-icon-circle-close-filled /></el-icon>
-                <span class="overlay-text">订单已过期</span>
+                <span class="overlay-text">Order expired</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 倒计时 -->
+        <!-- Countdown -->
         <div class="cashier-timer" :class="{ expired: countdownExpired }">
           <template v-if="!countdownExpired">
             <el-icon><el-icon-alarm-clock /></el-icon>
-            二维码有效时间：
-            <span class="timer-value">{{ timerMin }}</span>分
-            <span class="timer-value">{{ timerSec }}</span>秒
-            ，失效勿付
+            QR code valid for:
+            <span class="timer-value">{{ timerMin }}</span> min
+            <span class="timer-value">{{ timerSec }}</span> sec
+            , do not pay after expiration
           </template>
           <template v-else>
-            <span class="timer-expired">订单二维码已过期</span>
+            <span class="timer-expired">Order QR code expired</span>
           </template>
         </div>
 
-        <!-- 金额提示（红色醒目） -->
+        <!-- Amount warning (red and prominent) -->
         <div class="cashier-warning">
           <el-icon><el-icon-warning-filled /></el-icon>
-          请按上方金额 <strong>¥{{ displayAmount }}</strong> 付款，不要多付或少付
+          Please pay exactly <strong>¥{{ displayAmount }}</strong>; do not overpay or underpay
         </div>
 
-        <!-- 操作按钮 -->
+        <!-- Action buttons -->
         <div class="cashier-actions">
           <el-button size="small" @click="copyAmount">
             <el-icon><el-icon-copy-document /></el-icon>
-            复制金额 ¥{{ displayAmount }}
+            Copy Amount ¥{{ displayAmount }}
           </el-button>
         </div>
 
-        <!-- 订单信息 -->
+        <!-- Order information -->
         <div class="cashier-footer">
           <div class="footer-row">
-            <span class="footer-label">商户订单号</span>
+            <span class="footer-label">Merchant Order No.</span>
             <span class="footer-value">{{ orderInfo.out_trade_no }}</span>
           </div>
           <div class="footer-row">
-            <span class="footer-label">支付方式</span>
-            <span class="footer-value">{{ channel === 'alipay' ? '支付宝' : '微信支付' }}</span>
+            <span class="footer-label">Payment Method</span>
+            <span class="footer-value">{{ channel === 'alipay' ? 'Alipay' : 'WeChat Pay' }}</span>
           </div>
         </div>
       </div>
     </template>
 
-    <!-- 步骤3：支付成功，展示授权码 -->
+    <!-- Step 3: payment successful, show invite code -->
     <template v-if="step === 'success'">
       <div class="success-section">
         <el-result icon="success" :title="T('SubscribeSuccess')">
@@ -151,8 +151,8 @@ const props = defineProps({
 })
 const emit = defineEmits(['update:visible', 'activated'])
 
-// 倒计时参数
-const COUNTDOWN_SEC = 300 // 5 分钟
+// Countdown parameters
+const COUNTDOWN_SEC = 300 // 5 minutes
 
 const step = ref('select') // select | qrcode | success
 const plans = ref([])
@@ -192,7 +192,7 @@ const qrImageSrc = computed(() => {
   return qrPayload.value
 })
 
-// 加载可选时长
+// Load available durations
 onMounted(async () => {
   try {
     const res = await getPlans()
@@ -205,10 +205,10 @@ onMounted(async () => {
     }
   } catch (_) {
     plans.value = [
-      { key: '1m', name: '1个月', price_cents: 1000, period_days: 30 },
-      { key: '3m', name: '3个月', price_cents: 2800, period_days: 90 },
-      { key: '6m', name: '6个月', price_cents: 5000, period_days: 180 },
-      { key: '12m', name: '12个月', price_cents: 8800, period_days: 365 },
+      { key: '1m', name: '1 Month', price_cents: 1000, period_days: 30 },
+      { key: '3m', name: '3 Months', price_cents: 2800, period_days: 90 },
+      { key: '6m', name: '6 Months', price_cents: 5000, period_days: 180 },
+      { key: '12m', name: '12 Months', price_cents: 8800, period_days: 365 },
     ]
   }
 })
@@ -268,7 +268,7 @@ const startPolling = (outTradeNo) => {
         emit('activated')
       }
     } catch (_) {
-      // 轮询错误忽略
+      // Ignore polling errors
     }
   }, 3000)
 }
@@ -321,7 +321,7 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* ====== 步骤1：选择时长 ====== */
+/* ====== Step 1: select duration ====== */
 .plan-section {
   margin-bottom: 20px;
 }
@@ -354,7 +354,7 @@ onUnmounted(() => {
 .plan-card.active .plan-icon-timer {
   color: #409eff;
 }
-/* 永久卡片 */
+/* Permanent card */
 .forever-card {
   background: linear-gradient(135deg, #fdf6ec 0%, #fff 100%);
   border-color: #e6a23c;
@@ -416,7 +416,7 @@ onUnmounted(() => {
   gap: 10px;
 }
 
-/* ====== 步骤2：收银台 ====== */
+/* ====== Step 2: cashier ====== */
 .cashier {
   text-align: center;
 }
@@ -446,7 +446,7 @@ onUnmounted(() => {
   line-height: 1;
 }
 
-/* 二维码 */
+/* QR code */
 .cashier-qr {
   margin-bottom: 12px;
 }
@@ -496,7 +496,7 @@ onUnmounted(() => {
   color: #909399;
 }
 
-/* 倒计时 */
+/* Countdown */
 .cashier-timer {
   font-size: 14px;
   color: #606266;
@@ -520,7 +520,7 @@ onUnmounted(() => {
   font-weight: 600;
 }
 
-/* 金额提示（红色醒目） */
+/* Amount warning (red and prominent) */
 .cashier-warning {
   background: #fef0f0;
   color: #f56c6c;
@@ -537,12 +537,12 @@ onUnmounted(() => {
   font-size: 15px;
 }
 
-/* 操作按钮 */
+/* Action buttons */
 .cashier-actions {
   margin-bottom: 14px;
 }
 
-/* 订单信息 */
+/* Order information */
 .cashier-footer {
   background: #f5f7fa;
   border-radius: 6px;
@@ -563,7 +563,7 @@ onUnmounted(() => {
   font-family: monospace;
 }
 
-/* ====== 步骤3：成功 ====== */
+/* ====== Step 3: success ====== */
 .success-section {
   text-align: center;
 }

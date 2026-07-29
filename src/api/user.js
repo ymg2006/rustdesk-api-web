@@ -105,7 +105,7 @@ export function mfaStatus () {
   })
 }
 
-// 管理员强制重置指定用户的 MFA（救援：用户丢失验证器/恢复码时）
+// Admin-forced MFA reset for a specific user (recovery when authenticator/recovery codes are lost)
 export function mfaReset (data) {
   return request({
     url: '/user/mfa/reset',
@@ -130,7 +130,7 @@ export function register (data) {
   })
 }
 
-// 授权码管理（新 InviteCode API）
+// Invite code management (new InviteCode API)
 export function invitationList (params) {
   return request({
     url: '/invite-codes',

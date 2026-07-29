@@ -2,9 +2,9 @@
   <div>
     <el-card class="list-query" shadow="hover">
       <div style="margin-bottom:12px;">
-        <el-button :type="quickFilter === 'all' ? 'primary' : 'default'" size="small" @click="setQuickFilter('all')">全部</el-button>
-        <el-button :type="quickFilter === 'online' ? 'success' : 'default'" size="small" @click="setQuickFilter('online')">在线</el-button>
-        <el-button :type="quickFilter === 'offline' ? 'danger' : 'default'" size="small" @click="setQuickFilter('offline')">离线</el-button>
+        <el-button :type="quickFilter === 'all' ? 'primary' : 'default'" size="small" @click="setQuickFilter('all')">All</el-button>
+        <el-button :type="quickFilter === 'online' ? 'success' : 'default'" size="small" @click="setQuickFilter('online')">Online</el-button>
+        <el-button :type="quickFilter === 'offline' ? 'danger' : 'default'" size="small" @click="setQuickFilter('offline')">Offline</el-button>
       </div>
       <el-form inline label-width="150px">
         <el-form-item :label="T('ID')">
@@ -185,19 +185,19 @@
 
 <script setup>
   import { computed, onActivated, onMounted, reactive, ref, watch } from 'vue'
-  import { useRoute } from 'vue-router'
-  import { list } from '@/api/my/peer'
-  import { ElMessage, ElMessageBox } from 'element-plus'
-  import { toWebClientLink } from '@/utils/webclient'
-  import { T } from '@/utils/i18n'
-  import { timeAgo } from '@/utils/time'
-  import { jsonToCsv, downBlob } from '@/utils/file'
-  import { useRepositories as useABRepositories } from '@/views/address_book/index'
-  import { useAppStore } from '@/store/app'
-  import { connectByClient } from '@/utils/peer'
-  import { CopyDocument } from '@element-plus/icons'
-  import { handleClipboard } from '@/utils/clipboard'
-  import { batchCreateFromPeers } from '@/api/my/address_book'
+import { useRoute } from 'vue-router'
+import { list } from '@/api/my/peer'
+import { ElMessage } from 'element-plus'
+import { toWebClientLink } from '@/utils/webclient'
+import { T } from '@/utils/i18n'
+import { timeAgo } from '@/utils/time'
+import { jsonToCsv, downBlob } from '@/utils/file'
+import { useRepositories as useABRepositories } from '@/views/address_book/index'
+import { useAppStore } from '@/store/app'
+import { connectByClient } from '@/utils/peer'
+import { CopyDocument } from '@element-plus/icons'
+import { handleClipboard } from '@/utils/clipboard'
+import { batchCreateFromPeers } from '@/api/my/address_book'
 
   const appStore = useAppStore()
   const route = useRoute()
@@ -244,7 +244,7 @@
     }
   }
 
-  // 首次进入时应用首页跳转带来的 time_ago 过滤（必须在 listQuery / handlerQuery 定义之后，避免 TDZ 崩溃）
+  // Apply time_ago filter from home-page navigation on first entry (must run after listQuery / handlerQuery to avoid TDZ crashes)
   if (route.query.time_ago) {
     const ta = Number(route.query.time_ago)
     if (ta < 0) { setQuickFilter('online'); listQuery.time_ago = ta }
@@ -268,7 +268,7 @@
     }
   }*/
   onMounted(() => {
-    // query 过滤已在 setup 末尾处理；无 query 时才在此加载全部
+    // Query filtering is handled at the end of setup; load all here only when there is no query
     if (route.query.time_ago == null) getList()
   })
   onActivated(() => {
@@ -294,7 +294,7 @@
 
   const toView = (row) => {
     formVisible.value = true
-    //将row中的数据赋值给formData
+    // Copy row data into formData
     Object.keys(formData).forEach(key => {
       formData[key] = row[key]
     })

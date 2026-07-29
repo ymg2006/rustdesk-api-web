@@ -21,7 +21,7 @@ export function admin () {
   })
 }
 
-// 读取后端配置文件（config.yaml）原始内容
+// Read the raw backend config file content (config.yaml)
 export function fileGet () {
   return request({
     url: '/config/file/get',
@@ -29,7 +29,7 @@ export function fileGet () {
   })
 }
 
-// 保存后端配置文件（config.yaml）原始内容
+// Save the raw backend config file content (config.yaml)
 export function fileUpdate (content) {
   return request({
     url: '/config/file/update',
@@ -38,7 +38,7 @@ export function fileUpdate (content) {
   })
 }
 
-// 重启后端服务进程（使配置生效），仅管理员
+// Restart the backend service process to apply configuration changes; admin only
 export function serviceRestart () {
   return request({
     url: '/config/restart',

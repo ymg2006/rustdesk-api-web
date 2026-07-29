@@ -1,13 +1,13 @@
 <template>
   <div class="app-container">
-    <!-- 操作栏 -->
+    <!-- Action bar -->
     <div class="mb-2">
       <el-button type="primary" icon="el-icon-plus" @click="handleCreate">
-        生成授权码
+        Generate Invite Code
       </el-button>
     </div>
 
-    <!-- 表格 -->
+    <!-- Table -->
     <el-table
       :data="list"
       v-loading="listLoading"
@@ -16,28 +16,28 @@
       style="width: 100%"
     >
       <el-table-column :label="T('ID')" prop="id" width="60" />
-      <el-table-column label="授权码" prop="code" min-width="160" />
-      <el-table-column label="套餐" width="100">
+      <el-table-column label="Invite Code" prop="code" min-width="160" />
+      <el-table-column label="Plan" width="100">
         <template slot-scope="{ row }">
           <el-tag :type="row.plan === 'pro' ? 'primary' : 'warning'" size="mini">
             {{ row.plan }}
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="状态" width="90">
+      <el-table-column label="Status" width="90">
         <template slot-scope="{ row }">
           <el-tag
             :type="row.status === 'unused' ? 'success' : (row.status === 'used' ? 'info' : 'danger')"
             size="mini"
           >
-            {{ row.status === 'unused' ? '未使用' : (row.status === 'used' ? '已使用' : '已失效') }}
+            {{ row.status === 'unused' ? 'Unused' : (row.status === 'used' ? 'Used' : 'Revoked') }}
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="使用人" width="120" prop="used_by" />
-      <el-table-column label="到期时间" width="170" prop="expire_at" />
-      <el-table-column label="创建时间" width="170" prop="created_at" />
-      <el-table-column label="操作" width="120" fixed="right">
+      <el-table-column label="Used By" width="120" prop="used_by" />
+      <el-table-column label="Expiration Time" width="170" prop="expire_at" />
+      <el-table-column label="Created At" width="170" prop="created_at" />
+      <el-table-column label="Actions" width="120" fixed="right">
         <template slot-scope="{ row }">
           <el-button
             v-if="row.status === 'unused'"
@@ -45,13 +45,13 @@
             size="mini"
             @click="handleRevoke(row)"
           >
-            失效
+            Revoke
           </el-button>
         </template>
       </el-table-column>
     </el-table>
 
-    <!-- 分页 -->
+    <!-- Pagination -->
     <el-pagination
       class="mt-2"
       @size-change="pageSize => { form.size = pageSize; fetchData() }"
@@ -64,29 +64,29 @@
     >
     </el-pagination>
 
-    <!-- 生成授权码弹窗 -->
-    <el-dialog title="生成授权码" :visible.sync="createVisible" width="500px">
+    <!-- Generate invite-code dialog -->
+    <el-dialog title="Generate Invite Code" :visible.sync="createVisible" width="500px">
       <el-form ref="createForm" :model="createForm" :rules="createRules" label-width="100px">
-        <el-form-item label="套餐" prop="plan">
-          <el-select v-model="createForm.plan" placeholder="请选择套餐">
+        <el-form-item label="Plan" prop="plan">
+          <el-select v-model="createForm.plan" placeholder="Please select a plan">
             <el-option label="Pro" value="pro" />
             <el-option label="Enterprise" value="enterprise" />
           </el-select>
         </el-form-item>
-        <el-form-item label="有效天数" prop="expire_days">
+        <el-form-item label="Valid Days" prop="expire_days">
           <el-input-number v-model="createForm.expire_days" :min="1" :max="3650" />
         </el-form-item>
       </el-form>
       <span slot="footer">
-        <el-button @click="createVisible = false">取消</el-button>
-        <el-button type="primary" @click="submitCreate" :loading="creating">确认生成</el-button>
+        <el-button @click="createVisible = false">Cancel</el-button>
+        <el-button type="primary" @click="submitCreate" :loading="creating">Confirm Generate</el-button>
       </span>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import { invitationList, invitationCreate, invitationRevoke } from '@/api/user'
+import { invitationList, invitationCreate, invitationRevoke } from '@/api/user';
 
 export default {
   data () {
@@ -105,8 +105,8 @@ export default {
         expire_days: 30,
       },
       createRules: {
-        plan: [{ required: true, message: '请选择套餐', trigger: 'change' }],
-        expire_days: [{ required: true, message: '请输入有效天数', trigger: 'blur' }],
+        plan: [{ required: true, message: 'Please select a plan', trigger: 'change' }],
+        expire_days: [{ required: true, message: 'Please enter valid days', trigger: 'blur' }],
       },
     }
   },
@@ -135,7 +135,7 @@ export default {
         if (!valid) return
         this.creating = true
         invitationCreate(this.createForm).then(() => {
-          this.$message.success('生成成功')
+          this.$message.success('Generated successfully')
           this.createVisible = false
           this.fetchData()
         }).finally(() => {
@@ -144,13 +144,13 @@ export default {
       })
     },
     handleRevoke (row) {
-      this.$confirm(`确定要使授权码 ${row.code} 失效吗？`, '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
+      this.$confirm(`Are you sure you want to revoke invite code ${row.code}?`, 'Prompt', {
+        confirmButtonText: 'Confirm',
+        cancelButtonText: 'Cancel',
         type: 'warning',
       }).then(() => {
         invitationRevoke(row.id).then(() => {
-          this.$message.success('已失效')
+          this.$message.success('Revoked')
           this.fetchData()
         })
       })

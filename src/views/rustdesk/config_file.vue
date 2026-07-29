@@ -13,7 +13,7 @@
 
       <el-alert type="warning" :closable="false" show-icon style="margin-bottom: 12px" :title="T('ConfigFileTip')" />
 
-      <el-form label-width="110px" style="margin-bottom: 12px;">
+      <el-form label-width="130px" style="margin-bottom: 12px;">
         <el-form-item :label="T('ConfigFilePath')">
           <el-input :model-value="path" readonly />
         </el-form-item>

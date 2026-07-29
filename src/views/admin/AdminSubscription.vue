@@ -11,7 +11,7 @@
           </el-select>
         </el-form-item>
         <el-form-item :label="T('Keyword')">
-          <el-input v-model="filter.keyword" placeholder="用户ID/用户名" clearable style="width:200px" />
+          <el-input v-model="filter.keyword" placeholder="User ID/Username" clearable style="width:200px" />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="getList">{{ T('Filter') }}</el-button>
@@ -22,28 +22,28 @@
     <el-card shadow="hover" class="list-card">
       <el-table :data="list" v-loading="loading" border stripe>
         <el-table-column prop="id" :label="T('ID')" width="60" align="center" />
-        <el-table-column prop="username" label="用户名" width="150" />
-        <el-table-column prop="subscription_plan" label="套餐" width="80" align="center">
+        <el-table-column prop="username" label="Username" width="150" />
+        <el-table-column prop="subscription_plan" label="Plan" width="80" align="center">
           <template #default="{ row }">
             <el-tag size="small">{{ row.subscription_plan || '-' }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="会员状态" width="110" align="center">
+        <el-table-column label="Subscription Status" width="110" align="center">
           <template #default="{ row }">
             <el-tag :type="statusType(row.status)" size="small">
-              {{ row.status === 'permanent' ? '永久' : row.status }}
+              {{ row.status === 'permanent' ? 'Permanent' : row.status }}
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="剩余天数" width="100" align="center">
+        <el-table-column label="Days Left" width="100" align="center">
           <template #default="{ row }">
-            <span v-if="row.days_left === -1" style="color:#67c23a;font-weight:600">永久</span>
+            <span v-if="row.days_left === -1" style="color:#67c23a;font-weight:600">Permanent</span>
             <span v-else :style="{ color: row.days_left > 0 && row.days_left <= 7 ? '#f56c6c' : '#303133' }">
-              {{ row.days_left > 0 ? row.days_left + '天' : '-' }}
+              {{ row.days_left > 0 ? row.days_left + ' days' : '-' }}
             </span>
           </template>
         </el-table-column>
-        <el-table-column label="到期时间" width="170" align="center">
+        <el-table-column label="Expiration Time" width="170" align="center">
           <template #default="{ row }">
             <span v-if="row.days_left === -1" style="color:#67c23a">—</span>
             <span v-else>{{ formatTime(row.subscription_expire_at) }}</span>
@@ -52,7 +52,7 @@
         <el-table-column :label="T('Action')" width="160" align="center" fixed="right">
           <template #default="{ row }">
             <el-button type="primary" size="small" @click="showExtend(row)">
-              延长
+              Extend
             </el-button>
           </template>
         </el-table-column>
@@ -69,13 +69,13 @@
       </div>
     </el-card>
 
-    <!-- 延长会员弹窗 -->
-    <el-dialog v-model="extendVisible" title="延长会员" width="440px" :close-on-click-modal="false">
+    <!-- Extend subscription dialog -->
+    <el-dialog v-model="extendVisible" title="Extend Subscription" width="440px" :close-on-click-modal="false">
       <el-form label-position="top">
-        <el-form-item label="用户">
+        <el-form-item label="User">
           <el-input :model-value="extendUser?.username" disabled />
         </el-form-item>
-        <el-form-item label="延长时长">
+        <el-form-item label="Extension Duration">
           <div class="plan-grid">
             <div
               v-for="p in planOptions"
@@ -93,8 +93,8 @@
         </el-form-item>
       </el-form>
       <template #footer>
-        <el-button @click="extendVisible = false">取消</el-button>
-        <el-button type="primary" :loading="extending" @click="handleExtend">确认延长</el-button>
+        <el-button @click="extendVisible = false">Cancel</el-button>
+        <el-button type="primary" :loading="extending" @click="handleExtend">Confirm Extension</el-button>
       </template>
     </el-dialog>
   </div>
@@ -152,7 +152,7 @@ const getList = async () => {
     list.value = res.data.list || []
     total.value = res.data.total || 0
   } catch (e) {
-    ElMessage.error('获取会员列表失败')
+    ElMessage.error('Failed to get subscription list')
   } finally {
     loading.value = false
   }
@@ -176,14 +176,14 @@ const handleExtend = async () => {
       plan_key: extendSelectedKey.value,
     })
     if (res.code) {
-      ElMessage.error(res.message || '延长失败')
+      ElMessage.error(res.message || 'Extension failed')
       return
     }
-    ElMessage.success(`已为用户 ${extendUser.value.username} 延长 ${opt.name} 会员`)
+    ElMessage.success(`Extended subscription for user ${extendUser.value.username} by ${opt.name}`)
     extendVisible.value = false
     await getList()
   } catch (e) {
-    ElMessage.error('延长失败')
+    ElMessage.error('Extension failed')
   } finally {
     extending.value = false
   }
@@ -199,11 +199,11 @@ onMounted(async () => {
     }
   } catch (_) {
     planOptions.value = [
-      { key: '1m', name: '1个月', price_cents: 1000, period_days: 30 },
-      { key: '3m', name: '3个月', price_cents: 2800, period_days: 90 },
-      { key: '6m', name: '6个月', price_cents: 5000, period_days: 180 },
-      { key: '12m', name: '12个月', price_cents: 8800, period_days: 365 },
-      { key: 'forever', name: '永久', price_cents: null, period_days: 0 },
+      { key: '1m', name: '1 Month', price_cents: 1000, period_days: 30 },
+      { key: '3m', name: '3 Months', price_cents: 2800, period_days: 90 },
+      { key: '6m', name: '6 Months', price_cents: 5000, period_days: 180 },
+      { key: '12m', name: '12 Months', price_cents: 8800, period_days: 365 },
+      { key: 'forever', name: 'Permanent', price_cents: null, period_days: 0 },
     ]
   }
 })
@@ -261,7 +261,7 @@ onMounted(async () => {
   width: 38px !important;
   height: 38px !important;
 }
-/* 永久卡片 */
+/* Permanent card */
 .forever-card {
   background: linear-gradient(135deg, #fdf6ec 0%, #fff 100%);
   border-color: #e6a23c;

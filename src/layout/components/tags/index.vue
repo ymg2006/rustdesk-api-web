@@ -13,10 +13,10 @@
 </template>
 
 <script>
-  import { defineComponent, ref, onMounted, watch } from 'vue'
-  import { useTagsStore } from '@/store/tags'
-  import { useRoute, useRouter } from 'vue-router'
-  import { T } from '@/utils/i18n'
+  import { defineComponent, ref, onMounted, watch } from 'vue';
+import { useTagsStore } from '@/store/tags';
+import { useRoute, useRouter } from 'vue-router';
+import { T } from '@/utils/i18n';
 
   export default defineComponent({
     name: 'Index',
@@ -75,15 +75,13 @@
 <style lang="scss" scoped>
 
 .tag {
-  border-radius: 6px;
   cursor: pointer;
   margin-right: 6px;
   transition: all 0.2s ease;
+  background: var(--el-color-primary-light-9);
 }
 .tag--active {
-  background: var(--el-color-primary-light-9);
   color: var(--el-color-primary);
   border-color: var(--el-color-primary-light-7);
-  border-radius: var(--apple-radius-md);
 }
 </style>

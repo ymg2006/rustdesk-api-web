@@ -21,10 +21,10 @@
 <script setup>
 
   import { computed, reactive, ref } from 'vue'
-  import { ElMessageBox } from 'element-plus'
-  import { changeCurPwd } from '@/api/user'
-  import { useUserStore } from '@/store/user'
-  import { T } from '@/utils/i18n'
+import { ElMessageBox } from 'element-plus'
+import { changeCurPwd } from '@/api/user'
+import { useUserStore } from '@/store/user'
+import { T } from '@/utils/i18n'
 
   const props = defineProps({
     visible: Boolean,
@@ -59,7 +59,7 @@
       {
         validator: (rule, value, callback) => {
           if (value === changePwdForm.old_password) {
-            callback(new Error(T('NewPasswordEqualOldPassword'))) //'新密码不能与旧密码相同'
+            callback(new Error(T('NewPasswordEqualOldPassword'))) //'The new password cannot be the same as the old password'
           } else {
             callback()
           }
@@ -88,7 +88,7 @@
   const userStore = useUserStore()
 
   const changePassword = async () => {
-    //验证
+    // Validate
     const valid = await cpwd.value.validate().catch(_ => false)
     if (!valid) {
       return

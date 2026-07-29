@@ -19,12 +19,12 @@
         <template #default>
           <div v-if="hasData" class="subscription-info">
             <!-- 状态标识 -->
-            <div class="status-badge" :class="statusClass">
+            <!-- <div class="status-badge" :class="statusClass">
               <el-icon v-if="mine.status === 'active'"><el-icon-success-filled /></el-icon>
               <el-icon v-else-if="mine.status === 'expired'"><el-icon-warning-filled /></el-icon>
               <el-icon v-else><el-icon-circle-close-filled /></el-icon>
               <span>{{ statusText }}</span>
-            </div>
+            </div> -->
 
             <el-descriptions :column="2" border class="info-table">
               <el-descriptions-item :label="T('Plan')">

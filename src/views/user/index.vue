@@ -70,18 +70,18 @@
 
 <script setup>
   import { useRepositories, useDel, useToEditOrAdd, useChangePwd } from '@/views/user/composables'
-  import { T } from '@/utils/i18n'
-  import { DISABLE_STATUS, ENABLE_STATUS } from '@/utils/common_options'
-  import { update, mfaReset } from '@/api/user'
-  import { ElMessageBox, ElMessage } from 'element-plus'
-  import { onMounted, watch } from 'vue'
+import { T } from '@/utils/i18n'
+import { DISABLE_STATUS, ENABLE_STATUS } from '@/utils/common_options'
+import { update, mfaReset } from '@/api/user'
+import { ElMessageBox, ElMessage } from 'element-plus'
+import { onMounted, watch } from 'vue'
 
   const formatDate = (ts) => {
     if (!ts || ts <= 0) return '-'
     const d = new Date(ts * 1000)
     return d.toLocaleString()
   }
-  //列表
+  // List
   const {
     listRes,
     listQuery,
@@ -102,7 +102,7 @@
 
   const { changePass } = useChangePwd()
 
-  //删除
+  // Delete
   const { del } = useDel()
   const remove = async (row) => {
     const res = await del(row.id)
@@ -126,7 +126,7 @@
     }
   }
 
-  // 管理员强制重置用户 MFA
+  // Admin-forced user MFA reset
   const resetMfa = async (row) => {
     const cf = await ElMessageBox.confirm(
       T('MfaResetConfirm', { username: row.username }),

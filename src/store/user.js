@@ -21,11 +21,11 @@ export const useUserStore = defineStore({
 
   actions: {
     async logout () {
-      // 调用后端 /logout 清除 HttpOnly Cookie 与 user_token 记录
+      // Call backend /logout to clear the HttpOnly Cookie and user_token record
       try {
         await request({ url: '/logout', method: 'post' })
       } catch (e) {
-        // 即使请求失败也继续清理本地状态
+        // Continue clearing local state even if the request fails
       }
       removeToken()
       removeCode()
@@ -36,7 +36,7 @@ export const useUserStore = defineStore({
     },
 
     saveUserData (userData) {
-      // token 由后端通过 HttpOnly Cookie 下发，前端不再存储
+      // The token is issued by the backend via HttpOnly Cookie; the frontend no longer stores it
       localStorage.setItem('user_info', JSON.stringify({ name: userData.username }))
       this.$patch({
         ...userData,
@@ -63,7 +63,7 @@ export const useUserStore = defineStore({
       if (res) {
         useAppStore().loadConfig()
         const userData = res.data
-        // token 由后端通过 HttpOnly Cookie 下发，前端不再存储
+        // The token is issued by the backend via HttpOnly Cookie; the frontend no longer stores it
         this.$patch({
           ...userData,
         })
@@ -76,13 +76,13 @@ export const useUserStore = defineStore({
       // oidc data need to be implement
       const data = {
         deviceInfo: {
-          name: navigator.userAgent, // 使用浏览器的 User-Agent 作为设备名
-          os: platform, // 获取操作系统信息
+          name: navigator.userAgent, // Use the browser User-Agent as the device name
+          os: platform, // Get operating-system information
           type: 'webadmin', // any vaule
         },
         id: `${platform}-${browser}`,
-        op: provider, // 传入的 provider
-        uuid: '',//crypto.randomUUID(), // 自动生成 UUID
+        op: provider, // Incoming provider
+        uuid: '',//crypto.randomUUID(), // Auto-generate UUID
       }
       const res = await oidcAuth(data).catch(_ => false)
       if (res) {

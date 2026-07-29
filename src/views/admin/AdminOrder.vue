@@ -10,7 +10,7 @@
           </el-select>
         </el-form-item>
         <el-form-item :label="T('Keyword')">
-          <el-input v-model="filter.keyword" placeholder="订单号/用户名" clearable style="width:200px" />
+          <el-input v-model="filter.keyword" placeholder="Order No./Username" clearable style="width:200px" />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="getList">{{ T('Filter') }}</el-button>
@@ -21,29 +21,29 @@
     <el-card shadow="hover" class="list-card">
       <el-table :data="list" v-loading="loading" border stripe>
         <el-table-column prop="id" :label="T('ID')" width="60" align="center" />
-        <el-table-column prop="out_trade_no" label="订单号" min-width="220" />
-        <el-table-column prop="username" label="用户" width="120" align="center" />
-        <el-table-column label="时长" width="80" align="center">
+        <el-table-column prop="out_trade_no" label="Order No." min-width="220" />
+        <el-table-column prop="username" label="User" width="120" align="center" />
+        <el-table-column label="Duration" width="80" align="center">
           <template #default="{ row }">
             {{ row.plan_key }}
           </template>
         </el-table-column>
-        <el-table-column label="金额" width="100" align="center">
+        <el-table-column label="Amount" width="100" align="center">
           <template #default="{ row }">
             ¥{{ (row.amount_cents / 100).toFixed(2) }}
           </template>
         </el-table-column>
-        <el-table-column prop="channel" label="支付方式" width="100" align="center">
+        <el-table-column prop="channel" label="Payment Method" width="100" align="center">
           <template #default="{ row }">
-            {{ row.channel === 'alipay' ? '支付宝' : '微信' }}
+            {{ row.channel === 'alipay' ? 'Alipay' : 'WeChat' }}
           </template>
         </el-table-column>
-        <el-table-column label="状态" width="100" align="center">
+        <el-table-column label="Status" width="100" align="center">
           <template #default="{ row }">
             <el-tag :type="statusType(row.status)" size="small">{{ statusLabel(row.status) }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="下单时间" width="170" align="center">
+        <el-table-column label="Order Time" width="170" align="center">
           <template #default="{ row }">
             {{ formatTime(row.created_at) }}
           </template>
@@ -51,10 +51,10 @@
         <el-table-column :label="T('Action')" width="180" align="center" fixed="right">
           <template #default="{ row }">
             <el-button v-if="row.status === 'pending'" type="success" size="small" @click="handleConfirm(row)">
-              确认到账
+              Confirm Paid
             </el-button>
             <el-button v-if="row.status === 'pending'" type="warning" size="small" @click="handleClose(row)">
-              关闭
+              Close
             </el-button>
           </template>
         </el-table-column>
@@ -124,7 +124,7 @@ const getList = async () => {
     list.value = res.data.list || []
     total.value = res.data.total || 0
   } catch (e) {
-    ElMessage.error('获取订单列表失败')
+    ElMessage.error('Failed to get order list')
   } finally {
     loading.value = false
   }
@@ -132,31 +132,31 @@ const getList = async () => {
 
 const handleConfirm = async (row) => {
   try {
-    await ElMessageBox.confirm(`确认订单 ${row.out_trade_no} 已到账？`, '确认')
+    await ElMessageBox.confirm(`Confirm order ${row.out_trade_no} as paid?`, 'Confirm')
   } catch {
     return
   }
   const res = await adminConfirmOrder(row.id)
   if (res.code) {
-    ElMessage.error(res.message || '确认失败')
+    ElMessage.error(res.message || 'Confirmation failed')
     return
   }
-  ElMessage.success('确认成功')
+  ElMessage.success('Confirmed successfully')
   await getList()
 }
 
 const handleClose = async (row) => {
   try {
-    await ElMessageBox.confirm(`关闭订单 ${row.out_trade_no}？`, '确认')
+    await ElMessageBox.confirm(`Close order ${row.out_trade_no}?`, 'Confirm')
   } catch {
     return
   }
   const res = await adminCloseOrder(row.id)
   if (res.code) {
-    ElMessage.error(res.message || '关闭失败')
+    ElMessage.error(res.message || 'Close failed')
     return
   }
-  ElMessage.success('已关闭')
+  ElMessage.success('Closed')
   await getList()
 }
 

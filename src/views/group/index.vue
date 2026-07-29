@@ -1,6 +1,6 @@
 <template>
   <div class="org-wrap">
-    <!-- 左侧：部门树 -->
+    <!-- Left: department tree -->
     <el-card class="org-tree" shadow="hover">
       <template #header>
         <div class="tree-header">
@@ -27,7 +27,7 @@
       </el-tree>
     </el-card>
 
-    <!-- 右侧：部门成员 -->
+    <!-- Right: department members -->
     <el-card class="org-members" shadow="hover">
       <template #header>
         <div class="member-header">
@@ -56,8 +56,8 @@
         </el-table-column>
         <el-table-column :label="T('Role')" width="100" align="center">
           <template #default="{row}">
-            <el-tag v-if="row.role === 'admin'" type="danger" size="small">管理员</el-tag>
-            <span v-else>普通用户</span>
+            <el-tag v-if="row.role === 'admin'" type="danger" size="small">Administrator</el-tag>
+            <span v-else>Regular User</span>
           </template>
         </el-table-column>
         <el-table-column :label="T('Status')" width="90" align="center">
@@ -82,7 +82,7 @@
       />
     </el-card>
 
-    <!-- 部门新增/编辑对话框 -->
+    <!-- Department add/edit dialog -->
     <el-dialog v-model="formVisible" :title="!formData.id ? T('Add') : T('Update')" width="600">
       <el-form :model="formData" label-width="120px">
         <el-form-item :label="T('DepartmentName')" required>
@@ -118,10 +118,10 @@
 
 <script setup>
   import { onMounted, reactive, ref, computed } from 'vue'
-  import { tree as groupTree, create, update, remove as removeGroup } from '@/api/group'
-  import { list as userList } from '@/api/user'
-  import { ElMessage, ElMessageBox } from 'element-plus'
-  import { T } from '@/utils/i18n'
+import { tree as groupTree, create, update, remove as removeGroup } from '@/api/group'
+import { list as userList } from '@/api/user'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { T } from '@/utils/i18n'
 
   const treeRef = ref(null)
   const treeData = ref([])
@@ -134,7 +134,7 @@
     }
   }
 
-  // 扁平化部门，便于按 id 取名称
+  // Flatten departments to make lookup by ID easier
   const flatGroups = computed(() => {
     const map = {}
     const walk = (nodes) => {
@@ -159,7 +159,7 @@
     getList()
   }
 
-  // 成员列表
+  // Member list
   const listRes = reactive({ list: [], total: 0, loading: false })
   const listQuery = reactive({ page: 1, page_size: 10, username: '' })
 
@@ -184,11 +184,11 @@
     }
   }
 
-  // 部门对话框
+  // Department dialog
   const formVisible = ref(false)
   const formData = reactive({ id: 0, name: '', type: 1, parent_id: 0 })
 
-  // 编辑时禁用自身及子孙部门作为上级
+  // Disable self and descendants as parent department during editing
   const parentTreeData = computed(() => {
     const forbidden = new Set()
     if (formData.id) {

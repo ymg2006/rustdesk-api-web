@@ -8,24 +8,24 @@
       </el-form>
     </el-card>
 
-    <!-- 创建授权码对话框 -->
+    <!-- Create invite-code dialog -->
     <el-dialog :title="T('CreateInvitation')" v-model="showCreate" width="500px">
       <el-form ref="createFormRef" :model="createForm" label-width="100px" :rules="createRules">
-        <el-form-item label="套餐" prop="plan">
+        <el-form-item label="Plan" prop="plan">
           <el-select v-model="createForm.plan" style="width:100%">
             <el-option label="Pro" value="pro" />
             <el-option label="Enterprise" value="enterprise" />
           </el-select>
         </el-form-item>
-        <el-form-item label="有效天数" prop="expire_days">
+        <el-form-item label="Valid Days" prop="expire_days">
           <el-input-number v-model="createForm.expire_days" :min="1" :max="3650" style="width:200px" />
           <div style="margin-top:6px; display:flex; gap:4px; flex-wrap:wrap;">
-            <el-button size="small" @click="createForm.expire_days = 30">1个月</el-button>
-            <el-button size="small" @click="createForm.expire_days = 90">3个月</el-button>
-            <el-button size="small" @click="createForm.expire_days = 365">1年</el-button>
-            <el-button size="small" @click="createForm.expire_days = 3650">10年</el-button>
+            <el-button size="small" @click="createForm.expire_days = 30">1 Month</el-button>
+            <el-button size="small" @click="createForm.expire_days = 90">3 Months</el-button>
+            <el-button size="small" @click="createForm.expire_days = 365">1 Year</el-button>
+            <el-button size="small" @click="createForm.expire_days = 3650">10 Years</el-button>
           </div>
-          <span class="el-form-item__tip">默认为 30 天</span>
+          <span class="el-form-item__tip">Default is 30 days</span>
         </el-form-item>
       </el-form>
       <template #footer>
@@ -42,18 +42,18 @@
             <el-tag type="info" style="font-family: monospace; font-size: 13px;">{{ row.code }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="套餐" align="center" width="100">
+        <el-table-column label="Plan" align="center" width="100">
           <template #default="{row}">
             <el-tag :type="row.plan === 'pro' ? 'primary' : 'warning'" size="mini">{{ row.plan }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="状态" align="center" width="100">
+        <el-table-column label="Status" align="center" width="100">
           <template #default="{row}">
             <el-tag
               :type="row.status === 'unused' ? 'success' : (row.status === 'used' ? 'info' : 'danger')"
               size="mini"
             >
-              {{ row.status === 'unused' ? '未使用' : (row.status === 'used' ? '已使用' : '已失效') }}
+              {{ row.status === 'unused' ? 'Unused' : (row.status === 'used' ? 'Used' : 'Revoked') }}
             </el-tag>
           </template>
         </el-table-column>
@@ -89,9 +89,9 @@
 
 <script setup>
   import { ref, onMounted, watch, reactive } from 'vue'
-  import { ElMessage, ElMessageBox } from 'element-plus'
-  import { T } from '@/utils/i18n'
-  import { invitationList, invitationCreate, invitationRevoke } from '@/api/user'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { T } from '@/utils/i18n'
+import { invitationList, invitationCreate, invitationRevoke } from '@/api/user'
 
   const showCreate = ref(false)
   const creating = ref(false)
@@ -109,8 +109,8 @@
     expire_days: 30,
   })
   const createRules = {
-    plan: [{ required: true, message: '请选择套餐', trigger: 'change' }],
-    expire_days: [{ required: true, message: '请输入有效天数', trigger: 'blur' }],
+    plan: [{ required: true, message: 'Please select a plan', trigger: 'change' }],
+    expire_days: [{ required: true, message: 'Please enter valid days', trigger: 'blur' }],
   }
 
   const getList = async () => {
@@ -143,7 +143,7 @@
   }
 
   const revoke = async (row) => {
-    const cf = await ElMessageBox.confirm(`确定要使授权码 ${row.code} 失效吗？`, {
+    const cf = await ElMessageBox.confirm(`Are you sure you want to revoke invite code ${row.code}?`, {
       confirmButtonText: T('Confirm'),
       cancelButtonText: T('Cancel'),
       type: 'warning',

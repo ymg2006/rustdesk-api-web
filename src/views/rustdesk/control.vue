@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 v-html="T('ServerCmdTips', {wiki: '<a target=\'_blank\' href=\'https://github.com/laiyouxing/rustdesk-api/wiki/Rustdesk-Command\'>WIKI</a>'})"></h4>
+    <h4 v-html="T('ServerCmdTips', {wiki: '<a target=\'_blank\' href=\'https://github.com/ymg2006/rustdesk-api/wiki/Rustdesk-Command\'>WIKI</a>'})"></h4>
     <h5>
       <span>ID {{ T('Status') }}: </span>
       <el-tag v-if="canSendIdServerCmd" type="success">{{ T('Available') }}</el-tag>
@@ -117,16 +117,16 @@
 
 <script setup>
   import { create, list, remove, sendCmd, update } from '@/api/rustdesk'
-  import { onMounted, reactive, ref } from 'vue'
-  import { T } from '@/utils/i18n'
-  import { ElMessage, ElMessageBox } from 'element-plus'
-  import { ID_TARGET, RELAY_TARGET } from '@/views/rustdesk/options'
-  import blocklist from '@/views/rustdesk/blocklist.vue'
-  import blacklist from '@/views/rustdesk/blacklist.vue'
-  import alwaysUseRelay from '@/views/rustdesk/always_use_relay.vue'
-  import RelayServers from '@/views/rustdesk/relay_servers.vue'
-  import mustLogin from '@/views/rustdesk/must_login.vue'
-  import usage from '@/views/rustdesk/usage.vue'
+import { onMounted, reactive, ref } from 'vue'
+import { T } from '@/utils/i18n'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { ID_TARGET, RELAY_TARGET } from '@/views/rustdesk/options'
+import blocklist from '@/views/rustdesk/blocklist.vue'
+import blacklist from '@/views/rustdesk/blacklist.vue'
+import alwaysUseRelay from '@/views/rustdesk/always_use_relay.vue'
+import RelayServers from '@/views/rustdesk/relay_servers.vue'
+import mustLogin from '@/views/rustdesk/must_login.vue'
+import usage from '@/views/rustdesk/usage.vue'
 
   const activeName = ref('Simple')
 

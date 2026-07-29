@@ -54,7 +54,7 @@
             {{ formatTime(row.expire_at) }}
           </template>
         </el-table-column>
-        <el-table-column prop="bound_order_id" label="订单号" min-width="180" align="center">
+        <el-table-column prop="bound_order_id" label="Order No." min-width="180" align="center">
           <template #default="{ row }">
             <span v-if="row.bound_order_id" class="order-id">{{ row.bound_order_id }}</span>
             <span v-else>-</span>
@@ -65,7 +65,7 @@
             {{ formatTime(row.created_at) }}
           </template>
         </el-table-column>
-        <el-table-column prop="remark" label="备注" min-width="120" align="center">
+        <el-table-column prop="remark" label="Remark" min-width="120" align="center">
           <template #default="{ row }">
             <span class="remark-text">{{ row.remark || '-' }}</span>
           </template>
@@ -87,7 +87,7 @@
               size="small"
               @click="handleDelete(row)"
             >
-              删除
+              Delete
             </el-button>
             <span v-else>-</span>
           </template>
@@ -105,10 +105,10 @@
       </div>
     </el-card>
 
-    <!-- 手动生成弹窗 -->
-    <el-dialog v-model="showCreate" title="生成授权码" width="520px">
+    <!-- Manual generation dialog -->
+    <el-dialog v-model="showCreate" title="Generate Invite Code" width="520px">
       <el-form label-position="top">
-        <el-form-item label="时长（选后自动填充天数）">
+        <el-form-item label="Duration (auto-fills days after selection)">
           <div class="plan-grid">
             <div
               v-for="p in planOptions"
@@ -123,17 +123,17 @@
               </el-icon>
               <div class="plan-name">{{ p.name }}</div>
               <div class="plan-price" :class="{ 'forever-price': p.key === 'forever' }">
-                <template v-if="p.key === 'forever'">永久</template>
+                <template v-if="p.key === 'forever'">Permanent</template>
                 <template v-else>¥{{ (p.price_cents / 100).toFixed(2) }}</template>
               </div>
             </div>
           </div>
         </el-form-item>
-        <el-form-item label="有效天数">
+        <el-form-item label="Valid Days">
           <el-input-number v-model="createForm.expire_days" :min="1" :max="99999" style="width:100%" />
         </el-form-item>
-        <el-form-item label="备注">
-          <el-input v-model="createForm.remark" type="textarea" :rows="2" placeholder="可选" />
+        <el-form-item label="Remark">
+          <el-input v-model="createForm.remark" type="textarea" :rows="2" placeholder="Optional" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -142,28 +142,28 @@
       </template>
     </el-dialog>
 
-    <!-- 批量生成弹窗 -->
-    <el-dialog v-model="showBatchCreate" title="批量生成授权码" width="480px">
+    <!-- Batch generation dialog -->
+    <el-dialog v-model="showBatchCreate" title="Batch Generate Invite Codes" width="480px">
       <el-form label-position="top">
-        <el-form-item label="生成数量">
+        <el-form-item label="Quantity">
           <el-input-number v-model="batchForm.count" :min="1" :max="200" style="width:100%" />
         </el-form-item>
-        <el-form-item label="套餐">
+        <el-form-item label="Plan">
           <el-select v-model="batchForm.plan" style="width:100%">
             <el-option label="pro" value="pro" />
           </el-select>
         </el-form-item>
-        <el-form-item label="有效天数">
+        <el-form-item label="Valid Days">
           <el-input-number v-model="batchForm.expire_days" :min="1" :max="3650" style="width:100%" />
         </el-form-item>
-        <el-form-item label="备注">
-          <el-input v-model="batchForm.remark" type="textarea" :rows="2" placeholder="可选" />
+        <el-form-item label="Remark">
+          <el-input v-model="batchForm.remark" type="textarea" :rows="2" placeholder="Optional" />
         </el-form-item>
       </el-form>
       <div v-if="batchResult.length > 0" style="margin-top:12px;">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <strong>已生成（{{ batchResult.length }}）</strong>
-          <el-button size="small" type="primary" @click="copyAllCodes">复制全部</el-button>
+          <strong>Generated ({{ batchResult.length }})</strong>
+          <el-button size="small" type="primary" @click="copyAllCodes">Copy All</el-button>
         </div>
         <div style="max-height:200px;overflow-y:auto;border:1px solid #ebeef5;border-radius:4px;padding:8px;">
           <el-tag v-for="item in batchResult" :key="item.code" style="margin:3px;font-family:monospace;font-size:12px;" type="info">
@@ -172,8 +172,8 @@
         </div>
       </div>
       <template #footer>
-        <el-button @click="showBatchCreate = false">取消</el-button>
-        <el-button type="primary" :loading="batchLoading" @click="submitBatchCreate">生成</el-button>
+        <el-button @click="showBatchCreate = false">Cancel</el-button>
+        <el-button type="primary" :loading="batchLoading" @click="submitBatchCreate">Generate</el-button>
       </template>
     </el-dialog>
   </div>
@@ -208,7 +208,7 @@ const statusTag = (s) => {
   return map[s] || 'info'
 }
 const statusText = (s) => {
-  const map = { unused: '未使用', used: '已使用', revoked: '已失效' }
+  const map = { unused: 'Unused', used: 'Used', revoked: 'Revoked' }
   return map[s] || s
 }
 
@@ -327,10 +327,10 @@ const submitBatchCreate = async () => {
       }
     }
     batchResult.value = codes
-    ElMessage.success(`成功生成 ${codes.length} 个授权码`)
+    ElMessage.success(`Successfully generated ${codes.length} invite codes`)
     getList()
   } catch (_) {
-    ElMessage.error('批量生成失败')
+    ElMessage.error('Batch generation failed')
   } finally {
     batchLoading.value = false
   }
@@ -338,7 +338,7 @@ const submitBatchCreate = async () => {
 
 const handleDelete = async (row) => {
   try {
-    await ElMessageBox.confirm(`删除授权码 ${row.code}？`, '确认')
+    await ElMessageBox.confirm(`Delete invite code ${row.code}?`, 'Confirm')
   } catch {
     return
   }
@@ -362,14 +362,14 @@ onMounted(async () => {
     }
   } catch (_) {
     planOptions.value = [
-      { key: '1m', name: '1个月', price_cents: 1000, period_days: 30 },
-      { key: '3m', name: '3个月', price_cents: 2800, period_days: 90 },
-      { key: '6m', name: '6个月', price_cents: 5000, period_days: 180 },
-      { key: '12m', name: '12个月', price_cents: 8800, period_days: 365 },
+      { key: '1m', name: '1 Month', price_cents: 1000, period_days: 30 },
+      { key: '3m', name: '3 Months', price_cents: 2800, period_days: 90 },
+      { key: '6m', name: '6 Months', price_cents: 5000, period_days: 180 },
+      { key: '12m', name: '12 Months', price_cents: 8800, period_days: 365 },
     ]
   }
-  // 追加永久选项（仅管理员手动选择）
-  planOptions.value.push({ key: 'forever', name: '永久', price_cents: 0, period_days: 99999 })
+  // Append permanent option (admin manual selection only)
+  planOptions.value.push({ key: 'forever', name: 'Permanent', price_cents: 0, period_days: 99999 })
 })
 </script>
 

@@ -107,6 +107,13 @@ $basicWhite: #ffffff;
   --apple-gray-subtle: rgba(142, 142, 147, 0.12);
 }
 
+.w-100 {
+  width: 100%;
+  div {
+    width: 100%;
+  }
+}
+
 // ===== 深色模式（Apple Dark: #1C1C1E / #2C2C2E）=====
 html.dark {
   --el-color-primary: #0a84ff;
@@ -211,7 +218,9 @@ html.dark body {
 .el-menu-item,
 .el-sub-menu__title {
   border-radius: 8px;
-  margin: 4px 8px;
+}
+.el-menu--popup {
+  padding: 0;
 }
 .el-menu-item.is-active {
   background: var(--el-color-primary-light-9);
@@ -229,10 +238,6 @@ html.dark body {
 }
 
 // ===== 表格（细分割线）=====
-.el-table {
-  border-radius: var(--apple-radius-md);
-  overflow: hidden;
-}
 .el-table th.el-table__cell {
   background: var(--el-fill-color-light);
   font-weight: 600;
@@ -332,6 +337,38 @@ html.dark ::-webkit-scrollbar-thumb:hover {
   background-clip: content-box;
 }
 
+/* Replace Element Plus's right edge with one complete rounded frame */
+.el-table--border::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: auto;
+  height: auto;
+  box-sizing: border-box;
+  border: 1px solid var(--el-table-border-color);
+  border-radius: inherit;
+  background: transparent;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.el-table--border::before {
+  content: none !important;
+}
+
+.el-table__inner-wrapper::before,
+.el-table__inner-wrapper::after,
+.el-table__border-left-patch,
+.el-table__border-top-patch,
+.el-table__border-right-patch,
+.el-table__border-bottom-patch {
+  content: none !important;
+  display: none !important;
+}
+
+.el-button + .el-button {
+  margin-left: 8px;
+}
 // ===== 表格行 hover（极浅灰，Apple 风）=====
 .el-table {
   --el-table-row-hover-bg-color: rgba(0, 0, 0, 0.03);
@@ -351,12 +388,13 @@ html.dark .el-table {
   border: none;
   border-radius: 6px;
   font-weight: 500;
+  height: 35px;
   // 默认 / info：浅蓝 subtle
   background: var(--apple-blue-subtle);
   color: var(--apple-blue);
   &.el-tag--info {
     background: var(--apple-blue-subtle);
-    color: var(--apple-blue);
+    color: var(--el-menu-text-color);
   }
   &.el-tag--success {
     background: var(--apple-green-subtle);
@@ -396,8 +434,14 @@ html.dark .el-table {
 // ===== 下拉菜单 / Popper 圆角 =====
 .el-dropdown-menu {
   border-radius: 12px;
-  padding: 6px;
+  padding: 0;
 }
+.el-dropdown-menu__item {
+  border-radius: 12px;
+  height: calc(var(--el-menu-sub-item-height) - 20px);
+  line-height: calc(var(--el-menu-sub-item-height) - 20px);
+}
+
 .el-popper.is-light,
 .el-popper.is-dark {
   border-radius: 12px;

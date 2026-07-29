@@ -856,9 +856,6 @@
   "ServerNotConfigured": {
     "One": "Not Configured"
   },
-  "ServerHost": {
-    "One": "Host"
-  },
   "Latency": {
     "One": "Latency"
   },
@@ -912,9 +909,6 @@
   },
   "Enabled": {
     "One": "Enabled"
-  },
-  "AutoRefresh": {
-    "One": "Auto Refresh"
   },
   "MfaRecoveryCode": {
     "One": "Recovery Code"
@@ -1150,6 +1144,9 @@
   },
   "Active": {
     "One": "Active"
+  },
+  "Administrator": {
+    "One": "Administrator"
   },
   "AccountExpired": {
     "One": "Account has expired, please contact the administrator"

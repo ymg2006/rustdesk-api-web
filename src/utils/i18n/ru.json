@@ -50,6 +50,9 @@
   "Confirm?": {
     "One": "Подтвердить {param}?"
   },
+  "ConfirmRestartWithCountdown": {
+    "One": "{param}? Подтвердите последствия (до включения подтверждения осталось {seconds} с)"
+  },
   "Cancel": {
     "One": "Отмена"
   },
@@ -64,6 +67,9 @@
   },
   "Filter": {
     "One": "Фильтр"
+  },
+  "Keyword": {
+    "One": "Ключевое слово"
   },
   "Add": {
     "One": "Добавить"
@@ -85,6 +91,9 @@
   },
   "Delete": {
     "One": "Удалить"
+  },
+  "DeleteExpired": {
+    "One": "Удалить истёкшие"
   },
   "Create": {
     "One": "Создать"
@@ -146,6 +155,24 @@
   "SharedGroupNote": {
     "One": "Все пользователи могут видеть участников группы и их устройства"
   },
+  "OrgStructure": {
+    "One": "Организация"
+  },
+  "AllMembers": {
+    "One": "Все участники"
+  },
+  "AddRootDept": {
+    "One": "Добавить отдел"
+  },
+  "AddChildDept": {
+    "One": "Добавить подразделение"
+  },
+  "DepartmentName": {
+    "One": "Название отдела"
+  },
+  "ParentDept": {
+    "One": "Родительский отдел"
+  },
   "Nickname": {
     "One": "Псевдоним"
   },
@@ -155,8 +182,8 @@
   "UserAddressBook": {
     "One": "Адресная книга пользователя"
   },
-  "IsAdmin": {
-    "One": "Является администратором"
+  "Role": {
+    "One": "Роль"
   },
   "PleaseInputNewPassword": {
     "One": "Пожалуйста, введите новый пароль"
@@ -273,6 +300,18 @@
   },
   "Export": {
     "One": "Экспорт"
+  },
+  "BatchCreate": {
+    "One": "Пакетное создание"
+  },
+  "StatusUnused": {
+    "One": "Не использован"
+  },
+  "StatusUsed": {
+    "One": "Использован"
+  },
+  "StatusRevoked": {
+    "One": "Отозван"
   },
   "AddToAddressBook": {
     "One": "Добавить в адресную книгу"
@@ -460,9 +499,6 @@
   "UserToken": {
     "One": "Токен пользователя"
   },
-  "MyPeer": {
-    "One": "Мои партнеры"
-  },
   "BatchAddToAB": {
     "One": "Пакетное добавление в адресную книгу"
   },
@@ -505,6 +541,27 @@
   "Save": {
     "One": "Сохранить"
   },
+  "Reset": {
+    "One": "Сбросить"
+  },
+  "ConfigFile": {
+    "One": "Файл конфигурации"
+  },
+  "ConfigFileTip": {
+    "One": "Здесь можно напрямую изменить файл config.yaml серверной части. Изменения вступят в силу после перезапуска службы."
+  },
+  "ConfigFilePath": {
+    "One": "Путь к файлу конфигурации"
+  },
+  "RestartService": {
+    "One": "Перезапустить службу"
+  },
+  "ServiceRestartTip": {
+    "One": "После сохранения изменений конфигурации нажмите здесь, чтобы перезапустить серверную службу и применить их."
+  },
+  "ServiceRestarting": {
+    "One": "Служба перезапускается, страница скоро обновится"
+  },
   "SendCustom": {
     "One": "Отправить настраиваемое"
   },
@@ -534,6 +591,857 @@
   },
   "Remark": {
     "One": "Примечание"
+  },
+  "VersionRelease": {
+    "One": "Выпуск версии"
+  },
+  "PublishNewVersion": {
+    "One": "Опубликовать новую версию"
+  },
+  "Publish": {
+    "One": "Опубликовать"
+  },
+  "DownloadUrl": {
+    "One": "URL загрузки"
+  },
+  "ReleaseNotes": {
+    "One": "Примечания к выпуску"
+  },
+  "ReleaseNotesPlaceholder": {
+    "One": "Что нового в этой версии..."
+  },
+  "TotalDevices": {
+    "One": "Всего устройств"
+  },
+  "Online": {
+    "One": "В сети"
+  },
+  "Offline": {
+    "One": "Не в сети"
+  },
+  "TodayConnections": {
+    "One": "Подключения сегодня"
+  },
+  "RecentDevices": {
+    "One": "Недавно отключившиеся устройства"
+  },
+  "RecentConnections": {
+    "One": "Недавние подключения"
+  },
+  "LastOnline": {
+    "One": "Последний раз в сети"
+  },
+  "Time": {
+    "One": "Время"
+  },
+  "AlertConfig": {
+    "One": "Настройка оповещений"
+  },
+  "AlertChannel": {
+    "One": "Канал оповещений"
+  },
+  "Channel": {
+    "One": "Канал"
+  },
+  "WebhookUrl": {
+    "One": "URL вебхука"
+  },
+  "SmtpHost": {
+    "One": "SMTP-сервер"
+  },
+  "SmtpPort": {
+    "One": "Порт SMTP"
+  },
+  "SmtpUser": {
+    "One": "Пользователь SMTP"
+  },
+  "SmtpPass": {
+    "One": "Пароль SMTP"
+  },
+  "SmtpTo": {
+    "One": "Получатели"
+  },
+  "OfflineMin": {
+    "One": "Порог отсутствия в сети"
+  },
+  "StationMessages": {
+    "One": "Сообщения станции"
+  },
+  "MarkAllRead": {
+    "One": "Отметить всё как прочитанное"
+  },
+  "MessageTitle": {
+    "One": "Заголовок сообщения"
+  },
+  "ViewAll": {
+    "One": "Показать все"
+  },
+  "MarkRead": {
+    "One": "Отметить как прочитанное"
+  },
+  "Unread": {
+    "One": "Непрочитанное"
+  },
+  "MonitorScope": {
+    "One": "Область мониторинга"
+  },
+  "AllDevices": {
+    "One": "Все устройства"
+  },
+  "SelectAll": {
+    "One": "Выбрать все"
+  },
+  "SelectTargets": {
+    "One": "Выбрать группы и устройства"
+  },
+  "Scope": {
+    "One": "Область"
+  },
+  "LoadDevices": {
+    "One": "Загрузить устройства"
+  },
+  "NoCollections": {
+    "One": "Нет доступных групп. Сначала добавьте их в адресной книге."
+  },
+  "Home": {
+    "One": "Главная"
+  },
+  "SendMessage": {
+    "One": "Отправить сообщение"
+  },
+  "Sender": {
+    "One": "Отправитель"
+  },
+  "Receiver": {
+    "One": "Получатель"
+  },
+  "AutoRefresh": {
+    "One": "Автообновление"
+  },
+  "ClientType": {
+    "One": "Тип клиента"
+  },
+  "DeviceManage": {
+    "One": "Устройства"
+  },
+  "UserMgmt": {
+    "One": "Пользователи"
+  },
+  "AbMgmt": {
+    "One": "Адресные книги"
+  },
+  "SystemMgmt": {
+    "One": "Система"
+  },
+  "AuditMgmt": {
+    "One": "Журналы аудита"
+  },
+  "Strategy": {
+    "One": "Стратегии"
+  },
+  "MfaTitle": {
+    "One": "Многофакторная аутентификация (MFA)"
+  },
+  "MfaSetup": {
+    "One": "Настроить MFA"
+  },
+  "MfaEnable": {
+    "One": "Включить MFA"
+  },
+  "MfaDisable": {
+    "One": "Отключить MFA"
+  },
+  "MfaSecret": {
+    "One": "Секретный ключ"
+  },
+  "MfaCode": {
+    "One": "Код подтверждения"
+  },
+  "MfaVerify": {
+    "One": "Проверить и войти"
+  },
+  "MfaVerifyTip": {
+    "One": "Введите 6-значный код из приложения-аутентификатора (например, Google Authenticator)"
+  },
+  "MfaCodeError": {
+    "One": "Неверный код. Повторите попытку"
+  },
+  "MfaTokenMissing": {
+    "One": "Сеанс истёк. Войдите снова"
+  },
+  "MfaScanTip": {
+    "One": "Отсканируйте QR-код ниже в приложении-аутентификаторе или введите секретный ключ вручную"
+  },
+  "MfaRecoveryCodes": {
+    "One": "Резервные коды восстановления"
+  },
+  "MfaRecoveryTip": {
+    "One": "Сохраните эти коды восстановления в безопасном месте. Каждый из них можно использовать только один раз для входа, если вы не можете получить код подтверждения."
+  },
+  "MfaCodeRequired": {
+    "One": "Введите код подтверждения"
+  },
+  "MfaEnabled": {
+    "One": "Включена"
+  },
+  "MfaDisabled": {
+    "One": "Отключена"
+  },
+  "MfaDisableConfirm": {
+    "One": "Для отключения MFA требуется пароль для входа"
+  },
+  "Copy": {
+    "One": "Копировать"
+  },
+  "Back": {
+    "One": "Назад"
+  },
+  "IdP": {
+    "One": "Поставщик удостоверений"
+  },
+  "Loading": {
+    "One": "Загрузка..."
+  },
+  "ServerStatus": {
+    "One": "Состояние сервера"
+  },
+  "Hbbs": {
+    "One": "HBBS"
+  },
+  "HbbsDesc": {
+    "One": "Сервер ID / согласования"
+  },
+  "Hbbr": {
+    "One": "HBBR"
+  },
+  "HbbrDesc": {
+    "One": "Сервер ретрансляции"
+  },
+  "HbbrLoad": {
+    "One": "Нагрузка / подключения HBBR"
+  },
+  "HbbrStatsUnavailable": {
+    "One": "Не удалось получить данные о нагрузке HBBR"
+  },
+  "ConnectionCount": {
+    "One": "Ретранслируемые подключения"
+  },
+  "CurrentSpeed": {
+    "One": "Текущая общая скорость"
+  },
+  "HighestSpeed": {
+    "One": "Пиковая скорость"
+  },
+  "TotalTraffic": {
+    "One": "Общий трафик"
+  },
+  "ClientAddr": {
+    "One": "Адрес клиента"
+  },
+  "Duration": {
+    "One": "Длительность"
+  },
+  "Traffic": {
+    "One": "Трафик"
+  },
+  "AvgSpeed": {
+    "One": "Средняя скорость"
+  },
+  "ServerUp": {
+    "One": "Работает"
+  },
+  "ServerDown": {
+    "One": "Недоступен"
+  },
+  "ServerNotConfigured": {
+    "One": "Не настроен"
+  },
+  "Latency": {
+    "One": "Задержка"
+  },
+  "ServerError": {
+    "One": "Ошибка"
+  },
+  "ServerStatusTip": {
+    "One": "Добавляйте адреса пользовательских серверов и проверяйте подключение и задержку в реальном времени (TCP-проверка, тайм-аут 3 с, автообновление каждые 10 с). Можно отслеживать несколько серверов."
+  },
+  "AddServer": {
+    "One": "Добавить сервер"
+  },
+  "EditServer": {
+    "One": "Изменить сервер"
+  },
+  "ServerName": {
+    "One": "Название"
+  },
+  "ServerAddress": {
+    "One": "Адрес"
+  },
+  "ServerHost": {
+    "One": "Хост / IP"
+  },
+  "ServerPort": {
+    "One": "Порт"
+  },
+  "ServerHostPlaceholder": {
+    "One": "Введите хост или IP-адрес, например 192.0.2.1 или hbbs.example.com"
+  },
+  "ServerPortPlaceholder": {
+    "One": "Порт (необязательно, 0 означает только хост)"
+  },
+  "ServerNamePlaceholder": {
+    "One": "Введите отображаемое имя сервера"
+  },
+  "ServerNameHostRequired": {
+    "One": "Необходимо указать название и адрес хоста"
+  },
+  "NoServer": {
+    "One": "Серверы ещё не добавлены. Нажмите «Добавить сервер» в правом верхнем углу."
+  },
+  "ConfirmDeleteServer": {
+    "One": "Удалить этот монитор сервера?"
+  },
+  "Saved": {
+    "One": "Сохранено"
+  },
+  "Deleted": {
+    "One": "Удалено"
+  },
+  "Enabled": {
+    "One": "Включено"
+  },
+  "MfaRecoveryCode": {
+    "One": "Код восстановления"
+  },
+  "MfaUseCode": {
+    "One": "Использовать код подтверждения"
+  },
+  "MfaUseRecovery": {
+    "One": "Использовать код восстановления"
+  },
+  "MfaReset": {
+    "One": "Сбросить MFA"
+  },
+  "MfaResetConfirm": {
+    "One": "Сбросить многофакторную аутентификацию (MFA) для пользователя {username}? Его секретный ключ MFA и коды восстановления будут удалены, после чего он сможет входить только с паролем."
+  },
+  "OperationFailed": {
+    "One": "Операция не выполнена"
+  },
+  "ProcessMonitor": {
+    "One": "Мониторинг процессов"
+  },
+  "ProcessMonitorTip": {
+    "One": "Централизованно настройте процессы или порты для мониторинга. Клиенты периодически сообщают состояние; оповещение срабатывает, если процесс или порт остаётся недоступным дольше заданного порога."
+  },
+  "ProcessStatusTip": {
+    "One": "Состояние отслеживаемых элементов на каждом устройстве в реальном времени (по данным клиентов)"
+  },
+  "ProcessTargetMode": {
+    "One": "Режим выбора целей"
+  },
+  "ProcessModeManual": {
+    "One": "Вручную"
+  },
+  "ProcessModeDeviceGroup": {
+    "One": "По группе устройств"
+  },
+  "ProcessModeAbTags": {
+    "One": "По тегам адресной книги"
+  },
+  "ProcessSelectDeviceGroup": {
+    "One": "Выберите группу устройств (правило будет создано для всех устройств группы)"
+  },
+  "ProcessSelectAbTags": {
+    "One": "Выберите теги адресной книги (правило будет создано для устройств с выбранными тегами)"
+  },
+  "ProcessBatchResult": {
+    "One": "Пакетное создание: добавлено {created}, пропущено {skipped} (уже существуют)"
+  },
+  "ProcessSourceGroup": {
+    "One": "Группа устройств"
+  },
+  "ProcessSourceTag": {
+    "One": "Тег адресной книги"
+  },
+  "ProcessDeviceCount": {
+    "One": "Количество устройств"
+  },
+  "ProcessPeers": {
+    "One": "Список устройств"
+  },
+  "ProcessPeerOverride": {
+    "One": "Переопределить"
+  },
+  "ProcessInherit": {
+    "One": "Наследовать"
+  },
+  "ProcessPeerId": {
+    "One": "ID устройства"
+  },
+  "ProcessPeerIdTip": {
+    "One": "ID однорангового устройства для мониторинга (см. «Управление устройствами»)"
+  },
+  "ProcessName": {
+    "One": "Название монитора"
+  },
+  "ProcessType": {
+    "One": "Тип"
+  },
+  "ProcessProcess": {
+    "One": "Процесс"
+  },
+  "ProcessPort": {
+    "One": "Порт"
+  },
+  "ProcessTarget": {
+    "One": "Цель"
+  },
+  "ProcessTargetTip": {
+    "One": "Имя процесса (например, notepad.exe) или номер порта (например, 8080)"
+  },
+  "ProcessInterval": {
+    "One": "Интервал проверки (с)"
+  },
+  "ProcessDownThreshold": {
+    "One": "Порог недоступности (с)"
+  },
+  "ProcessAlertRule": {
+    "One": "Правило оповещения"
+  },
+  "ProcessAlertRuleTip": {
+    "One": "Свяжите существующую настройку оповещения для уведомления о недоступности; оставьте пустым, чтобы не отправлять оповещения"
+  },
+  "ProcessEnabled": {
+    "One": "Включено"
+  },
+  "ProcessOperation": {
+    "One": "Действия"
+  },
+  "ProcessAdd": {
+    "One": "Добавить правило"
+  },
+  "ProcessEdit": {
+    "One": "Изменить"
+  },
+  "ProcessDelete": {
+    "One": "Удалить"
+  },
+  "ProcessRefresh": {
+    "One": "Обновить"
+  },
+  "ProcessRunning": {
+    "One": "Работает"
+  },
+  "ProcessUp": {
+    "One": "Доступен"
+  },
+  "ProcessDown": {
+    "One": "Недоступен"
+  },
+  "ProcessDownSince": {
+    "One": "Недоступен с"
+  },
+  "ProcessCancel": {
+    "One": "Отмена"
+  },
+  "ProcessSave": {
+    "One": "Сохранить"
+  },
+  "ProcessSaved": {
+    "One": "Сохранено"
+  },
+  "ProcessDeleted": {
+    "One": "Удалено"
+  },
+  "ProcessConfirmDelete": {
+    "One": "Удалить это правило мониторинга?"
+  },
+  "ProcessTip": {
+    "One": "Подсказка"
+  },
+  "Invitation": {
+    "One": "Код авторизации"
+  },
+  "CreateInvitation": {
+    "One": "Создать код авторизации"
+  },
+  "CopyInviteLink": {
+    "One": "Копировать ссылку-приглашение"
+  },
+  "CopyLink": {
+    "One": "Копировать ссылку"
+  },
+  "LinkCopied": {
+    "One": "Ссылка скопирована в буфер обмена"
+  },
+  "InviteCode": {
+    "One": "Код приглашения"
+  },
+  "InviteCodeRequired": {
+    "One": "Необходимо указать код приглашения"
+  },
+  "InviteCodePlaceholder": {
+    "One": "Обратитесь к администратору, чтобы получить код"
+  },
+  "GenerateCount": {
+    "One": "Количество"
+  },
+  "GenerateCountPlaceholder": {
+    "One": "Не более 200"
+  },
+  "GeneratedCodes": {
+    "One": "Созданные коды"
+  },
+  "CopyAll": {
+    "One": "Копировать все"
+  },
+  "AllCopied": {
+    "One": "Все коды скопированы в буфер обмена"
+  },
+  "AutoGenerate": {
+    "One": "Создать автоматически"
+  },
+  "MaxUsers": {
+    "One": "Максимум использований"
+  },
+  "MaxUsersPlaceholder": {
+    "One": "0 означает без ограничений"
+  },
+  "MaxUsersFixedTip": {
+    "One": "Только однократное использование"
+  },
+  "DefaultExpire1Day": {
+    "One": "По умолчанию истекает через 1 день"
+  },
+  "ExpireAt": {
+    "One": "Истекает"
+  },
+  "ExpiredAt": {
+    "One": "Истекает"
+  },
+  "ExpiredAtPlaceholder": {
+    "One": "Оставьте пустым, чтобы срок не истекал"
+  },
+  "ExpiredAtTip": {
+    "One": "Оставьте пустым, чтобы срок не истекал"
+  },
+  "UserExpiredAt": {
+    "One": "Срок действия пользователя"
+  },
+  "UserExpiredAtTip": {
+    "One": "Оставьте пустым, чтобы пользователи, созданные с этим кодом, не имели срока действия"
+  },
+  "UsageCount": {
+    "One": "Использован"
+  },
+  "Expired": {
+    "One": "Истёк"
+  },
+  "UsedUp": {
+    "One": "Исчерпан"
+  },
+  "Active": {
+    "One": "Активен"
+  },
+  "Administrator": {
+    "One": "Администратор"
+  },
+  "AccountExpired": {
+    "One": "Срок действия учётной записи истёк. Обратитесь к администратору"
+  },
+  "RegisterSuccess": {
+    "One": "Регистрация выполнена успешно"
+  },
+  "MySubscription": {
+    "One": "Моя подписка"
+  },
+  "SubscribeUpgrade": {
+    "One": "Улучшить подписку"
+  },
+  "SubscribeUpgradeNow": {
+    "One": "Улучшить сейчас"
+  },
+  "SubscribeActive": {
+    "One": "Активна"
+  },
+  "SubscribeExpired": {
+    "One": "Истекла"
+  },
+  "SubscribeNone": {
+    "One": "Нет"
+  },
+  "SubscribeNoSubscription": {
+    "One": "У вас нет активной подписки"
+  },
+  "SubscribeExpireAt": {
+    "One": "Истекает"
+  },
+  "SubscribeDaysLeft": {
+    "One": "Осталось дней"
+  },
+  "SubscribeExpiringSoon": {
+    "One": "Срок подписки скоро истечёт. Продлите её"
+  },
+  "SubscribeMonthly": {
+    "One": "Месяц"
+  },
+  "SubscribeRecommended": {
+    "One": "Рекомендуется"
+  },
+  "SubscribeSelectChannel": {
+    "One": "Способ оплаты"
+  },
+  "SubscribeSelectChannelFirst": {
+    "One": "Выберите способ оплаты"
+  },
+  "SubscribePayNow": {
+    "One": "Оплатить сейчас"
+  },
+  "SubscribeScanQR": {
+    "One": "Отсканируйте QR-код для оплаты"
+  },
+  "SubscribeOpenCashier": {
+    "One": "Открыть страницу оплаты"
+  },
+  "SubscribePolling": {
+    "One": "Ожидание результата оплаты"
+  },
+  "SubscribeSuccess": {
+    "One": "Оплата выполнена успешно!"
+  },
+  "SubscribeCodeTitle": {
+    "One": "Ваш код приглашения:"
+  },
+  "SubscribeCodeHint": {
+    "One": "Нажмите, чтобы скопировать. Его также можно будет посмотреть позже в разделе «Моя подписка»."
+  },
+  "SubscribeSelectDuration": {
+    "One": "Выберите срок"
+  },
+  "SubscribeCreateFailed": {
+    "One": "Не удалось создать заказ"
+  },
+  "SubscribeRedeemCode": {
+    "One": "Активировать код"
+  },
+  "SubscribeInputCode": {
+    "One": "Введите код приглашения"
+  },
+  "SubscribeInputCodeFirst": {
+    "One": "Сначала введите код приглашения"
+  },
+  "SubscribeCodePlaceholder": {
+    "One": "32-значный код приглашения"
+  },
+  "SubscribeRedeem": {
+    "One": "Активировать"
+  },
+  "SubscribeRedeemSuccess": {
+    "One": "Код успешно активирован"
+  },
+  "SubscribeRedeemSuccessDesc": {
+    "One": "Подписка активирована. Спасибо за поддержку!"
+  },
+  "SubscribeRedeemFailed": {
+    "One": "Не удалось активировать код"
+  },
+  "SubscribeExpireDays": {
+    "One": "Дней действия"
+  },
+  "CodeNotFound": {
+    "One": "Код не найден"
+  },
+  "CodeUsed": {
+    "One": "Код уже использован"
+  },
+  "CodeRevoked": {
+    "One": "Код отозван"
+  },
+  "CodeExpired": {
+    "One": "Срок действия кода истёк"
+  },
+  "GenerateInviteCode": {
+    "One": "Создать код приглашения"
+  },
+  "Generate": {
+    "One": "Создать"
+  },
+  "GenerateSuccess": {
+    "One": "Создание выполнено успешно"
+  },
+  "GenerateFailed": {
+    "One": "Не удалось создать"
+  },
+  "Revoke": {
+    "One": "Отозвать"
+  },
+  "RevokeSuccess": {
+    "One": "Успешно отозван"
+  },
+  "RevokeFailed": {
+    "One": "Не удалось отозвать"
+  },
+  "ExportSuccess": {
+    "One": "Экспорт выполнен успешно"
+  },
+  "ExportFailed": {
+    "One": "Ошибка экспорта"
+  },
+  "LoadFailed": {
+    "One": "Ошибка загрузки"
+  },
+  "OrderNo": {
+    "One": "Номер заказа"
+  },
+  "OrderNotFound": {
+    "One": "Заказ не найден"
+  },
+  "OrderNotPaid": {
+    "One": "Заказ не оплачен"
+  },
+  "Plan": {
+    "One": "Тариф"
+  },
+  "Alipay": {
+    "One": "Alipay"
+  },
+  "WechatPay": {
+    "One": "WeChat Pay"
+  },
+  "SubscribeMonth": {
+    "One": "Месяц"
+  },
+  "InviteCodeMgmt": {
+    "One": "Код авторизации (подписка)"
+  },
+  "All": {
+    "One": "Все"
+  },
+  "UsedBy": {
+    "One": "Использован"
+  },
+  "UsedByName": {
+    "One": "Учётная запись"
+  },
+  "Action": {
+    "One": "Действие"
+  },
+  "GotIt": {
+    "One": "Понятно"
+  },
+  "SubscribeExpireSoon": {
+    "One": "Pro · {days} дн."
+  },
+  "AdminInviteCode": {
+    "One": "Код авторизации"
+  },
+  "SubscribeInviteCodes": {
+    "One": "Коды авторизации"
+  },
+  "RegistrationInviteCodes": {
+    "One": "Коды регистрации"
+  },
+  "AdminOrder": {
+    "One": "Заказы"
+  },
+  "AdminSubscription": {
+    "One": "Платные участники"
+  },
+  "ID": {
+    "One": "ID"
+  },
+  "Cpu": {
+    "One": "ЦП"
+  },
+  "Total": {
+    "One": "Всего"
+  },
+  "Highest": {
+    "One": "Максимум"
+  },
+  "Avg": {
+    "One": "Среднее"
+  },
+  "Speed": {
+    "One": "Скорость"
+  },
+  "BlockList": {
+    "One": "Список блокировки"
+  },
+  "BlackList": {
+    "One": "Чёрный список"
+  },
+  "AlwaysUseRelay": {
+    "One": "Всегда использовать ретрансляцию"
+  },
+  "Usage": {
+    "One": "Использование"
+  },
+  "WebClient": {
+    "One": "Веб-клиент"
+  },
+  "ColumnSetting": {
+    "One": "Настройки столбцов"
+  },
+  "SendToId": {
+    "One": "Отправить на сервер ID"
+  },
+  "SendToRelay": {
+    "One": "Отправить на сервер ретрансляции"
+  },
+  "Cmd": {
+    "One": "Команда"
+  },
+  "Option": {
+    "One": "Параметр"
+  },
+  "Explain": {
+    "One": "Пояснение"
+  },
+  "Target": {
+    "One": "Цель"
+  },
+  "OrderStatusPending": {
+    "One": "Ожидает"
+  },
+  "OrderStatusPaid": {
+    "One": "Оплачен"
+  },
+  "OrderStatusClosed": {
+    "One": "Закрыт"
+  },
+  "SubscribePermanent": {
+    "One": "Бессрочно"
+  },
+  "Binding": {
+    "One": "Привязка"
+  },
+  "NoData": {
+    "One": "Нет данных"
+  },
+  "Size": {
+    "One": "Размер"
+  },
+  "More": {
+    "One": "Ещё"
+  },
+  "Client": {
+    "One": "Клиент"
+  },
+  "Example": {
+    "One": "Пример"
+  },
+  "PlatformUA": {
+    "One": "Платформа/UA"
+  },
+  "Backend": {
+    "One": "Серверная часть"
+  },
+  "IsAdmin": {
+    "One": "Является администратором"
+  },
+  "MyPeer": {
+    "One": "Мои партнеры"
   }
 }
-
