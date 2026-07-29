@@ -68,7 +68,7 @@
         </el-form-item>
       </el-form>
     </el-dialog>
-    <el-dialog v-model="rulesVisible" :title="T('ShareRules')" destroy-on-close top="5vh" width="80%">
+    <el-dialog v-model="rulesVisible" :title="T('ShareRules')" destroy-on-close>
       <Rule :collection="clickRow" :is_my="0"></Rule>
     </el-dialog>
 
@@ -112,7 +112,6 @@ import { loadAllUsers } from '@/global'
   const showRules = (row) => {
     clickRow.value = row
     rulesVisible.value = true
-    console.log('showRules')
   }
 
 </script>

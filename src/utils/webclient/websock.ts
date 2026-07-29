@@ -128,7 +128,6 @@ export default class Websock {
       reject: (reason: any) => void,
       tm0: number
     ) => {
-      // console.log('next')
       if (this._buf.length) {
         resolve(this._buf[0]);
         this._buf.splice(0, 1);

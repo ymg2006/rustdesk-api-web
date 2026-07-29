@@ -249,6 +249,11 @@ html.dark body {
   backdrop-filter: var(--apple-glass);
 }
 
+.el-table__body tr.hover-row > td.el-table-fixed-column--left,
+.el-table__body tr.hover-row > td.el-table-fixed-column--right {
+  background-color: var(--el-fill-color-light) !important;
+}
+
 // ===== 通用工具类 =====
 .apple-glass {
   background: rgba(255, 255, 255, 0.72);
@@ -273,6 +278,21 @@ html.dark .apple-glass {
   .el-input {
     --el-input-width: 160px;
   }
+}
+
+.el-form-item--label-right .el-form-item__label {
+  text-align: left;
+  justify-content: flex-start;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gap-5 {
+  gap: 5px;
 }
 
 // ===== Apple 美化补充：通用片段 =====

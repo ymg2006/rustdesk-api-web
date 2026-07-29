@@ -59,11 +59,11 @@
 <script setup>
 
   import { T } from '@/utils/i18n'
-  import { loadAllUsers } from '@/global'
-  import { onMounted, defineProps, defineEmits, onActivated } from 'vue'
-  import { useRepositories as useABRepositories } from '@/views/address_book'
-  import { batchCreate } from '@/api/address_book'
-  import { ElMessage } from 'element-plus'
+import { loadAllUsers } from '@/global'
+import { onMounted, defineProps, defineEmits } from 'vue'
+import { useRepositories as useABRepositories } from '@/views/address_book'
+import { batchCreate } from '@/api/address_book'
+import { ElMessage } from 'element-plus'
 
   const emits = defineEmits(['cancel', 'success'])
   const props = defineProps({
@@ -85,7 +85,6 @@
   } = useABRepositories('admin')
   onMounted(() => {
     fromPeer(props.peer)
-    console.log(collectionListResForUpdate)
   })
 
   const changeUser = async (val) => {

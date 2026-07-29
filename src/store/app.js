@@ -80,7 +80,6 @@ export const useAppStore = defineStore({
     },
     setLang (lang) {
       const resolvedLang = resolveLang(lang)
-      console.log('setLang', resolvedLang)
       this.setting.lang = resolvedLang
       this.setting.locale = langs[resolvedLang]
       localStorage.setItem('lang', resolvedLang)
@@ -94,13 +93,11 @@ export const useAppStore = defineStore({
       this.loadRustdeskConfig()
     },
     getAppConfig () {
-      console.log('getAppConfig')
       return app().then(res => {
         this.setting.appConfig = res.data
       })
     },
     getAdminConfig () {
-      console.log('getAdminConfig')
       return admin().then(res => {
         this.replaceAdminTitle(res.data.title)
         this.setting.hello = res.data.hello
@@ -111,7 +108,6 @@ export const useAppStore = defineStore({
       this.setting.title = newTitle
     },
     async loadRustdeskConfig () {
-      console.log('loadRustdeskConfig')
       const res = await server().catch(_ => false)
       if (res) {
         this.setting.rustdeskConfig = res.data

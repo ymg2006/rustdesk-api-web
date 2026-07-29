@@ -19,7 +19,6 @@ service.interceptors.request.use(
     const app = useAppStore()
     const lang = app.setting.lang
     if (lang) {
-      // console.log('lang', lang)
       config.headers['Accept-Language'] = lang
     }
 

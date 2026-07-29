@@ -69,7 +69,7 @@
     <el-card class="list-body" shadow="hover">
       <!-- Desktop: column settings + table -->
       <div class="table-view">
-        <div style="text-align: right; margin-bottom: 10px">
+        <div style="margin-bottom: 10px">
           <el-button :icon="Setting" @click="showColumnSetting"></el-button>
         </div>
         <el-table class="list-table" :data="listRes.list" v-loading="listRes.loading" border @selection-change="handleSelectionChange">
@@ -487,11 +487,9 @@ onActivated(() => {
     const reader = new FileReader()
     reader.onload = async (e) => {
       const data = e.target.result
-      console.log(data)
       // Assemble data
       const rows = data.split('\n')
       const keys = rows[0].split(',')
-      console.log(keys, rows.slice(1).map(row => row.split(',')))
       const values = rows.slice(1).map(row => {
         const obj = {}
         row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/).forEach((v, i) => {
@@ -500,7 +498,6 @@ onActivated(() => {
         })
         return obj
       }).filter(item => item.id)
-      // console.log(values)
       // Remove unnecessary keys
       values.forEach(item => {
         item.group_id = parseInt(item.group_id)
@@ -510,7 +507,6 @@ onActivated(() => {
           }
         })
       })
-      console.log(values)
       const pa = []
       values.map(item => {
         pa.push(create(item))

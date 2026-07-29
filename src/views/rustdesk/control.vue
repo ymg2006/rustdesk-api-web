@@ -136,7 +136,6 @@ import usage from '@/views/rustdesk/usage.vue'
     canSendIdServerCmd.value = !!res.data
     if (canSendIdServerCmd.value) {
       const commands = res.data.split('\n').filter(i => i)
-      console.log(commands)
       canControlMustLogin.value = commands.some(i => i.includes('must-login'))
     }
   }
@@ -272,7 +271,6 @@ import usage from '@/views/rustdesk/usage.vue'
   }
   const submitCmd = async () => {
     sendCmd(customCmd).then(res => {
-      console.log(res)
       customCmd.res = res.data
       ElMessage.success(T('OperationSuccess'))
     })

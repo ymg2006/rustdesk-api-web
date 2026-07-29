@@ -11,7 +11,6 @@ const app = useAppStore()
 
 export const toWebClientLink = (row) => {
   //v2
-  console.log(app.setting.rustdeskConfig)
   window.open(`${app.setting.rustdeskConfig.api_server}/webclient2/#/${row.id}`)
 }
 
@@ -36,7 +35,6 @@ export async function getPeerSlat (id) {
   //rendezvous.RendezvousMessage
   const msg = (await ws.next())
   ws.close()
-  console.log(new Date() + ': Got relay response', msg)
   const phr = msg.punch_hole_response
   const rr = msg.relay_response
   if (phr) {
@@ -63,11 +61,9 @@ export async function getPeerSlat (id) {
     return false
   } else if (rr) {
     const uuid = rr.uuid
-    console.log(new Date() + ': Connecting to relay server')
 
     const _ws = new Websock(`${scheme}://${addr}:21119`, false)
     await _ws.open()
-    console.log(new Date() + ': Connected to relay server')
     const request_relay = rendezvous.RequestRelay.fromPartial({
       licence_key: app.setting.rustdeskConfig.key || undefined,
       uuid,
@@ -81,9 +77,7 @@ export async function getPeerSlat (id) {
     // globals.pushEvent("connection_ready", { secure, direct: false });
     while (true) {
       const msg = (await _ws?.next())
-      console.log('msg', msg)
       if (msg?.hash) {
-        console.log('hash msg.....', msg.hash)
         _ws.close()
         return msg.hash
       }

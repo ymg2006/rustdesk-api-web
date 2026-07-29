@@ -29,7 +29,7 @@
         <el-table-column type="selection" min-width="50" align="center"></el-table-column>
         <el-table-column prop="id" :label="T('ID')" align="center" min-width="200">
           <template #default="{row}">
-            <div>
+            <div class="flex-center gap-5">
               <PlatformIcons :name="platformList.find(p=>p.label===row.platform)?.icon" style="width: 20px;height: 20px;display: inline-block" color="var(--basicBlack)"/>
               {{ row.id }}
               <el-icon @click="handleClipboard(row.id, $event)">
