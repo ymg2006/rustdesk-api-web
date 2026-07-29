@@ -348,7 +348,11 @@ const save = async () => {
   if (res) { ElMessage.success(T('ProcessSaved')); dialogVisible.value = false; loadRules() }
 }
 const remove = (row) => {
-  ElMessageBox.confirm(T('ProcessConfirmDelete'), T('ProcessTip'), { type: 'warning' }).then(async () => {
+  ElMessageBox.confirm(T('ProcessConfirmDelete'), T('ProcessTip'), {
+    type: 'warning',
+    confirmButtonText: T('Confirm'),
+    cancelButtonText: T('Cancel'),
+  }).then(async () => {
     const res = await deleteProcessRule({ id: row.row_id }).catch(e => { ElMessage.error(e?.message || T('OperationFailed')); return false })
     if (res) { ElMessage.success(T('ProcessDeleted')); loadRules() }
   }).catch(() => {})

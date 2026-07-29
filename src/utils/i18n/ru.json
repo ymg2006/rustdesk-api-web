@@ -372,6 +372,15 @@
   "RemoteDesktopOffline": {
     "One": "Удаленный рабочий стол отключен"
   },
+  "CleanOldMessages": { "One": "Удалить старые сообщения" },
+  "CleanMessagesOlderThan1Year": { "One": "Удалить сообщения старше 1 года" },
+  "CleanMessagesOlderThan3Years": { "One": "Удалить сообщения старше 3 лет" },
+  "OnlyMyMessages": { "One": "Только мои сообщения" },
+  "ShowAll": { "One": "Показать все" },
+  "SearchUsername": { "One": "Поиск по имени пользователя" },
+  "AllUsers": { "One": "Все пользователи" },
+  "MessageTitleOptional": { "One": "Заголовок сообщения (необязательно)" },
+  "PleaseEnterMessageContent": { "One": "Введите текст сообщения" },
   "KeyMismatch": {
     "One": "Несоответствие ключа"
   },

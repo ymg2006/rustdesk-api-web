@@ -377,6 +377,15 @@
   "RemoteDesktopOffline": {
     "One": "Le bureau à distance est hors ligne"
   },
+  "CleanOldMessages": { "One": "Nettoyer les anciens messages" },
+  "CleanMessagesOlderThan1Year": { "One": "Nettoyer les messages datant de plus d’un an" },
+  "CleanMessagesOlderThan3Years": { "One": "Nettoyer les messages datant de plus de 3 ans" },
+  "OnlyMyMessages": { "One": "Uniquement mes messages" },
+  "ShowAll": { "One": "Tout afficher" },
+  "SearchUsername": { "One": "Rechercher un nom d’utilisateur" },
+  "AllUsers": { "One": "Tous les utilisateurs" },
+  "MessageTitleOptional": { "One": "Titre du message (facultatif)" },
+  "PleaseEnterMessageContent": { "One": "Saisissez le contenu du message" },
   "KeyMismatch": {
     "One": "Non-correspondance de clé"
   },

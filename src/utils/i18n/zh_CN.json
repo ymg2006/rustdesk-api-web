@@ -372,6 +372,15 @@
   "RemoteDesktopOffline": {
     "One": "远程电脑不在线"
   },
+  "CleanOldMessages": { "One": "清理旧消息" },
+  "CleanMessagesOlderThan1Year": { "One": "清理 1 年前的消息" },
+  "CleanMessagesOlderThan3Years": { "One": "清理 3 年前的消息" },
+  "OnlyMyMessages": { "One": "仅我的消息" },
+  "ShowAll": { "One": "显示全部" },
+  "SearchUsername": { "One": "搜索用户名" },
+  "AllUsers": { "One": "所有用户" },
+  "MessageTitleOptional": { "One": "消息标题（可选）" },
+  "PleaseEnterMessageContent": { "One": "请输入消息内容" },
   "KeyMismatch": {
     "One": "KEY不匹配"
   },

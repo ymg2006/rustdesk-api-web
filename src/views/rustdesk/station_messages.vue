@@ -8,23 +8,23 @@
             <el-switch
               v-if="isAdmin"
               v-model="scopeOwn"
-              active-text="Only My Messages"
-              inactive-text="Show All"
+              :active-text="T('OnlyMyMessages')"
+              :inactive-text="T('ShowAll')"
               @change="getList"
               style="margin-right: 10px;"
             />
-            <el-button size="small" type="primary" @click="showSendDialog">Send Message</el-button>
-            <el-button v-if="isAdmin" size="small" type="danger" @click="showBroadcastDialog">Broadcast</el-button>
-            <el-dropdown v-if="isAdmin" trigger="click" @command="cleanup">
-              <el-button size="small" type="warning">Clean Old Messages</el-button>
+            <el-button size="small" type="primary" @click="showSendDialog">{{ T('SendMessage') }}</el-button>
+            <el-button v-if="isAdmin" size="small" type="danger" @click="showBroadcastDialog" class="me-8px">{{ T('Broadcast') }}</el-button>
+            <el-dropdown size="small" v-if="isAdmin" trigger="click" @command="cleanup" class="d-contents">
+              <el-button size="small" type="warning">{{ T('CleanOldMessages') }}</el-button>
               <template #dropdown>
                 <el-dropdown-menu>
-                  <el-dropdown-item command="1">Clean messages older than 1 year</el-dropdown-item>
-                  <el-dropdown-item command="3">Clean messages older than 3 years</el-dropdown-item>
+                  <el-dropdown-item command="1">{{ T('CleanMessagesOlderThan1Year') }}</el-dropdown-item>
+                  <el-dropdown-item command="3">{{ T('CleanMessagesOlderThan3Years') }}</el-dropdown-item>
                 </el-dropdown-menu>
               </template>
             </el-dropdown>
-            <el-button size="small" @click="markAllRead">{{ T('MarkAllRead') }}</el-button>
+            <el-button size="small" @click="markAllRead" class="ms-8px">{{ T('MarkAllRead') }}</el-button>
           </div>
         </div>
       </template>
@@ -32,7 +32,7 @@
         <el-table-column prop="sender_name" :label="T('Sender')" min-width="120">
           <template #default="{row}">
             <span v-if="row.sender_name">{{ row.sender_name }}</span>
-            <span v-else class="hint-text">System</span>
+            <span v-else class="hint-text">{{ T('System') }}</span>
           </template>
         </el-table-column>
         <el-table-column prop="title" :label="T('Title')" min-width="140">
@@ -66,21 +66,21 @@
     </el-card>
 
     <!-- Send message dialog -->
-    <el-dialog v-model="sendVisible" :title="isBroadcast ? 'Broadcast' : 'Send Message'" width="500px">
+    <el-dialog v-model="sendVisible" :title="isBroadcast ? T('Broadcast') : T('SendMessage')" width="500px">
       <el-form label-width="80px">
         <el-form-item v-if="!isBroadcast" :label="T('Receiver')">
-          <el-select v-model="sendForm.receiver_id" filterable remote :remote-method="searchUsers" :loading="userLoading" style="width: 100%" placeholder="Search username">
+          <el-select v-model="sendForm.receiver_id" filterable remote :remote-method="searchUsers" :loading="userLoading" style="width: 100%" :placeholder="T('SearchUsername')">
             <el-option v-for="u in userList" :key="u.id" :label="u.username" :value="u.id"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item v-if="isBroadcast" label="Target">
-          <el-tag type="danger">All Users</el-tag>
+        <el-form-item v-if="isBroadcast" :label="T('Target')">
+          <el-tag type="danger">{{ T('AllUsers') }}</el-tag>
         </el-form-item>
         <el-form-item :label="T('Title')">
-          <el-input v-model="sendForm.title" placeholder="Message title (optional)"></el-input>
+          <el-input v-model="sendForm.title" :placeholder="T('MessageTitleOptional')"></el-input>
         </el-form-item>
         <el-form-item :label="T('Content')">
-          <el-input v-model="sendForm.content" type="textarea" :rows="4" placeholder="Please enter message content"></el-input>
+          <el-input v-model="sendForm.content" type="textarea" :rows="4" :placeholder="T('PleaseEnterMessageContent')"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="doSend">{{ T('Submit') }}</el-button>

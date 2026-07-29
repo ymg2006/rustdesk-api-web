@@ -237,6 +237,8 @@ import { ElMessage, ElMessageBox } from 'element-plus'
   const remove = (row) => {
     ElMessageBox.confirm(T('ConfirmDeleteServer'), T('Hint'), {
       type: 'warning',
+      confirmButtonText: T('Confirm'),
+      cancelButtonText: T('Cancel'),
     }).then(async () => {
       const res = await serverStatusDelete(row.row_id).catch(e => {
         ElMessage.error(e?.message || T('OperationFailed'))

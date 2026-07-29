@@ -383,21 +383,13 @@ onMounted(async () => {
 .list-card {
   min-height: 400px;
 }
-.code-text {
-  font-family: monospace;
-  font-size: 13px;
-  background: #f5f7fa;
-  padding: 2px 8px;
-  border-radius: 4px;
-  letter-spacing: 1px;
-}
 .plan-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 8px;
 }
 .plan-card {
-  border: 2px solid #e4e7ed;
+  border: 2px solid var(--el-border-color-light);
   border-radius: 10px;
   padding: 16px 12px 14px;
   cursor: pointer;
@@ -408,31 +400,31 @@ onMounted(async () => {
   gap: 6px;
 }
 .plan-card.active {
-  border-color: #409eff;
-  background: #ecf5ff;
+  border-color: var(--el-color-primary);
+  background: var(--el-bg-color);
 }
 .plan-card.active .plan-icon {
-  color: #409eff;
+  color: var(--el-color-primary);
 }
 .plan-card.forever {
-  border-color: #e6a23c;
+  border-color: var(--apple-orange-subtle);
   background: linear-gradient(135deg, #fdf6ec 0%, #fefcef 100%);
 }
 .plan-card.forever.active {
-  border-color: #e6a23c;
+  border-color: var(--apple-orange-subtle);
   background: linear-gradient(135deg, #faecd8 0%, #fef5e7 100%);
   box-shadow: 0 0 12px rgba(230, 162, 60, 0.3);
 }
 .plan-card.forever .plan-icon {
   font-size: 42px;
-  color: #e6a23c;
+  color: var(--apple-orange-subtle);
 }
 .plan-card.forever .plan-price {
-  color: #e6a23c;
+  color: var(--apple-orange-subtle);
 }
 .plan-icon {
   font-size: 36px;
-  color: #909399;
+  color: var(--apple-gray-subtle);
 }
 .plan-name {
   font-size: 14px;
@@ -441,11 +433,11 @@ onMounted(async () => {
 .plan-price {
   font-size: 18px;
   font-weight: 700;
-  color: #409eff;
+  color: var(--el-color-primary);
 }
 .order-id {
   font-size: 12px;
-  color: #909399;
+  color: var(--apple-gray-subtle);
 }
 .pagination-wrapper {
   display: flex;

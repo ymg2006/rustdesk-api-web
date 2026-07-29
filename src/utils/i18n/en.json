@@ -372,6 +372,21 @@
   "RemoteDesktopOffline": {
     "One": "Remote desktop is offline"
   },
+  "CleanOldMessages": {
+    "One": "Clean Old Messages"
+  },
+  "CleanMessagesOlderThan1Year": {
+    "One": "Clean messages older than 1 year"
+  },
+  "CleanMessagesOlderThan3Years": {
+    "One": "Clean messages older than 3 years"
+  },
+  "OnlyMyMessages": { "One": "Only My Messages" },
+  "ShowAll": { "One": "Show All" },
+  "SearchUsername": { "One": "Search username" },
+  "AllUsers": { "One": "All Users" },
+  "MessageTitleOptional": { "One": "Message title (optional)" },
+  "PleaseEnterMessageContent": { "One": "Please enter message content" },
   "KeyMismatch": {
     "One": "Key mismatch"
   },

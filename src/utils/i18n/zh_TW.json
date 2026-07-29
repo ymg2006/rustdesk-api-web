@@ -372,6 +372,15 @@
   "RemoteDesktopOffline": {
     "One": "遠端電腦不線上"
   },
+  "CleanOldMessages": { "One": "清理舊訊息" },
+  "CleanMessagesOlderThan1Year": { "One": "清理 1 年前的訊息" },
+  "CleanMessagesOlderThan3Years": { "One": "清理 3 年前的訊息" },
+  "OnlyMyMessages": { "One": "僅我的訊息" },
+  "ShowAll": { "One": "顯示全部" },
+  "SearchUsername": { "One": "搜尋使用者名稱" },
+  "AllUsers": { "One": "所有使用者" },
+  "MessageTitleOptional": { "One": "訊息標題（選填）" },
+  "PleaseEnterMessageContent": { "One": "請輸入訊息內容" },
   "KeyMismatch": {
     "One": "KEY 不匹配"
   },

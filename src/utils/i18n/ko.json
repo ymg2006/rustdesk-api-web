@@ -372,6 +372,15 @@
   "RemoteDesktopOffline": {
     "One": "원격 컴퓨터가 온라인이 아님"
   },
+  "CleanOldMessages": { "One": "오래된 메시지 정리" },
+  "CleanMessagesOlderThan1Year": { "One": "1년이 지난 메시지 정리" },
+  "CleanMessagesOlderThan3Years": { "One": "3년이 지난 메시지 정리" },
+  "OnlyMyMessages": { "One": "내 메시지만" },
+  "ShowAll": { "One": "모두 표시" },
+  "SearchUsername": { "One": "사용자 이름 검색" },
+  "AllUsers": { "One": "모든 사용자" },
+  "MessageTitleOptional": { "One": "메시지 제목(선택 사항)" },
+  "PleaseEnterMessageContent": { "One": "메시지 내용을 입력하세요" },
   "KeyMismatch": {
     "One": "키 불일치"
   },

@@ -357,7 +357,11 @@ const testChannelForm = async () => {
 }
 
 const delChannel = async (row) => {
-  const cf = await ElMessageBox.confirm('Associated alert rules cannot send after deletion. Continue?', { type: 'warning' }).catch(_ => false)
+  const cf = await ElMessageBox.confirm('Associated alert rules cannot send after deletion. Continue?', {
+    type: 'warning',
+    confirmButtonText: T('Confirm'),
+    cancelButtonText: T('Cancel'),
+  }).catch(_ => false)
   if (!cf) return
   const res = await request({ url: '/alert_channel/delete', method: 'post', data: { id: row.row_id } }).catch(_ => false)
   if (res) { ElMessage.success(T('OperationSuccess')); loadChannels() }
@@ -434,7 +438,11 @@ const submitRule = async () => {
 }
 
 const delRule = async (row) => {
-  const cf = await ElMessageBox.confirm(T('Confirm?',{param:T('Delete')}),{type:'warning'}).catch(_=>false)
+  const cf = await ElMessageBox.confirm(T('Confirm?', { param: T('Delete') }), {
+    type: 'warning',
+    confirmButtonText: T('Confirm'),
+    cancelButtonText: T('Cancel'),
+  }).catch(_ => false)
   if (!cf) return
   const res = await remove({ id: row.row_id }).catch(_ => false)
   if (res) { ElMessage.success(T('OperationSuccess')); getRules() }
