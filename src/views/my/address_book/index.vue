@@ -26,8 +26,8 @@
     </el-card>
     <el-card class="list-body" shadow="hover">
       <el-table :data="listRes.list" v-loading="listRes.loading" border @selection-change="handleSelectionChange">
-        <el-table-column type="selection" width="50" align="center"></el-table-column>
-        <el-table-column prop="id" :label="T('ID')" align="center" width="200">
+        <el-table-column type="selection" min-width="50" align="center"></el-table-column>
+        <el-table-column prop="id" :label="T('ID')" align="center" min-width="200">
           <template #default="{row}">
             <div>
               <PlatformIcons :name="platformList.find(p=>p.label===row.platform)?.icon" style="width: 20px;height: 20px;display: inline-block" color="var(--basicBlack)"/>
@@ -38,28 +38,28 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="collection_id" :label="T('AddressBookName')" align="center" width="150">
+        <el-table-column prop="collection_id" :label="T('AddressBookName')" align="center" min-width="150">
           <template #default="{row}">
             <span v-if="row.collection_id === 0">{{ T('MyAddressBook') }}</span>
             <span v-else>{{ collectionListRes.list.find(c => c.id === row.collection_id)?.name }}</span>
           </template>
         </el-table-column>
-        <el-table-column prop="username" :label="T('Username')" align="center" width="150"/>
-        <el-table-column prop="hostname" :label="T('Hostname')" align="center" width="150"/>
-        <!--        <el-table-column prop="platform" :label="T('Platform')" align="center" width="120"/>-->
+        <el-table-column prop="username" :label="T('Username')" align="center" min-width="150"/>
+        <el-table-column prop="hostname" :label="T('Hostname')" align="center" min-width="150"/>
+        <!--        <el-table-column prop="platform" :label="T('Platform')" align="center" min-width="120"/>-->
         <el-table-column prop="tags" :label="T('Tags')" align="center"/>
         <!--        <el-table-column prop="created_at" label="创建时间" align="center"/>-->
         <!--        <el-table-column prop="updated_at" label="更新时间" align="center"/>-->
-        <el-table-column prop="alias" :label="T('Alias')" align="center" width="150"/>
-        <el-table-column prop="peer.version" :label="T('Version')" align="center" width="100"/>
-        <el-table-column prop="hash" :label="T('Hash')" align="center" width="150" show-overflow-tooltip/>
-        <el-table-column :label="T('Actions')" align="center" class-name="table-actions" width="600" fixed="right">
+        <el-table-column prop="alias" :label="T('Alias')" align="center" min-width="150"/>
+        <el-table-column prop="peer.version" :label="T('Version')" align="center" min-width="100"/>
+        <el-table-column prop="hash" :label="T('Hash')" align="center" min-width="150" show-overflow-tooltip/>
+        <el-table-column :label="T('Actions')" align="center" width="500" fixed="right">
           <template #default="{row}">
-            <el-button type="success" @click="connectByClient(row.id)">{{ T('Link') }}</el-button>
-            <el-button v-if="appStore.setting.appConfig.web_client" type="success" @click="toWebClientLink(row)">{{ T('WebClient') }}</el-button>
-            <el-button v-if="appStore.setting.appConfig.web_client" type="primary" @click="toShowShare(row)">{{ T('ShareByWebClient') }}</el-button>
-            <el-button @click="toEdit(row)">{{ T('Edit') }}</el-button>
-            <el-button type="danger" @click="del(row)">{{ T('Delete') }}</el-button>
+            <el-button type="success" @click="connectByClient(row.id)" size="small">{{ T('Link') }}</el-button>
+            <el-button v-if="appStore.setting.appConfig.web_client" type="success" @click="toWebClientLink(row)" size="small">{{ T('WebClient') }}</el-button>
+            <el-button v-if="appStore.setting.appConfig.web_client" type="primary" @click="toShowShare(row)" size="small">{{ T('ShareByWebClient') }}</el-button>
+            <el-button @click="toEdit(row)" size="small">{{ T('Edit') }}</el-button>
+            <el-button type="danger" @click="del(row)" size="small">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>

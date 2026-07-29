@@ -20,9 +20,9 @@
     </el-card>
     <el-card class="list-body" shadow="hover">
       <el-table :data="listRes.list" v-loading="listRes.loading" border @selection-change="handleSelectionChange">
-        <el-table-column type="selection" align="center" width="50"/>
-        <el-table-column prop="id" :label="T('ID')" align="center" width="100"/>
-        <el-table-column :label="T('User')" align="center" width="120">
+        <el-table-column type="selection" align="center" min-width="50"/>
+        <el-table-column prop="id" :label="T('ID')" align="center" min-width="100"/>
+        <el-table-column :label="T('User')" align="center" min-width="120">
           <template #default="{row}">
             <span v-if="row.user_id"> <el-tag>{{ allUsers?.find(u => u.id === row.user_id)?.username }}</el-tag> </span>
           </template>
@@ -34,9 +34,9 @@
             <el-tag :type="expired(row)?'info':'success'">{{ row.expire ? row.expire : T('Forever') }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Actions')" align="center" width="400">
+        <el-table-column :label="T('Actions')" align="center" width="100" fixed="right">
           <template #default="{row}">
-            <el-button type="danger" @click="del(row)">{{ T('Delete') }}</el-button>
+            <el-button type="danger" @click="del(row)" size="small">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -54,12 +54,10 @@
 </template>
 
 <script setup>
-  import { onActivated, onMounted, ref, watch, reactive } from 'vue'
-  import { loadAllUsers } from '@/global'
-  import { T } from '@/utils/i18n'
-  import { remove, list, batchDelete } from '@/api/share_record'
-  import { ElMessage, ElMessageBox } from 'element-plus'
-  import { useRepositories } from '@/views/share_record/index'
+  import { onActivated, onMounted, watch } from 'vue'
+import { loadAllUsers } from '@/global'
+import { T } from '@/utils/i18n'
+import { useRepositories } from '@/views/share_record/index'
 
   const { allUsers, getAllUsers } = loadAllUsers()
   getAllUsers()

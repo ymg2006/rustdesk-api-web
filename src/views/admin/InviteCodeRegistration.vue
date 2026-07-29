@@ -36,18 +36,18 @@
 
     <el-card class="list-body" shadow="hover">
       <el-table class="list-table" :data="list" v-loading="loading" border>
-        <el-table-column prop="id" :label="T('ID')" align="center" width="80"/>
+        <el-table-column prop="id" :label="T('ID')" align="center" min-width="80"/>
         <el-table-column prop="code" :label="T('InviteCode')" align="center" min-width="200">
           <template #default="{row}">
             <el-tag type="info" style="font-family: monospace; font-size: 13px;">{{ row.code }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="Plan" align="center" width="100">
+        <el-table-column label="Plan" align="center" min-width="100">
           <template #default="{row}">
             <el-tag :type="row.plan === 'pro' ? 'primary' : 'warning'" size="mini">{{ row.plan }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="Status" align="center" width="100">
+        <el-table-column label="Status" align="center" min-width="100">
           <template #default="{row}">
             <el-tag
               :type="row.status === 'unused' ? 'success' : (row.status === 'used' ? 'info' : 'danger')"
@@ -57,20 +57,20 @@
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="expire_at" :label="T('ExpiredAt')" align="center" width="180">
+        <el-table-column prop="expire_at" :label="T('ExpiredAt')" align="center" min-width="180">
           <template #default="{row}">
             {{ row.expire_at || '-' }}
           </template>
         </el-table-column>
-        <el-table-column prop="created_at" :label="T('CreatedAt')" align="center" width="180">
+        <el-table-column prop="created_at" :label="T('CreatedAt')" align="center" min-width="180">
           <template #default="{row}">
             {{ row.created_at || '-' }}
           </template>
         </el-table-column>
-        <el-table-column :label="T('Actions')" align="center" width="200">
+        <el-table-column :label="T('Actions')" align="center" width="200" fixed="right">
           <template #default="{row}">
-            <el-button type="primary" size="small" @click="copySingleLink(row)">{{ T('CopyLink') }}</el-button>
-            <el-button v-if="row.status === 'unused'" type="danger" size="small" @click="revoke(row)">{{ T('Revoke') }}</el-button>
+            <el-button type="primary" @click="copySingleLink(row)" size="small">{{ T('CopyLink') }}</el-button>
+            <el-button v-if="row.status === 'unused'" type="danger" @click="revoke(row)" size="small">{{ T('Revoke') }}</el-button>
           </template>
         </el-table-column>
       </el-table>

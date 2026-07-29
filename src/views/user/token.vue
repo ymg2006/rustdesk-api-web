@@ -22,8 +22,8 @@
     </el-card>
     <el-card class="list-body" shadow="hover">
       <el-table ref="tableRef" class="list-table" :data="listRes.list" v-loading="listRes.loading" border @selection-change="handleSelectionChange">
-        <el-table-column type="selection" align="center" width="50"/>
-        <el-table-column prop="id" :label="T('ID')" align="center" width="100"/>
+        <el-table-column type="selection" align="center" min-width="50"/>
+        <el-table-column prop="id" :label="T('ID')" align="center" min-width="100"/>
         <el-table-column :label="T('Owner')" align="center">
           <template #default="{row}">
             <span v-if="row.user_id"> <el-tag>{{ allUsers?.find(u => u.id === row.user_id)?.username }}</el-tag> </span>
@@ -40,9 +40,9 @@
             <el-tag :type="expired(row)?'info':'success'">{{ row.expired_at ? new Date(row.expired_at * 1000).toLocaleString() : '-' }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Actions')" align="center" width="400">
+        <el-table-column :label="T('Actions')" align="center" width="100" fixed="right">
           <template #default="{row}">
-            <el-button type="danger" @click="del(row)">{{ T('Logout') }}</el-button>
+            <el-button type="danger" @click="del(row)" size="small">{{ T('Logout') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -61,9 +61,9 @@
 
 <script setup>
   import { onActivated, onMounted, ref, watch } from 'vue'
-  import { loadAllUsers } from '@/global'
-  import { useRepositories } from '@/views/user/token.js'
-  import { T } from '@/utils/i18n'
+import { loadAllUsers } from '@/global'
+import { useRepositories } from '@/views/user/token.js'
+import { T } from '@/utils/i18n'
 
   const { allUsers, getAllUsers } = loadAllUsers()
   getAllUsers()

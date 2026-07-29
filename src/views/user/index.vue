@@ -18,7 +18,7 @@
         <el-table-column prop="username" :label="T('Username')" align="center"/>
         <el-table-column prop="email" :label="T('Email')" align="center"/>
         <el-table-column prop="nickname" :label="T('Nickname')" align="center"/>
-        <el-table-column prop="expired_at" :label="T('ExpiredAt')" width="180" align="center">
+        <el-table-column prop="expired_at" :label="T('ExpiredAt')" min-width="180" align="center">
           <template #default="{row}">
             <span v-if="row.expired_at > 0 && row.expired_at * 1000 < Date.now()"
                   style="color: red; font-weight: bold;">{{ formatDate(row.expired_at) }}</span>
@@ -44,14 +44,14 @@
         <el-table-column prop="remark" :label="T('Remark')" align="center"/>
         <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>
         <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center"/>
-        <el-table-column :label="T('Actions')" align="center" width="650">
+        <el-table-column :label="T('Actions')" align="center" width="600" fixed="right">
           <template #default="{row}">
-            <el-button @click="toTag(row)">{{ T('UserTags') }}</el-button>
-            <el-button @click="toAddressBook(row)">{{ T('UserAddressBook') }}</el-button>
-            <el-button @click="toEdit(row)">{{ T('Edit') }}</el-button>
-            <el-button type="warning" @click="changePass(row)">{{ T('ResetPassword') }}</el-button>
-            <el-button type="info" @click="resetMfa(row)">{{ T('MfaReset') }}</el-button>
-            <el-button type="danger" @click="remove(row)">{{ T('Delete') }}</el-button>
+            <el-button @click="toTag(row)" size="small">{{ T('UserTags') }}</el-button>
+            <el-button @click="toAddressBook(row)" size="small">{{ T('UserAddressBook') }}</el-button>
+            <el-button @click="toEdit(row)" size="small">{{ T('Edit') }}</el-button>
+            <el-button type="warning" @click="changePass(row)" size="small">{{ T('ResetPassword') }}</el-button>
+            <el-button type="info" @click="resetMfa(row)" size="small">{{ T('MfaReset') }}</el-button>
+            <el-button type="danger" @click="remove(row)" size="small">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>

@@ -21,21 +21,21 @@
 
     <el-card shadow="hover" class="list-card">
       <el-table :data="list" v-loading="loading" border stripe>
-        <el-table-column prop="id" :label="T('ID')" width="60" align="center" />
-        <el-table-column prop="username" label="Username" width="150" />
-        <el-table-column prop="subscription_plan" label="Plan" width="80" align="center">
+        <el-table-column prop="id" :label="T('ID')" min-width="60" align="center" />
+        <el-table-column prop="username" label="Username" min-width="150" />
+        <el-table-column prop="subscription_plan" label="Plan" min-width="80" align="center">
           <template #default="{ row }">
             <el-tag size="small">{{ row.subscription_plan || '-' }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="Subscription Status" width="110" align="center">
+        <el-table-column label="Subscription Status" min-width="110" align="center">
           <template #default="{ row }">
             <el-tag :type="statusType(row.status)" size="small">
               {{ row.status === 'permanent' ? 'Permanent' : row.status }}
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="Days Left" width="100" align="center">
+        <el-table-column label="Days Left" min-width="100" align="center">
           <template #default="{ row }">
             <span v-if="row.days_left === -1" style="color:#67c23a;font-weight:600">Permanent</span>
             <span v-else :style="{ color: row.days_left > 0 && row.days_left <= 7 ? '#f56c6c' : '#303133' }">
@@ -43,13 +43,13 @@
             </span>
           </template>
         </el-table-column>
-        <el-table-column label="Expiration Time" width="170" align="center">
+        <el-table-column label="Expiration Time" min-width="170" align="center">
           <template #default="{ row }">
             <span v-if="row.days_left === -1" style="color:#67c23a">—</span>
             <span v-else>{{ formatTime(row.subscription_expire_at) }}</span>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Action')" width="160" align="center" fixed="right">
+        <el-table-column :label="T('Action')" min-width="160" align="center" fixed="right">
           <template #default="{ row }">
             <el-button type="primary" size="small" @click="showExtend(row)">
               Extend

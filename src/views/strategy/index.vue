@@ -19,20 +19,20 @@
 
     <el-card class="list-body" shadow="hover" style="margin-top: 16px;">
       <el-table :data="listRes.list" v-loading="listRes.loading" border>
-        <el-table-column prop="id" :label="T('ID')" width="60" align="center"></el-table-column>
-        <el-table-column prop="name" label="Strategy Name" width="160" align="center">
+        <el-table-column prop="id" :label="T('ID')" min-width="60" align="center"></el-table-column>
+        <el-table-column prop="name" label="Strategy Name" min-width="160" align="center">
           <template #default="{row}">
             <strong>{{ row.name }}</strong>
           </template>
         </el-table-column>
-        <el-table-column label="Status" width="80" align="center">
+        <el-table-column label="Status" min-width="80" align="center">
           <template #default="{row}">
             <el-tag v-if="row.status === 1" type="success" size="small">Enabled</el-tag>
             <el-tag v-else type="danger" size="small">Disabled</el-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="priority" label="Priority" width="80" align="center"></el-table-column>
-        <el-table-column label="Binding Scope" width="160" align="center">
+        <el-table-column prop="priority" label="Priority" min-width="80" align="center"></el-table-column>
+        <el-table-column label="Binding Scope" min-width="160" align="center">
           <template #default="{row}">
             <el-tag v-if="row.bind_type === 'user'" type="primary" size="small">User</el-tag>
             <el-tag v-else-if="row.bind_type === 'group'" type="success" size="small">Device Group</el-tag>
@@ -41,7 +41,7 @@
             <span style="margin-left: 4px; font-size: 12px;">{{ getBindName(row) }}</span>
           </template>
         </el-table-column>
-        <el-table-column label="Actions" width="200" align="center" fixed="right">
+        <el-table-column label="Actions" min-width="200" align="center" fixed="right">
           <template #default="{row}">
             <el-button type="primary" size="small" @click="showEdit(row)">Edit</el-button>
             <el-button type="danger" size="small" @click="del(row)">Delete</el-button>

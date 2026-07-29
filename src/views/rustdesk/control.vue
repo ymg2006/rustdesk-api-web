@@ -46,11 +46,11 @@
             <el-table-column prop="alias" :label="T('Alias')" align="center"></el-table-column>
             <el-table-column prop="option" :label="T('Option')" align="center"></el-table-column>
             <el-table-column prop="explain" :label="T('Explain')" align="center"></el-table-column>
-            <el-table-column :label="T('Actions')" align="center">
+            <el-table-column :label="T('Actions')" align="center" width="300" fixed="right">
               <template #default="{row}">
-                <el-button type="success" :disabled="!canSendCmd(row.target)" @click="showCmd(row)">{{ T('Send') }}</el-button>
-                <el-button v-if="row.id" type="primary" @click="toUpdate(row)">{{ T('Edit') }}</el-button>
-                <el-button v-if="row.id" type="danger" @click="del(row)">{{ T('Delete') }}</el-button>
+                <el-button type="success" :disabled="!canSendCmd(row.target)" @click="showCmd(row)" size="small">{{ T('Send') }}</el-button>
+                <el-button v-if="row.id" type="primary" @click="toUpdate(row)" size="small">{{ T('Edit') }}</el-button>
+                <el-button v-if="row.id" type="danger" @click="del(row)" size="small">{{ T('Delete') }}</el-button>
               </template>
             </el-table-column>
           </el-table>

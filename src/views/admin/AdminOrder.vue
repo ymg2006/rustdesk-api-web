@@ -20,35 +20,35 @@
 
     <el-card shadow="hover" class="list-card">
       <el-table :data="list" v-loading="loading" border stripe>
-        <el-table-column prop="id" :label="T('ID')" width="60" align="center" />
+        <el-table-column prop="id" :label="T('ID')" min-width="60" align="center" />
         <el-table-column prop="out_trade_no" label="Order No." min-width="220" />
-        <el-table-column prop="username" label="User" width="120" align="center" />
-        <el-table-column label="Duration" width="80" align="center">
+        <el-table-column prop="username" label="User" min-width="120" align="center" />
+        <el-table-column label="Duration" min-width="80" align="center">
           <template #default="{ row }">
             {{ row.plan_key }}
           </template>
         </el-table-column>
-        <el-table-column label="Amount" width="100" align="center">
+        <el-table-column label="Amount" min-width="100" align="center">
           <template #default="{ row }">
             ¥{{ (row.amount_cents / 100).toFixed(2) }}
           </template>
         </el-table-column>
-        <el-table-column prop="channel" label="Payment Method" width="100" align="center">
+        <el-table-column prop="channel" label="Payment Method" min-width="100" align="center">
           <template #default="{ row }">
             {{ row.channel === 'alipay' ? 'Alipay' : 'WeChat' }}
           </template>
         </el-table-column>
-        <el-table-column label="Status" width="100" align="center">
+        <el-table-column label="Status" min-width="100" align="center">
           <template #default="{ row }">
             <el-tag :type="statusType(row.status)" size="small">{{ statusLabel(row.status) }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="Order Time" width="170" align="center">
+        <el-table-column label="Order Time" min-width="170" align="center">
           <template #default="{ row }">
             {{ formatTime(row.created_at) }}
           </template>
         </el-table-column>
-        <el-table-column :label="T('Action')" width="180" align="center" fixed="right">
+        <el-table-column :label="T('Action')" min-width="180" align="center" fixed="right">
           <template #default="{ row }">
             <el-button v-if="row.status === 'pending'" type="success" size="small" @click="handleConfirm(row)">
               Confirm Paid

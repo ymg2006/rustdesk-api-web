@@ -25,7 +25,7 @@
 
     <el-card shadow="hover" class="list-card">
       <el-table :data="list" v-loading="loading" border stripe>
-        <el-table-column prop="id" :label="T('ID')" width="60" align="center" />
+        <el-table-column prop="id" :label="T('ID')" min-width="60" align="center" />
         <el-table-column prop="code" :label="T('InviteCode')" min-width="280" align="center">
           <template #default="{ row }">
             <code class="code-text">{{ row.code }}</code>
@@ -34,22 +34,22 @@
             </el-button>
           </template>
         </el-table-column>
-        <el-table-column prop="plan" :label="T('Plan')" width="80" align="center">
+        <el-table-column prop="plan" :label="T('Plan')" min-width="80" align="center">
           <template #default="{ row }">
             <el-tag size="small">{{ row.plan }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="status" :label="T('Status')" width="100" align="center">
+        <el-table-column prop="status" :label="T('Status')" min-width="100" align="center">
           <template #default="{ row }">
             <el-tag :type="statusTag(row.status)" size="small">{{ statusText(row.status) }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="used_by_name" :label="T('UsedByName')" width="140" align="center">
+        <el-table-column prop="used_by_name" :label="T('UsedByName')" min-width="140" align="center">
           <template #default="{ row }">
             {{ row.used_by_name || '-' }}
           </template>
         </el-table-column>
-        <el-table-column prop="expire_at" :label="T('ExpireAt')" width="170" align="center">
+        <el-table-column prop="expire_at" :label="T('ExpireAt')" min-width="170" align="center">
           <template #default="{ row }">
             {{ formatTime(row.expire_at) }}
           </template>
@@ -60,7 +60,7 @@
             <span v-else>-</span>
           </template>
         </el-table-column>
-        <el-table-column prop="created_at" :label="T('CreatedAt')" width="170" align="center">
+        <el-table-column prop="created_at" :label="T('CreatedAt')" min-width="170" align="center">
           <template #default="{ row }">
             {{ formatTime(row.created_at) }}
           </template>
@@ -70,7 +70,7 @@
             <span class="remark-text">{{ row.remark || '-' }}</span>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Action')" width="150" align="center" fixed="right">
+        <el-table-column :label="T('Action')" min-width="150" align="center" fixed="right">
           <template #default="{ row }">
             <el-button
               v-if="row.status === 'unused'"

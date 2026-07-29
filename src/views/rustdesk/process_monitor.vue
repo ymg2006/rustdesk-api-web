@@ -189,8 +189,8 @@
 import { ref, onMounted, computed } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import {
-  processRules, createProcessRule, updateProcessRule, deleteProcessRule, processStatus, alertConfigList,
-  batchCreateProcessRule, processPeerSources,
+    processRules, createProcessRule, updateProcessRule, deleteProcessRule, processStatus, alertConfigList,
+    batchCreateProcessRule, processPeerSources,
 } from '@/api/process'
 import { T } from '@/utils/i18n'
 

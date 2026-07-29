@@ -15,16 +15,16 @@
       stripe
       style="width: 100%"
     >
-      <el-table-column :label="T('ID')" prop="id" width="60" />
+      <el-table-column :label="T('ID')" prop="id" min-width="60" />
       <el-table-column label="Invite Code" prop="code" min-width="160" />
-      <el-table-column label="Plan" width="100">
+      <el-table-column label="Plan" min-width="100">
         <template slot-scope="{ row }">
           <el-tag :type="row.plan === 'pro' ? 'primary' : 'warning'" size="mini">
             {{ row.plan }}
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="Status" width="90">
+      <el-table-column label="Status" min-width="90">
         <template slot-scope="{ row }">
           <el-tag
             :type="row.status === 'unused' ? 'success' : (row.status === 'used' ? 'info' : 'danger')"
@@ -34,10 +34,10 @@
           </el-tag>
         </template>
       </el-table-column>
-      <el-table-column label="Used By" width="120" prop="used_by" />
-      <el-table-column label="Expiration Time" width="170" prop="expire_at" />
-      <el-table-column label="Created At" width="170" prop="created_at" />
-      <el-table-column label="Actions" width="120" fixed="right">
+      <el-table-column label="Used By" min-width="120" prop="used_by" />
+      <el-table-column label="Expiration Time" min-width="170" prop="expire_at" />
+      <el-table-column label="Created At" min-width="170" prop="created_at" />
+      <el-table-column label="Actions" min-width="120" fixed="right">
         <template slot-scope="{ row }">
           <el-button
             v-if="row.status === 'unused'"

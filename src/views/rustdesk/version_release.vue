@@ -45,13 +45,13 @@
 
     <el-card class="list-body" shadow="hover" style="margin-top: 16px;">
       <el-table :data="listRes.list" v-loading="listRes.loading" border>
-        <el-table-column prop="id" :label="T('ID')" width="60" align="center"></el-table-column>
-        <el-table-column prop="version" :label="T('Version')" width="120" align="center">
+        <el-table-column prop="id" :label="T('ID')" min-width="60" align="center"></el-table-column>
+        <el-table-column prop="version" :label="T('Version')" min-width="120" align="center">
           <template #default="{row}">
             <strong>{{ row.version }}</strong>
           </template>
         </el-table-column>
-        <el-table-column prop="platform" :label="T('Platform')" width="100" align="center"></el-table-column>
+        <el-table-column prop="platform" :label="T('Platform')" min-width="100" align="center"></el-table-column>
         <el-table-column prop="url" :label="T('DownloadUrl')" min-width="200">
           <template #default="{row}">
             <el-text truncated>{{ row.url }}</el-text>
@@ -62,31 +62,29 @@
             <el-text truncated>{{ row.note }}</el-text>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Status')" width="80" align="center">
+        <el-table-column :label="T('Status')" min-width="80" align="center">
           <template #default="{row}">
             <el-tag v-if="row.status === 1" type="success" size="small">{{ T('Enable') }}</el-tag>
             <el-tag v-else type="danger" size="small">{{ T('Disable') }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="强制更新" width="90" align="center">
+        <el-table-column label="强制更新" min-width="90" align="center">
           <template #default="{row}">
             <el-tag v-if="row.force_update === 1" type="warning" size="small">强制</el-tag>
             <el-tag v-else type="info" size="small">普通</el-tag>
           </template>
         </el-table-column>
-        <el-table-column :label="T('CreatedAt')" width="170" align="center">
+        <el-table-column :label="T('CreatedAt')" min-width="170" align="center">
           <template #default="{row}">
             {{ row.created_at || '' }}
           </template>
         </el-table-column>
-        <el-table-column :label="T('Actions')" width="160" align="center" fixed="right">
+        <el-table-column :label="T('Actions')" align="center" width="200" fixed="right">
           <template #default="{row}">
-            <el-button
-              :type="row.status === 1 ? 'danger' : 'primary'"
-              size="small"
-              @click="toggleStatus(row)"
-            >{{ row.status === 1 ? T('Disable') : T('Enable') }}</el-button>
-            <el-button type="danger" size="small" @click="del(row)">{{ T('Delete') }}</el-button>
+            <el-button :type="row.status === 1 ? 'danger' : 'primary'" @click="toggleStatus(row)" size="small">
+              {{ row.status === 1 ? T('Disable') : T('Enable') }}
+            </el-button>
+            <el-button type="danger" @click="del(row)" size="small">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>

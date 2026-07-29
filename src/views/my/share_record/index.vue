@@ -10,8 +10,8 @@
     </el-card>
     <el-card class="list-body" shadow="hover">
       <el-table :data="listRes.list" v-loading="listRes.loading" border @selection-change="handleSelectionChange">
-        <el-table-column type="selection" align="center" width="50"/>
-        <el-table-column prop="id" :label="T('ID')" align="center" width="100"/>
+        <el-table-column type="selection" align="center" min-width="50"/>
+        <el-table-column prop="id" :label="T('ID')" align="center" min-width="100"/>
         <el-table-column prop="peer_id" :label="T('Peer')" align="center"/>
         <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>
         <el-table-column :label="`${T('ExpireTime')} (${T('Second')})`" prop="expire" align="center">
@@ -19,9 +19,9 @@
             <el-tag :type="expired(row)?'info':'success'">{{ row.expire ? row.expire : T('Forever') }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Actions')" align="center" width="400">
+        <el-table-column :label="T('Actions')" align="center" width="100" fixed="right">
           <template #default="{row}">
-            <el-button type="danger" @click="del(row)">{{ T('Delete') }}</el-button>
+            <el-button type="danger" @click="del(row)" size="small">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -40,8 +40,8 @@
 
 <script setup>
   import { onActivated, onMounted, watch } from 'vue'
-  import { T } from '@/utils/i18n'
-  import { useRepositories } from '@/views/share_record'
+import { T } from '@/utils/i18n'
+import { useRepositories } from '@/views/share_record'
 
   const {
     listRes,

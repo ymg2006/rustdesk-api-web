@@ -17,24 +17,24 @@
     </el-card>
     <el-card class="list-body" shadow="hover">
       <el-table :data="listRes.list" v-loading="listRes.loading" border @selection-change="handleSelectionChange">
-        <el-table-column type="selection" align="center" width="50"/>
-        <el-table-column prop="id" :label="T('ID')" align="center" width="100"/>
-        <el-table-column :label="T('Peer')" prop="peer_id" align="center" width="120"/>
-        <el-table-column :label="T('FromPeer')" prop="from_peer" align="center" width="120"/>
-        <el-table-column :label="T('FromName')" prop="from_name" align="center" width="120"/>
-        <el-table-column :label="T('Ip')" prop="ip" align="center" width="120"/>
-        <el-table-column pop="type" :label="T('Type')" align="center" width="120">
+        <el-table-column type="selection" align="center" min-width="50"/>
+        <el-table-column prop="id" :label="T('ID')" align="center" min-width="100"/>
+        <el-table-column :label="T('Peer')" prop="peer_id" align="center" min-width="120"/>
+        <el-table-column :label="T('FromPeer')" prop="from_peer" align="center" min-width="120"/>
+        <el-table-column :label="T('FromName')" prop="from_name" align="center" min-width="120"/>
+        <el-table-column :label="T('Ip')" prop="ip" align="center" min-width="120"/>
+        <el-table-column pop="type" :label="T('Type')" align="center" min-width="120">
           <template #default="{row}">
             <el-tag v-if="row.type === 1" type="warning">{{ T('File') }}</el-tag>
             <el-tag v-else>{{ T('Common') }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="uuid" :label="T('Uuid')" align="center" width="120" show-overflow-tooltip/>
+        <el-table-column prop="uuid" :label="T('Uuid')" align="center" min-width="120" show-overflow-tooltip/>
         <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>
         <el-table-column :label="T('CloseTime')" prop="close_time" align="center"/>
-        <el-table-column :label="T('Actions')" align="center" width="150">
+        <el-table-column :label="T('Actions')" align="center" width="100" fixed="right">
           <template #default="{row}">
-            <el-button type="danger" @click="del(row)">{{ T('Delete') }}</el-button>
+            <el-button type="danger" @click="del(row)" size="small">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -53,8 +53,8 @@
 
 <script setup>
   import { onActivated, onMounted, ref, watch } from 'vue'
-  import { useRepositories } from '@/views/audit/reponsitories'
-  import { T } from '@/utils/i18n'
+import { useRepositories } from '@/views/audit/reponsitories'
+import { T } from '@/utils/i18n'
 
   const {
     listRes,

@@ -7,7 +7,7 @@
     </template>
     <el-form :disabled="!canSend">
       <el-form-item>
-        <el-table :data="form.list" size="small">
+        <el-table :data="form.list">
           <el-table-column prop="0" :label="T('Ip')"></el-table-column>
           <el-table-column prop="1" :label="T('Time')"></el-table-column>
           <el-table-column prop="2" :label="T('Total')"></el-table-column>
@@ -25,9 +25,9 @@
 <script setup>
 
   import { T } from '@/utils/i18n'
-  import { reactive, watch } from 'vue'
-  import { sendCmd } from '@/api/rustdesk'
-  import { RELAY_TARGET } from '@/views/rustdesk/options'
+import { reactive, watch } from 'vue'
+import { sendCmd } from '@/api/rustdesk'
+import { RELAY_TARGET } from '@/views/rustdesk/options'
 
   const props = defineProps({
     canSend: Boolean,

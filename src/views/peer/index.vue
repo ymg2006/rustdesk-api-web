@@ -72,18 +72,18 @@
         <div style="text-align: right; margin-bottom: 10px">
           <el-button :icon="Setting" @click="showColumnSetting"></el-button>
         </div>
-        <el-table class="list-table" :data="listRes.list" v-loading="listRes.loading" border size="small" @selection-change="handleSelectionChange">
-          <el-table-column type="selection" width="55" align="center"/>
+        <el-table class="list-table" :data="listRes.list" v-loading="listRes.loading" border @selection-change="handleSelectionChange">
+          <el-table-column type="selection" min-width="55" align="center"/>
           <template v-for="c in visibleColumns.filter(cc => cc.visible)" :key="c">
-            <el-table-column v-if="c.name==='id'" prop="id" :label="T('ID')" align="center" width="150">
+            <el-table-column v-if="c.name==='id'" prop="id" :label="T('ID')" align="center" min-width="150">
               <template #default="{row}">
                 <span>{{ row.id }} <el-icon @click="handleClipboard(row.id, $event)"><CopyDocument/></el-icon></span>
               </template>
             </el-table-column>
-            <el-table-column v-if="c.name==='cpu'" prop="cpu" :label="T('Cpu')" align="center" width="100" show-overflow-tooltip/>
-            <el-table-column v-if="c.name==='hostname'" prop="hostname" :label="T('Hostname')" align="center" width="120"/>
-            <el-table-column v-if="c.name==='memory'" prop="memory" :label="T('Memory')" align="center" width="120"/>
-            <el-table-column v-if="c.name==='os'" prop="os" :label="T('Os')" align="center" width="120" show-overflow-tooltip/>
+            <el-table-column v-if="c.name==='cpu'" prop="cpu" :label="T('Cpu')" align="center" min-width="100" show-overflow-tooltip/>
+            <el-table-column v-if="c.name==='hostname'" prop="hostname" :label="T('Hostname')" align="center" min-width="120"/>
+            <el-table-column v-if="c.name==='memory'" prop="memory" :label="T('Memory')" align="center" min-width="120"/>
+            <el-table-column v-if="c.name==='os'" prop="os" :label="T('Os')" align="center" min-width="120" show-overflow-tooltip/>
             <el-table-column v-if="c.name==='last_online_time'" prop="last_online_time" :label="T('LastOnlineTime')" align="center" min-width="120">
               <template #default="{row}">
                 <div class="last_oline_time">
@@ -92,27 +92,28 @@
               </template>
             </el-table-column>
             <el-table-column v-if="c.name==='last_online_ip'" prop="last_online_ip" :label="T('LastOnlineIp')" align="center" min-width="120"/>
-            <el-table-column v-if="c.name==='username'" prop="username" :label="T('Username')" align="center" width="120"/>
-            <el-table-column v-if="c.name==='group_id'" prop="group_id" :label="T('Group')" align="center" width="120">
+            <el-table-column v-if="c.name==='username'" prop="username" :label="T('Username')" align="center" min-width="120"/>
+            <el-table-column v-if="c.name==='group_id'" prop="group_id" :label="T('Group')" align="center" min-width="120">
               <template #default="{row}">
                 <span v-if="row.group_id"> <el-tag>{{ groupListRes.list?.find(g => g.id === row.group_id)?.name }} </el-tag> </span>
                 <span v-else> - </span>
               </template>
             </el-table-column>
-            <el-table-column v-if="c.name==='uuid'" prop="uuid" :label="T('Uuid')" align="center" width="120" show-overflow-tooltip/>
-            <el-table-column v-if="c.name==='version'" prop="version" :label="T('Version')" align="center" width="80"/>
-            <el-table-column v-if="c.name==='alias'" prop="alias" :label="T('Alias')" align="center" width="80"/>
-            <el-table-column v-if="c.name==='created_at'" prop="created_at" :label="T('CreatedAt')" align="center" width="150"/>
-            <el-table-column v-if="c.name==='updated_at'" prop="updated_at" :label="T('UpdatedAt')" align="center" width="150"/>
+            <el-table-column v-if="c.name==='uuid'" prop="uuid" :label="T('Uuid')" align="center" min-width="120" show-overflow-tooltip/>
+            <el-table-column v-if="c.name==='version'" prop="version" :label="T('Version')" align="center" min-width="80"/>
+            <el-table-column v-if="c.name==='alias'" prop="alias" :label="T('Alias')" align="center" min-width="80"/>
+            <el-table-column v-if="c.name==='created_at'" prop="created_at" :label="T('CreatedAt')" align="center" min-width="150"/>
+            <el-table-column v-if="c.name==='updated_at'" prop="updated_at" :label="T('UpdatedAt')" align="center" min-width="150"/>
           </template>
 
-          <el-table-column :label="T('Actions')" align="center" width="500" class-name="table-actions" fixed="right">
+          <el-table-column :label="T('Actions')" align="center" width="500" fixed="right">
             <template #default="{row}">
-              <el-button type="success" @click="connectByClient(row.id)">{{ T('Link') }}</el-button>
-              <el-button v-if="appStore.setting.appConfig.web_client" type="success" @click="toWebClientLink(row)">{{ T('WebClient') }}</el-button>
-              <el-button type="primary" @click="toAddressBook(row)">{{ T('AddToAddressBook') }}</el-button>
-              <el-button @click="toEdit(row)">{{ T('Edit') }}</el-button>
-              <el-button type="danger" @click="del(row)">{{ T('Delete') }}</el-button>
+              <el-button type="success" @click="connectByClient(row.id)" size="small">{{ T('Link') }}</el-button>
+              <el-button v-if="appStore.setting.appConfig.web_client" type="success" @click="toWebClientLink(row)" size="small">  {{ T('WebClient') }}
+              </el-button>
+              <el-button type="primary" @click="toAddressBook(row)" size="small">{{ T('AddToAddressBook') }}</el-button>
+              <el-button @click="toEdit(row)" size="small">{{ T('Edit') }}</el-button>
+              <el-button type="danger" @click="del(row)" size="small">{{ T('Delete') }}</el-button>
             </template>
           </el-table-column>
         </el-table>

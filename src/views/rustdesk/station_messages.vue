@@ -29,7 +29,7 @@
         </div>
       </template>
       <el-table :data="messages" v-loading="loading" border>
-        <el-table-column prop="sender_name" :label="T('Sender')" width="120">
+        <el-table-column prop="sender_name" :label="T('Sender')" min-width="120">
           <template #default="{row}">
             <span v-if="row.sender_name">{{ row.sender_name }}</span>
             <span v-else class="hint-text">System</span>
@@ -46,20 +46,20 @@
             <el-text truncated>{{ row.content }}</el-text>
           </template>
         </el-table-column>
-        <el-table-column prop="created_at" :label="T('Time')" width="170">
+        <el-table-column prop="created_at" :label="T('Time')" min-width="170">
           <template #default="{row}">
             {{ formatTime(row.created_at) }}
           </template>
         </el-table-column>
-        <el-table-column :label="T('Status')" width="80" align="center">
+        <el-table-column :label="T('Status')" min-width="80" align="center">
           <template #default="{row}">
             <el-tag v-if="row.is_read === 0" type="danger" size="small">{{ T('Unread') }}</el-tag>
             <el-tag v-else size="small">{{ T('Read') }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Actions')" width="80" align="center">
+        <el-table-column :label="T('Actions')" align="center" width="100" fixed="right">
           <template #default="{row}">
-            <el-button v-if="row.is_read === 0" size="small" @click="markRead(row)">{{ T('MarkRead') }}</el-button>
+            <el-button v-if="row.is_read === 0" @click="markRead(row)" size="small">{{ T('MarkRead') }}</el-button>
           </template>
         </el-table-column>
       </el-table>

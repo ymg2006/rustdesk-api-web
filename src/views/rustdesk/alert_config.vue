@@ -8,9 +8,9 @@
           <el-button type="primary" size="small" @click="showChannelForm()">{{ T('Add') }}</el-button>
         </div>
       </template>
-      <el-table :data="channels" v-loading="loadingCh" border size="small">
+      <el-table :data="channels" v-loading="loadingCh" border>
         <el-table-column prop="name" label="通道名称" min-width="120"></el-table-column>
-        <el-table-column prop="channel" label="类型" width="100" align="center">
+        <el-table-column prop="channel" label="类型" min-width="100" align="center">
           <template #default="{row}">
             <el-tag :type="channelType(row.channel)" size="small">{{ channelLabel(row.channel) }}</el-tag>
           </template>
@@ -22,10 +22,10 @@
             <span v-else style="color:var(--apple-gray)">-</span>
           </template>
         </el-table-column>
-        <el-table-column label="创建时间" width="160">
+        <el-table-column label="创建时间" min-width="160">
           <template #default="{row}">{{ row.created_at || '-' }}</template>
         </el-table-column>
-        <el-table-column label="操作" width="220" align="center">
+        <el-table-column label="操作" min-width="220" align="center">
           <template #default="{row}">
             <el-button size="small" @click="showChannelForm(row)">{{ T('Edit') }}</el-button>
             <el-button size="small" @click="testChannel(row)">测试</el-button>
@@ -98,7 +98,7 @@
       </el-alert>
       <el-table :data="configs" v-loading="loading" border>
         <el-table-column prop="name" :label="T('Name')" min-width="100"></el-table-column>
-        <el-table-column label="通知通道" width="120">
+        <el-table-column label="通知通道" min-width="120">
           <template #default="{row}">
             <el-tag :type="channelType(row.channel)" size="small">{{ channelLabel(row.channel) }}</el-tag>
             <div style="font-size:11px;color:var(--apple-gray)">{{ row.name }}</div>
@@ -120,21 +120,21 @@
             </span>
           </template>
         </el-table-column>
-        <el-table-column :label="T('OfflineMin')" width="80" align="center">
+        <el-table-column :label="T('OfflineMin')" min-width="80" align="center">
           <template #default="{row}">{{ row.offline_min || 5 }}min</template>
         </el-table-column>
-        <el-table-column :label="T('Status')" width="70" align="center">
+        <el-table-column :label="T('Status')" min-width="70" align="center">
           <template #default="{row}">
             <el-tag :type="row.enabled===1?'success':'danger'" size="small">
               {{ row.enabled===1 ? T('Enable') : T('Disable') }}
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Actions')" width="280" align="center">
+        <el-table-column :label="T('Actions')" align="center" width="300" fixed="right">
           <template #default="{row}">
-            <el-button size="small" @click="showTargets(row)">监控目标</el-button>
-            <el-button size="small" @click="showRuleForm(row)">{{ T('Edit') }}</el-button>
-            <el-button size="small" type="danger" @click="delRule(row)">{{ T('Delete') }}</el-button>
+            <el-button @click="showTargets(row)" size="small">监控目标</el-button>
+            <el-button @click="showRuleForm(row)" size="small">{{ T('Edit') }}</el-button>
+            <el-button type="danger" @click="delRule(row)" size="small">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>

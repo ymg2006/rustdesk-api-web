@@ -48,19 +48,19 @@
         </el-form-item>
       </el-form>
       <el-table class="list-table" :data="listRes.list" v-loading="listRes.loading" border>
-        <el-table-column prop="id" :label="T('ID')" width="80" align="center" />
+        <el-table-column prop="id" :label="T('ID')" min-width="80" align="center" />
         <el-table-column prop="username" :label="T('Username')" />
         <el-table-column prop="nickname" :label="T('Nickname')" />
         <el-table-column :label="T('Group')">
           <template #default="{row}">{{ groupName(row.group_id) }}</template>
         </el-table-column>
-        <el-table-column :label="T('Role')" width="100" align="center">
+        <el-table-column :label="T('Role')" min-width="100" align="center">
           <template #default="{row}">
             <el-tag v-if="row.role === 'admin'" type="danger" size="small">Administrator</el-tag>
             <span v-else>Regular User</span>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Status')" width="90" align="center">
+        <el-table-column :label="T('Status')" min-width="90" align="center">
           <template #default="{row}">
             <el-tag :type="row.status === 1 ? 'success' : 'info'" size="small">
               {{ row.status === 1 ? T('Enable') : T('Disable') }}
