@@ -11,7 +11,7 @@ const apis = {
   my: { list: my_list, remove: my_remove, create: my_create, update: my_update },
 }
 
-export function useRepositories (api_type = 'my') {
+export function useRepositories(api_type = 'my') {
 
   // Read the query.
   const route = useRoute()
@@ -41,27 +41,35 @@ export function useRepositories (api_type = 'my') {
   }
 
   const rgba2flutterColor = (color) => {
-    //rgba(133, 33, 33, 0.81)
-    let rgba = color.match(/rgba\((\d+),\s*(\d+),\s*(\d+),\s*(\d+(\.\d+)?)\)/)
-    let alpha = Math.round(parseFloat(rgba[4]) * 255).toString(16)
-    let r = parseInt(rgba[1]).toString(16)
-    let g = parseInt(rgba[2]).toString(16)
-    let b = parseInt(rgba[3]).toString(16)
-    // Pad single-digit values.
-    if (alpha.length === 1) {
-      alpha = '0' + alpha
+    // Supports:
+    // rgb(133, 33, 33)
+    // rgba(133, 33, 33, 0.81)
+
+    const match = color.match(
+      /^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:\s*,\s*(\d*\.?\d+))?\s*\)$/i
+    );
+
+    if (!match) {
+      throw new Error(`Invalid RGB/RGBA color: ${color}`);
     }
-    if (r.length === 1) {
-      r = '0' + r
-    }
-    if (g.length === 1) {
-      g = '0' + g
-    }
-    if (b.length === 1) {
-      b = '0' + b
-    }
-    return parseInt(alpha + r + g + b, 16)
-  }
+
+    const rValue = Math.min(255, parseInt(match[1], 10));
+    const gValue = Math.min(255, parseInt(match[2], 10));
+    const bValue = Math.min(255, parseInt(match[3], 10));
+
+    // RGB has no alpha, so use fully opaque.
+    const alphaValue = match[4] === undefined
+      ? 255
+      : Math.round(Math.min(1, Math.max(0, parseFloat(match[4]))) * 255);
+
+    const alpha = alphaValue.toString(16).padStart(2, '0');
+    const r = rValue.toString(16).padStart(2, '0');
+    const g = gValue.toString(16).padStart(2, '0');
+    const b = bValue.toString(16).padStart(2, '0');
+
+    // Flutter Color format: 0xAARRGGBB
+    return parseInt(`${alpha}${r}${g}${b}`, 16);
+  };
 
   const getList = async () => {
     listRes.loading = true
