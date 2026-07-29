@@ -86,7 +86,7 @@ import { useAppStore } from '@/store/app'
   })
   const f = ref(null)
   const submit = async () => {
-    // 邀请模式下需要检查授权码
+    // Invitation mode requires an authorization code.
     if (inviteOnly.value && !form.invite_code) {
       ElMessage.warning(T('InviteCodeRequired'))
       return

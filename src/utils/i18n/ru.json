@@ -1443,5 +1443,92 @@
   },
   "MyPeer": {
     "One": "Мои партнеры"
-  }
+  },
+  "SelectColor": {
+    "One": "Выберите цвет"
+  },
+  "MultipleIpSeparatorTip": {
+    "One": "Разделяйте несколько IP-адресов символом |"
+  },
+  "DeleteAllIpTip": {
+    "One": "Чтобы удалить все записи, введите"
+  },
+  "ConfigContentRequired": {
+    "One": "Содержимое конфигурации обязательно"
+  },
+  "ForceUpdate": {
+    "One": "Принудительное обновление"
+  },
+  "ForceUpdateTip": {
+    "One": "Скачать и установить без уведомления клиента"
+  },
+  "Forced": {
+    "One": "Принудительно"
+  },
+  "Normal": {
+    "One": "Обычное"
+  },
+  "AlertConfigSummary": {
+    "One": "Сводка конфигурации"
+  },
+  "AlertChannelNamePlaceholder": {
+    "One": "Пример: оповещения WeCom"
+  },
+  "LeaveBlankUnchanged": {
+    "One": "Оставьте пустым, чтобы не изменять"
+  },
+  "Required": {
+    "One": "Обязательно"
+  },
+  "AlertChannelSmtpTip": {
+    "One": "Добавьте получателей в правило оповещения ниже; этот канал настраивает только сервер отправки."
+  },
+  "AlertRecipientsPlaceholder": {
+    "One": "Адреса получателей через запятую, например a@x.com,b@x.com"
+  },
+  "View": {
+    "One": "Просмотр"
+  },
+  "Token": {
+    "One": "Токен"
+  },
+  "AddressBookCollection": {
+    "One": "Коллекция адресных книг"
+  },
+  "or login in with": {
+    "One": "или войдите с помощью"
+  },
+  "Optional, default is": {
+    "One": "Необязательно, значение по умолчанию:"
+  },
+  "Check your IdP docs, without": {
+    "One": "См. документацию IdP, исключая"
+  },
+  "For OIDC login without a password, enter any 4-20 letters": {
+    "One": "Для входа через OIDC без пароля введите от 4 до 20 символов"
+  },
+  "Email": {
+    "One": "Электронная почта"
+  },
+  "Information": {
+    "One": "Информация"
+  },
+  "Import": {
+    "One": "Импорт"
+  },
+  "Bind": { "One": "Привязать" },
+  "Broadcast": { "One": "Рассылка" },
+  "Content": { "One": "Содержимое" },
+  "Disable": { "One": "Отключить" },
+  "Enable": { "One": "Включить" },
+  "Hint": { "One": "Подсказка" },
+  "Id": { "One": "ID" },
+  "InvalidParam": { "One": "Недопустимый параметр: {param}" },
+  "LoginFailed": { "One": "Ошибка входа" },
+  "Op": { "One": "Поставщик удостоверений" },
+  "PkceEnable": { "One": "Включить PKCE" },
+  "PkceMethod": { "One": "Метод PKCE" },
+  "Success": { "One": "Успешно" },
+  "Title": { "One": "Заголовок" },
+  "Your IdP Name": { "One": "Название поставщика удостоверений" }
 }

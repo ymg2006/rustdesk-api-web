@@ -19,8 +19,8 @@
       <el-form label-width="100px">
         <el-form-item :label="T('Ip')">
           <el-input v-model="form.form_input"></el-input>
-          <div>多个IP以 | 分割</div>
-          <div v-if="form.form_type==='delete'">, 全部填 <strong>all</strong></div>
+          <div>{{ T('MultipleIpSeparatorTip') }}</div>
+          <div v-if="form.form_type==='delete'">{{ T('DeleteAllIpTip') }} <strong>all</strong></div>
         </el-form-item>
         <el-form-item>
           <el-button @click="form.form_visible=false">{{ T('Cancel') }}</el-button>

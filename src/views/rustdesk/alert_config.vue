@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- 通知通道管理 -->
+    <!-- Notification-channel management -->
     <el-card shadow="hover" style="margin-bottom:20px">
       <template #header>
         <div style="display:flex;justify-content:space-between;align-items:center">
@@ -9,39 +9,39 @@
         </div>
       </template>
       <el-table :data="channels" v-loading="loadingCh" border>
-        <el-table-column prop="name" label="通道名称" min-width="120"></el-table-column>
-        <el-table-column prop="channel" label="类型" min-width="100" align="center">
+        <el-table-column prop="name" :label="T('Name')" min-width="120"></el-table-column>
+        <el-table-column prop="channel" :label="T('Type')" min-width="100" align="center">
           <template #default="{row}">
             <el-tag :type="channelType(row.channel)" size="small">{{ channelLabel(row.channel) }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="配置摘要" min-width="200">
+        <el-table-column :label="T('AlertConfigSummary')" min-width="200">
           <template #default="{row}">
-            <span v-if="row.channel==='smtp'" style="font-size:12px;color:#666">{{ row.smtp_user }}（收件人在规则中指定）</span>
+            <span v-if="row.channel==='smtp'" style="font-size:12px;color:#666">{{ row.smtp_user }} (recipients are specified in the rule)</span>
             <span v-else-if="row.webhook_url" style="font-size:12px;color:#666">{{ row.webhook_url.slice(0,60) }}...</span>
             <span v-else style="color:var(--apple-gray)">-</span>
           </template>
         </el-table-column>
-        <el-table-column label="创建时间" min-width="160">
+        <el-table-column :label="T('CreatedAt')" min-width="160">
           <template #default="{row}">{{ row.created_at || '-' }}</template>
         </el-table-column>
-        <el-table-column label="操作" min-width="220" align="center">
+        <el-table-column :label="T('Actions')" min-width="220" align="center">
           <template #default="{row}">
             <el-button size="small" @click="showChannelForm(row)">{{ T('Edit') }}</el-button>
-            <el-button size="small" @click="testChannel(row)">测试</el-button>
+            <el-button size="small" @click="testChannel(row)">Test</el-button>
             <el-button size="small" type="danger" @click="delChannel(row)">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
     </el-card>
 
-    <!-- 通道表单 -->
+    <!-- Channel form -->
     <el-dialog v-model="chFormVisible" :title="chEditId ? T('Edit') : T('Add')" width="600px">
       <el-form label-width="120px">
-        <el-form-item label="通道名称">
-          <el-input v-model="chForm.name" placeholder="例如：企业微信告警"></el-input>
+        <el-form-item :label="T('Name')">
+          <el-input v-model="chForm.name" :placeholder="T('AlertChannelNamePlaceholder')"></el-input>
         </el-form-item>
-        <el-form-item label="通道类型">
+        <el-form-item :label="T('Type')">
           <el-select v-model="chForm.channel" style="width:100%">
             <el-option :label="channelLabel('station')" value="station"></el-option>
             <el-option :label="channelLabel('wecom')" value="wecom"></el-option>
@@ -49,34 +49,34 @@
             <el-option :label="channelLabel('smtp')" value="smtp"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item v-if="chForm.channel==='wecom'||chForm.channel==='dingtalk'" label="Webhook URL">
+        <el-form-item v-if="chForm.channel==='wecom'||chForm.channel==='dingtalk'" :label="T('WebhookUrl')">
           <el-input v-model="chForm.webhook_url" placeholder="https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=xxx"></el-input>
         </el-form-item>
         <template v-if="chForm.channel==='smtp'">
-          <el-form-item label="SMTP 服务器">
+          <el-form-item :label="T('SmtpHost')">
             <el-input v-model="chForm.smtp_host" placeholder="smtp.qq.com"></el-input>
           </el-form-item>
-          <el-form-item label="端口">
+          <el-form-item :label="T('SmtpPort')">
             <el-input-number v-model="chForm.smtp_port" :min="1" :max="65535"></el-input-number>
           </el-form-item>
-          <el-form-item label="账号">
+          <el-form-item :label="T('SmtpUser')">
             <el-input v-model="chForm.smtp_user" placeholder="xxx@qq.com"></el-input>
           </el-form-item>
-          <el-form-item label="密码/授权码">
-            <el-input v-model="chForm.smtp_pass" type="password" :placeholder="chEditId ? '不修改请留空' : '必填'"></el-input>
+          <el-form-item :label="T('SmtpPass')">
+            <el-input v-model="chForm.smtp_pass" type="password" :placeholder="chEditId ? T('LeaveBlankUnchanged') : T('Required')"></el-input>
           </el-form-item>
           <el-alert type="info" :closable="false" show-icon style="margin-bottom:8px"
-            title="收件人在下方“告警规则”中添加，本通道仅配置发件服务器" />
+            :title="T('AlertChannelSmtpTip')" />
         </template>
         <el-form-item>
           <el-button type="primary" @click="submitChannel">{{ T('Submit') }}</el-button>
-          <el-button @click="testChannelForm">测试发送</el-button>
+          <el-button @click="testChannelForm">Send Test</el-button>
           <el-button @click="chFormVisible=false">{{ T('Cancel') }}</el-button>
         </el-form-item>
       </el-form>
     </el-dialog>
 
-    <!-- 告警规则列表 -->
+    <!-- Alert-rule list -->
     <el-card shadow="hover">
       <template #header>
         <div style="display:flex;justify-content:space-between;align-items:center">
@@ -85,38 +85,38 @@
         </div>
       </template>
       <el-alert type="info" :closable="false" show-icon style="margin-bottom:12px">
-        <template #title>离线告警逻辑说明</template>
+        <template #title>Offline Alert Logic</template>
         <template #description>
           <ul style="margin:4px 0 0;padding-left:18px;line-height:1.7;font-size:12px">
-            <li>每 5 分钟检测一次设备在线状态。</li>
-            <li>设备离线（超过下方「离线阈值」时长）则权重 +1；权重累计达到 <b>10</b>（约离线 50 分钟）才推送离线告警邮件。</li>
-            <li>权重每天自动重置。</li>
-            <li>同一设备每天最多推送 <b>3</b> 次。</li>
-            <li>连续 <b>3 天</b>触发告警后停止推送；设备重新上线后自动解除该限制。</li>
+            <li>Device status is checked every five minutes.</li>
+            <li>After the offline threshold is exceeded, the weight increases by one. An email is sent when it reaches <b>10</b> (about 50 minutes offline).</li>
+            <li>The weight resets automatically each day.</li>
+            <li>Each device can send at most <b>3</b> alerts per day.</li>
+            <li>Alerts stop after firing for <b>3 consecutive days</b>; they resume automatically when the device comes back online.</li>
           </ul>
         </template>
       </el-alert>
       <el-table :data="configs" v-loading="loading" border>
         <el-table-column prop="name" :label="T('Name')" min-width="100"></el-table-column>
-        <el-table-column label="通知通道" min-width="120">
+        <el-table-column :label="T('AlertChannel')" min-width="120">
           <template #default="{row}">
             <el-tag :type="channelType(row.channel)" size="small">{{ channelLabel(row.channel) }}</el-tag>
             <div style="font-size:11px;color:var(--apple-gray)">{{ row.name }}</div>
           </template>
         </el-table-column>
-        <el-table-column label="接收人" min-width="180">
+        <el-table-column :label="T('SmtpTo')" min-width="180">
           <template #default="{row}">
             <span style="font-size:12px">{{ getRecipient(row) }}</span>
           </template>
         </el-table-column>
         <el-table-column :label="T('MonitorScope')" min-width="180">
           <template #default="{row}">
-            <span v-if="row.monitor_all===1">个人全部设备</span>
+            <span v-if="row.monitor_all===1">{{ T('AllDevices') }}</span>
             <span v-else>
               <el-tag size="small" type="info" style="margin-right:4px" v-for="t in (row.targets||[])" :key="t.row_id">
                 {{ t.target_name || t.target_id }}
               </el-tag>
-              <span v-if="!row.targets||row.targets.length===0" style="color:var(--apple-gray)">未设置</span>
+              <span v-if="!row.targets||row.targets.length===0" style="color:var(--apple-gray)">{{ T('ServerNotConfigured') }}</span>
             </span>
           </template>
         </el-table-column>
@@ -132,7 +132,7 @@
         </el-table-column>
         <el-table-column :label="T('Actions')" align="center" width="300" fixed="right">
           <template #default="{row}">
-            <el-button @click="showTargets(row)" size="small">监控目标</el-button>
+            <el-button @click="showTargets(row)" size="small">{{ T('SelectTargets') }}</el-button>
             <el-button @click="showRuleForm(row)" size="small">{{ T('Edit') }}</el-button>
             <el-button type="danger" @click="delRule(row)" size="small">{{ T('Delete') }}</el-button>
           </template>
@@ -140,26 +140,26 @@
       </el-table>
     </el-card>
 
-    <!-- 告警规则表单 -->
+    <!-- Alert-rule form -->
     <el-dialog v-model="ruleFormVisible" :title="ruleEditId ? T('Edit') : T('Add')" width="500px">
       <el-form label-width="100px">
         <el-form-item :label="T('Name')">
-          <el-select v-model="ruleForm.channel_id" style="width:100%" placeholder="选择通知通道">
+          <el-select v-model="ruleForm.channel_id" style="width:100%" :placeholder="T('AlertChannel')">
             <el-option v-for="ch in channels" :key="ch.row_id" :value="ch.row_id" :label="ch.name+' ('+channelLabel(ch.channel)+')'"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item :label="T('MonitorScope')">
           <el-radio-group v-model="ruleForm.monitor_all" @change="onRuleMonitorChange">
-            <el-radio :value="1">个人全部设备</el-radio>
-            <el-radio :value="2">仅选择的设备</el-radio>
+            <el-radio :value="1">{{ T('AllDevices') }}</el-radio>
+            <el-radio :value="2">{{ T('SelectTargets') }}</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item v-if="ruleForm.monitor_all===2" label="选择设备">
+        <el-form-item v-if="ruleForm.monitor_all===2" :label="T('SelectTargets')">
           <div v-if="targetCollections.length>0" style="max-height:240px;overflow-y:auto;border:1px solid #dcdfe6;border-radius:4px;padding:8px">
             <div v-for="col in targetCollections" :key="'c-'+col.id" style="margin-bottom:4px">
               <el-checkbox v-model="targetSelectedColls" :label="col.id" @change="()=>onTargetCollToggle(col)">
                 <strong>{{ col.name }}</strong>
-                <span style="color:var(--apple-gray);font-size:12px;margin-left:4px">({{ col.peer_count }}台)</span>
+                <span style="color:var(--apple-gray);font-size:12px;margin-left:4px">({{ col.peer_count }})</span>
               </el-checkbox>
               <div v-if="targetExpanded[col.id]" style="margin-left:28px;margin-top:2px">
                 <div v-for="peer in (col.peers||[])" :key="'p-'+peer.peer_id" style="margin-bottom:2px">
@@ -167,28 +167,28 @@
                     {{ peer.hostname || peer.peer_id }}
                   </el-checkbox>
                 </div>
-                <el-button v-if="!col.peersLoaded" size="small" type="text" @click="loadTargetPeers(col)">加载设备</el-button>
-                <span v-else-if="col.peers&&col.peers.length===0" style="font-size:12px;color:var(--apple-gray)">无设备</span>
+                <el-button v-if="!col.peersLoaded" size="small" type="text" @click="loadTargetPeers(col)">{{ T('LoadDevices') }}</el-button>
+                <span v-else-if="col.peers&&col.peers.length===0" style="font-size:12px;color:var(--apple-gray)">{{ T('NoData') }}</span>
               </div>
             </div>
           </div>
-          <div v-else style="color:var(--apple-gray);font-size:13px">暂无分组</div>
+          <div v-else style="color:var(--apple-gray);font-size:13px">{{ T('NoData') }}</div>
         </el-form-item>
         <el-form-item :label="T('OfflineMin')">
           <el-input-number v-model="ruleForm.offline_min" :min="1" :max="1440"></el-input-number>
           <span style="margin-left:8px;color:var(--apple-gray)">min</span>
           <div style="font-size:12px;color:var(--apple-gray);margin-top:4px;line-height:1.5">
-            设备离线超过该时长后才开始累计离线权重（详见上方告警逻辑说明）
+            Offline weighting starts after this duration (see the alert logic above).
           </div>
         </el-form-item>
         <el-form-item :label="T('Status')">
           <el-switch v-model="ruleForm.enabled" :active-value="1" :inactive-value="2"></el-switch>
         </el-form-item>
-        <el-form-item label="接收人" v-if="ruleChannelType==='smtp'">
+        <el-form-item :label="T('SmtpTo')" v-if="ruleChannelType==='smtp'">
           <el-input v-model="ruleForm.recipients" type="textarea" :rows="2"
-            placeholder="收件人邮箱，多个用逗号分隔，如 a@x.com,b@x.com"></el-input>
+            :placeholder="T('AlertRecipientsPlaceholder')"></el-input>
         </el-form-item>
-        <el-form-item label="接收人" v-else>
+        <el-form-item :label="T('SmtpTo')" v-else>
           <span style="font-size:12px;color:var(--apple-gray)">{{ recipientHint }}</span>
         </el-form-item>
         <el-form-item>
@@ -198,20 +198,20 @@
       </el-form>
     </el-dialog>
 
-    <!-- 监控目标对话框 -->
-    <el-dialog v-model="targetVisible" title="设置监控目标" width="600px">
+    <!-- Monitoring-target dialog -->
+    <el-dialog v-model="targetVisible" :title="T('SelectTargets')" width="600px">
       <template v-if="currentAlertId>0">
         <el-button size="small" type="primary" style="margin-bottom:8px" @click="loadTargetCollections">{{ T('Refresh') }}</el-button>
         <el-radio-group v-model="targetMonitorAll" style="margin-bottom:8px" @change="onTargetMonitorChange">
-          <el-radio :value="1">个人全部设备</el-radio>
-          <el-radio :value="2">仅选择的设备</el-radio>
+          <el-radio :value="1">{{ T('AllDevices') }}</el-radio>
+          <el-radio :value="2">{{ T('SelectTargets') }}</el-radio>
         </el-radio-group>
         <div v-if="targetMonitorAll===2 && targetCollections.length>0"
              style="max-height:350px;overflow-y:auto;border:1px solid #dcdfe6;border-radius:4px;padding:8px">
           <div v-for="col in targetCollections" :key="'c-'+col.id" style="margin-bottom:4px">
             <el-checkbox v-model="targetSelectedColls" :label="col.id" @change="()=>onTargetCollToggle(col)">
               <strong>{{ col.name }}</strong>
-              <span style="color:var(--apple-gray);font-size:12px;margin-left:4px">({{ col.peer_count }}台)</span>
+              <span style="color:var(--apple-gray);font-size:12px;margin-left:4px">({{ col.peer_count }})</span>
             </el-checkbox>
             <div v-if="targetExpanded[col.id]" style="margin-left:28px;margin-top:2px">
               <div v-for="peer in (col.peers||[])" :key="'p-'+peer.peer_id" style="margin-bottom:2px">
@@ -219,12 +219,12 @@
                   {{ peer.hostname || peer.peer_id }}
                 </el-checkbox>
               </div>
-              <el-button v-if="!col.peersLoaded" size="small" type="text" @click="loadTargetPeers(col)">加载设备</el-button>
-              <span v-else-if="col.peers&&col.peers.length===0" style="font-size:12px;color:var(--apple-gray)">无设备</span>
+              <el-button v-if="!col.peersLoaded" size="small" type="text" @click="loadTargetPeers(col)">{{ T('LoadDevices') }}</el-button>
+              <span v-else-if="col.peers&&col.peers.length===0" style="font-size:12px;color:var(--apple-gray)">{{ T('NoData') }}</span>
             </div>
           </div>
         </div>
-        <div v-else-if="targetMonitorAll===2 && targetCollections.length===0" style="color:var(--apple-gray);font-size:13px">暂无分组</div>
+        <div v-else-if="targetMonitorAll===2 && targetCollections.length===0" style="color:var(--apple-gray);font-size:13px">{{ T('NoData') }}</div>
       </template>
       <template #footer>
         <el-button type="primary" @click="saveTargets">{{ T('Submit') }}</el-button>
@@ -241,7 +241,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { list as getAlertList, create, update, remove } from '@/api/alert'
 import request from '@/utils/request'
 
-// 通知通道
+// Notification channels.
 const channels = ref([])
 const loadingCh = ref(false)
 const chFormVisible = ref(false)
@@ -251,14 +251,14 @@ const chForm = reactive({
   smtp_host: '', smtp_port: 465, smtp_user: '', smtp_pass: '',
 })
 
-// 告警规则
+// Alert rules.
 const configs = ref([])
 const loading = ref(false)
 const ruleFormVisible = ref(false)
 const ruleEditId = ref(0)
 const ruleForm = reactive({ channel_id: null, monitor_all: 1, offline_min: 5, enabled: 1, recipients: '' })
 
-// 监控目标
+// Monitoring targets.
 const targetVisible = ref(false)
 const currentAlertId = ref(0)
 const targetMonitorAll = ref(1)
@@ -268,32 +268,32 @@ const targetSelectedPeers = ref([])
 const targetExpanded = reactive({})
 
 const channelType = (ch) => ({ station:'info', wecom:'success', dingtalk:'warning', smtp:'primary' }[ch]||'')
-const channelLabel = (ch) => ({ station:'站内', wecom:'企微', dingtalk:'钉钉', smtp:'邮件' }[ch]||ch)
+const channelLabel = (ch) => ({ station:'In-app', wecom:'WeCom', dingtalk:'DingTalk', smtp:'Email' }[ch]||ch)
 
-// 当前规则所选用通道的类型
+// Type of channel selected by the current rule.
 const ruleChannelType = computed(() => {
   const ch = channels.value.find(c => c.row_id === ruleForm.channel_id)
   return ch ? ch.channel : ''
 })
-// 非 SMTP 通道的接收人说明
+// Recipient description for non-SMTP channels.
 const recipientHint = computed(() => {
   switch (ruleChannelType.value) {
-    case 'station': return '站内信发送给当前登录用户本人'
-    case 'wecom': return '消息发送至企业微信群机器人，无需指定接收人'
-    case 'dingtalk': return '消息发送至钉钉群机器人，无需指定接收人'
-    default: return '请先选择 SMTP 邮件通道以指定收件人'
+    case 'station': return 'Send an in-app message to the current user'
+    case 'wecom': return 'Send to a WeCom group bot; no recipient is required'
+    case 'dingtalk': return 'Send to a DingTalk group bot; no recipient is required'
+    default: return 'Select an SMTP channel before specifying recipients'
   }
 })
 
-// 根据规则显示接收人：SMTP 取规则中配置的收件人，其余按通道类型说明
+// Display SMTP recipients from the rule; describe other recipients by channel type.
 const getRecipient = (rule) => {
   if (rule.channel === 'smtp') return rule.recipients || '-'
-  if (rule.channel === 'station') return '本人(站内信)'
-  if (rule.channel === 'wecom' || rule.channel === 'dingtalk') return '群机器人'
+  if (rule.channel === 'station') return 'Current user (in-app)'
+  if (rule.channel === 'wecom' || rule.channel === 'dingtalk') return 'Group bot'
   return '-'
 }
 
-// ======== 通知通道 CRUD ========
+// ======== Notification-channel CRUD ========
 const loadChannels = async () => {
   loadingCh.value = true
   const res = await request({ url: '/alert_channel/list' }).catch(_ => false)
@@ -329,7 +329,7 @@ const submitChannel = async () => {
 const testChannel = async (row) => {
   let recipients = ''
   if (row.channel === 'smtp') {
-    const r = await ElMessageBox.prompt('请输入测试邮件接收地址（留空则发送给自己：' + (row.smtp_user || '') + '）', '测试发送', { inputValue: row.smtp_user || '', confirmButtonText: '发送', cancelButtonText: '取消' }).catch(_ => false)
+    const r = await ElMessageBox.prompt('Enter a test recipient address (leave blank to send to yourself: ' + (row.smtp_user || '') + ')', 'Send Test', { inputValue: row.smtp_user || '', confirmButtonText: T('Send'), cancelButtonText: T('Cancel') }).catch(_ => false)
     if (r === false) return
     recipients = (r.value || '').trim()
   }
@@ -340,30 +340,30 @@ const testChannel = async (row) => {
       smtp_host: row.smtp_host, smtp_port: row.smtp_port, smtp_user: row.smtp_user,
       smtp_pass: '', test_recipients: recipients,
     },
-  }).catch(e => { ElMessage.error('测试发送失败：' + (e?.response?.data?.msg || e.message)); return false })
-  if (res) ElMessage.success('测试消息已发送，请确认是否收到')
+  }).catch(e => { ElMessage.error('Test delivery failed: ' + (e?.response?.data?.msg || e.message)); return false })
+  if (res) ElMessage.success('Test message sent. Please confirm receipt.')
 }
 
 const testChannelForm = async () => {
   let recipients = ''
   if (chForm.channel === 'smtp') {
-    const r = await ElMessageBox.prompt('请输入测试邮件接收地址（留空则发送给自己）', '测试发送', { inputValue: chForm.smtp_user || '', confirmButtonText: '发送', cancelButtonText: '取消' }).catch(_ => false)
+    const r = await ElMessageBox.prompt('Enter a test recipient address (leave blank to send to yourself)', 'Send Test', { inputValue: chForm.smtp_user || '', confirmButtonText: T('Send'), cancelButtonText: T('Cancel') }).catch(_ => false)
     if (r === false) return
     recipients = (r.value || '').trim()
   }
   const data = { ...chForm, row_id: chEditId.value, test_recipients: recipients }
-  const res = await request({ url: '/alert_channel/test', method: 'post', data }).catch(e => { ElMessage.error('测试发送失败：' + (e?.response?.data?.msg || e.message)); return false })
-  if (res) ElMessage.success('测试消息已发送，请确认是否收到')
+  const res = await request({ url: '/alert_channel/test', method: 'post', data }).catch(e => { ElMessage.error('Test delivery failed: ' + (e?.response?.data?.msg || e.message)); return false })
+  if (res) ElMessage.success('Test message sent. Please confirm receipt.')
 }
 
 const delChannel = async (row) => {
-  const cf = await ElMessageBox.confirm('删除后关联的告警规则将无法发送，确认删除？', { type: 'warning' }).catch(_ => false)
+  const cf = await ElMessageBox.confirm('Associated alert rules cannot send after deletion. Continue?', { type: 'warning' }).catch(_ => false)
   if (!cf) return
   const res = await request({ url: '/alert_channel/delete', method: 'post', data: { id: row.row_id } }).catch(_ => false)
   if (res) { ElMessage.success(T('OperationSuccess')); loadChannels() }
 }
 
-// ======== 告警规则 CRUD ========
+// ======== Alert-rule CRUD ========
 const getRules = async () => {
   loading.value = true
   const res = await getAlertList().catch(_ => false)
@@ -440,7 +440,7 @@ const delRule = async (row) => {
   if (res) { ElMessage.success(T('OperationSuccess')); getRules() }
 }
 
-// ======== 监控目标 ========
+// ======== Monitoring targets ========
 const loadTargetCollections = async () => {
   const res = await request({ url: '/alert_config/available_collections' }).catch(_ => false)
   if (res) targetCollections.value = (res.data.list||[]).map(c=>({...c,peers:[],peersLoaded:false}))

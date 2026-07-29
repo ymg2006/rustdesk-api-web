@@ -6,7 +6,7 @@ import { tree as groupTree } from '@/api/group'
 import { T } from '@/utils/i18n'
 
 export function useGetDetail (id) {
-  let item = ref({})  //保留原始值
+  let item = ref({})  // Preserve the original value.
   let form = ref({})
   const groupsList = ref([])
   const groupTreeData = ref([])
@@ -49,7 +49,7 @@ export function useSubmit (form, id) {
     username: [{ required: true, message: T('ParamRequired', { param: T('Username') }) }],
     // email: [{ required: true, message: T('ParamRequired', { param: T('Email') }) }],
     group_id: [{ required: true, message: T('ParamRequired', { param: T('Group') }) }],
-    // nickname: [{ required: true, message: '昵称是必须的' }],
+    // nickname: [{ required: true, message: 'Nickname is required' }],
     status: [{ required: true, message: T('ParamRequired', { param: T('Status') }) }],
   })
 
@@ -64,7 +64,7 @@ export function useSubmit (form, id) {
   }
 
   const submitUpdate = async () => {
-    // 转换 expired_at
+    // Convert expired_at.
     const payload = { ...form.value }
     if (payload.expiredAtDate) {
       payload.expired_at = Math.floor(Number(payload.expiredAtDate) / 1000)

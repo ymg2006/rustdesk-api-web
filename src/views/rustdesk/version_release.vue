@@ -23,9 +23,9 @@
             <el-option :label="T('Disable')" :value="2"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="强制更新">
+        <el-form-item :label="T('ForceUpdate')">
           <el-switch v-model="form.force_update" :active-value="1" :inactive-value="0" />
-          <span class="hint-text" style="font-size:12px;margin-left:8px;">开启后客户端静默下载安装，不弹提示</span>
+          <span class="hint-text" style="font-size:12px;margin-left:8px;">{{ T('ForceUpdateTip') }}</span>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" :loading="submitting" @click="submitForm">{{ T('Publish') }}</el-button>
@@ -68,10 +68,10 @@
             <el-tag v-else type="danger" size="small">{{ T('Disable') }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="强制更新" min-width="90" align="center">
+        <el-table-column :label="T('ForceUpdate')" min-width="90" align="center">
           <template #default="{row}">
-            <el-tag v-if="row.force_update === 1" type="warning" size="small">强制</el-tag>
-            <el-tag v-else type="info" size="small">普通</el-tag>
+            <el-tag v-if="row.force_update === 1" type="warning" size="small">{{ T('Forced') }}</el-tag>
+            <el-tag v-else type="info" size="small">{{ T('Normal') }}</el-tag>
           </template>
         </el-table-column>
         <el-table-column :label="T('CreatedAt')" min-width="170" align="center">

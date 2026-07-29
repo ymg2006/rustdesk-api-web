@@ -1443,5 +1443,92 @@
   },
   "MyPeer": {
     "One": "내 피어"
-  }
+  },
+  "SelectColor": {
+    "One": "색상을 선택하세요"
+  },
+  "MultipleIpSeparatorTip": {
+    "One": "여러 IP 주소는 | 로 구분하세요"
+  },
+  "DeleteAllIpTip": {
+    "One": "모든 항목을 삭제하려면 다음을 입력하세요"
+  },
+  "ConfigContentRequired": {
+    "One": "구성 내용은 필수입니다"
+  },
+  "ForceUpdate": {
+    "One": "강제 업데이트"
+  },
+  "ForceUpdateTip": {
+    "One": "클라이언트에 알리지 않고 자동으로 다운로드하고 설치합니다"
+  },
+  "Forced": {
+    "One": "강제"
+  },
+  "Normal": {
+    "One": "일반"
+  },
+  "AlertConfigSummary": {
+    "One": "구성 요약"
+  },
+  "AlertChannelNamePlaceholder": {
+    "One": "예: WeCom 알림"
+  },
+  "LeaveBlankUnchanged": {
+    "One": "변경하지 않으려면 비워 두세요"
+  },
+  "Required": {
+    "One": "필수"
+  },
+  "AlertChannelSmtpTip": {
+    "One": "아래 알림 규칙에 수신자를 추가하세요. 이 채널은 발신 서버만 구성합니다."
+  },
+  "AlertRecipientsPlaceholder": {
+    "One": "수신자 이메일을 쉼표로 구분하세요. 예: a@x.com,b@x.com"
+  },
+  "View": {
+    "One": "보기"
+  },
+  "Token": {
+    "One": "토큰"
+  },
+  "AddressBookCollection": {
+    "One": "주소록 모음"
+  },
+  "or login in with": {
+    "One": "또는 다음으로 로그인"
+  },
+  "Optional, default is": {
+    "One": "선택 사항, 기본값:"
+  },
+  "Check your IdP docs, without": {
+    "One": "IdP 문서를 확인하세요. 다음 항목은 제외:"
+  },
+  "For OIDC login without a password, enter any 4-20 letters": {
+    "One": "비밀번호 없이 OIDC로 로그인하려면 4~20자를 입력하세요"
+  },
+  "Email": {
+    "One": "이메일"
+  },
+  "Information": {
+    "One": "정보"
+  },
+  "Import": {
+    "One": "가져오기"
+  },
+  "Bind": { "One": "연결" },
+  "Broadcast": { "One": "브로드캐스트" },
+  "Content": { "One": "내용" },
+  "Disable": { "One": "비활성화" },
+  "Enable": { "One": "활성화" },
+  "Hint": { "One": "안내" },
+  "Id": { "One": "ID" },
+  "InvalidParam": { "One": "잘못된 매개변수: {param}" },
+  "LoginFailed": { "One": "로그인 실패" },
+  "Op": { "One": "ID 공급자" },
+  "PkceEnable": { "One": "PKCE 활성화" },
+  "PkceMethod": { "One": "PKCE 방식" },
+  "Success": { "One": "성공" },
+  "Title": { "One": "제목" },
+  "Your IdP Name": { "One": "ID 공급자 이름" }
 }

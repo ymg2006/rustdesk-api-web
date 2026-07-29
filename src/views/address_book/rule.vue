@@ -35,7 +35,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>
-        <!--        <el-table-column prop="updated_at" label="更新时间" align="center"/>-->
+        <!--        <el-table-column prop="updated_at" label="Updated At" align="center"/>-->
         <el-table-column :label="T('Actions')" align="center" width="200" fixed="right">
           <template #default="{row}">
             <el-button @click="toEdit(row)" size="small">{{ T('Edit') }}</el-button>

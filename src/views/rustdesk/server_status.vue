@@ -51,7 +51,7 @@
       </el-table>
     </el-card>
 
-    <!-- HBBR 负载 / 连接数（仅 api-server 与 hbbr 同机时可用） -->
+    <!-- HBBR load / connections (available only when api-server and hbbr share a host) -->
     <el-card shadow="hover" class="stats-card" v-if="hbbrStats">
       <template #header>
         <div class="card-header">
@@ -119,7 +119,7 @@
       </template>
     </el-card>
 
-    <!-- 新增/编辑对话框 -->
+    <!-- Add/edit dialog -->
     <el-dialog v-model="dialogVisible" :title="editing ? T('EditServer') : T('AddServer')" width="480px">
       <el-form :model="form" label-width="90px">
         <el-form-item :label="T('ServerName')">

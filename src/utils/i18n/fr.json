@@ -1454,5 +1454,86 @@
   },
   "MyPeer": {
     "One": "Mon appareil"
-  }
+  },
+  "SelectColor": {
+    "One": "Veuillez sélectionner une couleur"
+  },
+  "MultipleIpSeparatorTip": {
+    "One": "Séparez plusieurs adresses IP avec |"
+  },
+  "DeleteAllIpTip": {
+    "One": "Pour supprimer toutes les entrées, saisissez"
+  },
+  "ConfigContentRequired": {
+    "One": "Le contenu de la configuration est obligatoire"
+  },
+  "ForceUpdate": {
+    "One": "Forcer la mise à jour"
+  },
+  "ForceUpdateTip": {
+    "One": "Télécharger et installer silencieusement sans avertir le client"
+  },
+  "Forced": {
+    "One": "Forcée"
+  },
+  "Normal": {
+    "One": "Normale"
+  },
+  "AlertConfigSummary": {
+    "One": "Résumé de la configuration"
+  },
+  "AlertChannelNamePlaceholder": {
+    "One": "Exemple : alertes WeCom"
+  },
+  "LeaveBlankUnchanged": {
+    "One": "Laissez vide pour conserver la valeur actuelle"
+  },
+  "Required": {
+    "One": "Obligatoire"
+  },
+  "AlertChannelSmtpTip": {
+    "One": "Ajoutez les destinataires à une règle d’alerte ; ce canal configure uniquement le serveur d’envoi."
+  },
+  "AlertRecipientsPlaceholder": {
+    "One": "Adresses des destinataires séparées par des virgules, ex. a@x.com,b@x.com"
+  },
+  "AddressBookCollection": {
+    "One": "Collection de carnets d’adresses"
+  },
+  "or login in with": {
+    "One": "ou connectez-vous avec"
+  },
+  "Optional, default is": {
+    "One": "Facultatif, la valeur par défaut est"
+  },
+  "Check your IdP docs, without": {
+    "One": "Consultez la documentation de votre IdP, sans inclure"
+  },
+  "For OIDC login without a password, enter any 4-20 letters": {
+    "One": "Pour une connexion OIDC sans mot de passe, saisissez entre 4 et 20 caractères"
+  },
+  "Email": {
+    "One": "E-mail"
+  },
+  "Information": {
+    "One": "Informations"
+  },
+  "Import": {
+    "One": "Importer"
+  },
+  "Bind": { "One": "Lier" },
+  "Broadcast": { "One": "Diffusion" },
+  "Content": { "One": "Contenu" },
+  "Disable": { "One": "Désactiver" },
+  "Enable": { "One": "Activer" },
+  "Hint": { "One": "Conseil" },
+  "Id": { "One": "ID" },
+  "InvalidParam": { "One": "Paramètre non valide : {param}" },
+  "LoginFailed": { "One": "Échec de la connexion" },
+  "Op": { "One": "Fournisseur d’identité" },
+  "PkceEnable": { "One": "Activer PKCE" },
+  "PkceMethod": { "One": "Méthode PKCE" },
+  "Success": { "One": "Succès" },
+  "Title": { "One": "Titre" },
+  "Your IdP Name": { "One": "Nom de votre fournisseur d’identité" }
 }

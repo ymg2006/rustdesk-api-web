@@ -18,7 +18,7 @@
       <el-skeleton :loading="loading" animated>
         <template #default>
           <div v-if="hasData" class="subscription-info">
-            <!-- 状态标识 -->
+            <!-- Status indicator -->
             <!-- <div class="status-badge" :class="statusClass">
               <el-icon v-if="mine.status === 'active'"><el-icon-success-filled /></el-icon>
               <el-icon v-else-if="mine.status === 'expired'"><el-icon-warning-filled /></el-icon>
@@ -44,7 +44,7 @@
               </el-descriptions-item>
             </el-descriptions>
 
-            <!-- 临期提醒 -->
+            <!-- Expiration reminder -->
             <el-alert
               v-if="mine.is_expiring_soon && mine.status === 'active'"
               :title="T('SubscribeExpiringSoon')"
@@ -55,7 +55,7 @@
             />
           </div>
 
-          <!-- 未订阅状态 -->
+          <!-- Unsubscribed state -->
           <div v-else class="no-subscription">
             <el-empty :description="T('SubscribeNoSubscription')">
               <el-button type="primary" @click="showPayment = true">
@@ -67,13 +67,13 @@
       </el-skeleton>
     </el-card>
 
-    <!-- 支付弹窗 -->
+    <!-- Payment dialog -->
     <PaymentDialog
       v-model:visible="showPayment"
       @activated="refresh"
     />
 
-    <!-- 认领兑换弹窗 -->
+    <!-- Redemption dialog -->
     <ClaimCode
       v-model:visible="showClaim"
       @activated="refresh"

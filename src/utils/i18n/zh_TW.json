@@ -1470,5 +1470,65 @@
   },
   "Import": {
     "One": "導入"
-  }
+  },
+  "SelectColor": {
+    "One": "請選擇顏色"
+  },
+  "MultipleIpSeparatorTip": {
+    "One": "多個 IP 位址請使用 | 分隔"
+  },
+  "DeleteAllIpTip": {
+    "One": "如需刪除全部項目，請輸入"
+  },
+  "ConfigContentRequired": {
+    "One": "設定內容不可為空"
+  },
+  "ForceUpdate": {
+    "One": "強制更新"
+  },
+  "ForceUpdateTip": {
+    "One": "啟用後用戶端將靜默下載並安裝，不顯示提示"
+  },
+  "Forced": {
+    "One": "強制"
+  },
+  "Normal": {
+    "One": "一般"
+  },
+  "AlertConfigSummary": {
+    "One": "設定摘要"
+  },
+  "AlertChannelNamePlaceholder": {
+    "One": "例如：企業微信警示"
+  },
+  "LeaveBlankUnchanged": {
+    "One": "不修改請留空"
+  },
+  "Required": {
+    "One": "必填"
+  },
+  "AlertChannelSmtpTip": {
+    "One": "請在下方警示規則中新增收件者；此管道僅設定寄件伺服器。"
+  },
+  "AlertRecipientsPlaceholder": {
+    "One": "收件者電子郵件，多個位址用逗號分隔，例如 a@x.com,b@x.com"
+  },
+  "Token": {
+    "One": "權杖"
+  },
+  "Bind": { "One": "綁定" },
+  "Broadcast": { "One": "廣播" },
+  "Content": { "One": "內容" },
+  "Disable": { "One": "停用" },
+  "Enable": { "One": "啟用" },
+  "Hint": { "One": "提示" },
+  "Id": { "One": "ID" },
+  "InvalidParam": { "One": "無效參數：{param}" },
+  "LoginFailed": { "One": "登入失敗" },
+  "Op": { "One": "身分識別提供者" },
+  "PkceEnable": { "One": "啟用 PKCE" },
+  "PkceMethod": { "One": "PKCE 方法" },
+  "Success": { "One": "成功" },
+  "Title": { "One": "標題" },
+  "Your IdP Name": { "One": "身分識別提供者名稱" }
 }

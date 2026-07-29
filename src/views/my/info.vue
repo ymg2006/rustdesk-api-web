@@ -24,11 +24,11 @@
       </div>
     </div>
 
-    <!-- ====== 内容网格 ====== -->
+    <!-- ====== Content grid ====== -->
     <div class="profile-grid">
-      <!-- 左列：OIDC + MFA -->
+      <!-- Left column: OIDC + MFA -->
       <div class="profile-col">
-        <!-- OIDC 卡片 -->
+        <!-- OIDC card -->
         <div class="glass-card">
           <div class="card-header">
             <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -59,11 +59,11 @@
           </div>
           <div v-else class="empty-state">
             <svg viewBox="0 0 64 64" fill="none" width="48" height="48" stroke="var(--apple-gray)" stroke-width="1.5"><circle cx="32" cy="32" r="28"/><path d="M32 20v16M32 42h.02"/></svg>
-            <span>{{ T('NoData') || '暂无数据' }}</span>
+            <span>{{ T('NoData') || 'No data' }}</span>
           </div>
         </div>
 
-        <!-- MFA 卡片 -->
+        <!-- MFA card -->
         <div class="glass-card">
           <div class="card-header">
             <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
@@ -106,7 +106,7 @@
         </div>
       </div>
 
-      <!-- 右列：欢迎信息 / 公告 -->
+      <!-- Right column: welcome message / announcement -->
       <div class="profile-col">
         <div class="glass-card welcome-card" v-if="html">
           <div class="welcome-content" v-html="html"></div>
@@ -114,7 +114,7 @@
       </div>
     </div>
 
-    <!-- 对话框保持不变 -->
+    <!-- Keep the dialog unchanged. -->
     <el-dialog v-model="setupVisible" :title="T('MfaSetup')" width="480px" class="glass-dialog">
       <div v-if="setupData">
         <p>{{ T('MfaScanTip') }}</p>
@@ -173,7 +173,7 @@ import DOMPurify from 'dompurify'
     changePwdVisible.value = true
   }
 
-  // 头像首字母
+  // Avatar initial.
   const avatarLetter = computed(() => {
     const name = userStore.username || 'U'
     return name.charAt(0).toUpperCase()
@@ -275,7 +275,7 @@ import DOMPurify from 'dompurify'
     }
   }
 
-  // 公告来自管理员 Markdown，经 marked 转 HTML 后用 DOMPurify 净化，防止存储型 XSS
+  // Convert administrator-provided Markdown to HTML and sanitize it with DOMPurify to prevent stored XSS.
   const html = computed(_ => DOMPurify.sanitize(marked(appStore.setting.hello||'')))
 
 </script>
@@ -295,7 +295,7 @@ html.dark .profile-page {
   background: transparent;
 }
 
-/* ========== 毛玻璃英雄横幅 ========== */
+/* ========== Glass hero banner ========== */
 .profile-hero {
   display: flex;
   align-items: center;
@@ -307,7 +307,7 @@ html.dark .profile-page {
   z-index: 1;
   overflow: hidden;
 
-  // 装饰性渐变光晕（毛玻璃底层）
+  // Decorative gradient glow beneath the glass layer.
   &::before {
     content: '';
     position: absolute;
@@ -387,7 +387,7 @@ html.dark .profile-page {
   }
 }
 
-/* ========== 内容网格 ========== */
+/* ========== Content grid ========== */
 .profile-grid {
   position: relative;
   z-index: 1;
@@ -406,7 +406,7 @@ html.dark .profile-page {
   gap: var(--apple-spacing-6);
 }
 
-/* ========== 毛玻璃卡片 ========== */
+/* ========== Glass cards ========== */
 .glass-card {
   background: rgba(255, 255, 255, 0.72);
   backdrop-filter: saturate(180%) blur(20px);
@@ -427,7 +427,7 @@ html.dark .glass-card {
   border-color: rgba(255, 255, 255, 0.08);
 }
 
-/* 卡片头部 */
+/* Card header */
 .card-header {
   display: flex;
   align-items: center;
@@ -444,7 +444,7 @@ html.dark .glass-card {
   }
 }
 
-/* OIDC 列表 */
+/* OIDC list */
 .oidc-list {
   display: flex;
   flex-direction: column;
@@ -472,7 +472,7 @@ html.dark .glass-card {
   }
 }
 
-/* 空状态 */
+/* Empty state */
 .empty-state {
   display: flex;
   flex-direction: column;
@@ -483,7 +483,7 @@ html.dark .glass-card {
   font-size: var(--apple-font-sm);
 }
 
-/* MFA 区域 */
+/* MFA section */
 .mfa-body {
   padding-top: 4px;
 }
@@ -526,7 +526,7 @@ html.dark .glass-card {
   50% { opacity: 0.6; transform: scale(0.85); }
 }
 
-/* 欢迎卡片 */
+/* Welcome card */
 .welcome-card {
   .welcome-content {
     line-height: 1.7;
@@ -545,7 +545,7 @@ html.dark .glass-card {
   }
 }
 
-/* 深色模式英雄横幅微调 */
+/* Dark-mode hero banner adjustments */
 html.dark .profile-hero {
   &::before {
     background: radial-gradient(circle, rgba(10, 132, 255, 0.12), transparent 70%);

@@ -1467,5 +1467,68 @@
   },
   "Import": {
     "One": "导入"
-  }
+  },
+  "SelectColor": {
+    "One": "请选择颜色"
+  },
+  "MultipleIpSeparatorTip": {
+    "One": "多个 IP 地址请使用 | 分隔"
+  },
+  "DeleteAllIpTip": {
+    "One": "如需删除全部条目，请输入"
+  },
+  "ConfigContentRequired": {
+    "One": "配置内容不能为空"
+  },
+  "ForceUpdate": {
+    "One": "强制更新"
+  },
+  "ForceUpdateTip": {
+    "One": "启用后客户端将静默下载并安装，不显示提示"
+  },
+  "Forced": {
+    "One": "强制"
+  },
+  "Normal": {
+    "One": "普通"
+  },
+  "AlertConfigSummary": {
+    "One": "配置摘要"
+  },
+  "AlertChannelNamePlaceholder": {
+    "One": "例如：企业微信告警"
+  },
+  "LeaveBlankUnchanged": {
+    "One": "不修改请留空"
+  },
+  "Required": {
+    "One": "必填"
+  },
+  "AlertChannelSmtpTip": {
+    "One": "请在下方告警规则中添加收件人；此通道仅配置发件服务器。"
+  },
+  "AlertRecipientsPlaceholder": {
+    "One": "收件人邮箱，多个地址用逗号分隔，例如 a@x.com,b@x.com"
+  },
+  "IsAdmin": {
+    "One": "是否为管理员"
+  },
+  "Token": {
+    "One": "令牌"
+  },
+  "Bind": { "One": "绑定" },
+  "Broadcast": { "One": "广播" },
+  "Content": { "One": "内容" },
+  "Disable": { "One": "禁用" },
+  "Enable": { "One": "启用" },
+  "Hint": { "One": "提示" },
+  "Id": { "One": "ID" },
+  "InvalidParam": { "One": "无效参数：{param}" },
+  "LoginFailed": { "One": "登录失败" },
+  "Op": { "One": "身份提供商" },
+  "PkceEnable": { "One": "启用 PKCE" },
+  "PkceMethod": { "One": "PKCE 方法" },
+  "Success": { "One": "成功" },
+  "Title": { "One": "标题" },
+  "Your IdP Name": { "One": "身份提供商名称" }
 }

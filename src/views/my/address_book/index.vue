@@ -48,8 +48,8 @@
         <el-table-column prop="hostname" :label="T('Hostname')" align="center" min-width="150"/>
         <!--        <el-table-column prop="platform" :label="T('Platform')" align="center" min-width="120"/>-->
         <el-table-column prop="tags" :label="T('Tags')" align="center"/>
-        <!--        <el-table-column prop="created_at" label="创建时间" align="center"/>-->
-        <!--        <el-table-column prop="updated_at" label="更新时间" align="center"/>-->
+        <!--        <el-table-column prop="created_at" label="Created At" align="center"/>-->
+        <!--        <el-table-column prop="updated_at" label="Updated At" align="center"/>-->
         <el-table-column prop="alias" :label="T('Alias')" align="center" min-width="150"/>
         <el-table-column prop="peer.version" :label="T('Version')" align="center" min-width="100"/>
         <el-table-column prop="hash" :label="T('Hash')" align="center" min-width="150" show-overflow-tooltip/>
@@ -123,19 +123,19 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <!-- <el-form-item label="强制中继" prop="forceAlwaysRelay" required>
+        <!-- <el-form-item label="Force Relay" prop="forceAlwaysRelay" required>
                  <el-switch v-model="formData.forceAlwaysRelay"></el-switch>
                </el-form-item>
-          <el-form-item label="在线" prop="online">
+          <el-form-item label="Online" prop="online">
                  <el-switch v-model="formData.online"></el-switch>
                </el-form-item>
-               <el-form-item label="rdp端口" prop="rdpPort">
+               <el-form-item label="RDP Port" prop="rdpPort">
                  <el-input v-model="formData.rdpPort"></el-input>
                </el-form-item>
-               <el-form-item label="rdp用户名" prop="rdpUsername">
+               <el-form-item label="RDP Username" prop="rdpUsername">
                  <el-input v-model="formData.rdpUsername"></el-input>
                </el-form-item>
-               <el-form-item label="同一服务器" prop="sameServer">
+               <el-form-item label="Same Server" prop="sameServer">
                  <el-switch v-model="formData.sameServer"></el-switch>
                </el-form-item>-->
 

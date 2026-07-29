@@ -219,7 +219,7 @@
     "One": "Device"
   },
   "ChangeLang": {
-    "One": "切换中文"
+    "One": "Switch to Chinese"
   },
   "My": {
     "One": "My"
@@ -1438,5 +1438,98 @@
   },
   "Backend": {
     "One": "Backend"
-  }
+  },
+  "SelectColor": {
+    "One": "Please select a color"
+  },
+  "MultipleIpSeparatorTip": {
+    "One": "Separate multiple IP addresses with |"
+  },
+  "DeleteAllIpTip": {
+    "One": "To delete all entries, enter"
+  },
+  "ConfigContentRequired": {
+    "One": "Configuration content is required"
+  },
+  "ForceUpdate": {
+    "One": "Force Update"
+  },
+  "ForceUpdateTip": {
+    "One": "Download and install silently without prompting the client"
+  },
+  "Forced": {
+    "One": "Forced"
+  },
+  "Normal": {
+    "One": "Normal"
+  },
+  "AlertConfigSummary": {
+    "One": "Configuration Summary"
+  },
+  "AlertChannelNamePlaceholder": {
+    "One": "Example: WeCom alerts"
+  },
+  "LeaveBlankUnchanged": {
+    "One": "Leave blank to keep unchanged"
+  },
+  "Required": {
+    "One": "Required"
+  },
+  "AlertChannelSmtpTip": {
+    "One": "Add recipients to an alert rule below; this channel only configures the sending server."
+  },
+  "AlertRecipientsPlaceholder": {
+    "One": "Recipient email addresses separated by commas, e.g. a@x.com,b@x.com"
+  },
+  "IsAdmin": {
+    "One": "Is Administrator"
+  },
+  "MyPeer": {
+    "One": "My Devices"
+  },
+  "View": {
+    "One": "View"
+  },
+  "Token": {
+    "One": "Token"
+  },
+  "AddressBookCollection": {
+    "One": "Address Book Collection"
+  },
+  "or login in with": {
+    "One": "or log in with"
+  },
+  "Optional, default is": {
+    "One": "Optional, default is"
+  },
+  "Check your IdP docs, without": {
+    "One": "Check your IdP documentation, excluding"
+  },
+  "For OIDC login without a password, enter any 4-20 letters": {
+    "One": "For OIDC login without a password, enter any 4-20 characters"
+  },
+  "Email": {
+    "One": "Email"
+  },
+  "Information": {
+    "One": "Information"
+  },
+  "Import": {
+    "One": "Import"
+  },
+  "Bind": { "One": "Bind" },
+  "Broadcast": { "One": "Broadcast" },
+  "Content": { "One": "Content" },
+  "Disable": { "One": "Disable" },
+  "Enable": { "One": "Enable" },
+  "Hint": { "One": "Hint" },
+  "Id": { "One": "ID" },
+  "InvalidParam": { "One": "Invalid parameter: {param}" },
+  "LoginFailed": { "One": "Login failed" },
+  "Op": { "One": "Identity Provider" },
+  "PkceEnable": { "One": "Enable PKCE" },
+  "PkceMethod": { "One": "PKCE Method" },
+  "Success": { "One": "Success" },
+  "Title": { "One": "Title" },
+  "Your IdP Name": { "One": "Your IdP name" }
 }
