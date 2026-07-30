@@ -67,7 +67,7 @@
 
     <!-- Send message dialog -->
     <el-dialog v-model="sendVisible" :title="isBroadcast ? T('Broadcast') : T('SendMessage')" width="500px">
-      <el-form label-width="80px">
+      <el-form>
         <el-form-item v-if="!isBroadcast" :label="T('Receiver')">
           <el-select v-model="sendForm.receiver_id" filterable remote :remote-method="searchUsers" :loading="userLoading" style="width: 100%" :placeholder="T('SearchUsername')">
             <el-option v-for="u in userList" :key="u.id" :label="u.username" :value="u.id"></el-option>

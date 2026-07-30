@@ -5,7 +5,7 @@
       <div class="action-bar">
         <span style="font-size: 16px; font-weight: 500;">{{ T('PublishNewVersion') }}</span>
       </div>
-      <el-form inline label-width="100px">
+      <el-form inline>
         <el-form-item :label="T('Version')">
           <el-input v-model="form.version" placeholder="1.4.8.2" style="width: 140px"></el-input>
         </el-form-item>
@@ -31,12 +31,12 @@
           <el-button type="primary" :loading="submitting" @click="submitForm">{{ T('Publish') }}</el-button>
         </el-form-item>
       </el-form>
-      <el-form inline label-width="100px" class="w-100">
+      <el-form inline class="w-100">
         <el-form-item :label="T('DownloadUrl')">
           <el-input v-model="form.url" placeholder="https://github.com/.../rustdesk-1.4.9-x86_64.exe"></el-input>
         </el-form-item>
       </el-form>
-      <el-form label-width="100px">
+      <el-form>
         <el-form-item :label="T('ReleaseNotes')">
           <el-input v-model="form.note" type="textarea" :rows="3" :placeholder="T('ReleaseNotesPlaceholder')"></el-input>
         </el-form-item>

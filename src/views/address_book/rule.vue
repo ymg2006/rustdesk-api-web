@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card class="list-query query-card" shadow="hover">
-      <el-form inline label-width="80px">
+      <el-form inline>
         <el-form-item>
           <!-- <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button> -->
           <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
@@ -54,7 +54,7 @@
       </el-pagination>
     </el-card>
     <el-dialog v-model="formVisible" width="800" :title="!formData.id?T('Create') :T('Update') " :close-on-click-modal="false" append-to-body>
-      <el-form class="dialog-form" ref="form" :model="formData" label-width="120px">
+      <el-form class="dialog-form" ref="form" :model="formData">
         <el-form-item :label="T('AddressBookName')">
           {{ props.collection.name }}
         </el-form-item>

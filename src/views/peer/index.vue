@@ -6,14 +6,14 @@
         <el-button :type="quickFilter === 'online' ? 'success' : 'default'" size="small" @click="setQuickFilter('online')">Online</el-button>
         <el-button :type="quickFilter === 'offline' ? 'danger' : 'default'" size="small" @click="setQuickFilter('offline')">Offline</el-button>
       </div>
-      <el-form inline label-width="60px">
+      <el-form inline>
         <el-form-item :label="T('ID')">
           <el-input v-model="listQuery.id" clearable/>
         </el-form-item>
         <el-form-item :label="T('Hostname')">
           <el-input v-model="listQuery.hostname" clearable/>
         </el-form-item>
-        <el-form-item :label="T('LastOnlineTime')" label-width="100px">
+        <el-form-item :label="T('LastOnlineTime')">
           <el-select v-model="listQuery.time_ago" clearable>
             <el-option
                 v-for="item in timeFilters"
@@ -73,7 +73,7 @@
           <el-button :icon="Setting" @click="showColumnSetting"></el-button>
         </div>
         <el-table class="list-table" :data="listRes.list" v-loading="listRes.loading" border @selection-change="handleSelectionChange">
-          <el-table-column type="selection" min-width="55" align="center"/>
+          <el-table-column type="selection" align="center" width="50"/>
           <template v-for="c in visibleColumns.filter(cc => cc.visible)" :key="c">
             <el-table-column v-if="c.name==='id'" prop="id" :label="T('ID')" align="center" min-width="150">
               <template #default="{row}">
@@ -154,7 +154,7 @@
       </el-pagination>
     </el-card>
     <el-dialog v-model="formVisible" :title="!formData.row_id?T('Create'):T('Update')" width="800">
-      <el-form class="dialog-form" ref="form" :model="formData" label-width="120px">
+      <el-form class="dialog-form" ref="form" :model="formData">
         <el-form-item :label="T('ID')" prop="id" required>
           <el-input v-model="formData.id"></el-input>
         </el-form-item>
@@ -204,7 +204,7 @@
     </el-dialog>
 
     <el-dialog v-model="batchABFormVisible" width="800" :title="T('Create')">
-      <el-form class="dialog-form" ref="form" :model="batchABFormData" label-width="120px">
+      <el-form class="dialog-form" ref="form" :model="batchABFormData">
         <el-form-item :label="T('Owner')" prop="user_id" required>
           <el-select v-model="batchABFormData.user_id" @change="changeUserForBatchCreateAB">
             <el-option

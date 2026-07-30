@@ -7,7 +7,7 @@
         <el-button type="text" size="small" style="margin-left: 4px; font-size: 16px; color: var(--apple-blue);" @click="showHelp = true">?</el-button>
         <el-button type="primary" size="small" style="float: right;" @click="showEdit(null)">New Strategy</el-button>
       </div>
-      <el-form inline label-width="80px">
+      <el-form inline>
         <el-form-item label="Strategy Name">
           <el-input v-model="query.name" placeholder="Search strategy name" clearable style="width: 200px"></el-input>
         </el-form-item>
@@ -61,7 +61,7 @@
 
     <!-- Edit Dialog -->
     <el-dialog v-model="dialogVisible" :title="editingId ? 'Edit Strategy' : 'New Strategy'" width="700px" @close="resetForm">
-      <el-form ref="formRef" :model="form" label-width="100px">
+      <el-form ref="formRef" :model="form">
         <el-form-item label="Strategy Name" required>
           <el-input v-model="form.name" placeholder="Example: Office Network Policy" style="width: 400px"></el-input>
         </el-form-item>

@@ -1,7 +1,7 @@
 <template>
   <div class="invite-code-page">
     <el-card shadow="hover" class="query-card">
-      <el-form inline label-width="80px">
+      <el-form inline>
         <el-form-item :label="T('Status')">
           <el-select v-model="filter.status" :placeholder="T('All')" clearable style="width:140px">
             <el-option :label="T('StatusUnused')" value="unused" />

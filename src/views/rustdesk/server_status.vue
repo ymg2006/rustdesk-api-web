@@ -121,7 +121,7 @@
 
     <!-- Add/edit dialog -->
     <el-dialog v-model="dialogVisible" :title="editing ? T('EditServer') : T('AddServer')" width="480px">
-      <el-form :model="form" label-width="90px">
+      <el-form :model="form">
         <el-form-item :label="T('ServerName')">
           <el-input v-model="form.name" :placeholder="T('ServerNamePlaceholder')" />
         </el-form-item>
@@ -146,10 +146,10 @@
 <script setup>
   import { ref, onMounted, onUnmounted } from 'vue'
 import {
-  serverStatus,
-  serverStatusCreate,
-  serverStatusUpdate,
-  serverStatusDelete,
+    serverStatus,
+    serverStatusCreate,
+    serverStatusUpdate,
+    serverStatusDelete,
 } from '@/api/serverStatus'
 import { T } from '@/utils/i18n'
 import { ElMessage, ElMessageBox } from 'element-plus'

@@ -16,7 +16,7 @@
       </el-form-item>
     </el-form>
     <el-dialog v-model="form.form_visible" :title="form.form_type">
-      <el-form label-width="100px">
+      <el-form>
         <el-form-item :label="T('Ip')">
           <el-input v-model="form.form_input"></el-input>
           <div>{{ T('MultipleIpSeparatorTip') }}</div>
@@ -33,10 +33,10 @@
 <script setup>
 
   import { T } from '@/utils/i18n'
-  import { reactive, watch } from 'vue'
-  import { sendCmd } from '@/api/rustdesk'
-  import { ElMessage } from 'element-plus'
-  import { RELAY_TARGET } from '@/views/rustdesk/options'
+import { reactive, watch } from 'vue'
+import { sendCmd } from '@/api/rustdesk'
+import { ElMessage } from 'element-plus'
+import { RELAY_TARGET } from '@/views/rustdesk/options'
 
   const props = defineProps({
     canSend: Boolean,

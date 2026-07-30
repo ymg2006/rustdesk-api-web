@@ -31,7 +31,7 @@
       </el-tab-pane>
       <el-tab-pane :label="T('Advanced')" name="Advanced">
         <el-card class="list-query" shadow="hover">
-          <el-form inline label-width="80px">
+          <el-form inline>
             <el-form-item>
               <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
               <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
@@ -56,7 +56,7 @@
           </el-table>
 
           <el-dialog v-model="formVisible">
-            <el-form label-width="150">
+            <el-form>
               <el-form-item :label="T('Cmd')">
                 <el-input v-model="formData.cmd"></el-input>
               </el-form-item>
@@ -83,7 +83,7 @@
           </el-dialog>
 
           <el-dialog :title="T('SendCmd')" v-model="showCmdForm">
-            <el-form label-width="150" :disabled="!canSendCmd(customCmd.target)">
+            <el-form :disabled="!canSendCmd(customCmd.target)">
               <el-form-item :label="T('Cmd')">
                 <el-input v-model="customCmd.cmd"></el-input>
               </el-form-item>

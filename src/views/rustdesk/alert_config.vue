@@ -37,7 +37,7 @@
 
     <!-- Channel form -->
     <el-dialog v-model="chFormVisible" :title="chEditId ? T('Edit') : T('Add')" width="600px">
-      <el-form label-width="120px">
+      <el-form>
         <el-form-item :label="T('Name')">
           <el-input v-model="chForm.name" :placeholder="T('AlertChannelNamePlaceholder')"></el-input>
         </el-form-item>
@@ -142,7 +142,7 @@
 
     <!-- Alert-rule form -->
     <el-dialog v-model="ruleFormVisible" :title="ruleEditId ? T('Edit') : T('Add')" width="500px">
-      <el-form label-width="100px">
+      <el-form>
         <el-form-item :label="T('Name')">
           <el-select v-model="ruleForm.channel_id" style="width:100%" :placeholder="T('AlertChannel')">
             <el-option v-for="ch in channels" :key="ch.row_id" :value="ch.row_id" :label="ch.name+' ('+channelLabel(ch.channel)+')'"></el-option>

@@ -73,7 +73,7 @@
 
     <!-- Rule editor dialog -->
     <el-dialog v-model="dialogVisible" :title="dialogTitle" width="640px">
-      <el-form :model="form" label-width="120px">
+      <el-form :model="form">
         <el-form-item v-if="!editing" :label="T('ProcessTargetMode')">
           <el-radio-group v-model="sourceType" @change="onSourceTypeChange">
             <el-radio-button label="peers">{{ T('ProcessModeManual') }}</el-radio-button>

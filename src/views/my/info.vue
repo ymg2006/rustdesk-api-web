@@ -121,7 +121,7 @@
         <div style="text-align:center;margin:12px 0">
           <img v-if="setupData.qr" :src="setupData.qr" alt="qr" style="width:200px;height:200px;border-radius:12px" />
         </div>
-        <el-form label-width="80px">
+        <el-form>
           <el-form-item :label="T('MfaSecret')">
             <el-input :model-value="setupData.secret" readonly>
               <template #append>

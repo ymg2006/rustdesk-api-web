@@ -1,7 +1,7 @@
 <template>
   <div class="subscription-page">
     <el-card shadow="hover" class="query-card">
-      <el-form inline label-width="100px">
+      <el-form inline>
         <el-form-item :label="T('Status')">
           <el-select v-model="filter.status" :placeholder="T('All')" clearable style="width:140px">
             <el-option :label="T('SubscribeActive')" value="active" />

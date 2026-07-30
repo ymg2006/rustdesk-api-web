@@ -21,7 +21,7 @@
 
     <el-main class="con">
       <el-card class="list-query" shadow="hover">
-        <el-form inline label-width="80px">
+        <el-form inline>
 <!--          <el-form-item :label="T('Name')">
             <el-select v-model="listQuery.collection_id" clearable>
               <el-option :value="0" :label="T('MyAddressBook')"></el-option>
@@ -89,7 +89,7 @@
 
 
     <el-dialog v-model="formVisible" width="800" :title="!formData.row_id?T('Create') :T('Update') ">
-      <el-form class="dialog-form" ref="form" :model="formData" label-width="120px">
+      <el-form class="dialog-form" ref="form" :model="formData">
         <el-form-item :label="T('ID')" prop="id" required>
           <el-input v-model="formData.id"></el-input>
         </el-form-item>

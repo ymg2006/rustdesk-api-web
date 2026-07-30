@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card class="list-query query-card" shadow="hover">
-      <el-form inline label-width="80px">
+      <el-form inline>
         <el-form-item>
           <el-button type="primary" @click="showCreate = true">{{ T('CreateInvitation') }}</el-button>
         </el-form-item>
@@ -10,7 +10,7 @@
 
     <!-- Create invite-code dialog -->
     <el-dialog :title="T('CreateInvitation')" v-model="showCreate" width="500px">
-      <el-form ref="createFormRef" :model="createForm" label-width="100px" :rules="createRules">
+      <el-form ref="createFormRef" :model="createForm" :rules="createRules">
         <el-form-item label="Plan" prop="plan">
           <el-select v-model="createForm.plan" style="width:100%">
             <el-option label="Pro" value="pro" />

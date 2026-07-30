@@ -84,7 +84,7 @@
 
     <!-- Department add/edit dialog -->
     <el-dialog v-model="formVisible" :title="!formData.id ? T('Add') : T('Update')" width="600">
-      <el-form :model="formData" label-width="120px">
+      <el-form :model="formData">
         <el-form-item :label="T('DepartmentName')" required>
           <el-input v-model="formData.name" />
         </el-form-item>

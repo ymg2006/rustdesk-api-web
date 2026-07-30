@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card class="list-query" shadow="hover">
-      <el-form inline label-width="80px">
+      <el-form inline>
         <el-form-item>
           <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
           <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
@@ -36,7 +36,7 @@
       </el-pagination>
     </el-card>
     <el-dialog v-model="formVisible" :title="!formData.id?T('Create') :T('Update')" width="800">
-      <el-form class="dialog-form" ref="form" :model="formData" :rules="rules" label-width="120px">
+      <el-form class="dialog-form" ref="form" :model="formData" :rules="rules">
         <el-form-item :label="T('Type')" prop="oauth_type">
           <el-radio-group v-model="formData.oauth_type" :disabled="!!formData.id">
             <el-radio v-for="item in types" :key="item.value" :value="item.value" style="display: block">

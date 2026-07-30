@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card class="list-query" shadow="hover">
-      <el-form inline label-width="80px">
+      <el-form inline>
         <el-form-item :label="T('Peer')">
           <el-input v-model="listQuery.peer_id" clearable></el-input>
         </el-form-item>
@@ -17,7 +17,7 @@
     </el-card>
     <el-card class="list-body" shadow="hover">
       <el-table :data="listRes.list" v-loading="listRes.loading" border @selection-change="handleSelectionChange">
-        <el-table-column type="selection" align="center" min-width="50"/>
+        <el-table-column type="selection" align="center" width="50"/>
         <el-table-column prop="id" :label="T('ID')" align="center" min-width="100"/>
         <el-table-column :label="T('Peer')" prop="peer_id" align="center" min-width="120"/>
         <el-table-column :label="T('FromPeer')" prop="from_peer" align="center" min-width="120"/>

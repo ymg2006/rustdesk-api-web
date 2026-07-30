@@ -66,7 +66,7 @@
 
     <!-- Generate invite-code dialog -->
     <el-dialog title="Generate Invite Code" :visible.sync="createVisible" width="500px">
-      <el-form ref="createForm" :model="createForm" :rules="createRules" label-width="100px">
+      <el-form ref="createForm" :model="createForm" :rules="createRules">
         <el-form-item label="Plan" prop="plan">
           <el-select v-model="createForm.plan" placeholder="Please select a plan">
             <el-option label="Pro" value="pro" />
