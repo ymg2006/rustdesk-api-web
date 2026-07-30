@@ -679,7 +679,7 @@ const parseCsv = (file) => {
   return false
 }
 /*   const toImport = () => {
-    ElMessage.warning('Not implemented yet')
+    ElMessage.warning(T('NotImplementedYet'))
   } */
 
 const ABFormVisible = ref(false)

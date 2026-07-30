@@ -1581,5 +1581,15 @@
   "DisplayAndPerformance": { "One": "显示与性能" }, "ImageQualityHelp": { "One": "图像质量选项：quality / balanced / speed" },
   "MaxFpsHelp": { "One": "最大 FPS；0 表示不限制" }, "SecurityPolicy": { "One": "安全策略" },
   "HideUsernameHelp": { "One": "隐藏地址簿中的用户名；Y 表示仅显示设备名称" },
-  "DirectConnectionVerificationHelp": { "One": "启用直连验证；Y 表示需要握手验证" }
+  "DirectConnectionVerificationHelp": { "One": "启用直连验证；Y 表示需要握手验证" },
+  "AlertRecipientsSpecifiedInRule": { "One": "收件人在规则中指定" },
+  "TestRecipientPrompt": { "One": "请输入测试收件人地址（留空则发送给自己）" },
+  "TestDeliveryFailed": { "One": "测试发送失败：{message}" },
+  "TestMessageSent": { "One": "测试消息已发送，请确认是否收到。" },
+  "DeleteAlertChannelWarning": { "One": "删除后，关联的告警规则将无法发送消息。是否继续？" },
+  "StrategyNameRequired": { "One": "策略名称不能为空" },
+  "DeleteStrategyConfirm": { "One": "确定删除策略“{name}”吗？" },
+  "Prompt": { "One": "提示" },
+  "NotImplementedYet": { "One": "暂未实现" },
+  "PleaseSelectReceiver": { "One": "请选择接收人" }
 }

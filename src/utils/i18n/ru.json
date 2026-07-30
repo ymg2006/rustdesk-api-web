@@ -1580,5 +1580,15 @@
   "DisplayAndPerformance": { "One": "Отображение и производительность" }, "ImageQualityHelp": { "One": "Качество изображения: quality / balanced / speed" },
   "MaxFpsHelp": { "One": "Максимальный FPS; 0 — без ограничений" }, "SecurityPolicy": { "One": "Политика безопасности" },
   "HideUsernameHelp": { "One": "Скрыть имена в адресной книге; Y показывает только устройства" },
-  "DirectConnectionVerificationHelp": { "One": "Включить проверку прямого подключения; Y требует рукопожатия" }
+  "DirectConnectionVerificationHelp": { "One": "Включить проверку прямого подключения; Y требует рукопожатия" },
+  "AlertRecipientsSpecifiedInRule": { "One": "получатели указываются в правиле" },
+  "TestRecipientPrompt": { "One": "Введите адрес тестового получателя (оставьте пустым, чтобы отправить себе)" },
+  "TestDeliveryFailed": { "One": "Не удалось отправить тестовое сообщение: {message}" },
+  "TestMessageSent": { "One": "Тестовое сообщение отправлено. Подтвердите получение." },
+  "DeleteAlertChannelWarning": { "One": "После удаления связанные правила оповещений не смогут отправлять сообщения. Продолжить?" },
+  "StrategyNameRequired": { "One": "Название стратегии не может быть пустым" },
+  "DeleteStrategyConfirm": { "One": "Удалить стратегию «{name}»?" },
+  "Prompt": { "One": "Подтверждение" },
+  "NotImplementedYet": { "One": "Ещё не реализовано" },
+  "PleaseSelectReceiver": { "One": "Выберите получателя" }
 }

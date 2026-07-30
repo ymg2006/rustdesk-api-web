@@ -1658,5 +1658,15 @@
   "MaxFpsHelp": { "One": "Maximum FPS; 0 means unlimited" },
   "SecurityPolicy": { "One": "Security Policy" },
   "HideUsernameHelp": { "One": "Hide usernames in address book; Y shows device names only" },
-  "DirectConnectionVerificationHelp": { "One": "Enable direct-connection verification; Y requires handshake verification" }
+  "DirectConnectionVerificationHelp": { "One": "Enable direct-connection verification; Y requires handshake verification" },
+  "AlertRecipientsSpecifiedInRule": { "One": "recipients are specified in the rule" },
+  "TestRecipientPrompt": { "One": "Enter a test recipient address (leave blank to send to yourself)" },
+  "TestDeliveryFailed": { "One": "Test delivery failed: {message}" },
+  "TestMessageSent": { "One": "Test message sent. Please confirm receipt." },
+  "DeleteAlertChannelWarning": { "One": "Associated alert rules cannot send after deletion. Continue?" },
+  "StrategyNameRequired": { "One": "Strategy name cannot be empty" },
+  "DeleteStrategyConfirm": { "One": "Delete strategy \"{name}\"?" },
+  "Prompt": { "One": "Prompt" },
+  "NotImplementedYet": { "One": "Not implemented yet" },
+  "PleaseSelectReceiver": { "One": "Please select a receiver" }
 }

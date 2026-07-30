@@ -282,7 +282,7 @@ const formRef = ref(null)
 
 const submitForm = async () => {
   if (!form.name) {
-    ElMessage.error('Strategy name cannot be empty')
+    ElMessage.error(T('StrategyNameRequired'))
     return
   }
   submitting.value = true
@@ -292,12 +292,12 @@ const submitForm = async () => {
   }
   const api = editingId.value > 0 ? update : create
   const res = await api(data).catch(e => {
-    ElMessage.error((e && e.message) || 'Operation failed')
+    ElMessage.error((e && e.message) || T('OperationFailed'))
     return false
   })
   submitting.value = false
   if (res) {
-    ElMessage.success('Operation successful')
+    ElMessage.success(T('OperationSuccess'))
     dialogVisible.value = false
     getList()
   }
@@ -379,9 +379,9 @@ onMounted(async () => {
 })
 
 const del = async (row) => {
-  const cf = await ElMessageBox.confirm(`Delete strategy "${row.name}"?`, 'Prompt', {
-    confirmButtonText: 'Confirm',
-    cancelButtonText: 'Cancel',
+  const cf = await ElMessageBox.confirm(T('DeleteStrategyConfirm', { name: row.name }), T('Prompt'), {
+    confirmButtonText: T('Confirm'),
+    cancelButtonText: T('Cancel'),
     type: 'warning',
   }).catch(_ => false)
   if (!cf) return false
@@ -389,7 +389,7 @@ const del = async (row) => {
   if (res) {
     // Clear cached name
     delete bindNameMap[row.id]
-    ElMessage.success('Deleted successfully')
+    ElMessage.success(T('OperationSuccess'))
     getList()
   }
 }

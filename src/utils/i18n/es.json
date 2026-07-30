@@ -1580,5 +1580,15 @@
   "DisplayAndPerformance": { "One": "Pantalla y rendimiento" }, "ImageQualityHelp": { "One": "Calidad de imagen: quality / balanced / speed" },
   "MaxFpsHelp": { "One": "FPS máximo; 0 significa ilimitado" }, "SecurityPolicy": { "One": "Política de seguridad" },
   "HideUsernameHelp": { "One": "Ocultar usuarios en la libreta; Y muestra solo nombres de dispositivos" },
-  "DirectConnectionVerificationHelp": { "One": "Activar verificación de conexión directa; Y exige verificación de enlace" }
+  "DirectConnectionVerificationHelp": { "One": "Activar verificación de conexión directa; Y exige verificación de enlace" },
+  "AlertRecipientsSpecifiedInRule": { "One": "los destinatarios se especifican en la regla" },
+  "TestRecipientPrompt": { "One": "Introduce la dirección de un destinatario de prueba (déjala vacía para enviártelo a ti)" },
+  "TestDeliveryFailed": { "One": "Error al enviar la prueba: {message}" },
+  "TestMessageSent": { "One": "Mensaje de prueba enviado. Confirma que lo has recibido." },
+  "DeleteAlertChannelWarning": { "One": "Las reglas de alerta asociadas no podrán enviar mensajes después de eliminarlo. ¿Continuar?" },
+  "StrategyNameRequired": { "One": "El nombre de la estrategia no puede estar vacío" },
+  "DeleteStrategyConfirm": { "One": "¿Eliminar la estrategia «{name}»?" },
+  "Prompt": { "One": "Confirmación" },
+  "NotImplementedYet": { "One": "Aún no implementado" },
+  "PleaseSelectReceiver": { "One": "Selecciona un destinatario" }
 }

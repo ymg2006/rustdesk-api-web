@@ -185,7 +185,7 @@ const showBroadcastDialog = () => {
 
 const doSend = async () => {
   if (!sendForm.value.title && !sendForm.value.content) {
-    ElMessage.warning('Please enter message content')
+    ElMessage.warning(T('PleaseEnterMessageContent'))
     return
   }
   let res
@@ -193,7 +193,7 @@ const doSend = async () => {
     res = await broadcast({ title: sendForm.value.title, content: sendForm.value.content }).catch(_ => false)
   } else {
     if (!sendForm.value.receiver_id) {
-      ElMessage.warning('Please select a receiver')
+      ElMessage.warning(T('PleaseSelectReceiver'))
       return
     }
     res = await send({

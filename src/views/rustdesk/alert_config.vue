@@ -17,7 +17,7 @@
         </el-table-column>
         <el-table-column :label="T('AlertConfigSummary')" min-width="200">
           <template #default="{row}">
-            <span v-if="row.channel==='smtp'" style="font-size:12px;color:#666">{{ row.smtp_user }} (recipients are specified in the rule)</span>
+            <span v-if="row.channel==='smtp'" style="font-size:12px;color:#666">{{ row.smtp_user }} ({{ T('AlertRecipientsSpecifiedInRule') }})</span>
             <span v-else-if="row.webhook_url" style="font-size:12px;color:#666">{{ row.webhook_url.slice(0,60) }}...</span>
             <span v-else style="color:var(--apple-gray)">-</span>
           </template>
@@ -342,24 +342,30 @@ const testChannel = async (row) => {
       smtp_host: row.smtp_host, smtp_port: row.smtp_port, smtp_user: row.smtp_user,
       smtp_pass: '', test_recipients: recipients,
     },
-  }).catch(e => { ElMessage.error('Test delivery failed: ' + (e?.response?.data?.msg || e.message)); return false })
-  if (res) ElMessage.success('Test message sent. Please confirm receipt.')
+  }).catch(e => {
+    ElMessage.error(T('TestDeliveryFailed', { message: e?.response?.data?.msg || e.message }))
+    return false
+  })
+  if (res) ElMessage.success(T('TestMessageSent'))
 }
 
 const testChannelForm = async () => {
   let recipients = ''
   if (chForm.channel === 'smtp') {
-    const r = await ElMessageBox.prompt('Enter a test recipient address (leave blank to send to yourself)', 'Send Test', { inputValue: chForm.smtp_user || '', confirmButtonText: T('Send'), cancelButtonText: T('Cancel') }).catch(_ => false)
+    const r = await ElMessageBox.prompt(T('TestRecipientPrompt'), T('SendTest'), { inputValue: chForm.smtp_user || '', confirmButtonText: T('Send'), cancelButtonText: T('Cancel') }).catch(_ => false)
     if (r === false) return
     recipients = (r.value || '').trim()
   }
   const data = { ...chForm, row_id: chEditId.value, test_recipients: recipients }
-  const res = await request({ url: '/alert_channel/test', method: 'post', data }).catch(e => { ElMessage.error('Test delivery failed: ' + (e?.response?.data?.msg || e.message)); return false })
-  if (res) ElMessage.success('Test message sent. Please confirm receipt.')
+  const res = await request({ url: '/alert_channel/test', method: 'post', data }).catch(e => {
+    ElMessage.error(T('TestDeliveryFailed', { message: e?.response?.data?.msg || e.message }))
+    return false
+  })
+  if (res) ElMessage.success(T('TestMessageSent'))
 }
 
 const delChannel = async (row) => {
-  const cf = await ElMessageBox.confirm('Associated alert rules cannot send after deletion. Continue?', {
+  const cf = await ElMessageBox.confirm(T('DeleteAlertChannelWarning'), {
     type: 'warning',
     confirmButtonText: T('Confirm'),
     cancelButtonText: T('Cancel'),

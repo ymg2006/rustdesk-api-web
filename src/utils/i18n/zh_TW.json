@@ -1581,5 +1581,15 @@
   "DisplayAndPerformance": { "One": "顯示與效能" }, "ImageQualityHelp": { "One": "影像品質選項：quality / balanced / speed" },
   "MaxFpsHelp": { "One": "最大 FPS；0 表示不限制" }, "SecurityPolicy": { "One": "安全性原則" },
   "HideUsernameHelp": { "One": "隱藏通訊錄中的使用者名稱；Y 表示僅顯示裝置名稱" },
-  "DirectConnectionVerificationHelp": { "One": "啟用直接連線驗證；Y 表示需要交握驗證" }
+  "DirectConnectionVerificationHelp": { "One": "啟用直接連線驗證；Y 表示需要交握驗證" },
+  "AlertRecipientsSpecifiedInRule": { "One": "收件者在規則中指定" },
+  "TestRecipientPrompt": { "One": "請輸入測試收件者地址（留空則傳送給自己）" },
+  "TestDeliveryFailed": { "One": "測試傳送失敗：{message}" },
+  "TestMessageSent": { "One": "測試訊息已傳送，請確認是否收到。" },
+  "DeleteAlertChannelWarning": { "One": "刪除後，關聯的警示規則將無法傳送訊息。是否繼續？" },
+  "StrategyNameRequired": { "One": "策略名稱不可為空" },
+  "DeleteStrategyConfirm": { "One": "確定刪除策略「{name}」嗎？" },
+  "Prompt": { "One": "提示" },
+  "NotImplementedYet": { "One": "尚未實作" },
+  "PleaseSelectReceiver": { "One": "請選擇接收者" }
 }
