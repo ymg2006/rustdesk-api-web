@@ -19,7 +19,7 @@
       </el-form>
     </el-card>
 
-    <el-card shadow="hover" class="list-card">
+    <el-card shadow="hover" class="list-card query-card">
       <el-table :data="list" v-loading="loading" border stripe>
         <el-table-column prop="id" :label="T('ID')" min-width="60" align="center" />
         <el-table-column prop="username" label="Username" min-width="150" />
@@ -57,20 +57,21 @@
           </template>
         </el-table-column>
       </el-table>
+    </el-card>
 
-      <div class="pagination-wrap">
-        <el-pagination
-          v-model:current-page="page"
-          :page-size="pageSize"
-          :total="total"
-          layout="prev, pager, next, total"
-          @current-change="getList"
-        />
-      </div>
+    <el-card class="list-page" shadow="hover">
+      <el-pagination background
+                     layout="prev, pager, next, sizes, jumper"
+                     :page-sizes="[10,20,50,100]"
+                     v-model:page-size="pageSize"
+                     v-model:current-page="page"
+                     :total="total"
+                     @current-change="getList">
+      </el-pagination>
     </el-card>
 
     <!-- Extend subscription dialog -->
-    <el-dialog v-model="extendVisible" title="Extend Subscription" width="440px" :close-on-click-modal="false">
+    <el-dialog v-model="extendVisible" title="Extend Subscription" width="440px" :close-on-click-modal="false" append-to-body>
       <el-form label-position="top">
         <el-form-item label="User">
           <el-input :model-value="extendUser?.username" disabled />

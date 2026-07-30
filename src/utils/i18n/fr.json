@@ -513,11 +513,8 @@
   "UserToken": {
     "One": "Jeton Utilisateur"
   },
-  "BatchAddToAB": {
-    "One": "Ajout par lots au carnet d'adresses"
-  },
-  "BatchEditTags": {
-    "One": "Modification par lots des étiquettes"
+  "BatchEdit": {
+    "One": "Modification par lots"
   },
   "User": {
     "One": "Utilisateur"
@@ -701,9 +698,6 @@
   },
   "AllDevices": {
     "One": "Tous les appareils"
-  },
-  "SelectAll": {
-    "One": "Tout sélectionner"
   },
   "SelectTargets": {
     "One": "Sélectionner des groupes et des appareils"

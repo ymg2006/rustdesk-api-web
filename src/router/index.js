@@ -264,12 +264,12 @@ export const asyncRoutes = [
         meta: { title: 'AdminInviteCode', icon: 'Key' },
         component: () => import('@/views/admin/InviteCode.vue'),
       },
-      {
-        path: '/adminOrders',
-        name: 'AdminOrder',
-        meta: { title: 'AdminOrder', icon: 'List' },
-        component: () => import('@/views/admin/AdminOrder.vue'),
-      },
+      // {
+      //   path: '/adminOrders',
+      //   name: 'AdminOrder',
+      //   meta: { title: 'AdminOrder', icon: 'List' },
+      //   component: () => import('@/views/admin/AdminOrder.vue'),
+      // },
       {
         path: '/adminSubscriptions',
         name: 'AdminSubscription',

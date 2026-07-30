@@ -1,13 +1,13 @@
 <template>
-  <div class="my-subscription">
+  <div>
     <el-card shadow="hover">
       <template #header>
         <div class="card-header">
           <span>{{ T('MySubscription') }}</span>
           <div class="header-actions">
-            <el-button type="primary" size="small" @click="showPayment = true">
+            <!-- <el-button type="primary" size="small" @click="showPayment = true">
               {{ T('SubscribeUpgrade') }}
-            </el-button>
+            </el-button> -->
             <el-button size="small" @click="showClaim = true">
               {{ T('SubscribeRedeemCode') }}
             </el-button>
@@ -58,9 +58,9 @@
           <!-- Unsubscribed state -->
           <div v-else class="no-subscription">
             <el-empty :description="T('SubscribeNoSubscription')">
-              <el-button type="primary" @click="showPayment = true">
+              <!-- <el-button type="primary" @click="showPayment = true">
                 {{ T('SubscribeUpgradeNow') }}
-              </el-button>
+              </el-button> -->
             </el-empty>
           </div>
         </template>
@@ -107,10 +107,6 @@ const statusTagType = computed(() => {
   return map[mine.value.status] || 'info'
 })
 
-const statusClass = computed(() => {
-  return 'status-' + (mine.value.status || 'none')
-})
-
 const refresh = async () => {
   loading.value = true
   try {
@@ -134,11 +130,6 @@ onMounted(refresh)
 </script>
 
 <style scoped>
-.my-subscription {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 24px;
-}
 .card-header {
   display: flex;
   justify-content: space-between;

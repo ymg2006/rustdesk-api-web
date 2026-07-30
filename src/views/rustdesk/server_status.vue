@@ -26,7 +26,7 @@
         </el-table-column>
         <el-table-column :label="T('Status')" min-width="160">
           <template #default="{ row }">
-            <el-tag :type="tagType(row.status)" effect="dark">{{ statusText(row.status) }}</el-tag>
+            <el-tag :type="tagType(row.status)">{{ statusText(row.status) }}</el-tag>
             <span v-if="row.status === 'up'" class="latency">{{ row.latency_ms }} ms</span>
           </template>
         </el-table-column>
@@ -45,7 +45,6 @@
         <template #empty>
           <div class="empty">
             <span>{{ T('NoServer') }}</span>
-            <el-button type="primary" size="small" @click="openCreate">{{ T('AddServer') }}</el-button>
           </div>
         </template>
       </el-table>
@@ -120,7 +119,7 @@
     </el-card>
 
     <!-- Add/edit dialog -->
-    <el-dialog v-model="dialogVisible" :title="editing ? T('EditServer') : T('AddServer')" width="480px">
+    <el-dialog v-model="dialogVisible" :title="editing ? T('EditServer') : T('AddServer')" width="480px" append-to-body>
       <el-form :model="form">
         <el-form-item :label="T('ServerName')">
           <el-input v-model="form.name" :placeholder="T('ServerNamePlaceholder')" />
@@ -146,10 +145,10 @@
 <script setup>
   import { ref, onMounted, onUnmounted } from 'vue'
 import {
-    serverStatus,
-    serverStatusCreate,
-    serverStatusUpdate,
-    serverStatusDelete,
+  serverStatus,
+  serverStatusCreate,
+  serverStatusUpdate,
+  serverStatusDelete,
 } from '@/api/serverStatus'
 import { T } from '@/utils/i18n'
 import { ElMessage, ElMessageBox } from 'element-plus'

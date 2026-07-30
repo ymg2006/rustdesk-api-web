@@ -22,8 +22,7 @@
         </el-form-item>
       </el-form>
     </el-card>
-
-    <el-card shadow="hover" class="list-card">
+    <el-card shadow="hover" class="list-card query-card">
       <el-table :data="list" v-loading="loading" border stripe>
         <el-table-column prop="id" :label="T('ID')" min-width="60" align="center" />
         <el-table-column prop="code" :label="T('InviteCode')" min-width="280" align="center">
@@ -85,7 +84,7 @@
               v-if="row.status === 'unused'"
               type="warning"
               size="small"
-              @click="handleDelete(row)"
+              @click="handleDelete(row.id)"
             >
               Delete
             </el-button>
@@ -93,20 +92,21 @@
           </template>
         </el-table-column>
       </el-table>
+    </el-card>
 
-      <div class="pagination-wrapper">
-        <el-pagination
-          v-model:current-page="page"
-          :page-size="20"
-          :total="total"
-          layout="total, prev, pager, next"
-          @current-change="getList"
-        />
-      </div>
+    <el-card class="list-page" shadow="hover">
+      <el-pagination background
+                     layout="prev, pager, next, sizes, jumper"
+                     :page-sizes="[10,20,50,100]"
+                     v-model:page-size="pageSize"
+                     v-model:current-page="page"
+                     :total="total"
+                     @current-change="getList">
+      </el-pagination>
     </el-card>
 
     <!-- Manual generation dialog -->
-    <el-dialog v-model="showCreate" title="Generate Invite Code" width="520px">
+    <el-dialog v-model="showCreate" title="Generate Invite Code" width="520px" append-to-body>
       <el-form label-position="top">
         <el-form-item label="Duration (auto-fills days after selection)">
           <div class="plan-grid">
@@ -122,10 +122,10 @@
                 <el-icon-timer v-else />
               </el-icon>
               <div class="plan-name">{{ p.name }}</div>
-              <div class="plan-price" :class="{ 'forever-price': p.key === 'forever' }">
+              <!-- <div class="plan-price" :class="{ 'forever-price': p.key === 'forever' }">
                 <template v-if="p.key === 'forever'">Permanent</template>
                 <template v-else>¥{{ (p.price_cents / 100).toFixed(2) }}</template>
-              </div>
+              </div> -->
             </div>
           </div>
         </el-form-item>
@@ -143,7 +143,7 @@
     </el-dialog>
 
     <!-- Batch generation dialog -->
-    <el-dialog v-model="showBatchCreate" title="Batch Generate Invite Codes" width="480px">
+    <el-dialog v-model="showBatchCreate" title="Batch Generate Invite Codes" width="480px" append-to-body>
       <el-form label-position="top">
         <el-form-item label="Quantity">
           <el-input-number v-model="batchForm.count" :min="1" :max="200" style="width:100%" />
@@ -183,18 +183,19 @@
 import { ref, reactive, onMounted } from 'vue'
 import { T } from '@/utils/i18n'
 import { ElMessage } from 'element-plus'
-import { adminListCodes, adminCreateCode, adminRevokeCode, adminExportCodes, getPlans } from '@/api/subscribe'
-import { ElMessageBox } from 'element-plus'
+import { adminListCodes, adminCreateCode, adminRevokeCode, adminExportCodes, getPlans, adminDeleteCode } from '@/api/subscribe'
 
 const loading = ref(false)
 const list = ref([])
 const total = ref(0)
 const page = ref(1)
+const pageSize = ref(20)
 const filter = reactive({ status: '', plan: '' })
 
 const showCreate = ref(false)
 const creating = ref(false)
 const revokingId = ref(0)
+const deletingId = ref(0)
 const createForm = reactive({ planKey: '', expire_days: 30, remark: '' })
 const planOptions = ref([])
 
@@ -336,11 +337,20 @@ const submitBatchCreate = async () => {
   }
 }
 
-const handleDelete = async (row) => {
+const handleDelete = async (id) => {
+  deletingId.value = id
   try {
-    await ElMessageBox.confirm(`Delete invite code ${row.code}?`, 'Confirm')
-  } catch {
-    return
+    const res = await adminDeleteCode(id)
+    if (!res.code) {
+      ElMessage.success('Operation Success')
+      getList()
+    } else {
+      ElMessage.error(res.message ||'Operation failed')
+    }
+  } catch (_) {
+    ElMessage.error('Operation failed')
+  } finally {
+    deletingId.value = 0
   }
 }
 
@@ -366,10 +376,9 @@ onMounted(async () => {
       { key: '3m', name: '3 Months', price_cents: 2800, period_days: 90 },
       { key: '6m', name: '6 Months', price_cents: 5000, period_days: 180 },
       { key: '12m', name: '12 Months', price_cents: 8800, period_days: 365 },
+      { key: 'forever', name: 'Permanent', price_cents: 0, period_days: 99999 }
     ]
   }
-  // Append permanent option (admin manual selection only)
-  planOptions.value.push({ key: 'forever', name: 'Permanent', price_cents: 0, period_days: 99999 })
 })
 </script>
 
@@ -379,9 +388,6 @@ onMounted(async () => {
 }
 .query-card {
   margin-bottom: 16px;
-}
-.list-card {
-  min-height: 400px;
 }
 .plan-grid {
   display: grid;
@@ -408,11 +414,10 @@ onMounted(async () => {
 }
 .plan-card.forever {
   border-color: var(--apple-orange-subtle);
-  background: linear-gradient(135deg, #fdf6ec 0%, #fefcef 100%);
 }
 .plan-card.forever.active {
   border-color: var(--apple-orange-subtle);
-  background: linear-gradient(135deg, #faecd8 0%, #fef5e7 100%);
+  background: var(--apple-orange-subtle);
   box-shadow: 0 0 12px rgba(230, 162, 60, 0.3);
 }
 .plan-card.forever .plan-icon {

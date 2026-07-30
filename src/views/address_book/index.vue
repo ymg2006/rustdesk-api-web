@@ -52,7 +52,7 @@
             <span v-if="row.user_id"> <el-tag>{{ allUsers?.find(u => u.id === row.user_id)?.username }}</el-tag> </span>
           </template>
         </el-table-column>
-        <el-table-column prop="collection_id" :label="T('AddressBookName')" align="center" min-width="150">
+        <el-table-column prop="collection_id" :label="T('AddressBookName')" align="center" min-width="155">
           <template #default="{row}">
             <span v-if="row.collection_id === 0">{{ T('MyAddressBook') }}</span>
             <span v-else>{{ row.collection?.name }}</span>
@@ -61,8 +61,8 @@
         <el-table-column prop="username" :label="T('Username')" align="center" min-width="150"/>
         <el-table-column prop="hostname" :label="T('Hostname')" align="center" min-width="150"/>
         <el-table-column prop="tags" :label="T('Tags')" align="center"/>
-        <!--        <el-table-column prop="created_at" label="Created At" align="center"/>-->
-        <!--        <el-table-column prop="updated_at" label="Updated At" align="center"/>-->
+        <!--        <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>-->
+        <!--        <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center"/>-->
         <el-table-column prop="alias" :label="T('Alias')" align="center" min-width="150"/>
         <el-table-column prop="peer.version" :label="T('Version')" align="center" min-width="100"/>
         <el-table-column prop="hash" :label="T('Hash')" align="center" min-width="150" show-overflow-tooltip/>
@@ -86,7 +86,7 @@
                      :total="listRes.total">
       </el-pagination>
     </el-card>
-    <el-dialog v-model="formVisible" width="800" :title="!formData.row_id?T('Create') :T('Update') ">
+    <el-dialog v-model="formVisible" width="800" :title="!formData.row_id?T('Create') :T('Update')" append-to-body>
       <el-form class="dialog-form" ref="form" :model="formData">
         <el-form-item :label="T('Owner')" prop="user_id" required>
           <el-select v-model="formData.user_id" @change="changeUserForUpdate">
@@ -168,7 +168,7 @@
         </el-form-item>
       </el-form>
     </el-dialog>
-    <!--    <el-dialog v-model="shareToWebClientVisible" width="900" :close-on-click-modal="false">
+    <!--    <el-dialog v-model="shareToWebClientVisible" width="900" :close-on-click-modal="false" append-to-body>
           <shareByWebClient :id="shareToWebClientForm.id"
                             :hash="shareToWebClientForm.hash"
                             @cancel="shareToWebClientVisible=false"

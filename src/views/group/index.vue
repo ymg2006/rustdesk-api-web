@@ -69,9 +69,8 @@
         </el-table-column>
         <el-table-column prop="remark" :label="T('Remark')" />
       </el-table>
-      <el-pagination
+      <el-pagination background
         class="member-page"
-        background
         layout="prev, pager, next, sizes, jumper"
         :page-sizes="[10,20,50,100]"
         v-model:page-size="listQuery.page_size"
@@ -83,7 +82,7 @@
     </el-card>
 
     <!-- Department add/edit dialog -->
-    <el-dialog v-model="formVisible" :title="!formData.id ? T('Add') : T('Update')" width="600">
+    <el-dialog v-model="formVisible" :title="!formData.id ? T('Add') : T('Update')" width="600" append-to-body>
       <el-form :model="formData">
         <el-form-item :label="T('DepartmentName')" required>
           <el-input v-model="formData.name" />

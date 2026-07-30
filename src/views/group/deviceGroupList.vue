@@ -34,7 +34,7 @@
                      :total="listRes.total">
       </el-pagination>
     </el-card>
-    <el-dialog v-model="formVisible" :title="!formData.id?T('Create'):T('Update')" width="800">
+    <el-dialog v-model="formVisible" :title="!formData.id?T('Create'):T('Update')" width="800" append-to-body>
       <el-form class="dialog-form" ref="form" :model="formData">
         <el-form-item :label="T('Name')" prop="name" required>
           <el-input v-model="formData.name"></el-input>

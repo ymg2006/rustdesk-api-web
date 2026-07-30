@@ -38,7 +38,7 @@
         <el-table-column prop="ip" :label="T('Ip')" align="center" min-width="150"/>
         <el-table-column prop="type" :label="T('Type')" align="center" min-width="100"/>
         <el-table-column prop="platform" :label="T('PlatformUA')" align="center" min-width="120" show-overflow-tooltip/>
-        <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>
+        <el-table-column prop="created_at" :label="T('CreatedAt')" min-width="170" align="center"/>
         <el-table-column :label="T('Actions')" align="center" width="100" fixed="right">
           <template #default="{row}">
             <el-button type="danger" @click="del(row)" size="small">{{ T('Delete') }}</el-button>

@@ -36,7 +36,7 @@
     </el-card>
 
     <!-- Channel form -->
-    <el-dialog v-model="chFormVisible" :title="chEditId ? T('Edit') : T('Add')" width="600px">
+    <el-dialog v-model="chFormVisible" :title="chEditId ? T('Edit') : T('Add')" width="600px" append-to-body>
       <el-form>
         <el-form-item :label="T('Name')">
           <el-input v-model="chForm.name" :placeholder="T('AlertChannelNamePlaceholder')"></el-input>
@@ -100,8 +100,10 @@
         <el-table-column prop="name" :label="T('Name')" min-width="100"></el-table-column>
         <el-table-column :label="T('AlertChannel')" min-width="120">
           <template #default="{row}">
-            <el-tag :type="channelType(row.channel)" size="small">{{ channelLabel(row.channel) }}</el-tag>
-            <div style="font-size:11px;color:var(--apple-gray)">{{ row.name }}</div>
+            <div style="display:flex;flex-direction:row;align-items:center;gap:8px;">
+              <el-tag :type="channelType(row.channel)" size="small">{{ channelLabel(row.channel) }}</el-tag>
+              <div style="font-size:11px;color:var(--apple-gray)">{{ row.name }}</div>
+            </div>
           </template>
         </el-table-column>
         <el-table-column :label="T('SmtpTo')" min-width="180">
@@ -130,9 +132,9 @@
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Actions')" align="center" width="300" fixed="right">
+        <el-table-column :label="T('Actions')" align="center" width="200" fixed="right">
           <template #default="{row}">
-            <el-button @click="showTargets(row)" size="small">{{ T('SelectTargets') }}</el-button>
+            <!-- <el-button @click="showTargets(row)" size="small">{{ T('SelectTargets') }}</el-button> -->
             <el-button @click="showRuleForm(row)" size="small">{{ T('Edit') }}</el-button>
             <el-button type="danger" @click="delRule(row)" size="small">{{ T('Delete') }}</el-button>
           </template>
@@ -141,7 +143,7 @@
     </el-card>
 
     <!-- Alert-rule form -->
-    <el-dialog v-model="ruleFormVisible" :title="ruleEditId ? T('Edit') : T('Add')" width="500px">
+    <el-dialog v-model="ruleFormVisible" :title="ruleEditId ? T('Edit') : T('Add')" width="500px" append-to-body>
       <el-form>
         <el-form-item :label="T('Name')">
           <el-select v-model="ruleForm.channel_id" style="width:100%" :placeholder="T('AlertChannel')">
@@ -199,7 +201,7 @@
     </el-dialog>
 
     <!-- Monitoring-target dialog -->
-    <el-dialog v-model="targetVisible" :title="T('SelectTargets')" width="600px">
+    <!-- <el-dialog v-model="targetVisible" :title="T('SelectTargets')" width="600px" append-to-body>
       <template v-if="currentAlertId>0">
         <el-button size="small" type="primary" style="margin-bottom:8px" @click="loadTargetCollections">{{ T('Refresh') }}</el-button>
         <el-radio-group v-model="targetMonitorAll" style="margin-bottom:8px" @change="onTargetMonitorChange">
@@ -230,7 +232,7 @@
         <el-button type="primary" @click="saveTargets">{{ T('Submit') }}</el-button>
         <el-button @click="targetVisible=false">{{ T('Cancel') }}</el-button>
       </template>
-    </el-dialog>
+    </el-dialog> -->
   </div>
 </template>
 
@@ -471,7 +473,7 @@ const onTargetCollToggle = (col) => {
     if (col.peers) for (const p of col.peers) { const idx = targetSelectedPeers.value.indexOf(p.peer_id); if (idx>=0) targetSelectedPeers.value.splice(idx,1) }
   }
 }
-
+/* 
 const onTargetMonitorChange = (val) => { if (val===1) { targetSelectedColls.value=[]; targetSelectedPeers.value=[] } }
 
 const showTargets = async (row) => {
@@ -505,7 +507,7 @@ const saveTargets = async () => {
   ElMessage.success(T('OperationSuccess'))
   targetVisible.value = false
   getRules()
-}
+} */
 
 onMounted(() => { loadChannels(); getRules() })
 </script>

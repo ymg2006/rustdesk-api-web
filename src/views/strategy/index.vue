@@ -1,75 +1,131 @@
 <template>
   <div>
 
-    <el-card class="list-query" shadow="hover">
+    <el-card class="list-query"
+             shadow="hover">
       <div class="action-bar">
         <span style="font-size: 16px; font-weight: 500;">Strategy Management</span>
-        <el-button type="text" size="small" style="margin-left: 4px; font-size: 16px; color: var(--apple-blue);" @click="showHelp = true">?</el-button>
-        <el-button type="primary" size="small" style="float: right;" @click="showEdit(null)">New Strategy</el-button>
+        <el-button type="text"
+                   size="small"
+                   style="margin-left: 4px; font-size: 16px; color: var(--apple-blue);"
+                   @click="showHelp = true">?</el-button>
       </div>
       <el-form inline>
         <el-form-item label="Strategy Name">
-          <el-input v-model="query.name" placeholder="Search strategy name" clearable style="width: 200px"></el-input>
+          <el-input v-model="query.name"
+                    placeholder="Search strategy name"
+                    clearable
+                    style="width: 200px"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="getList">Search</el-button>
+          <el-button type="primary"
+                     @click="getList">{{ T('Filter') }}</el-button>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="danger"
+                     @click="showEdit(null)">{{ T('Add') }}</el-button>
         </el-form-item>
       </el-form>
     </el-card>
 
-    <el-card class="list-body" shadow="hover" style="margin-top: 16px;">
-      <el-table :data="listRes.list" v-loading="listRes.loading" border>
-        <el-table-column prop="id" :label="T('ID')" min-width="60" align="center"></el-table-column>
-        <el-table-column prop="name" label="Strategy Name" min-width="160" align="center">
-          <template #default="{row}">
+    <el-card class="list-body"
+             shadow="hover"
+             style="margin-top: 16px;">
+      <el-table :data="listRes.list"
+                v-loading="listRes.loading"
+                border>
+        <el-table-column prop="id"
+                         :label="T('ID')"
+                         min-width="60"
+                         align="center"></el-table-column>
+        <el-table-column prop="name"
+                         label="Strategy Name"
+                         min-width="160"
+                         align="center">
+          <template #default="{ row }">
             <strong>{{ row.name }}</strong>
           </template>
         </el-table-column>
-        <el-table-column label="Status" min-width="80" align="center">
-          <template #default="{row}">
-            <el-tag v-if="row.status === 1" type="success" size="small">Enabled</el-tag>
-            <el-tag v-else type="danger" size="small">Disabled</el-tag>
+        <el-table-column label="Status"
+                         min-width="80"
+                         align="center">
+          <template #default="{ row }">
+            <el-tag v-if="row.status === 1"
+                    type="success"
+                    size="small">Enabled</el-tag>
+            <el-tag v-else
+                    type="danger"
+                    size="small">Disabled</el-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="priority" label="Priority" min-width="80" align="center"></el-table-column>
-        <el-table-column label="Binding Scope" min-width="160" align="center">
-          <template #default="{row}">
-            <el-tag v-if="row.bind_type === 'user'" type="primary" size="small">User</el-tag>
-            <el-tag v-else-if="row.bind_type === 'group'" type="success" size="small">Device Group</el-tag>
-            <el-tag v-else-if="row.bind_type === 'tag'" type="warning" size="small">Tag</el-tag>
-            <el-tag v-else type="info" size="small">Global</el-tag>
+        <el-table-column prop="priority"
+                         label="Priority"
+                         min-width="80"
+                         align="center"></el-table-column>
+        <el-table-column label="Binding Scope"
+                         min-width="160"
+                         align="center">
+          <template #default="{ row }">
+            <el-tag v-if="row.bind_type === 'user'"
+                    type="primary"
+                    size="small">User</el-tag>
+            <el-tag v-else-if="row.bind_type === 'group'"
+                    type="success"
+                    size="small">Device Group</el-tag>
+            <el-tag v-else-if="row.bind_type === 'tag'"
+                    type="warning"
+                    size="small">Tag</el-tag>
+            <el-tag v-else
+                    type="info"
+                    size="small">Global</el-tag>
             <span style="margin-left: 4px; font-size: 12px;">{{ getBindName(row) }}</span>
           </template>
         </el-table-column>
-        <el-table-column label="Actions" min-width="200" align="center" fixed="right">
-          <template #default="{row}">
-            <el-button type="primary" size="small" @click="showEdit(row)">Edit</el-button>
-            <el-button type="danger" size="small" @click="del(row)">Delete</el-button>
+        <el-table-column label="Actions"
+                         min-width="200"
+                         align="center"
+                         fixed="right">
+          <template #default="{ row }">
+            <el-button type="primary"
+                       size="small"
+                       @click="showEdit(row)">Edit</el-button>
+            <el-button type="danger"
+                       size="small"
+                       @click="del(row)">Delete</el-button>
           </template>
         </el-table-column>
       </el-table>
-      <el-pagination
-        v-if="listRes.total > 0"
-        background
-        layout="prev, pager, next"
-        :total="listRes.total"
-        :page-size="listQuery.page_size"
-        v-model:current-page="listQuery.page"
-        @current-change="getList"
-      />
+      <el-pagination background
+                     layout="prev, pager, next"
+                     :total="listRes.total"
+                     :page-size="listQuery.page_size"
+                     v-model:current-page="listQuery.page"
+                     @current-change="getList" />
     </el-card>
 
     <!-- Edit Dialog -->
-    <el-dialog v-model="dialogVisible" :title="editingId ? 'Edit Strategy' : 'New Strategy'" width="700px" @close="resetForm">
-      <el-form ref="formRef" :model="form">
-        <el-form-item label="Strategy Name" required>
-          <el-input v-model="form.name" placeholder="Example: Office Network Policy" style="width: 400px"></el-input>
+    <el-dialog v-model="dialogVisible"
+               :title="editingId ? 'Edit Strategy' : 'New Strategy'"
+               width="700px"
+               @close="resetForm"
+               append-to-body>
+      <el-form ref="formRef"
+               :model="form">
+        <el-form-item label="Strategy Name"
+                      required>
+          <el-input v-model="form.name"
+                    placeholder="Example: Office Network Policy"
+                    style="width: 400px"></el-input>
         </el-form-item>
         <el-form-item label="Priority">
-          <el-input-number v-model="form.priority" :min="0" :max="999" />
-          <span class="hint-text" style="font-size:12px;margin-left:8px;">Higher numbers have higher priority</span>
+          <el-input-number v-model="form.priority"
+                           :min="0"
+                           :max="999" />
+          <span class="hint-text"
+                style="font-size:12px;margin-left:8px;">Higher numbers have higher priority</span>
         </el-form-item>
-        <el-form-item label="Binding Scope" required>
+        <el-form-item label="Binding Scope"
+                      required>
           <el-radio-group v-model="form.bind_type">
             <el-radio label="user">User</el-radio>
             <el-radio label="group">Device Group</el-radio>
@@ -77,80 +133,115 @@
             <el-radio label="global">Global</el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item v-if="form.bind_type === 'user'" label="Select User">
-          <el-select v-model="form.bind_id" placeholder="Select user" style="width: 300px" filterable>
-            <el-option v-for="u in userListData" :key="u.id" :label="u.username + ' (' + (u.nickname || '') + ')'" :value="u.id"></el-option>
+        <el-form-item v-if="form.bind_type === 'user'"
+                      label="Select User">
+          <el-select v-model="form.bind_id"
+                     placeholder="Select user"
+                     style="width: 300px"
+                     filterable>
+            <el-option v-for="u in userListData"
+                       :key="u.id"
+                       :label="u.username + ' (' + (u.nickname || '') + ')'"
+                       :value="u.id"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item v-if="form.bind_type === 'group'" label="Select Group">
-          <el-select v-model="form.bind_id" placeholder="Select device group" style="width: 300px" filterable>
-            <el-option v-for="g in groupListData" :key="g.id" :label="g.name" :value="g.id"></el-option>
+        <el-form-item v-if="form.bind_type === 'group'"
+                      label="Select Group">
+          <el-select v-model="form.bind_id"
+                     placeholder="Select device group"
+                     style="width: 300px"
+                     filterable>
+            <el-option v-for="g in groupListData"
+                       :key="g.id"
+                       :label="g.name"
+                       :value="g.id"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item v-if="form.bind_type === 'tag'" label="Select Tag">
-          <el-select v-model="form.bind_id" placeholder="Select tag" style="width: 300px" filterable>
-            <el-option v-for="t in tagListData" :key="t.id" :label="t.name" :value="t.id"></el-option>
+        <el-form-item v-if="form.bind_type === 'tag'"
+                      label="Select Tag">
+          <el-select v-model="form.bind_id"
+                     placeholder="Select tag"
+                     style="width: 300px"
+                     filterable>
+            <el-option v-for="t in tagListData"
+                       :key="t.id"
+                       :label="t.name"
+                       :value="t.id"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item label="Status">
-          <el-switch v-model="form.status" :active-value="1" :inactive-value="2" />
+          <el-switch v-model="form.status"
+                     :active-value="1"
+                     :inactive-value="2" />
         </el-form-item>
         <el-form-item label="Config Items">
-          <el-input v-model="form.config_items" type="textarea" :rows="10"
-            placeholder="One config item per line, format: key=value&#10;Example:&#10;force_relay=Y&#10;enable-udp-punch=N&#10;enable-clipboard=N&#10;custom-rendezvous-server=192.0.2.1:21116"
-            style="width: 100%">
+          <el-input v-model="form.config_items"
+                    type="textarea"
+                    :rows="10"
+                    placeholder="One config item per line, format: key=value&#10;Example:&#10;force_relay=Y&#10;enable-udp-punch=N&#10;enable-clipboard=N&#10;custom-rendezvous-server=192.0.2.1:21116"
+                    style="width: 100%">
           </el-input>
-          <div class="hint-text" style="font-size:12px;margin-top:4px;">
-            Common config items: force_relay, enable-udp-punch, enable-ipv6-punch, enable-clipboard, enable-audio, enable-file-transfer, custom-rendezvous-server
+          <div class="hint-text"
+               style="font-size:12px;margin-top:4px;">
+            Common config items: force_relay, enable-udp-punch, enable-ipv6-punch, enable-clipboard, enable-audio,
+            enable-file-transfer, custom-rendezvous-server
           </div>
         </el-form-item>
       </el-form>
       <template #footer>
         <el-button @click="dialogVisible = false">Cancel</el-button>
-        <el-button type="primary" :loading="submitting" @click="submitForm">Save</el-button>
+        <el-button type="primary"
+                   :loading="submitting"
+                   @click="submitForm">Save</el-button>
       </template>
     </el-dialog>
 
     <!-- Help Dialog -->
-    <el-dialog v-model="showHelp" title="Strategy Config Template" width="650px">
-      <div style="font-size: 14px; line-height: 1.8; font-family: 'Consolas', 'Courier New', monospace; background: #f8f9fa; padding: 16px; border-radius: 6px;">
-        <div style="color: #999; margin-bottom: 4px;"># ====== NAT Traversal ======</div>
-        <div style="color: #999;"># Force relay: Y=force relay and disable P2P punching, N=allow P2P</div>
+    <el-dialog v-model="showHelp"
+               title="Strategy Config Template"
+               width="650px"
+               append-to-body>
+      <div
+           style="font-size: 14px; line-height: 1.8; font-family: 'Consolas', 'Courier New', monospace; background: var(--el-bg-color-page); padding: 16px; border-radius: 6px;">
+        <div style="color: var(--el-text-color-secondary); margin-bottom: 4px;"># ====== NAT Traversal ======</div>
+        <div style="color: var(--el-text-color-secondary);"># Force relay: Y=force relay and disable P2P punching, N=allow P2P</div>
         <div style="margin-bottom: 4px;">force_relay=N</div>
-        <div style="color: #999;"># Enable UDP punching; N disables UDP punching and uses TCP relay only</div>
+        <div style="color: var(--el-text-color-secondary);"># Enable UDP punching; N disables UDP punching and uses TCP relay only</div>
         <div style="margin-bottom: 4px;">enable-udp-punch=Y</div>
-        <div style="color: #999;"># Enable IPv6 punching; N disables IPv6 traversal</div>
+        <div style="color: var(--el-text-color-secondary);"># Enable IPv6 punching; N disables IPv6 traversal</div>
         <div style="margin-bottom: 4px;">enable-ipv6-punch=Y</div>
-        <div style="color: #999;"># Enable UPnP automatic port mapping; N disables it</div>
+        <div style="color: var(--el-text-color-secondary);"># Enable UPnP automatic port mapping; N disables it</div>
         <div style="margin-bottom: 4px;">enable-upnp=Y</div>
-        <div style="color: #999;"># Custom relay server address (use when running your own relay)</div>
-        <div style="color: #999;"># Format: domain or IP:port</div>
+        <div style="color: var(--el-text-color-secondary);"># Custom relay server address (use when running your own relay)</div>
+        <div style="color: var(--el-text-color-secondary);"># Format: domain or IP:port</div>
         <div style="margin-bottom: 8px;">#custom-rendezvous-server=relay.example.com:21116</div>
-        <div style="color: #999; margin-bottom: 4px;"># ====== Feature Switches ======</div>
-        <div style="color: #999;"># Enable clipboard sharing; N disables remote copy/paste</div>
+        <div style="color: var(--el-text-color-secondary); margin-bottom: 4px;"># ====== Feature Switches ======</div>
+        <div style="color: var(--el-text-color-secondary);"># Enable clipboard sharing; N disables remote copy/paste</div>
         <div style="margin-bottom: 4px;">enable-clipboard=Y</div>
-        <div style="color: #999;"># Enable audio transmission; N disables remote audio</div>
+        <div style="color: var(--el-text-color-secondary);"># Enable audio transmission; N disables remote audio</div>
         <div style="margin-bottom: 4px;">enable-audio=Y</div>
-        <div style="color: #999;"># Enable file transfer; N disables remote file transfer</div>
+        <div style="color: var(--el-text-color-secondary);"># Enable file transfer; N disables remote file transfer</div>
         <div style="margin-bottom: 4px;">enable-file-transfer=Y</div>
-        <div style="color: #999;"># Encryption mode options: default / no_encryption / encrypted</div>
+        <div style="color: var(--el-text-color-secondary);"># Encryption mode options: default / no_encryption / encrypted</div>
         <div style="margin-bottom: 8px;">#encryption-mode=default</div>
-        <div style="color: #999; margin-bottom: 4px;"># ====== Display and Performance ======</div>
-        <div style="color: #999;"># Remote image quality options: quality / balanced / speed</div>
+        <div style="color: var(--el-text-color-secondary); margin-bottom: 4px;"># ====== Display and Performance ======</div>
+        <div style="color: var(--el-text-color-secondary);"># Remote image quality options: quality / balanced / speed</div>
         <div style="margin-bottom: 4px;">#image-quality=balanced</div>
-        <div style="color: #999;"># Maximum FPS limit; 0 means unlimited</div>
+        <div style="color: var(--el-text-color-secondary);"># Maximum FPS limit; 0 means unlimited</div>
         <div style="margin-bottom: 8px;">#max-fps=30</div>
-        <div style="color: #999; margin-bottom: 4px;"># ====== Security Policy ======</div>
-        <div style="color: #999;"># Hide usernames in address book; Y shows only device names</div>
+        <div style="color: var(--el-text-color-secondary); margin-bottom: 4px;"># ====== Security Policy ======</div>
+        <div style="color: var(--el-text-color-secondary);"># Hide usernames in address book; Y shows only device names</div>
         <div style="margin-bottom: 4px;">#hide-username-on-card=N</div>
-        <div style="color: #999;"># Enable direct-connection verification; Y requires handshake verification</div>
+        <div style="color: var(--el-text-color-secondary);"># Enable direct-connection verification; Y requires handshake verification</div>
         <div style="margin-bottom: 4px;">#enable-directx-access=Y</div>
       </div>
-      <div style="font-size: 12px; color: #999; margin-top: 12px; text-align: center;">
-        Tip: Lines starting with # are comments and do not take effect. Remove # to enable the corresponding config item.
+      <div style="font-size: 12px; color: var(--el-text-color-secondary); margin-top: 12px; text-align: center;">
+        Tip: Lines starting with # are comments and do not take effect. Remove # to enable the corresponding config
+        item.
       </div>
       <template #footer>
-        <el-button type="primary" @click="showHelp = false">Got it</el-button>
+        <el-button type="primary"
+                   @click="showHelp = false">Got it</el-button>
       </template>
     </el-dialog>
 

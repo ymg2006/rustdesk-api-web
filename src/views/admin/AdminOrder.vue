@@ -18,7 +18,7 @@
       </el-form>
     </el-card>
 
-    <el-card shadow="hover" class="list-card">
+    <el-card shadow="hover" class="list-card query-card">
       <el-table :data="list" v-loading="loading" border stripe>
         <el-table-column prop="id" :label="T('ID')" min-width="60" align="center" />
         <el-table-column prop="out_trade_no" label="Order No." min-width="220" />
@@ -59,16 +59,16 @@
           </template>
         </el-table-column>
       </el-table>
-
-      <div class="pagination-wrap">
-        <el-pagination
-          v-model:current-page="page"
-          :page-size="pageSize"
-          :total="total"
-          layout="prev, pager, next, total"
-          @current-change="getList"
-        />
-      </div>
+    </el-card>
+    <el-card class="list-page" shadow="hover">
+      <el-pagination background
+                     layout="prev, pager, next, sizes, jumper"
+                     :page-sizes="[10,20,50,100]"
+                     v-model:page-size="pageSize"
+                     v-model:current-page="page"
+                     :total="total"
+                     @current-change="getList">
+      </el-pagination>
     </el-card>
   </div>
 </template>
@@ -166,10 +166,5 @@ onMounted(getList)
 <style scoped>
 .query-card {
   margin-bottom: 16px;
-}
-.pagination-wrap {
-  margin-top: 16px;
-  display: flex;
-  justify-content: center;
 }
 </style>

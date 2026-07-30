@@ -60,7 +60,7 @@
         <el-table-column prop="target" :label="T('ProcessTarget')" min-width="120" />
         <el-table-column :label="T('ProcessRunning')" min-width="100">
           <template #default="{row}">
-            <el-tag :type="row.running === 1 ? 'success' : 'danger'" effect="dark">
+            <el-tag :type="row.running === 1 ? 'success' : 'danger'">
               {{ row.running === 1 ? T('ProcessUp') : T('ProcessDown') }}
             </el-tag>
           </template>
@@ -72,7 +72,7 @@
     </el-card>
 
     <!-- Rule editor dialog -->
-    <el-dialog v-model="dialogVisible" :title="dialogTitle" width="640px">
+    <el-dialog v-model="dialogVisible" :title="dialogTitle" width="640px" append-to-body>
       <el-form :model="form">
         <el-form-item v-if="!editing" :label="T('ProcessTargetMode')">
           <el-radio-group v-model="sourceType" @change="onSourceTypeChange">
@@ -189,8 +189,8 @@
 import { ref, onMounted, computed } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import {
-    processRules, createProcessRule, updateProcessRule, deleteProcessRule, processStatus, alertConfigList,
-    batchCreateProcessRule, processPeerSources,
+  processRules, createProcessRule, updateProcessRule, deleteProcessRule, processStatus, alertConfigList,
+  batchCreateProcessRule, processPeerSources,
 } from '@/api/process'
 import { T } from '@/utils/i18n'
 

@@ -20,7 +20,7 @@
         <el-form-item>
           <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
           <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
-          <el-button type="primary" @click="showBatchEditTags">{{ T('BatchEditTags') }}</el-button>
+          <el-button type="primary" @click="showBatchEditTags">{{ T('BatchEdit') }}</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -38,7 +38,7 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="collection_id" :label="T('AddressBookName')" align="center" min-width="150">
+        <el-table-column prop="collection_id" :label="T('AddressBookName')" align="center" min-width="155">
           <template #default="{row}">
             <span v-if="row.collection_id === 0">{{ T('MyAddressBook') }}</span>
             <span v-else>{{ collectionListRes.list.find(c => c.id === row.collection_id)?.name }}</span>
@@ -48,8 +48,8 @@
         <el-table-column prop="hostname" :label="T('Hostname')" align="center" min-width="150"/>
         <!--        <el-table-column prop="platform" :label="T('Platform')" align="center" min-width="120"/>-->
         <el-table-column prop="tags" :label="T('Tags')" align="center"/>
-        <!--        <el-table-column prop="created_at" label="Created At" align="center"/>-->
-        <!--        <el-table-column prop="updated_at" label="Updated At" align="center"/>-->
+        <!--        <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>-->
+        <!--        <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center"/>-->
         <el-table-column prop="alias" :label="T('Alias')" align="center" min-width="150"/>
         <el-table-column prop="peer.version" :label="T('Version')" align="center" min-width="100"/>
         <el-table-column prop="hash" :label="T('Hash')" align="center" min-width="150" show-overflow-tooltip/>
@@ -73,7 +73,7 @@
                      :total="listRes.total">
       </el-pagination>
     </el-card>
-    <el-dialog v-model="formVisible" width="800" :title="!formData.row_id?T('Create') :T('Update') ">
+    <el-dialog v-model="formVisible" width="800" :title="!formData.row_id?T('Create') :T('Update')" append-to-body>
       <el-form class="dialog-form" ref="form" :model="formData">
         <el-form-item :label="T('AddressBookName')" required prop="collection_id">
           <el-select v-model="formData.collection_id" clearable @change="changeCollectionForUpdate">
@@ -146,13 +146,13 @@
         </el-form-item>
       </el-form>
     </el-dialog>
-    <el-dialog v-model="shareToWebClientVisible" width="900" :close-on-click-modal="false">
+    <el-dialog v-model="shareToWebClientVisible" width="900" :close-on-click-modal="false" append-to-body>
       <shareByWebClient :id="shareToWebClientForm.id"
                         :hash="shareToWebClientForm.hash"
                         @cancel="shareToWebClientVisible=false"
                         @success=""/>
     </el-dialog>
-    <el-dialog v-model="batchEditTagVisible" width="800">
+    <el-dialog v-model="batchEditTagVisible" width="800" append-to-body>
       <el-form :model="batchEditTagsFormData" class="dialog-form">
         <el-form-item :label="T('Tags')" prop="tags">
           <el-select v-model="batchEditTagsFormData.tags" multiple>

@@ -35,7 +35,7 @@
                      :total="listRes.total">
       </el-pagination>
     </el-card>
-    <el-dialog v-model="formVisible" width="800" :title="!formData.id?T('Create') :T('Update') ">
+    <el-dialog v-model="formVisible" width="800" :title="!formData.id?T('Create') :T('Update')" append-to-body>
       <el-form class="dialog-form" ref="form" :model="formData">
         <el-form-item :label="T('Name')" prop="name" required>
           <el-input v-model="formData.name"></el-input>
@@ -46,7 +46,7 @@
         </el-form-item>
       </el-form>
     </el-dialog>
-    <el-dialog v-model="rulesVisible" :title="T('ShareRules')" destroy-on-close>
+    <el-dialog v-model="rulesVisible" :title="T('ShareRules')" destroy-on-close append-to-body>
       <Rule :collection="clickRow" :is_my="1"></Rule>
     </el-dialog>
 

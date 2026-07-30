@@ -508,11 +508,8 @@
   "UserToken": {
     "One": "사용자 토큰"
   },
-  "BatchAddToAB": {
-    "One": "주소록에 일괄 추가"
-  },
-  "BatchEditTags": {
-    "One": "태그 일괄 편집"
+  "BatchEdit": {
+    "One": "일괄 편집"
   },
   "User": {
     "One": "사용자"
@@ -696,9 +693,6 @@
   },
   "AllDevices": {
     "One": "모든 장치"
-  },
-  "SelectAll": {
-    "One": "모두 선택"
   },
   "SelectTargets": {
     "One": "그룹 및 장치 선택"

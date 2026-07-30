@@ -124,6 +124,11 @@ $basicWhite: #ffffff;
 
 .el-form--inline .el-form-item {
   margin-right: 8px;
+  margin-bottom: 0;
+}
+
+.el-dialog__body .el-form-item {
+  margin-right: 8px;
 }
 
 .d-contents {
@@ -311,6 +316,11 @@ html.dark .apple-glass {
   gap: 5px;
 }
 
+.toolbar{
+  margin-bottom: 10px;
+
+}
+
 // ===== Additional Apple-style shared elements =====
 // Secondary gray helper text.
 .hint-text {
@@ -418,22 +428,20 @@ html.dark .el-table {
   font-weight: 500;
   height: 35px;
   // Default / info: subtle light blue.
-  background: var(--apple-blue-subtle);
   color: var(--apple-blue);
   &.el-tag--info {
-    background: var(--apple-blue-subtle);
     color: var(--el-menu-text-color);
   }
+  &.el-tag--primary {
+    color: var(--apple-blue);
+  }
   &.el-tag--success {
-    background: var(--apple-green-subtle);
     color: var(--apple-green);
   }
   &.el-tag--warning {
-    background: var(--apple-orange-subtle);
     color: var(--apple-orange);
   }
   &.el-tag--danger {
-    background: var(--apple-red-subtle);
     color: var(--apple-red);
   }
 }

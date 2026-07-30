@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card class="list-query query-card" shadow="hover">
-      <el-form>
+      <el-form inline>
         <el-form-item :label="T('User')">
           <el-select v-model="listQuery.user_id" clearable>
             <el-option
@@ -11,17 +11,14 @@
                 :value="item.id"
             ></el-option>
           </el-select>
-        </el-form-item>
-        <el-form-item>
-          <el-button type="primary" @click="handlerQuery" class="me-8px">{{ T('Filter') }}</el-button>
-          <el-checkbox v-model="selectAll" @change="toggleSelectAll">{{ T('SelectAll') }}</el-checkbox>
-          <el-button type="danger" @click="toBatchDelete" class="ms-8px">{{ T('BatchDelete') }}</el-button>
+          <el-button type="primary" @click="handlerQuery" class="ms-8px">{{ T('Filter') }}</el-button>
+          <el-button type="danger" @click="toBatchDelete">{{ T('BatchDelete') }}</el-button>
           <el-button type="warning" @click="delExpired">{{ T('DeleteExpired') }}</el-button>
         </el-form-item>
       </el-form>
     </el-card>
     <el-card class="list-body" shadow="hover">
-      <el-table ref="tableRef" class="list-table" :data="listRes.list" v-loading="listRes.loading" border @selection-change="handleSelectionChange">
+      <el-table class="list-table" :data="listRes.list" v-loading="listRes.loading" border @selection-change="handleSelectionChange">
         <el-table-column type="selection" align="center" width="50"/>
         <el-table-column prop="id" :label="T('ID')" align="center" min-width="100"/>
         <el-table-column :label="T('Owner')" align="center">
@@ -68,17 +65,6 @@ import { T } from '@/utils/i18n'
   const { allUsers, getAllUsers } = loadAllUsers()
   getAllUsers()
 
-  const tableRef = ref(null)
-  const selectAll = ref(false)
-  const toggleSelectAll = (val) => {
-    if (tableRef.value) {
-      tableRef.value.toggleAllSelection()
-    }
-    if (!val) {
-      selectAll.value = false
-    }
-  }
-
   const {
     listRes,
     listQuery,
@@ -119,6 +105,4 @@ import { T } from '@/utils/i18n'
 .list-query .el-select {
   --el-select-width: 160px;
 }
-
-
 </style>

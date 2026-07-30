@@ -6,6 +6,7 @@
     :close-on-click-modal="false"
     @update:model-value="$emit('update:visible', $event)"
     @closed="handleClosed"
+    append-to-body
   >
     <!-- Step 1: select duration and payment channel -->
     <template v-if="step === 'select'">

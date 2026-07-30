@@ -9,7 +9,7 @@
     </el-card>
 
     <!-- Create invite-code dialog -->
-    <el-dialog :title="T('CreateInvitation')" v-model="showCreate" width="500px">
+    <el-dialog :title="T('CreateInvitation')" v-model="showCreate" width="500px" append-to-body>
       <el-form ref="createFormRef" :model="createForm" :rules="createRules">
         <el-form-item label="Plan" prop="plan">
           <el-select v-model="createForm.plan" style="width:100%">

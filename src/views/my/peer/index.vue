@@ -28,7 +28,7 @@
           <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
           <el-button type="success" @click="toExport">{{ T('Export') }}</el-button>
           <!--          <el-button type="danger" @click="toBatchDelete">{{ T('BatchDelete') }}</el-button>-->
-          <el-button type="primary" @click="toBatchAddToAB">{{ T('BatchAddToAB') }}</el-button>
+          <el-button type="primary" @click="toBatchAddToAB">{{ T('BatchAdd') }}</el-button>
 
         </el-form-item>
       </el-form>
@@ -81,7 +81,7 @@
                      :total="listRes.total">
       </el-pagination>
     </el-card>
-    <el-dialog v-model="formVisible" :title="T('Information')" width="800" :style="{ textAlign: 'center' }">
+    <el-dialog v-model="formVisible" :title="T('Information')" width="800" :style="{ textAlign: 'center' }" append-to-body>
       <el-form class="dialog-form" ref="form" :model="formData">
         <el-form-item :label="T('ID')" prop="id">
           <el-input v-model="formData.id" disabled></el-input>
@@ -110,7 +110,7 @@
       </el-form>
     </el-dialog>
 
-    <el-dialog v-model="ABFormVisible" width="800" :title="T('Create')">
+    <el-dialog v-model="ABFormVisible" width="800" :title="T('Create')" append-to-body>
       <el-form class="dialog-form" ref="form" :model="ABFormData">
         <el-form-item :label="T('AddressBookName')" required prop="collection_id">
           <el-select v-model="ABFormData.collection_id" clearable @change="changeCollectionForUpdate">
@@ -158,7 +158,7 @@
       </el-form>
     </el-dialog>
 
-    <el-dialog v-model="batchABFormVisible" width="800" :title="T('Create')">
+    <el-dialog v-model="batchABFormVisible" width="800" :title="T('Create')" append-to-body>
       <el-form class="dialog-form" ref="form" :model="batchABFormData">
         <el-form-item :label="T('AddressBookName')" required prop="collection_id">
           <el-select v-model="batchABFormData.collection_id" clearable @change="changeCollectionForBatchCreateAB">

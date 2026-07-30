@@ -5,8 +5,8 @@
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <span>{{ T('ConfigFile') }}</span>
           <div>
-            <el-button size="small" @click="reset" :disabled="loading">{{ T('Reset') }}</el-button>
-            <el-button size="small" type="primary" @click="save" :loading="saving">{{ T('Save') }}</el-button>
+            <el-button @click="reset" :disabled="loading">{{ T('Reset') }}</el-button>
+            <el-button type="primary" @click="save" :loading="saving">{{ T('Save') }}</el-button>
           </div>
         </div>
       </template>

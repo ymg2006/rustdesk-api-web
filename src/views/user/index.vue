@@ -18,7 +18,7 @@
         <el-table-column prop="username" :label="T('Username')" align="center"/>
         <el-table-column prop="email" :label="T('Email')" align="center"/>
         <el-table-column prop="nickname" :label="T('Nickname')" align="center"/>
-        <el-table-column prop="expired_at" :label="T('ExpiredAt')" min-width="180" align="center">
+        <el-table-column prop="expired_at" :label="T('ExpiredAt')" min-width="170" align="center">
           <template #default="{row}">
             <span v-if="row.expired_at > 0 && row.expired_at * 1000 < Date.now()"
                   style="color: red; font-weight: bold;">{{ formatDate(row.expired_at) }}</span>
@@ -26,7 +26,7 @@
             <span v-else>-</span>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Group')" align="center">
+        <el-table-column :label="T('Group')" align="center" min-width="125">
           <template #default="{row}">
             <span v-if="row.group_id"> <el-tag>{{ listRes.groups?.find(g => g.id === row.group_id)?.name }} </el-tag> </span>
             <span v-else> - </span>
@@ -42,8 +42,8 @@
           </template>
         </el-table-column>
         <el-table-column prop="remark" :label="T('Remark')" align="center"/>
-        <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>
-        <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center"/>
+        <el-table-column prop="created_at" :label="T('CreatedAt')" align="center" min-width="170"/>
+        <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center" min-width="170"/>
         <el-table-column :label="T('Actions')" align="center" width="600" fixed="right">
           <template #default="{row}">
             <el-button @click="toTag(row)" size="small">{{ T('UserTags') }}</el-button>

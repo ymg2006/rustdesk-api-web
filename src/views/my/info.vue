@@ -13,7 +13,7 @@
           {{ userStore.email }}
         </p>
         <p class="hero-role">
-          <el-tag type="primary" size="small" effect="dark" round>{{T('Administrator')}}</el-tag>
+          <el-tag type="primary" size="small" round>{{T('Administrator')}}</el-tag>
         </p>
       </div>
       <div class="hero-actions">
@@ -115,7 +115,7 @@
     </div>
 
     <!-- Keep the dialog unchanged. -->
-    <el-dialog v-model="setupVisible" :title="T('MfaSetup')" width="480px" class="glass-dialog">
+    <el-dialog v-model="setupVisible" :title="T('MfaSetup')" width="480px" class="glass-dialog" append-to-body>
       <div v-if="setupData">
         <p>{{ T('MfaScanTip') }}</p>
         <div style="text-align:center;margin:12px 0">
@@ -140,7 +140,7 @@
       </template>
     </el-dialog>
 
-    <el-dialog v-model="recoveryVisible" :title="T('MfaRecoveryCodes')" width="480px" class="glass-dialog">
+    <el-dialog v-model="recoveryVisible" :title="T('MfaRecoveryCodes')" width="480px" class="glass-dialog" append-to-body>
       <el-alert :title="T('MfaRecoveryTip')" type="warning" :closable="false" show-icon />
       <ul style="margin-top:12px;font-family:monospace;font-size:14px;line-height:1.8;padding-left:20px">
         <li v-for="(c, i) in recoveryCodes" :key="i">{{ c }}</li>

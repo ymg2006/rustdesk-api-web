@@ -61,8 +61,8 @@
           <el-table-column prop="hostname" :label="T('Hostname')" align="center" min-width="150"/>
           <el-table-column prop="platform" :label="T('Platform')" align="center" min-width="120"/>
           <el-table-column prop="tags" :label="T('Tags')" align="center"/>
-          <!--        <el-table-column prop="created_at" label="Created At" align="center"/>-->
-          <!--        <el-table-column prop="updated_at" label="Updated At" align="center"/>-->
+          <!--        <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>-->
+          <!--        <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center"/>-->
           <el-table-column prop="alias" :label="T('Alias')" align="center" min-width="150"/>
           <el-table-column prop="hash" :label="T('Hash')" align="center" min-width="150" show-overflow-tooltip/>
           <el-table-column :label="T('Actions')" align="center" width="500" fixed="right">
@@ -88,7 +88,7 @@
     </el-main>
 
 
-    <el-dialog v-model="formVisible" width="800" :title="!formData.row_id?T('Create') :T('Update') ">
+    <el-dialog v-model="formVisible" width="800" :title="!formData.row_id?T('Create') :T('Update')" append-to-body>
       <el-form class="dialog-form" ref="form" :model="formData">
         <el-form-item :label="T('ID')" prop="id" required>
           <el-input v-model="formData.id"></el-input>
@@ -155,7 +155,7 @@
         </el-form-item>
       </el-form>
     </el-dialog>
-    <el-dialog v-model="shareToWebClientVisible" width="900" :close-on-click-modal="false">
+    <el-dialog v-model="shareToWebClientVisible" width="900" :close-on-click-modal="false" append-to-body>
       <shareByWebClient :id="shareToWebClientForm.id"
                         :hash="shareToWebClientForm.hash"
                         @cancel="shareToWebClientVisible=false"

@@ -15,7 +15,7 @@
         <el-button @click="showForm('delete')" type="danger">{{ T('Delete') }}</el-button>
       </el-form-item>
     </el-form>
-    <el-dialog v-model="form.form_visible" :title="form.form_type">
+    <el-dialog v-model="form.form_visible" :title="form.form_type" append-to-body>
       <el-form>
         <el-form-item :label="T('Ip')">
           <el-input v-model="form.form_input"></el-input>

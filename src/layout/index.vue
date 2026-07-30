@@ -96,6 +96,7 @@ html.dark .app-header {
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   display: flex;
   padding: 0;
+  overflow-x: auto;
 }
 
 html.dark .header-tags {

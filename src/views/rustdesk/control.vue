@@ -55,7 +55,7 @@
             </el-table-column>
           </el-table>
 
-          <el-dialog v-model="formVisible">
+          <el-dialog v-model="formVisible" append-to-body>
             <el-form>
               <el-form-item :label="T('Cmd')">
                 <el-input v-model="formData.cmd"></el-input>
@@ -82,7 +82,7 @@
             </el-form>
           </el-dialog>
 
-          <el-dialog :title="T('SendCmd')" v-model="showCmdForm">
+          <el-dialog :title="T('SendCmd')" v-model="showCmdForm" append-to-body>
             <el-form :disabled="!canSendCmd(customCmd.target)">
               <el-form-item :label="T('Cmd')">
                 <el-input v-model="customCmd.cmd"></el-input>

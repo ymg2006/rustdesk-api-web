@@ -508,11 +508,8 @@
   "UserToken": {
     "One": "用户Token"
   },
-  "BatchAddToAB": {
-    "One": "批量添加到地址簿"
-  },
-  "BatchEditTags": {
-    "One": "批量编辑标签"
+  "BatchEdit": {
+    "One": "批量编辑"
   },
   "User": {
     "One": "用户"
@@ -696,9 +693,6 @@
   },
   "AllDevices": {
     "One": "全部设备"
-  },
-  "SelectAll": {
-    "One": "全选"
   },
   "SelectTargets": {
     "One": "指定分组和设备"

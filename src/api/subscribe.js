@@ -111,7 +111,7 @@ export function adminRevokeCode (id) {
  */
 export function adminDeleteCode (id) {
   return request({
-    url: `/invite-codes/${id}`,
+    url: `/invite-codes/${id}/delete`,
     method: 'delete',
   })
 }

@@ -6,6 +6,7 @@
     :close-on-click-modal="false"
     @update:model-value="$emit('update:visible', $event)"
     @closed="handleClosed"
+    append-to-body
   >
     <el-form label-position="top">
       <el-form-item :label="T('SubscribeInputCode')">
@@ -120,7 +121,7 @@ const handleClosed = () => {
 .result-detail {
   margin-top: 12px;
   padding: 12px;
-  background: #f5f7fa;
+  background: var(--el-fill-color);
   border-radius: 6px;
 }
 .result-detail p {

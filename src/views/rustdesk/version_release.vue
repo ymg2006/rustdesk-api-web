@@ -88,17 +88,17 @@
           </template>
         </el-table-column>
       </el-table>
-      <el-pagination
-        v-if="listRes.total > 0"
-        background
-        layout="prev, pager, next"
-        :total="listRes.total"
-        :page-size="listQuery.page_size"
-        v-model:current-page="listQuery.page"
-        @current-change="getList"
-      />
     </el-card>
-
+    <el-card class="list-page" shadow="hover">
+      <el-pagination background
+                     layout="prev, pager, next, sizes, jumper"
+                     :page-sizes="[10,20,50,100]"
+                     v-model:page-size="listQuery.page_size"
+                     v-model:current-page="listQuery.page"
+                     :total="listRes.total"
+                     @current-change="getList">
+      </el-pagination>
+    </el-card>
   </div>
 </template>
 

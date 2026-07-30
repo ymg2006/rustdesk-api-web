@@ -508,11 +508,8 @@
   "UserToken": {
     "One": "使用者 Token"
   },
-  "BatchAddToAB": {
-    "One": "批量新增到地址簿"
-  },
-  "BatchEditTags": {
-    "One": "批量編輯標籤"
+  "BatchEdit": {
+    "One": "批量編輯"
   },
   "User": {
     "One": "使用者"
@@ -696,9 +693,6 @@
   },
   "AllDevices": {
     "One": "所有裝置"
-  },
-  "SelectAll": {
-    "One": "全選"
   },
   "SelectTargets": {
     "One": "選擇群組與裝置"

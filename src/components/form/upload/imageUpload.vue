@@ -27,16 +27,16 @@
         </div>
       </template>
     </el-upload>
-    <el-dialog v-model="showPreview">
+    <el-dialog v-model="showPreview" append-to-body>
       <el-image :src="showImage" class="preview-image" fit="contain"></el-image>
     </el-dialog>
   </div>
 </template>
 <script>
-  import { defineComponent, ref, computed, reactive, unref, toRefs } from 'vue'
-import { Plus, ZoomIn, Delete, ArrowLeft, ArrowRight, Check } from '@element-plus/icons'
-import { useOss } from '@/components/form/upload/oss'
-import { useLocal } from '@/components/form/upload/local'
+  import { defineComponent, ref, computed, reactive, unref, toRefs } from 'vue';
+import { Plus, ZoomIn, Delete, ArrowLeft, ArrowRight, Check } from '@element-plus/icons';
+import { useOss } from '@/components/form/upload/oss';
+import { useLocal } from '@/components/form/upload/local';
 
   export default defineComponent({
     name: 'imageUpload',

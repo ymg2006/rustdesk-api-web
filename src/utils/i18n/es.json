@@ -508,11 +508,8 @@
   "UserToken": {
     "One": "Token del usuario"
   },
-  "BatchAddToAB": {
-    "One": "Agregar en bloque a la libreta de direcciones"
-  },
-  "BatchEditTags": {
-    "One": "Editar etiquetas en bloque"
+  "BatchEdit": {
+    "One": "Edición por lotes"
   },
   "User": {
     "One": "Usuario"
@@ -696,9 +693,6 @@
   },
   "AllDevices": {
     "One": "Todos los dispositivos"
-  },
-  "SelectAll": {
-    "One": "Seleccionar todo"
   },
   "SelectTargets": {
     "One": "Seleccionar grupos y dispositivos"

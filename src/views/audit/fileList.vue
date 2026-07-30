@@ -80,7 +80,7 @@
                      :total="listRes.total">
       </el-pagination>
     </el-card>
-    <el-dialog v-model="allFilesVisible" :title="T('File')">
+    <el-dialog v-model="allFilesVisible" :title="T('File')" append-to-body>
       <el-table :data="showFiles" max-height="800px">
         <el-table-column type="index" :label="T('IndexNum')" min-width="120" align="center"></el-table-column>
         <el-table-column prop="0" :label="T('FileName')" align="center"></el-table-column>

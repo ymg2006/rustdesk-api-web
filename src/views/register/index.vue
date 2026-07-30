@@ -27,7 +27,7 @@
             </template>
           </el-input>
           <div style="margin-top:4px; font-size:12px; color:#909399;">
-            {{ T('Administrator') }}：ymg2006@foxmail.com
+            {{ T('Administrator') }}：administrator@site.com
           </div>
         </el-form-item>
         <el-form-item label="">
@@ -86,7 +86,6 @@ import { useAppStore } from '@/store/app'
   })
   const f = ref(null)
   const submit = async () => {
-    // Invitation mode requires an authorization code.
     if (inviteOnly.value && !form.invite_code) {
       ElMessage.warning(T('InviteCodeRequired'))
       return

@@ -514,11 +514,8 @@
   "UserToken": {
     "One": "User Token"
   },
-  "BatchAddToAB": {
-    "One": "Batch Add To Address Book"
-  },
-  "BatchEditTags": {
-    "One": "Batch Edit Tags"
+  "BatchEdit": {
+    "One": "Batch Edit"
   },
   "User": {
     "One": "User"
@@ -702,9 +699,6 @@
   },
   "AllDevices": {
     "One": "All Devices"
-  },
-  "SelectAll": {
-    "One": "Select All"
   },
   "SelectTargets": {
     "One": "Select Groups & Devices"
@@ -1076,10 +1070,10 @@
     "One": "Tip"
   },
   "Invitation": {
-    "One": "Authorization Code"
+    "One": "Coupon"
   },
   "CreateInvitation": {
-    "One": "Create Authorization Code"
+    "One": "Create Coupon"
   },
   "CopyInviteLink": {
     "One": "Copy Invite Link"
@@ -1350,7 +1344,7 @@
     "One": "Pro · {days}d"
   },
   "AdminInviteCode": {
-    "One": "Authorization Code"
+    "One": "Coupon"
   },
   "SubscribeInviteCodes": {
     "One": "Auth Codes"
