@@ -292,12 +292,22 @@ const handleExport = async () => {
       status: filter.status || undefined,
       plan: filter.plan || undefined,
     })
+    if (!(blob instanceof Blob) || blob.size === 0) {
+      throw new Error('Empty export response')
+    }
+
     const url = window.URL.createObjectURL(blob)
-    const a = document.createElement('a')
-    a.href = url
-    a.download = `invite_codes_${new Date().getTime()}.csv`
-    a.click()
-    window.URL.revokeObjectURL(url)
+    const anchor = document.createElement('a')
+
+    try {
+      anchor.href = url
+      anchor.download = `invite_codes_${Date.now()}.csv`
+      document.body.appendChild(anchor)
+      anchor.click()
+    } finally {
+      anchor.remove()
+      window.URL.revokeObjectURL(url)
+    }
     ElMessage.success(T('ExportSuccess'))
   } catch (_) {
     ElMessage.error(T('ExportFailed'))

@@ -104,28 +104,25 @@ import { getCode, removeCode } from '@/utils/auth'
   const useRecovery = ref(false)
   const mfaLoading = ref(false)
   const login = async () => {
-    const res = await userStore.login(form).catch(e => e)
-    if (!res.code) {
+    try {
+      await userStore.login(form)
       ElMessage.success(T('LoginSuccess'))
       router.push({ path: redirect || '/home', replace: true })
-      return
-    }
-    if (res.code === 110) {
-      // need captcha
-      loadCaptcha()
-    } else if (res.code === 113) {
-      // need MFA second step
-      mfaToken.value = res.data.mfa_token
-      // Temporarily store in sessionStorage to prevent mfa_token loss during session re-render/errors
-      if (res.data.mfa_token) {
-        sessionStorage.setItem('mfa_token', res.data.mfa_token)
+    } catch (error) {
+      if (error?.code === 110) {
+        // need captcha
+        loadCaptcha()
+      } else if (error?.code === 113) {
+        // need MFA second step
+        mfaToken.value = error.data.mfa_token
+        // Temporarily store in sessionStorage to prevent mfa_token loss during session re-render/errors
+        if (error.data.mfa_token) {
+          sessionStorage.setItem('mfa_token', error.data.mfa_token)
+        }
+        step.value = 'mfa'
+        mfaInput.value = ''
+        useRecovery.value = false
       }
-      step.value = 'mfa'
-      mfaInput.value = ''
-      useRecovery.value = false
-    } else if (res.code === 101) {
-      // Show backend error messages, such as account expired or user disabled
-      ElMessage.error(res.message || T('LoginFailed'))
     }
   }
   const submitMfa = async () => {

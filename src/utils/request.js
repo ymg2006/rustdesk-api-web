@@ -10,6 +10,65 @@ const service = axios.create({
   timeout: 50000, // request timeout
 })
 
+function showBusinessError (res) {
+  ElMessage({
+    message: res?.message || 'error',
+    type: 'error',
+    duration: 5 * 1000,
+  })
+}
+
+function redirectToLogin () {
+  removeToken()
+  // Session invalid (not logged in / Cookie expired / fingerprint mismatch): redirect to login.
+  // Do not call window.location.reload(): protected pages can get stuck in a 403 reload loop.
+  import('@/router').then(m => {
+    const r = m.default
+    const cur = r.currentRoute.value
+    if (cur.path !== '/login' && cur.path !== '/register') {
+      r.push(`/login?redirect=${encodeURIComponent(cur.fullPath)}`)
+    }
+  }).catch(() => {
+    if (!window.location.hash.includes('/login') && window.location.pathname !== '/login') {
+      window.location.href = '/#/login'
+    }
+  })
+}
+
+function handleBusinessResponse (res) {
+  if (Array.isArray(res)) {
+    return res
+  }
+
+  if (res?.code !== 0) {
+    showBusinessError(res)
+
+    if (res?.code === 403) {
+      redirectToLogin()
+    }
+
+    return Promise.reject(res)
+  }
+
+  return res
+}
+
+async function decodeBinaryJson (data, responseType) {
+  let text
+
+  if (responseType === 'blob') {
+    text = await data.text()
+  } else {
+    text = new TextDecoder('utf-8').decode(data)
+  }
+
+  try {
+    return JSON.parse(text)
+  } catch {
+    throw new Error('Invalid JSON response')
+  }
+}
+
 // request interceptor
 service.interceptors.request.use(
   config => {
@@ -42,44 +101,25 @@ service.interceptors.response.use(
    * Here is just an example
    * You can also judge the status by HTTP Status Code
    */
-  response => {
-    const res = response.data
+  async response => {
+    const responseType = response.config.responseType
+    const isBinary =
+      responseType === 'blob' ||
+      responseType === 'arraybuffer'
 
-    // for the endpoint /login-options
-    // I'm not sure if this is a good idea
-    if (Array.isArray(res)) {
-      return res;
-    }
+    if (isBinary) {
+      const contentType =
+        response.headers?.['content-type']?.toLowerCase() || ''
 
-    // if the custom code is not 20000, it is judged as an error.
-    if (res.code !== 0) {
-      ElMessage({
-        message: res.message || 'error',
-        type: 'error',
-        duration: 5 * 1000,
-      })
-
-      if (res.code === 403) {
-        removeToken()
-        // Session invalid (not logged in / Cookie expired / fingerprint mismatch): redirect to login.
-        // Do not call window.location.reload(): protected pages can get stuck in a 403 reload loop.
-        // This appears as repeated login-page refreshes, and in-flight requests are aborted with "Request aborted".
-        import('@/router').then(m => {
-          const r = m.default
-          const cur = r.currentRoute.value
-          if (cur.path !== '/login' && cur.path !== '/register') {
-            r.push(`/login?redirect=${encodeURIComponent(cur.fullPath)}`)
-          }
-        }).catch(() => {
-          if (!window.location.hash.includes('/login') && window.location.pathname !== '/login') {
-            window.location.href = '/#/login'
-          }
-        })
+      if (contentType.includes('application/json')) {
+        const json = await decodeBinaryJson(response.data, responseType)
+        return handleBusinessResponse(json)
       }
-      return Promise.reject(res)
-    } else {
-      return res
+
+      return response.data
     }
+
+    return handleBusinessResponse(response.data)
   },
   error => {
     if (error.code === 'ECONNABORTED'

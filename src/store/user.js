@@ -24,15 +24,14 @@ export const useUserStore = defineStore({
       // Call backend /logout to clear the HttpOnly Cookie and user_token record
       try {
         await request({ url: '/logout', method: 'post' })
-      } catch (e) {
-        // Continue clearing local state even if the request fails
+      } finally {
+        removeToken()
+        removeCode()
+        localStorage.removeItem('user_info')
+
+        useRouteStore().resetRoutes()
+        this.$reset()
       }
-      removeToken()
-      removeCode()
-      this.$patch({
-        name: '',
-        role: {},
-      })
     },
 
     saveUserData (userData) {
@@ -47,15 +46,17 @@ export const useUserStore = defineStore({
     },
 
     async login (form) {
-      const res = await login(form).catch(e => e)
-      if (!res.code) {
-        useAppStore().loadConfig()
-        const userData = res.data
-        this.saveUserData(userData)
-        return userData
-      } else {
-        return Promise.reject(res)
+      const res = await login(form)
+
+      useAppStore().loadConfig()
+
+      const userData = res.data
+      if (!userData?.username) {
+        throw new Error('Invalid login response')
       }
+      this.saveUserData(userData)
+
+      return userData
     },
     async info () {
       const res = await current().catch(_ => false)
