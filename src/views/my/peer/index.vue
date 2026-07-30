@@ -2,9 +2,9 @@
   <div>
     <el-card class="list-query" shadow="hover">
       <div style="margin-bottom:12px;">
-        <el-button :type="quickFilter === 'all' ? 'primary' : 'default'" size="small" @click="setQuickFilter('all')">All</el-button>
-        <el-button :type="quickFilter === 'online' ? 'success' : 'default'" size="small" @click="setQuickFilter('online')">Online</el-button>
-        <el-button :type="quickFilter === 'offline' ? 'danger' : 'default'" size="small" @click="setQuickFilter('offline')">Offline</el-button>
+        <el-button :type="quickFilter === 'all' ? 'primary' : 'default'" size="small" @click="setQuickFilter('all')">{{ T('All') }}</el-button>
+        <el-button :type="quickFilter === 'online' ? 'success' : 'default'" size="small" @click="setQuickFilter('online')">{{ T('Online') }}</el-button>
+        <el-button :type="quickFilter === 'offline' ? 'danger' : 'default'" size="small" @click="setQuickFilter('offline')">{{ T('Offline') }}</el-button>
       </div>
       <el-form inline>
         <el-form-item :label="T('ID')">

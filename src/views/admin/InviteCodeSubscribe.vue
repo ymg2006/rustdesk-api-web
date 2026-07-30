@@ -23,7 +23,7 @@
       </el-form>
     </el-card>
     <el-card shadow="hover" class="list-card query-card">
-      <el-table :data="list" v-loading="loading" border stripe>
+      <el-table :data="list" v-loading="loading" border>
         <el-table-column prop="id" :label="T('ID')" min-width="60" align="center" />
         <el-table-column prop="code" :label="T('InviteCode')" min-width="280" align="center">
           <template #default="{ row }">
@@ -53,7 +53,7 @@
             {{ formatTime(row.expire_at) }}
           </template>
         </el-table-column>
-        <el-table-column prop="bound_order_id" label="Order No." min-width="180" align="center">
+        <el-table-column prop="bound_order_id" :label="T('OrderNo')" min-width="180" align="center">
           <template #default="{ row }">
             <span v-if="row.bound_order_id" class="order-id">{{ row.bound_order_id }}</span>
             <span v-else>-</span>
@@ -64,7 +64,7 @@
             {{ formatTime(row.created_at) }}
           </template>
         </el-table-column>
-        <el-table-column prop="remark" label="Remark" min-width="120" align="center">
+        <el-table-column prop="remark" :label="T('Remark')" min-width="120" align="center">
           <template #default="{ row }">
             <span class="remark-text">{{ row.remark || '-' }}</span>
           </template>
@@ -86,7 +86,7 @@
               size="small"
               @click="handleDelete(row.id)"
             >
-              Delete
+              {{ T('Delete') }}
             </el-button>
             <span v-else>-</span>
           </template>
@@ -106,9 +106,9 @@
     </el-card>
 
     <!-- Manual generation dialog -->
-    <el-dialog v-model="showCreate" title="Generate Invite Code" width="520px" append-to-body>
+    <el-dialog v-model="showCreate" :title="T('GenerateInviteCode')" width="520px" append-to-body>
       <el-form label-position="top">
-        <el-form-item label="Duration (auto-fills days after selection)">
+        <el-form-item :label="T('DurationAutoFillTip')">
           <div class="plan-grid">
             <div
               v-for="p in planOptions"
@@ -129,11 +129,11 @@
             </div>
           </div>
         </el-form-item>
-        <el-form-item label="Valid Days">
+        <el-form-item :label="T('ValidDays')">
           <el-input-number v-model="createForm.expire_days" :min="1" :max="99999" style="width:100%" />
         </el-form-item>
-        <el-form-item label="Remark">
-          <el-input v-model="createForm.remark" type="textarea" :rows="2" placeholder="Optional" />
+        <el-form-item :label="T('Remark')">
+          <el-input v-model="createForm.remark" type="textarea" :rows="2" :placeholder="T('Optional')" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -143,27 +143,27 @@
     </el-dialog>
 
     <!-- Batch generation dialog -->
-    <el-dialog v-model="showBatchCreate" title="Batch Generate Invite Codes" width="480px" append-to-body>
+    <el-dialog v-model="showBatchCreate" :title="T('BatchGenerateInviteCodes')" width="480px" append-to-body>
       <el-form label-position="top">
-        <el-form-item label="Quantity">
+        <el-form-item :label="T('Quantity')">
           <el-input-number v-model="batchForm.count" :min="1" :max="200" style="width:100%" />
         </el-form-item>
-        <el-form-item label="Plan">
+        <el-form-item :label="T('Plan')">
           <el-select v-model="batchForm.plan" style="width:100%">
             <el-option label="pro" value="pro" />
           </el-select>
         </el-form-item>
-        <el-form-item label="Valid Days">
+        <el-form-item :label="T('ValidDays')">
           <el-input-number v-model="batchForm.expire_days" :min="1" :max="3650" style="width:100%" />
         </el-form-item>
-        <el-form-item label="Remark">
-          <el-input v-model="batchForm.remark" type="textarea" :rows="2" placeholder="Optional" />
+        <el-form-item :label="T('Remark')">
+          <el-input v-model="batchForm.remark" type="textarea" :rows="2" :placeholder="T('Optional')" />
         </el-form-item>
       </el-form>
       <div v-if="batchResult.length > 0" style="margin-top:12px;">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
-          <strong>Generated ({{ batchResult.length }})</strong>
-          <el-button size="small" type="primary" @click="copyAllCodes">Copy All</el-button>
+          <strong>{{ T('GeneratedCount', { count: batchResult.length }) }}</strong>
+          <el-button size="small" type="primary" @click="copyAllCodes">{{ T('CopyAll') }}</el-button>
         </div>
         <div style="max-height:200px;overflow-y:auto;border:1px solid #ebeef5;border-radius:4px;padding:8px;">
           <el-tag v-for="item in batchResult" :key="item.code" style="margin:3px;font-family:monospace;font-size:12px;" type="info">
@@ -172,8 +172,8 @@
         </div>
       </div>
       <template #footer>
-        <el-button @click="showBatchCreate = false">Cancel</el-button>
-        <el-button type="primary" :loading="batchLoading" @click="submitBatchCreate">Generate</el-button>
+        <el-button @click="showBatchCreate = false">{{ T('Cancel') }}</el-button>
+        <el-button type="primary" :loading="batchLoading" @click="submitBatchCreate">{{ T('Generate') }}</el-button>
       </template>
     </el-dialog>
   </div>
@@ -209,7 +209,7 @@ const statusTag = (s) => {
   return map[s] || 'info'
 }
 const statusText = (s) => {
-  const map = { unused: 'Unused', used: 'Used', revoked: 'Revoked' }
+  const map = { unused: T('StatusUnused'), used: T('StatusUsed'), revoked: T('StatusRevoked') }
   return map[s] || s
 }
 
@@ -328,10 +328,10 @@ const submitBatchCreate = async () => {
       }
     }
     batchResult.value = codes
-    ElMessage.success(`Successfully generated ${codes.length} invite codes`)
+    ElMessage.success(T('InviteCodesGeneratedSuccess', { count: codes.length }))
     getList()
   } catch (_) {
-    ElMessage.error('Batch generation failed')
+    ElMessage.error(T('BatchGenerationFailed'))
   } finally {
     batchLoading.value = false
   }
@@ -342,13 +342,13 @@ const handleDelete = async (id) => {
   try {
     const res = await adminDeleteCode(id)
     if (!res.code) {
-      ElMessage.success('Operation Success')
+      ElMessage.success(T('OperationSuccess'))
       getList()
     } else {
-      ElMessage.error(res.message ||'Operation failed')
+      ElMessage.error(res.message || T('OperationFailed'))
     }
   } catch (_) {
-    ElMessage.error('Operation failed')
+    ElMessage.error(T('OperationFailed'))
   } finally {
     deletingId.value = 0
   }
@@ -372,11 +372,11 @@ onMounted(async () => {
     }
   } catch (_) {
     planOptions.value = [
-      { key: '1m', name: '1 Month', price_cents: 1000, period_days: 30 },
-      { key: '3m', name: '3 Months', price_cents: 2800, period_days: 90 },
-      { key: '6m', name: '6 Months', price_cents: 5000, period_days: 180 },
-      { key: '12m', name: '12 Months', price_cents: 8800, period_days: 365 },
-      { key: 'forever', name: 'Permanent', price_cents: 0, period_days: 99999 }
+      { key: '1m', name: T('OneMonth'), price_cents: 1000, period_days: 30 },
+      { key: '3m', name: T('ThreeMonths'), price_cents: 2800, period_days: 90 },
+      { key: '6m', name: T('SixMonths'), price_cents: 5000, period_days: 180 },
+      { key: '12m', name: T('TwelveMonths'), price_cents: 8800, period_days: 365 },
+      { key: 'forever', name: T('Permanent'), price_cents: 0, period_days: 99999 }
     ]
   }
 })

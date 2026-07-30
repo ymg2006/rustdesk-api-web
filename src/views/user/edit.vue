@@ -25,8 +25,8 @@
       </el-form-item>
       <el-form-item :label="T('Role')" prop="role">
         <el-select v-model="form.role" style="width:100%">
-          <el-option label="Regular User" value="user" />
-          <el-option label="Administrator" value="admin" />
+          <el-option :label="T('RegularUser')" value="user" />
+          <el-option :label="T('Administrator')" value="admin" />
         </el-select>
       </el-form-item>
       <el-form-item :label="T('Status')" prop="status">
@@ -46,7 +46,7 @@
           <el-button size="small" @click="setExpiredAt(90)">3 Months</el-button>
           <el-button size="small" @click="setExpiredAt(365)">1 Year</el-button>
           <el-button size="small" @click="setExpiredAt(3650)">10 Years</el-button>
-          <el-button size="small" @click="setExpiredAt(-1)">Permanent</el-button>
+          <el-button size="small" @click="setExpiredAt(-1)">{{ T('Permanent') }}</el-button>
         </div>
       </el-form-item>
       <el-form-item :label="T('Remark')" prop="remark">

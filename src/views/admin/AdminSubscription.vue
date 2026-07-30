@@ -11,7 +11,7 @@
           </el-select>
         </el-form-item>
         <el-form-item :label="T('Keyword')">
-          <el-input v-model="filter.keyword" placeholder="User ID/Username" clearable style="width:200px" />
+          <el-input v-model="filter.keyword" :placeholder="T('UserIdUsername')" clearable style="width:200px" />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="getList">{{ T('Filter') }}</el-button>
@@ -20,30 +20,30 @@
     </el-card>
 
     <el-card shadow="hover" class="list-card query-card">
-      <el-table :data="list" v-loading="loading" border stripe>
+      <el-table :data="list" v-loading="loading" border>
         <el-table-column prop="id" :label="T('ID')" min-width="60" align="center" />
-        <el-table-column prop="username" label="Username" min-width="150" />
-        <el-table-column prop="subscription_plan" label="Plan" min-width="80" align="center">
+        <el-table-column prop="username" :label="T('Username')" min-width="150" />
+        <el-table-column prop="subscription_plan" :label="T('Plan')" min-width="80" align="center">
           <template #default="{ row }">
             <el-tag size="small">{{ row.subscription_plan || '-' }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="Subscription Status" min-width="110" align="center">
+        <el-table-column :label="T('SubscriptionStatus')" min-width="110" align="center">
           <template #default="{ row }">
             <el-tag :type="statusType(row.status)" size="small">
-              {{ row.status === 'permanent' ? 'Permanent' : row.status }}
+              {{ subscriptionStatus(row.status) }}
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="Days Left" min-width="100" align="center">
+        <el-table-column :label="T('DaysLeft')" min-width="100" align="center">
           <template #default="{ row }">
-            <span v-if="row.days_left === -1" style="color:#67c23a;font-weight:600">Permanent</span>
+            <span v-if="row.days_left === -1" style="color:#67c23a;font-weight:600">{{ T('Permanent') }}</span>
             <span v-else :style="{ color: row.days_left > 0 && row.days_left <= 7 ? '#f56c6c' : '#303133' }">
-              {{ row.days_left > 0 ? row.days_left + ' days' : '-' }}
+              {{ row.days_left > 0 ? T('DaysCount', { count: row.days_left }) : '-' }}
             </span>
           </template>
         </el-table-column>
-        <el-table-column label="Expiration Time" min-width="170" align="center">
+        <el-table-column :label="T('ExpirationTime')" min-width="170" align="center">
           <template #default="{ row }">
             <span v-if="row.days_left === -1" style="color:#67c23a">—</span>
             <span v-else>{{ formatTime(row.subscription_expire_at) }}</span>
@@ -52,7 +52,7 @@
         <el-table-column :label="T('Action')" min-width="160" align="center" fixed="right">
           <template #default="{ row }">
             <el-button type="primary" size="small" @click="showExtend(row)">
-              Extend
+              {{ T('Extend') }}
             </el-button>
           </template>
         </el-table-column>
@@ -71,12 +71,12 @@
     </el-card>
 
     <!-- Extend subscription dialog -->
-    <el-dialog v-model="extendVisible" title="Extend Subscription" width="440px" :close-on-click-modal="false" append-to-body>
+    <el-dialog v-model="extendVisible" :title="T('ExtendSubscription')" width="440px" :close-on-click-modal="false" append-to-body>
       <el-form label-position="top">
-        <el-form-item label="User">
+        <el-form-item :label="T('User')">
           <el-input :model-value="extendUser?.username" disabled />
         </el-form-item>
-        <el-form-item label="Extension Duration">
+        <el-form-item :label="T('ExtensionDuration')">
           <div class="plan-grid">
             <div
               v-for="p in planOptions"
@@ -94,8 +94,8 @@
         </el-form-item>
       </el-form>
       <template #footer>
-        <el-button @click="extendVisible = false">Cancel</el-button>
-        <el-button type="primary" :loading="extending" @click="handleExtend">Confirm Extension</el-button>
+        <el-button @click="extendVisible = false">{{ T('Cancel') }}</el-button>
+        <el-button type="primary" :loading="extending" @click="handleExtend">{{ T('ConfirmExtension') }}</el-button>
       </template>
     </el-dialog>
   </div>
@@ -131,6 +131,15 @@ const statusType = (s) => {
   if (s === 'none') return 'info'
   return ''
 }
+const subscriptionStatus = (s) => {
+  const map = {
+    active: T('SubscribeActive'),
+    permanent: T('SubscribePermanent'),
+    expired: T('SubscribeExpired'),
+    none: T('SubscribeNone'),
+  }
+  return map[s] || s
+}
 
 const formatTime = (t) => {
   if (!t) return '-'
@@ -153,7 +162,7 @@ const getList = async () => {
     list.value = res.data.list || []
     total.value = res.data.total || 0
   } catch (e) {
-    ElMessage.error('Failed to get subscription list')
+    ElMessage.error(T('SubscriptionListLoadFailed'))
   } finally {
     loading.value = false
   }
@@ -177,14 +186,14 @@ const handleExtend = async () => {
       plan_key: extendSelectedKey.value,
     })
     if (res.code) {
-      ElMessage.error(res.message || 'Extension failed')
+      ElMessage.error(res.message || T('ExtensionFailed'))
       return
     }
-    ElMessage.success(`Extended subscription for user ${extendUser.value.username} by ${opt.name}`)
+    ElMessage.success(T('SubscriptionExtendedSuccess', { username: extendUser.value.username, duration: opt.name }))
     extendVisible.value = false
     await getList()
   } catch (e) {
-    ElMessage.error('Extension failed')
+    ElMessage.error(T('ExtensionFailed'))
   } finally {
     extending.value = false
   }
@@ -200,11 +209,11 @@ onMounted(async () => {
     }
   } catch (_) {
     planOptions.value = [
-      { key: '1m', name: '1 Month', price_cents: 1000, period_days: 30 },
-      { key: '3m', name: '3 Months', price_cents: 2800, period_days: 90 },
-      { key: '6m', name: '6 Months', price_cents: 5000, period_days: 180 },
-      { key: '12m', name: '12 Months', price_cents: 8800, period_days: 365 },
-      { key: 'forever', name: 'Permanent', price_cents: null, period_days: 0 },
+      { key: '1m', name: T('OneMonth'), price_cents: 1000, period_days: 30 },
+      { key: '3m', name: T('ThreeMonths'), price_cents: 2800, period_days: 90 },
+      { key: '6m', name: T('SixMonths'), price_cents: 5000, period_days: 180 },
+      { key: '12m', name: T('TwelveMonths'), price_cents: 8800, period_days: 365 },
+      { key: 'forever', name: T('Permanent'), price_cents: null, period_days: 0 },
     ]
   }
 })

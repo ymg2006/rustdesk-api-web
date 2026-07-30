@@ -56,8 +56,8 @@
         </el-table-column>
         <el-table-column :label="T('Role')" min-width="100" align="center">
           <template #default="{row}">
-            <el-tag v-if="row.role === 'admin'" type="danger" size="small">Administrator</el-tag>
-            <span v-else>Regular User</span>
+            <el-tag v-if="row.role === 'admin'" type="danger" size="small">{{ T('Administrator') }}</el-tag>
+            <span v-else>{{ T('RegularUser') }}</span>
           </template>
         </el-table-column>
         <el-table-column :label="T('Status')" min-width="90" align="center">

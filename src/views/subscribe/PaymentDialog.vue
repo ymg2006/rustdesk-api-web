@@ -70,7 +70,7 @@
               <img v-if="qrPayload" :src="qrImageSrc" alt="Payment QR code" class="qrcode-img" />
               <div v-if="countdownExpired" class="qr-overlay">
                 <el-icon class="overlay-icon"><el-icon-circle-close-filled /></el-icon>
-                <span class="overlay-text">Order expired</span>
+                <span class="overlay-text">{{ T('OrderExpired') }}</span>
               </div>
             </div>
           </div>
@@ -86,7 +86,7 @@
             , do not pay after expiration
           </template>
           <template v-else>
-            <span class="timer-expired">Order QR code expired</span>
+            <span class="timer-expired">{{ T('OrderQrCodeExpired') }}</span>
           </template>
         </div>
 
@@ -107,11 +107,11 @@
         <!-- Order information -->
         <div class="cashier-footer">
           <div class="footer-row">
-            <span class="footer-label">Merchant Order No.</span>
+            <span class="footer-label">{{ T('MerchantOrderNo') }}</span>
             <span class="footer-value">{{ orderInfo.out_trade_no }}</span>
           </div>
           <div class="footer-row">
-            <span class="footer-label">Payment Method</span>
+            <span class="footer-label">{{ T('PaymentMethod') }}</span>
             <span class="footer-value">{{ channel === 'alipay' ? 'Alipay' : 'WeChat Pay' }}</span>
           </div>
         </div>

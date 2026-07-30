@@ -28,7 +28,7 @@
         <el-table-column :label="T('Actions')" min-width="220" align="center">
           <template #default="{row}">
             <el-button size="small" @click="showChannelForm(row)">{{ T('Edit') }}</el-button>
-            <el-button size="small" @click="testChannel(row)">Test</el-button>
+            <el-button size="small" @click="testChannel(row)">{{ T('Test') }}</el-button>
             <el-button size="small" type="danger" @click="delChannel(row)">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
@@ -70,7 +70,7 @@
         </template>
         <el-form-item>
           <el-button type="primary" @click="submitChannel">{{ T('Submit') }}</el-button>
-          <el-button @click="testChannelForm">Send Test</el-button>
+          <el-button @click="testChannelForm">{{ T('SendTest') }}</el-button>
           <el-button @click="chFormVisible=false">{{ T('Cancel') }}</el-button>
         </el-form-item>
       </el-form>
@@ -85,14 +85,14 @@
         </div>
       </template>
       <el-alert type="info" :closable="false" show-icon style="margin-bottom:12px">
-        <template #title>Offline Alert Logic</template>
+        <template #title>{{ T('OfflineAlertLogic') }}</template>
         <template #description>
           <ul style="margin:4px 0 0;padding-left:18px;line-height:1.7;font-size:12px">
-            <li>Device status is checked every five minutes.</li>
-            <li>After the offline threshold is exceeded, the weight increases by one. An email is sent when it reaches <b>10</b> (about 50 minutes offline).</li>
-            <li>The weight resets automatically each day.</li>
-            <li>Each device can send at most <b>3</b> alerts per day.</li>
-            <li>Alerts stop after firing for <b>3 consecutive days</b>; they resume automatically when the device comes back online.</li>
+            <li>{{ T('DeviceCheckedEveryFiveMinutes') }}</li>
+            <li>{{ T('OfflineThresholdWeightTip') }}</li>
+            <li>{{ T('AlertWeightResetsDaily') }}</li>
+            <li>{{ T('MaxThreeAlertsPerDay') }}</li>
+            <li>{{ T('AlertsPauseAfterThreeDays') }}</li>
           </ul>
         </template>
       </el-alert>
@@ -178,7 +178,7 @@
         </el-form-item>
         <el-form-item :label="T('OfflineMin')">
           <el-input-number v-model="ruleForm.offline_min" :min="1" :max="1440"></el-input-number>
-          <span style="margin-left:8px;color:var(--apple-gray)">min</span>
+          <span style="margin-left:8px;color:var(--apple-gray)">{{ T('MinutesShort') }}</span>
           <div style="font-size:12px;color:var(--apple-gray);margin-top:4px;line-height:1.5">
             Offline weighting starts after this duration (see the alert logic above).
           </div>

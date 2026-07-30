@@ -4,16 +4,16 @@
     <el-card class="list-query"
              shadow="hover">
       <div class="action-bar">
-        <span style="font-size: 16px; font-weight: 500;">Strategy Management</span>
+        <span style="font-size: 16px; font-weight: 500;">{{ T('StrategyManagement') }}</span>
         <el-button type="text"
                    size="small"
                    style="margin-left: 4px; font-size: 16px; color: var(--apple-blue);"
                    @click="showHelp = true">?</el-button>
       </div>
       <el-form inline>
-        <el-form-item label="Strategy Name">
+        <el-form-item :label="T('StrategyName')">
           <el-input v-model="query.name"
-                    placeholder="Search strategy name"
+                    :placeholder="T('SearchStrategyName')"
                     clearable
                     style="width: 200px"></el-input>
         </el-form-item>
@@ -39,59 +39,59 @@
                          min-width="60"
                          align="center"></el-table-column>
         <el-table-column prop="name"
-                         label="Strategy Name"
+                         :label="T('StrategyName')"
                          min-width="160"
                          align="center">
           <template #default="{ row }">
             <strong>{{ row.name }}</strong>
           </template>
         </el-table-column>
-        <el-table-column label="Status"
+        <el-table-column :label="T('Status')"
                          min-width="80"
                          align="center">
           <template #default="{ row }">
             <el-tag v-if="row.status === 1"
                     type="success"
-                    size="small">Enabled</el-tag>
+                    size="small">{{ T('Enabled') }}</el-tag>
             <el-tag v-else
                     type="danger"
-                    size="small">Disabled</el-tag>
+                    size="small">{{ T('Disabled') }}</el-tag>
           </template>
         </el-table-column>
         <el-table-column prop="priority"
-                         label="Priority"
+                         :label="T('Priority')"
                          min-width="80"
                          align="center"></el-table-column>
-        <el-table-column label="Binding Scope"
+        <el-table-column :label="T('BindingScope')"
                          min-width="160"
                          align="center">
           <template #default="{ row }">
             <el-tag v-if="row.bind_type === 'user'"
                     type="primary"
-                    size="small">User</el-tag>
+                    size="small">{{ T('User') }}</el-tag>
             <el-tag v-else-if="row.bind_type === 'group'"
                     type="success"
-                    size="small">Device Group</el-tag>
+                    size="small">{{ T('DeviceGroup') }}</el-tag>
             <el-tag v-else-if="row.bind_type === 'tag'"
                     type="warning"
-                    size="small">Tag</el-tag>
+                    size="small">{{ T('Tag') }}</el-tag>
             <el-tag v-else
                     type="info"
-                    size="small">Global</el-tag>
+                    size="small">{{ T('Global') }}</el-tag>
             <span style="margin-left: 4px; font-size: 12px;">{{ getBindName(row) }}</span>
           </template>
         </el-table-column>
-        <el-table-column label="Actions"
+        <el-table-column :label="T('Actions')"
                          min-width="200"
                          align="center"
                          fixed="right">
           <template #default="{ row }">
             <el-button type="primary"
                        size="small"
-                       @click="showEdit(row)">Edit</el-button>
+                       @click="showEdit(row)">{{ T('Edit') }}</el-button>
             <el-button type="danger"
                        size="small"
-                       @click="del(row)">Delete</el-button>
+                       @click="del(row)">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -105,38 +105,38 @@
 
     <!-- Edit Dialog -->
     <el-dialog v-model="dialogVisible"
-               :title="editingId ? 'Edit Strategy' : 'New Strategy'"
+               :title="editingId ? T('EditStrategy') : T('NewStrategy')"
                width="700px"
                @close="resetForm"
                append-to-body>
       <el-form ref="formRef"
                :model="form">
-        <el-form-item label="Strategy Name"
+        <el-form-item :label="T('StrategyName')"
                       required>
           <el-input v-model="form.name"
-                    placeholder="Example: Office Network Policy"
+                    :placeholder="T('StrategyNameExample')"
                     style="width: 400px"></el-input>
         </el-form-item>
-        <el-form-item label="Priority">
+        <el-form-item :label="T('Priority')">
           <el-input-number v-model="form.priority"
                            :min="0"
                            :max="999" />
           <span class="hint-text"
-                style="font-size:12px;margin-left:8px;">Higher numbers have higher priority</span>
+                style="font-size:12px;margin-left:8px;">{{ T('HigherNumberHigherPriority') }}</span>
         </el-form-item>
-        <el-form-item label="Binding Scope"
+        <el-form-item :label="T('BindingScope')"
                       required>
           <el-radio-group v-model="form.bind_type">
-            <el-radio label="user">User</el-radio>
-            <el-radio label="group">Device Group</el-radio>
-            <el-radio label="tag">Tag</el-radio>
-            <el-radio label="global">Global</el-radio>
+            <el-radio label="user">{{ T('User') }}</el-radio>
+            <el-radio label="group">{{ T('DeviceGroup') }}</el-radio>
+            <el-radio label="tag">{{ T('Tag') }}</el-radio>
+            <el-radio label="global">{{ T('Global') }}</el-radio>
           </el-radio-group>
         </el-form-item>
         <el-form-item v-if="form.bind_type === 'user'"
-                      label="Select User">
+                      :label="T('SelectUser')">
           <el-select v-model="form.bind_id"
-                     placeholder="Select user"
+                     :placeholder="T('SelectUser')"
                      style="width: 300px"
                      filterable>
             <el-option v-for="u in userListData"
@@ -146,9 +146,9 @@
           </el-select>
         </el-form-item>
         <el-form-item v-if="form.bind_type === 'group'"
-                      label="Select Group">
+                      :label="T('SelectGroup')">
           <el-select v-model="form.bind_id"
-                     placeholder="Select device group"
+                     :placeholder="T('SelectDeviceGroup')"
                      style="width: 300px"
                      filterable>
             <el-option v-for="g in groupListData"
@@ -158,9 +158,9 @@
           </el-select>
         </el-form-item>
         <el-form-item v-if="form.bind_type === 'tag'"
-                      label="Select Tag">
+                      :label="T('SelectTag')">
           <el-select v-model="form.bind_id"
-                     placeholder="Select tag"
+                     :placeholder="T('SelectTag')"
                      style="width: 300px"
                      filterable>
             <el-option v-for="t in tagListData"
@@ -169,79 +169,77 @@
                        :value="t.id"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="Status">
+        <el-form-item :label="T('Status')">
           <el-switch v-model="form.status"
                      :active-value="1"
                      :inactive-value="2" />
         </el-form-item>
-        <el-form-item label="Config Items">
+        <el-form-item :label="T('ConfigItems')">
           <el-input v-model="form.config_items"
                     type="textarea"
                     :rows="10"
-                    placeholder="One config item per line, format: key=value&#10;Example:&#10;force_relay=Y&#10;enable-udp-punch=N&#10;enable-clipboard=N&#10;custom-rendezvous-server=192.0.2.1:21116"
+                    :placeholder="T('ConfigItemsPlaceholder')"
                     style="width: 100%">
           </el-input>
           <div class="hint-text"
                style="font-size:12px;margin-top:4px;">
-            Common config items: force_relay, enable-udp-punch, enable-ipv6-punch, enable-clipboard, enable-audio,
-            enable-file-transfer, custom-rendezvous-server
+            {{ T('CommonConfigItems') }}
           </div>
         </el-form-item>
       </el-form>
       <template #footer>
-        <el-button @click="dialogVisible = false">Cancel</el-button>
+        <el-button @click="dialogVisible = false">{{ T('Cancel') }}</el-button>
         <el-button type="primary"
                    :loading="submitting"
-                   @click="submitForm">Save</el-button>
+                   @click="submitForm">{{ T('Save') }}</el-button>
       </template>
     </el-dialog>
 
     <!-- Help Dialog -->
     <el-dialog v-model="showHelp"
-               title="Strategy Config Template"
+               :title="T('StrategyConfigTemplate')"
                width="650px"
                append-to-body>
       <div
            style="font-size: 14px; line-height: 1.8; font-family: 'Consolas', 'Courier New', monospace; background: var(--el-bg-color-page); padding: 16px; border-radius: 6px;">
-        <div style="color: var(--el-text-color-secondary); margin-bottom: 4px;"># ====== NAT Traversal ======</div>
-        <div style="color: var(--el-text-color-secondary);"># Force relay: Y=force relay and disable P2P punching, N=allow P2P</div>
+        <div style="color: var(--el-text-color-secondary); margin-bottom: 4px;"># ====== {{ T('NatTraversal') }} ======</div>
+        <div style="color: var(--el-text-color-secondary);"># {{ T('ForceRelayHelp') }}</div>
         <div style="margin-bottom: 4px;">force_relay=N</div>
-        <div style="color: var(--el-text-color-secondary);"># Enable UDP punching; N disables UDP punching and uses TCP relay only</div>
+        <div style="color: var(--el-text-color-secondary);"># {{ T('UdpPunchHelp') }}</div>
         <div style="margin-bottom: 4px;">enable-udp-punch=Y</div>
-        <div style="color: var(--el-text-color-secondary);"># Enable IPv6 punching; N disables IPv6 traversal</div>
+        <div style="color: var(--el-text-color-secondary);"># {{ T('Ipv6PunchHelp') }}</div>
         <div style="margin-bottom: 4px;">enable-ipv6-punch=Y</div>
-        <div style="color: var(--el-text-color-secondary);"># Enable UPnP automatic port mapping; N disables it</div>
+        <div style="color: var(--el-text-color-secondary);"># {{ T('UpnpHelp') }}</div>
         <div style="margin-bottom: 4px;">enable-upnp=Y</div>
-        <div style="color: var(--el-text-color-secondary);"># Custom relay server address (use when running your own relay)</div>
-        <div style="color: var(--el-text-color-secondary);"># Format: domain or IP:port</div>
+        <div style="color: var(--el-text-color-secondary);"># {{ T('CustomRelayHelp') }}</div>
+        <div style="color: var(--el-text-color-secondary);"># {{ T('DomainIpPortFormat') }}</div>
         <div style="margin-bottom: 8px;">#custom-rendezvous-server=relay.example.com:21116</div>
-        <div style="color: var(--el-text-color-secondary); margin-bottom: 4px;"># ====== Feature Switches ======</div>
-        <div style="color: var(--el-text-color-secondary);"># Enable clipboard sharing; N disables remote copy/paste</div>
+        <div style="color: var(--el-text-color-secondary); margin-bottom: 4px;"># ====== {{ T('FeatureSwitches') }} ======</div>
+        <div style="color: var(--el-text-color-secondary);"># {{ T('ClipboardSharingHelp') }}</div>
         <div style="margin-bottom: 4px;">enable-clipboard=Y</div>
-        <div style="color: var(--el-text-color-secondary);"># Enable audio transmission; N disables remote audio</div>
+        <div style="color: var(--el-text-color-secondary);"># {{ T('AudioTransmissionHelp') }}</div>
         <div style="margin-bottom: 4px;">enable-audio=Y</div>
-        <div style="color: var(--el-text-color-secondary);"># Enable file transfer; N disables remote file transfer</div>
+        <div style="color: var(--el-text-color-secondary);"># {{ T('FileTransferHelp') }}</div>
         <div style="margin-bottom: 4px;">enable-file-transfer=Y</div>
-        <div style="color: var(--el-text-color-secondary);"># Encryption mode options: default / no_encryption / encrypted</div>
+        <div style="color: var(--el-text-color-secondary);"># {{ T('EncryptionModeHelp') }}</div>
         <div style="margin-bottom: 8px;">#encryption-mode=default</div>
-        <div style="color: var(--el-text-color-secondary); margin-bottom: 4px;"># ====== Display and Performance ======</div>
-        <div style="color: var(--el-text-color-secondary);"># Remote image quality options: quality / balanced / speed</div>
+        <div style="color: var(--el-text-color-secondary); margin-bottom: 4px;"># ====== {{ T('DisplayAndPerformance') }} ======</div>
+        <div style="color: var(--el-text-color-secondary);"># {{ T('ImageQualityHelp') }}</div>
         <div style="margin-bottom: 4px;">#image-quality=balanced</div>
-        <div style="color: var(--el-text-color-secondary);"># Maximum FPS limit; 0 means unlimited</div>
+        <div style="color: var(--el-text-color-secondary);"># {{ T('MaxFpsHelp') }}</div>
         <div style="margin-bottom: 8px;">#max-fps=30</div>
-        <div style="color: var(--el-text-color-secondary); margin-bottom: 4px;"># ====== Security Policy ======</div>
-        <div style="color: var(--el-text-color-secondary);"># Hide usernames in address book; Y shows only device names</div>
+        <div style="color: var(--el-text-color-secondary); margin-bottom: 4px;"># ====== {{ T('SecurityPolicy') }} ======</div>
+        <div style="color: var(--el-text-color-secondary);"># {{ T('HideUsernameHelp') }}</div>
         <div style="margin-bottom: 4px;">#hide-username-on-card=N</div>
-        <div style="color: var(--el-text-color-secondary);"># Enable direct-connection verification; Y requires handshake verification</div>
+        <div style="color: var(--el-text-color-secondary);"># {{ T('DirectConnectionVerificationHelp') }}</div>
         <div style="margin-bottom: 4px;">#enable-directx-access=Y</div>
       </div>
       <div style="font-size: 12px; color: var(--el-text-color-secondary); margin-top: 12px; text-align: center;">
-        Tip: Lines starting with # are comments and do not take effect. Remove # to enable the corresponding config
-        item.
+        {{ T('StrategyConfigCommentTip') }}
       </div>
       <template #footer>
         <el-button type="primary"
-                   @click="showHelp = false">Got it</el-button>
+                   @click="showHelp = false">{{ T('GotIt') }}</el-button>
       </template>
     </el-dialog>
 

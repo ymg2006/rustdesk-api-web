@@ -66,7 +66,7 @@
             <el-table-column prop="alias" :label="T('Alias')" min-width="80">
               <template #default="{row}">{{ row.alias || '-' }}</template>
             </el-table-column>
-            <el-table-column label="Tags" min-width="120">
+            <el-table-column :label="T('Tags')" min-width="120">
               <template #default="{row}">
                 <el-tag v-for="t in (row.tags || [])" :key="t" size="small" style="margin-right: 4px; margin-bottom: 2px;">{{ t }}</el-tag>
                 <span v-if="!row.tags || row.tags.length === 0" style="color: var(--apple-border);">-</span>
@@ -88,19 +88,19 @@
           </template>
           <el-table :data="recentLogs" v-loading="loadingLogs" height="300">
             <el-table-column prop="from_name" :label="T('Username')" min-width="90"></el-table-column>
-            <el-table-column prop="peer_hostname" label="Hostname" min-width="100">
+            <el-table-column prop="peer_hostname" :label="T('Hostname')" min-width="100">
               <template #default="{row}">{{ row.peer_hostname || row.peer_id?.substring(0,12) || '-' }}</template>
             </el-table-column>
             <el-table-column prop="peer_alias" :label="T('Alias')" min-width="80">
               <template #default="{row}">{{ row.peer_alias || '-' }}</template>
             </el-table-column>
-            <el-table-column label="Connection Time" min-width="150">
+            <el-table-column :label="T('ConnectionTime')" min-width="150">
               <template #default="{row}">{{ row.created_at }}</template>
             </el-table-column>
-            <el-table-column label="End Time" min-width="150">
+            <el-table-column :label="T('EndTime')" min-width="150">
               <template #default="{row}">
                 <span v-if="row.close_time_str">{{ row.close_time_str }}</span>
-                <el-tag v-else type="success" size="small">In Progress</el-tag>
+                <el-tag v-else type="success" size="small">{{ T('InProgress') }}</el-tag>
               </template>
             </el-table-column>
           </el-table>
@@ -122,7 +122,7 @@
           <el-table :data="recentMessages" v-loading="loadingMsg" max-height="250">
             <el-table-column prop="sender_name" :label="T('Sender')" min-width="120">
               <template #default="{row}">
-                <el-tag v-if="row.type==='broadcast'" type="danger" size="small">All</el-tag>
+                <el-tag v-if="row.type==='broadcast'" type="danger" size="small">{{ T('All') }}</el-tag>
                 <span v-else>{{ row.sender_name }}</span>
               </template>
             </el-table-column>
@@ -136,7 +136,7 @@
                 {{ formatTime(row.created_at) }}
               </template>
             </el-table-column>
-            <el-table-column label="Actions" min-width="80">
+            <el-table-column :label="T('Actions')" min-width="80">
               <template #default="{row}">
                 <el-button v-if="!row.is_read" text size="small" @click="markRead(row.row_id)">
                   {{ T('MarkRead') }}

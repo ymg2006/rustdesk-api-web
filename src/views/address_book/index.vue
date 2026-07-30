@@ -149,16 +149,16 @@
         <!-- <el-form-item label="Force Relay" prop="forceAlwaysRelay" required>
                 <el-switch v-model="formData.forceAlwaysRelay"></el-switch>
               </el-form-item>
-         <el-form-item label="Online" prop="online">
+         <el-form-item :label="T('Online')" prop="online">
                 <el-switch v-model="formData.online"></el-switch>
               </el-form-item>
-              <el-form-item label="RDP Port" prop="rdpPort">
+              <el-form-item :label="T('RdpPort')" prop="rdpPort">
                 <el-input v-model="formData.rdpPort"></el-input>
               </el-form-item>
-              <el-form-item label="RDP Username" prop="rdpUsername">
+              <el-form-item :label="T('RdpUsername')" prop="rdpUsername">
                 <el-input v-model="formData.rdpUsername"></el-input>
               </el-form-item>
-              <el-form-item label="Same Server" prop="sameServer">
+              <el-form-item :label="T('SameServer')" prop="sameServer">
                 <el-switch v-model="formData.sameServer"></el-switch>
               </el-form-item>-->
 

@@ -10,7 +10,7 @@
           </el-select>
         </el-form-item>
         <el-form-item :label="T('Keyword')">
-          <el-input v-model="filter.keyword" placeholder="Order No./Username" clearable style="width:200px" />
+          <el-input v-model="filter.keyword" :placeholder="T('OrderNoUsername')" clearable style="width:200px" />
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="getList">{{ T('Filter') }}</el-button>
@@ -19,31 +19,31 @@
     </el-card>
 
     <el-card shadow="hover" class="list-card query-card">
-      <el-table :data="list" v-loading="loading" border stripe>
+      <el-table :data="list" v-loading="loading" border>
         <el-table-column prop="id" :label="T('ID')" min-width="60" align="center" />
-        <el-table-column prop="out_trade_no" label="Order No." min-width="220" />
-        <el-table-column prop="username" label="User" min-width="120" align="center" />
-        <el-table-column label="Duration" min-width="80" align="center">
+        <el-table-column prop="out_trade_no" :label="T('OrderNo')" min-width="220" />
+        <el-table-column prop="username" :label="T('User')" min-width="120" align="center" />
+        <el-table-column :label="T('Duration')" min-width="80" align="center">
           <template #default="{ row }">
             {{ row.plan_key }}
           </template>
         </el-table-column>
-        <el-table-column label="Amount" min-width="100" align="center">
+        <el-table-column :label="T('Amount')" min-width="100" align="center">
           <template #default="{ row }">
             ¥{{ (row.amount_cents / 100).toFixed(2) }}
           </template>
         </el-table-column>
-        <el-table-column prop="channel" label="Payment Method" min-width="100" align="center">
+        <el-table-column prop="channel" :label="T('PaymentMethod')" min-width="100" align="center">
           <template #default="{ row }">
-            {{ row.channel === 'alipay' ? 'Alipay' : 'WeChat' }}
+            {{ row.channel === 'alipay' ? T('Alipay') : T('WeChatPay') }}
           </template>
         </el-table-column>
-        <el-table-column label="Status" min-width="100" align="center">
+        <el-table-column :label="T('Status')" min-width="100" align="center">
           <template #default="{ row }">
             <el-tag :type="statusType(row.status)" size="small">{{ statusLabel(row.status) }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="Order Time" min-width="170" align="center">
+        <el-table-column :label="T('OrderTime')" min-width="170" align="center">
           <template #default="{ row }">
             {{ formatTime(row.created_at) }}
           </template>
@@ -51,10 +51,10 @@
         <el-table-column :label="T('Action')" min-width="180" align="center" fixed="right">
           <template #default="{ row }">
             <el-button v-if="row.status === 'pending'" type="success" size="small" @click="handleConfirm(row)">
-              Confirm Paid
+              {{ T('ConfirmPaid') }}
             </el-button>
             <el-button v-if="row.status === 'pending'" type="warning" size="small" @click="handleClose(row)">
-              Close
+              {{ T('Close') }}
             </el-button>
           </template>
         </el-table-column>
@@ -124,7 +124,7 @@ const getList = async () => {
     list.value = res.data.list || []
     total.value = res.data.total || 0
   } catch (e) {
-    ElMessage.error('Failed to get order list')
+    ElMessage.error(T('OrderListLoadFailed'))
   } finally {
     loading.value = false
   }
@@ -132,31 +132,31 @@ const getList = async () => {
 
 const handleConfirm = async (row) => {
   try {
-    await ElMessageBox.confirm(`Confirm order ${row.out_trade_no} as paid?`, 'Confirm')
+    await ElMessageBox.confirm(T('ConfirmOrderPaid', { order: row.out_trade_no }), T('Confirm'))
   } catch {
     return
   }
   const res = await adminConfirmOrder(row.id)
   if (res.code) {
-    ElMessage.error(res.message || 'Confirmation failed')
+    ElMessage.error(res.message || T('ConfirmationFailed'))
     return
   }
-  ElMessage.success('Confirmed successfully')
+  ElMessage.success(T('ConfirmedSuccessfully'))
   await getList()
 }
 
 const handleClose = async (row) => {
   try {
-    await ElMessageBox.confirm(`Close order ${row.out_trade_no}?`, 'Confirm')
+    await ElMessageBox.confirm(T('ConfirmCloseOrder', { order: row.out_trade_no }), T('Confirm'))
   } catch {
     return
   }
   const res = await adminCloseOrder(row.id)
   if (res.code) {
-    ElMessage.error(res.message || 'Close failed')
+    ElMessage.error(res.message || T('CloseFailed'))
     return
   }
-  ElMessage.success('Closed')
+  ElMessage.success(T('Closed'))
   await getList()
 }
 

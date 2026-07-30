@@ -25,7 +25,7 @@
               <el-icon class="default-icon">
                 <plus/>
               </el-icon>
-              <div class="drag-tips">Click to upload<span v-if="drag"> or drag files here</span></div>
+              <div class="drag-tips">{{ T('ClickToUpload') }}<span v-if="drag"> {{ T('OrDragFilesHere') }}</span></div>
             </div>
           </slot>
         </div>
@@ -63,6 +63,7 @@ import { Plus, ZoomIn, Delete, ArrowLeft, ArrowRight, Check } from '@element-plu
 import { useOss } from '@/components/form/upload/oss'
 import { ElMessage } from 'element-plus'
 import { useLocal } from '@/components/form/upload/local'
+import { T } from '@/utils/i18n'
 
   export default defineComponent({
     name: 'imagesUpload',
@@ -173,7 +174,7 @@ import { useLocal } from '@/components/form/upload/local'
       }
 
       function onExceed () {
-        ElMessage.error('File count limit exceeded')
+        ElMessage.error(T('FileCountLimitExceeded'))
       }
 
       return {
@@ -189,6 +190,7 @@ import { useLocal } from '@/components/form/upload/local'
         leftImage,
         rightImage,
         removeImage,
+        T,
       }
     },
   })

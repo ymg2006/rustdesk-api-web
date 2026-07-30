@@ -11,21 +11,21 @@
     <!-- Create invite-code dialog -->
     <el-dialog :title="T('CreateInvitation')" v-model="showCreate" width="500px" append-to-body>
       <el-form ref="createFormRef" :model="createForm" :rules="createRules">
-        <el-form-item label="Plan" prop="plan">
+        <el-form-item :label="T('Plan')" prop="plan">
           <el-select v-model="createForm.plan" style="width:100%">
             <el-option label="Pro" value="pro" />
             <el-option label="Enterprise" value="enterprise" />
           </el-select>
         </el-form-item>
-        <el-form-item label="Valid Days" prop="expire_days">
+        <el-form-item :label="T('ValidDays')" prop="expire_days">
           <el-input-number v-model="createForm.expire_days" :min="1" :max="3650" style="width:200px" />
           <div style="margin-top:6px; display:flex; gap:4px; flex-wrap:wrap;">
-            <el-button size="small" @click="createForm.expire_days = 30">1 Month</el-button>
-            <el-button size="small" @click="createForm.expire_days = 90">3 Months</el-button>
-            <el-button size="small" @click="createForm.expire_days = 365">1 Year</el-button>
-            <el-button size="small" @click="createForm.expire_days = 3650">10 Years</el-button>
+            <el-button size="small" @click="createForm.expire_days = 30">{{ T('OneMonth') }}</el-button>
+            <el-button size="small" @click="createForm.expire_days = 90">{{ T('ThreeMonths') }}</el-button>
+            <el-button size="small" @click="createForm.expire_days = 365">{{ T('OneYear') }}</el-button>
+            <el-button size="small" @click="createForm.expire_days = 3650">{{ T('TenYears') }}</el-button>
           </div>
-          <span class="el-form-item__tip">Default is 30 days</span>
+          <span class="el-form-item__tip">{{ T('DefaultThirtyDays') }}</span>
         </el-form-item>
       </el-form>
       <template #footer>
@@ -42,18 +42,18 @@
             <el-tag type="info" style="font-family: monospace; font-size: 13px;">{{ row.code }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="Plan" align="center" min-width="100">
+        <el-table-column :label="T('Plan')" align="center" min-width="100">
           <template #default="{row}">
             <el-tag :type="row.plan === 'pro' ? 'primary' : 'warning'" size="mini">{{ row.plan }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="Status" align="center" min-width="100">
+        <el-table-column :label="T('Status')" align="center" min-width="100">
           <template #default="{row}">
             <el-tag
               :type="row.status === 'unused' ? 'success' : (row.status === 'used' ? 'info' : 'danger')"
               size="mini"
             >
-              {{ row.status === 'unused' ? 'Unused' : (row.status === 'used' ? 'Used' : 'Revoked') }}
+              {{ row.status === 'unused' ? T('StatusUnused') : (row.status === 'used' ? T('StatusUsed') : T('StatusRevoked')) }}
             </el-tag>
           </template>
         </el-table-column>
@@ -109,8 +109,8 @@ import { invitationList, invitationCreate, invitationRevoke } from '@/api/user'
     expire_days: 30,
   })
   const createRules = {
-    plan: [{ required: true, message: 'Please select a plan', trigger: 'change' }],
-    expire_days: [{ required: true, message: 'Please enter valid days', trigger: 'blur' }],
+    plan: [{ required: true, message: T('PleaseSelectPlan'), trigger: 'change' }],
+    expire_days: [{ required: true, message: T('PleaseEnterValidDays'), trigger: 'blur' }],
   }
 
   const getList = async () => {
@@ -143,7 +143,7 @@ import { invitationList, invitationCreate, invitationRevoke } from '@/api/user'
   }
 
   const revoke = async (row) => {
-    const cf = await ElMessageBox.confirm(`Are you sure you want to revoke invite code ${row.code}?`, {
+    const cf = await ElMessageBox.confirm(T('ConfirmRevokeInviteCode', { code: row.code }), {
       confirmButtonText: T('Confirm'),
       cancelButtonText: T('Cancel'),
       type: 'warning',

@@ -44,19 +44,19 @@
             </el-radio>
           </el-radio-group>
         </el-form-item>
-        <el-form-item v-if="formData.oauth_type === 'oidc'" label="IdP" prop="op">
+        <el-form-item v-if="formData.oauth_type === 'oidc'" :label="T('IdP')" prop="op">
           <el-input v-model="formData.op" :placeholder="T('Your IdP Name')"></el-input>
         </el-form-item>
-        <el-form-item v-if="formData.oauth_type === 'oidc'" label="Issuer" prop="issuer">
+        <el-form-item v-if="formData.oauth_type === 'oidc'" :label="T('Issuer')" prop="issuer">
           <el-input v-model="formData.issuer" :placeholder="`${T('Check your IdP docs, without')} '/.well-known/openid-configuration'`"></el-input>
         </el-form-item>
-        <el-form-item v-show="formData.oauth_type === 'oidc'" label="Scopes" prop="scopes">
+        <el-form-item v-show="formData.oauth_type === 'oidc'" :label="T('Scopes')" prop="scopes">
           <el-input v-model="formData.scopes" :placeholder="`${T('Optional, default is')} 'openid,profile,email'`"></el-input>
         </el-form-item>
-        <el-form-item label="ClientId" prop="client_id">
+        <el-form-item :label="T('ClientId')" prop="client_id">
           <el-input v-model="formData.client_id"></el-input>
         </el-form-item>
-        <el-form-item label="ClientSecret" prop="client_secret">
+        <el-form-item :label="T('ClientSecret')" prop="client_secret">
           <el-input
               v-model="formData.client_secret"
               :type="formData.id ? 'password' : 'text'"
@@ -64,24 +64,24 @@
           >
           </el-input>
         </el-form-item>
-        <el-form-item label="RedirectUrl" prop="redirect_url">
+        <el-form-item :label="T('RedirectUrl')" prop="redirect_url">
           <div @click="copyRedirectUrl">{{ defaultRedirect() }}
             <el-icon>
               <CopyDocument></CopyDocument>
             </el-icon>
           </div>
         </el-form-item>
-        <el-form-item label="PkceEnable" prop="pkce_enable">
+        <el-form-item :label="T('PkceEnable')" prop="pkce_enable">
           <el-switch v-model="formData.pkce_enable"
                      :active-value="true"
                      :inactive-value="false">
           </el-switch>
         </el-form-item>
 
-        <el-form-item v-if="formData.pkce_enable" label="PkceMethod" prop="pkce_method">
-          <el-select v-model="formData.pkce_method" placeholder="Select PKCE Method">
-            <el-option label="S256 (Recommended)" value="S256"></el-option>
-            <el-option label="Plain" value="plain"></el-option>
+        <el-form-item v-if="formData.pkce_enable" :label="T('PkceMethod')" prop="pkce_method">
+          <el-select v-model="formData.pkce_method" :placeholder="T('SelectPkceMethod')">
+            <el-option :label="T('S256Recommended')" value="S256"></el-option>
+            <el-option :label="T('Plain')" value="plain"></el-option>
           </el-select>
         </el-form-item>
         <el-form-item :label="T('AutoRegister')" prop="auto_register">
