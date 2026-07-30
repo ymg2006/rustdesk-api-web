@@ -57,19 +57,19 @@
 
 <script setup>
   import { reactive, onMounted, ref } from 'vue'
-  import { useUserStore } from '@/store/user'
-  import { useAppStore } from '@/store/app'
-  import { ElMessage } from 'element-plus'
-  import { T } from '@/utils/i18n'
-  import { useRoute, useRouter } from 'vue-router'
-  import { loginOptions, captcha, mfaLogin } from '@/api/login'
-  import { getCode, removeCode } from '@/utils/auth'
+import { useUserStore } from '@/store/user'
+import { useAppStore } from '@/store/app'
+import { ElMessage } from 'element-plus'
+import { T } from '@/utils/i18n'
+import { useRoute, useRouter } from 'vue-router'
+import { loginOptions, captcha, mfaLogin } from '@/api/login'
+import { getCode, removeCode } from '@/utils/auth'
 
   const oauthInfo = ref({})
   const userStore = useUserStore()
   const route = useRoute()
   const router = useRouter()
-  const options = reactive([]) // 存储 OIDC 登录选项
+  const options = reactive([]) // Store OIDC login options
 
   let platform = window.navigator.platform
   if (navigator.platform.indexOf('Mac') === 0) {
@@ -104,28 +104,25 @@
   const useRecovery = ref(false)
   const mfaLoading = ref(false)
   const login = async () => {
-    const res = await userStore.login(form).catch(e => e)
-    if (!res.code) {
+    try {
+      await userStore.login(form)
       ElMessage.success(T('LoginSuccess'))
       router.push({ path: redirect || '/home', replace: true })
-      return
-    }
-    if (res.code === 110) {
-      // need captcha
-      loadCaptcha()
-    } else if (res.code === 113) {
-      // need MFA second step
-      mfaToken.value = res.data.mfa_token
-      // 暂存到 sessionStorage，防止会话内重渲染/异常导致 mfa_token 丢失
-      if (res.data.mfa_token) {
-        sessionStorage.setItem('mfa_token', res.data.mfa_token)
+    } catch (error) {
+      if (error?.code === 110) {
+        // need captcha
+        loadCaptcha()
+      } else if (error?.code === 113) {
+        // need MFA second step
+        mfaToken.value = error.data.mfa_token
+        // Temporarily store in sessionStorage to prevent mfa_token loss during session re-render/errors
+        if (error.data.mfa_token) {
+          sessionStorage.setItem('mfa_token', error.data.mfa_token)
+        }
+        step.value = 'mfa'
+        mfaInput.value = ''
+        useRecovery.value = false
       }
-      step.value = 'mfa'
-      mfaInput.value = ''
-      useRecovery.value = false
-    } else if (res.code === 101) {
-      // 显示后端返回的错误信息（如账户过期、用户被禁用等）
-      ElMessage.error(res.message || T('LoginFailed'))
     }
   }
   const submitMfa = async () => {
@@ -133,11 +130,11 @@
       ElMessage.warning(T('MfaCodeRequired'))
       return
     }
-    // 兜底从 sessionStorage 读取，避免 mfa_token 在会话内丢失
+    // Fallback to sessionStorage to avoid losing mfa_token during the session
     if (!mfaToken.value) {
       mfaToken.value = sessionStorage.getItem('mfa_token') || ''
     }
-    // mfa_token 仍缺失：登录态已失效，回到密码登录页重新登录
+    // mfa_token is still missing: login state is invalid, go back to password login
     if (!mfaToken.value) {
       step.value = 'pwd'
       ElMessage.warning(T('MfaTokenMissing'))
@@ -153,7 +150,7 @@
     const res = await mfaLogin(payload).catch(e => e)
     mfaLoading.value = false
     if (!res.code) {
-      // 验证成功：签发正式令牌并跳转后台
+      // Verification succeeded: issue the formal token and enter the admin dashboard
       useAppStore().loadConfig()
       userStore.saveUserData(res.data)
       sessionStorage.removeItem('mfa_token')
@@ -161,14 +158,14 @@
       ElMessage.success(T('LoginSuccess'))
       router.push({ path: redirect || '/home', replace: true })
     } else if (res.code === 114) {
-      // mfa_token 失效/丢失：回到密码登录页重新走完整登录流程（避免卡死在动态码页）
+      // mfa_token expired/lost: return to password login to restart the full login flow
       step.value = 'pwd'
       mfaToken.value = ''
       mfaInput.value = ''
       sessionStorage.removeItem('mfa_token')
       ElMessage.warning(T('MfaTokenMissing'))
     } else {
-      // 101 等：动态码错误 / 令牌无效 —— 保留 mfa_token，清空输入，允许用户重试
+      // 101 etc.: dynamic code error / invalid token; keep mfa_token, clear input, allow retry
       ElMessage.error(res.message || T('MfaCodeError'))
       mfaInput.value = ''
     }
@@ -181,7 +178,6 @@
 
   const loadCaptcha = async () => {
     const captchaRes = await captcha().catch(_ => false)
-    console.log(captchaRes)
     captchaCode.value = captchaRes.data.captcha
     form.captcha_id = captchaRes.data.captcha.id
   }
@@ -191,10 +187,9 @@
   }
 
   import googleImage from '@/assets/google.png'
-  import githubImage from '@/assets/github.png'
-  import oidcImage from '@/assets/oidc.png'
-  import webauthImage from '@/assets/webauth.png'
-  import defaultImage from '@/assets/oidc.png'
+import githubImage from '@/assets/github.png'
+import oidcImage from '@/assets/oidc.png'
+import defaultImage from '@/assets/oidc.png'
 
   const providerImageMap = {
     google: googleImage,
@@ -215,9 +210,9 @@
     try {
       const res = await loginOptions().catch(_ => false)
       if (!res || !res.data) return console.error('No valid response received')
-      res.data.ops.map(option => (options.push({ name: option }))) // 创建新的对象数组
+      res.data.ops.map(option => (options.push({ name: option }))) // Create new object array
       if (res.data.auto_oidc) {
-        // 如果有自动OIDC登录选项，直接调用第一个
+        // If automatic OIDC login is configured, use the first option directly
         handleOIDCLogin(res.data.ops[0])
       }
       disablePwd.value = res.data.disable_pwd
@@ -234,17 +229,17 @@
   onMounted(async () => {
     const code = getCode()
     if (code) {
-      // 如果code存在，进行query获取user info
+      // If code exists, query user info
       const res = await userStore.query(code)
       if (res) {
-        // 删除code，确保跳转之前对code进行清楚
+        // Delete code before redirecting
         removeCode()
         ElMessage.success(T('LoginSuccess'))
         router.push({ path: redirect || '/home', replace: true })
       }
     } else {
-      // 如果code不存在, 现实登陆页面
-      loadLoginOptions() // 组件挂载后调用登录选项加载函数
+      // If code does not exist, show the login page
+      loadLoginOptions() // Load login options after component mount
     }
   })
 

@@ -1,6 +1,6 @@
 <template>
 
-  <el-form class="dialog-form" ref="form" :model="ABFormData" label-width="120px">
+  <el-form class="dialog-form" ref="form" :model="ABFormData">
     <el-form-item :label="T('Owner')" prop="user_ids" required>
       <el-select v-model="ABFormData.user_ids" multiple @change="changeUser">
         <el-option
@@ -17,7 +17,7 @@
         <el-option v-for="c in collectionListResForUpdate.list" :key="c.id" :label="c.name" :value="c.id"></el-option>
       </el-select>
     </el-form-item>
-    <el-form-item label="ID" prop="id" required>
+    <el-form-item :label="T('ID')" prop="id" required>
       <el-input v-model="ABFormData.id"></el-input>
     </el-form-item>
     <el-form-item :label="T('Username')" prop="username">
@@ -59,11 +59,11 @@
 <script setup>
 
   import { T } from '@/utils/i18n'
-  import { loadAllUsers } from '@/global'
-  import { onMounted, defineProps, defineEmits, onActivated } from 'vue'
-  import { useRepositories as useABRepositories } from '@/views/address_book'
-  import { batchCreate } from '@/api/address_book'
-  import { ElMessage } from 'element-plus'
+import { loadAllUsers } from '@/global'
+import { onMounted, defineEmits } from 'vue'
+import { useRepositories as useABRepositories } from '@/views/address_book'
+import { batchCreate } from '@/api/address_book'
+import { ElMessage } from 'element-plus'
 
   const emits = defineEmits(['cancel', 'success'])
   const props = defineProps({
@@ -85,7 +85,6 @@
   } = useABRepositories('admin')
   onMounted(() => {
     fromPeer(props.peer)
-    console.log(collectionListResForUpdate)
   })
 
   const changeUser = async (val) => {

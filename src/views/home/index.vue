@@ -1,9 +1,22 @@
 <template>
   <div style="position: relative;">
     <!-- Refresh interval indicator -->
-    <div style="position: absolute; top: -10px; right: 0; font-size: 12px; color: var(--apple-gray); z-index: 10;">
-      {{ T('AutoRefresh') }}: 30s
+    <div class="auto-refresh-timer">
+      <div class="countdown-circle">
+        <el-progress
+          type="circle"
+          :percentage="refreshPercentage"
+          :width="35"
+          :stroke-width="4"
+          :show-text="false"
+        />
+
+        <span class="countdown-number">
+          {{ refreshSeconds }}
+        </span>
+      </div>
     </div>
+
     <el-row :gutter="20">
       <el-col :span="6">
         <el-card shadow="hover" style="cursor:pointer" @click="goPeer('all')">
@@ -44,7 +57,7 @@
           <template #header>
             <span>{{ T('RecentDevices') }}</span>
           </template>
-          <el-table :data="recentPeers" v-loading="loading" size="small" height="300">
+          <el-table :data="recentPeers" v-loading="loading" height="300">
             <el-table-column prop="hostname" :label="T('Hostname')" min-width="90">
               <template #default="{row}">
                 <el-tag type="danger" size="small" effect="plain">{{ row.hostname || '-' }}</el-tag>
@@ -53,13 +66,13 @@
             <el-table-column prop="alias" :label="T('Alias')" min-width="80">
               <template #default="{row}">{{ row.alias || '-' }}</template>
             </el-table-column>
-            <el-table-column label="标签" min-width="120">
+            <el-table-column :label="T('Tags')" min-width="120">
               <template #default="{row}">
                 <el-tag v-for="t in (row.tags || [])" :key="t" size="small" style="margin-right: 4px; margin-bottom: 2px;">{{ t }}</el-tag>
                 <span v-if="!row.tags || row.tags.length === 0" style="color: var(--apple-border);">-</span>
               </template>
             </el-table-column>
-            <el-table-column prop="last_online_time" :label="T('LastOnline')" width="150">
+            <el-table-column prop="last_online_time" :label="T('LastOnline')" min-width="150">
               <template #default="{row}">
                 <span v-if="row.last_online_time">{{ formatTime(row.last_online_time) }}</span>
                 <span v-else>-</span>
@@ -73,21 +86,21 @@
           <template #header>
             <span>{{ T('RecentConnections') }}</span>
           </template>
-          <el-table :data="recentLogs" v-loading="loadingLogs" size="small" height="300">
-            <el-table-column prop="from_name" :label="T('Username')" width="90"></el-table-column>
-            <el-table-column prop="peer_hostname" label="主机名" width="100">
+          <el-table :data="recentLogs" v-loading="loadingLogs" height="300">
+            <el-table-column prop="from_name" :label="T('Username')" min-width="90"></el-table-column>
+            <el-table-column prop="peer_hostname" :label="T('Hostname')" min-width="100">
               <template #default="{row}">{{ row.peer_hostname || row.peer_id?.substring(0,12) || '-' }}</template>
             </el-table-column>
             <el-table-column prop="peer_alias" :label="T('Alias')" min-width="80">
               <template #default="{row}">{{ row.peer_alias || '-' }}</template>
             </el-table-column>
-            <el-table-column label="连接时间" width="150">
+            <el-table-column :label="T('ConnectionTime')" min-width="150">
               <template #default="{row}">{{ row.created_at }}</template>
             </el-table-column>
-            <el-table-column label="结束时间" width="150">
+            <el-table-column :label="T('EndTime')" min-width="150">
               <template #default="{row}">
                 <span v-if="row.close_time_str">{{ row.close_time_str }}</span>
-                <el-tag v-else type="success" size="small">进行中</el-tag>
+                <el-tag v-else type="success" size="small">{{ T('InProgress') }}</el-tag>
               </template>
             </el-table-column>
           </el-table>
@@ -106,10 +119,10 @@
               {{ T('MarkAllRead') }}
             </el-button>
           </template>
-          <el-table :data="recentMessages" v-loading="loadingMsg" size="small" max-height="250">
-            <el-table-column prop="sender_name" :label="T('Sender')" width="120">
+          <el-table :data="recentMessages" v-loading="loadingMsg" max-height="250">
+            <el-table-column prop="sender_name" :label="T('Sender')" min-width="120">
               <template #default="{row}">
-                <el-tag v-if="row.type==='broadcast'" type="danger" size="small">全体</el-tag>
+                <el-tag v-if="row.type==='broadcast'" type="danger" size="small">{{ T('All') }}</el-tag>
                 <span v-else>{{ row.sender_name }}</span>
               </template>
             </el-table-column>
@@ -118,12 +131,12 @@
                 <span :style="row.is_read ? '' : 'font-weight:bold'">{{ row.title || row.content }}</span>
               </template>
             </el-table-column>
-            <el-table-column :label="T('Time')" width="160">
+            <el-table-column :label="T('Time')" min-width="160">
               <template #default="{row}">
                 {{ formatTime(row.created_at) }}
               </template>
             </el-table-column>
-            <el-table-column label="操作" width="80">
+            <el-table-column :label="T('Actions')" min-width="80">
               <template #default="{row}">
                 <el-button v-if="!row.is_read" text size="small" @click="markRead(row.row_id)">
                   {{ T('MarkRead') }}
@@ -137,11 +150,15 @@
         </el-card>
       </el-col>
     </el-row>
+    <!-- Version info -->
+    <div style="margin-top: 20px; text-align: center; font-size: 12px; color: var(--apple-gray);">
+      {{ T('Backend') }}: {{ backendVersion }}
+    </div>
   </div>
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from 'vue'
+import { computed, onActivated, onDeactivated, onMounted, onUnmounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { T } from '@/utils/i18n'
 import request from '@/utils/request'
@@ -152,6 +169,7 @@ const userStore = useUserStore()
 const isAdmin = computed(() => userStore.route_names?.includes('*'))
 
 const stats = ref({ total_peers: 0, online_peers: 0, offline_peers: 0, total_users: 0, today_connections: 0 })
+const backendVersion = ref('')
 const recentPeers = ref([])
 const loading = ref(false)
 const recentLogs = ref([])
@@ -161,6 +179,15 @@ const recentMessages = ref([])
 const loadingMsg = ref(false)
 const unreadMsgCount = ref(0)
 const totalMessages = ref(0)
+
+const AUTO_REFRESH_SECONDS = 30
+const refreshSeconds = ref(AUTO_REFRESH_SECONDS)
+const isAutoRefreshing = ref(false)
+let autoRefreshTimer
+
+const refreshPercentage = computed(() => {
+  return (refreshSeconds.value / AUTO_REFRESH_SECONDS) * 100
+})
 
 const fetchStats = async () => {
   const res = await request({ url: '/dashboard/stats' }).catch(_ => false)
@@ -174,7 +201,7 @@ const fetchRecentPeers = async () => {
   const res = await request({ url, params: { page: 1, page_size: 50, time_ago: 300 } }).catch(_ => false)
   loading.value = false
   if (res) {
-    // 最近离线的设备：按最后在线时间降序排列，取最近1个月内离线的前10条
+    // Recently offline devices: sort by last online time descending and keep the top 10 from the last month
     const monthAgo = now.value - 2592000
     recentPeers.value = (res.data.list || [])
       .filter(p => p.last_online_time > monthAgo)
@@ -249,19 +276,149 @@ const formatTime = (ts) => {
   return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`
 }
 
-onMounted(() => {
+const fetchVersion = async () => {
+  const res = await request({ url: '/server/info' }).catch(_ => false)
+  if (res) backendVersion.value = res.data.backend_version || ''
+}
+
+const refreshPollingData = async () => {
+  if (isAutoRefreshing.value) return
+
+  isAutoRefreshing.value = true
   now.value = Math.floor(Date.now() / 1000)
-  fetchStats()
-  fetchRecentPeers()
-  fetchRecentLogs()
-  fetchMessages()
-  setInterval(fetchStats, 30000)
-  setInterval(fetchRecentPeers, 30000)
-  setInterval(fetchMessages, 30000)
+
+  try {
+    await Promise.all([
+      fetchStats(),
+      fetchRecentPeers(),
+      fetchMessages(),
+    ])
+  } finally {
+    refreshSeconds.value = AUTO_REFRESH_SECONDS
+    isAutoRefreshing.value = false
+  }
+}
+
+let isInitialized = false
+
+const stopAutoRefreshTimer = () => {
+  if (autoRefreshTimer !== undefined) {
+    window.clearInterval(autoRefreshTimer)
+    autoRefreshTimer = undefined
+  }
+}
+
+const startAutoRefreshTimer = () => {
+  stopAutoRefreshTimer()
+
+  autoRefreshTimer = window.setInterval(() => {
+    if (isAutoRefreshing.value) return
+
+    if (refreshSeconds.value > 1) {
+      refreshSeconds.value -= 1
+      return
+    }
+
+    refreshSeconds.value = 0
+    void refreshPollingData()
+  }, 1000)
+}
+
+onMounted(async () => {
+  now.value = Math.floor(Date.now() / 1000)
+
+  await Promise.all([
+    fetchVersion(),
+    fetchStats(),
+    fetchRecentPeers(),
+    fetchRecentLogs(),
+    fetchMessages(),
+  ])
+
+  refreshSeconds.value = AUTO_REFRESH_SECONDS
+  isInitialized = true
+  startAutoRefreshTimer()
+})
+
+onActivated(() => {
+  if (!isInitialized) return
+
+  refreshSeconds.value = AUTO_REFRESH_SECONDS
+  startAutoRefreshTimer()
+})
+
+onDeactivated(() => {
+  stopAutoRefreshTimer()
+})
+
+onUnmounted(() => {
+  stopAutoRefreshTimer()
 })
 </script>
 
 <style scoped lang="scss">
+.auto-refresh-timer {
+  position: fixed;
+  top: 50px;
+  right: 20px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--apple-gray);
+}
+
+.countdown-circle {
+  position: relative;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  isolation: isolate;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    z-index: 0;
+    border-radius: 50%;
+
+    box-shadow:
+      inset 0 0 6px color-mix(
+        in srgb,
+        var(--el-color-primary) 12%,
+        transparent
+      ),
+      0 0 4px color-mix(
+        in srgb,
+        var(--el-color-primary) 8%,
+        transparent
+      );
+  }
+
+  > .el-progress {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.countdown-number {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  color: var(--el-text-color-primary);
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
 .stat-item {
   text-align: center;
   padding: 10px 0;

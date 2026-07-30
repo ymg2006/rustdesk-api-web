@@ -2,7 +2,7 @@
   <el-card class="simple-card" shadow="hover" v-loading="form.loading">
     <template #header>
       <div class="card-header">
-        <span>BLACK_LIST</span>
+        <span>{{ T('BlackList') }}</span>
       </div>
     </template>
     <el-form :disabled="!canSend">
@@ -15,12 +15,12 @@
         <el-button @click="showForm('delete')" type="danger">{{ T('Delete') }}</el-button>
       </el-form-item>
     </el-form>
-    <el-dialog v-model="form.form_visible" :title="form.form_type">
-      <el-form label-width="100px">
-        <el-form-item label="IP">
+    <el-dialog v-model="form.form_visible" :title="form.form_type" append-to-body>
+      <el-form>
+        <el-form-item :label="T('Ip')">
           <el-input v-model="form.form_input"></el-input>
-          <div>多个IP以 | 分割</div>
-          <div v-if="form.form_type==='delete'">, 全部填 <strong>all</strong></div>
+          <div>{{ T('MultipleIpSeparatorTip') }}</div>
+          <div v-if="form.form_type==='delete'">{{ T('DeleteAllIpTip') }} <strong>{{ T('All').toLowerCase() }}</strong></div>
         </el-form-item>
         <el-form-item>
           <el-button @click="form.form_visible=false">{{ T('Cancel') }}</el-button>
@@ -33,10 +33,10 @@
 <script setup>
 
   import { T } from '@/utils/i18n'
-  import { reactive, watch } from 'vue'
-  import { sendCmd } from '@/api/rustdesk'
-  import { ElMessage } from 'element-plus'
-  import { RELAY_TARGET } from '@/views/rustdesk/options'
+import { reactive, watch } from 'vue'
+import { sendCmd } from '@/api/rustdesk'
+import { ElMessage } from 'element-plus'
+import { RELAY_TARGET } from '@/views/rustdesk/options'
 
   const props = defineProps({
     canSend: Boolean,

@@ -1,5 +1,5 @@
 <template>
-  <el-form ref="shareform" :model="formData" label-width="120px" label-suffix=" :">
+  <el-form ref="shareform" :model="formData" label-suffix=" :">
     <el-form-item :label="T('ID')" prop="id" required>
       {{ formData.id }}
     </el-form-item>
@@ -44,13 +44,12 @@
 
 <script setup>
   import { T } from '@/utils/i18n'
-  import { computed, reactive, ref, watch } from 'vue'
-  import { getV2ShareUrl } from '@/utils/webclient'
-  import * as sha256 from 'fast-sha256'
-  import { shareByWebClient } from '@/api/address_book'
-  import { CopyDocument } from '@element-plus/icons'
-  import { handleClipboard } from '@/utils/clipboard'
-  import { ElMessageBox } from 'element-plus'
+import { computed, reactive, ref, watch } from 'vue'
+import { getV2ShareUrl } from '@/utils/webclient'
+import * as sha256 from 'fast-sha256'
+import { shareByWebClient } from '@/api/address_book'
+import { CopyDocument } from '@element-plus/icons'
+import { handleClipboard } from '@/utils/clipboard'
 
   const props = defineProps({
     id: String,
@@ -68,7 +67,6 @@
     init()
   })
   const init = () => {
-    console.log('init')
     formData.id = props.id
     formData.hash = props.hash
     formData.password = ''

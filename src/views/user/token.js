@@ -1,5 +1,5 @@
 import { reactive } from 'vue'
-import { batchRemove, list, remove } from '@/api/user_token'
+import { batchRemove, list, remove, deleteExpired } from '@/api/user_token'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useRoute } from 'vue-router'
 import { T } from '@/utils/i18n'
@@ -69,6 +69,22 @@ export function useRepositories () {
     }
   }
 
+  const delExpired = async () => {
+    const cf = await ElMessageBox.confirm(T('Confirm?', { param: T('DeleteExpired') }), {
+      confirmButtonText: T('Confirm'),
+      cancelButtonText: T('Cancel'),
+      type: 'warning',
+    }).catch(_ => false)
+    if (!cf) {
+      return false
+    }
+    const res = await deleteExpired().catch(_ => false)
+    if (res) {
+      ElMessage.success(T('OperationSuccess'))
+      getList()
+    }
+  }
+
   return {
     listRes,
     listQuery,
@@ -76,5 +92,6 @@ export function useRepositories () {
     handlerQuery,
     del,
     batchDelete,
+    delExpired,
   }
 }

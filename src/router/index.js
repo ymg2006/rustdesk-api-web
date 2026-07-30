@@ -32,7 +32,7 @@ const constantRoutes = [
   },
 ]
 export const asyncRoutes = [
-  // ========== 首页 ==========
+  // ========== Home ==========
   {
     path: '/',
     name: 'Home',
@@ -48,7 +48,7 @@ export const asyncRoutes = [
       },
     ],
   },
-  // ========== 我的 ==========
+  // ========== My ==========
   {
     path: '/my',
     name: 'My',
@@ -98,9 +98,15 @@ export const asyncRoutes = [
         meta: { title: 'LoginLog', icon: 'List' },
         component: () => import('@/views/my/login_log/index.vue'),
       },
+      {
+        path: 'subscription',
+        name: 'MySubscription',
+        meta: { title: 'MySubscription', icon: 'CollectionTag' },
+        component: () => import('@/views/subscribe/MySubscription.vue'),
+      },
     ],
   },
-  // ========== 设备管理 ==========
+  // ========== Device Management ==========
   {
     path: '/device',
     name: 'Device',
@@ -122,7 +128,7 @@ export const asyncRoutes = [
       },
     ],
   },
-  // ========== 用户管理 ==========
+  // ========== User Management ==========
   {
     path: '/user',
     name: 'UserMgmt',
@@ -168,7 +174,7 @@ export const asyncRoutes = [
       },
     ],
   },
-  // ========== 地址簿管理 ==========
+  // ========== Address Book Management ==========
   {
     path: '/ab',
     name: 'AbMgmt',
@@ -196,7 +202,7 @@ export const asyncRoutes = [
       },
     ],
   },
-  // ========== 系统管理 ==========
+  // ========== System Management ==========
   {
     path: '/system',
     name: 'SystemMgmt',
@@ -253,10 +259,22 @@ export const asyncRoutes = [
         component: () => import('@/views/rustdesk/process_monitor.vue'),
       },
       {
-        path: '/invitation',
-        name: 'Invitation',
-        meta: { title: 'Invitation', icon: 'Link' },
-        component: () => import('@/views/invitation/index.vue'),
+        path: '/inviteCodes',
+        name: 'AdminInviteCode',
+        meta: { title: 'AdminInviteCode', icon: 'Key' },
+        component: () => import('@/views/admin/InviteCode.vue'),
+      },
+      // {
+      //   path: '/adminOrders',
+      //   name: 'AdminOrder',
+      //   meta: { title: 'AdminOrder', icon: 'List' },
+      //   component: () => import('@/views/admin/AdminOrder.vue'),
+      // },
+      {
+        path: '/adminSubscriptions',
+        name: 'AdminSubscription',
+        meta: { title: 'AdminSubscription', icon: 'Timer' },
+        component: () => import('@/views/admin/AdminSubscription.vue'),
       },
       {
         path: '/shareRecord',
@@ -266,7 +284,7 @@ export const asyncRoutes = [
       },
     ],
   },
-  // ========== 审计日志 ==========
+  // ========== Audit Logs ==========
   {
     path: '/audit',
     name: 'AuditMgmt',

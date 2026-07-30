@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card class="list-query" shadow="hover">
-      <el-form inline label-width="80px">
+      <el-form inline>
         <el-form-item>
           <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
           <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
@@ -14,13 +14,13 @@
         <!--        <el-table-column prop="id" label="ID" align="center"/>-->
         <el-table-column prop="name" :label="T('Name')" align="center"/>
         <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>
-        <!--        <el-table-column prop="updated_at" label="更新时间" align="center"/>-->
-        <el-table-column :label="T('Actions')" align="center" class-name="table-actions" width="600" fixed="right">
+        <!--        <el-table-column prop="updated_at" label="Updated At" align="center"/>-->
+        <el-table-column :label="T('Actions')" align="center" width="300" fixed="right">
           <template #default="{row}">
             <template v-if="row.id>0">
-              <el-button type="primary" @click="showRules(row)">{{ T('ShareRules') }}</el-button>
-              <el-button @click="toEdit(row)">{{ T('Edit') }}</el-button>
-              <el-button type="danger" @click="del(row)">{{ T('Delete') }}</el-button>
+              <el-button type="primary" @click="showRules(row)" size="small">{{ T('ShareRules') }}</el-button>
+              <el-button @click="toEdit(row)" size="small">{{ T('Edit') }}</el-button>
+              <el-button type="danger" @click="del(row)" size="small">{{ T('Delete') }}</el-button>
             </template>
           </template>
         </el-table-column>
@@ -35,8 +35,8 @@
                      :total="listRes.total">
       </el-pagination>
     </el-card>
-    <el-dialog v-model="formVisible" width="800" :title="!formData.id?T('Create') :T('Update') ">
-      <el-form class="dialog-form" ref="form" :model="formData" label-width="120px">
+    <el-dialog v-model="formVisible" width="800" :title="!formData.id?T('Create') :T('Update')" append-to-body>
+      <el-form class="dialog-form" ref="form" :model="formData">
         <el-form-item :label="T('Name')" prop="name" required>
           <el-input v-model="formData.name"></el-input>
         </el-form-item>
@@ -46,7 +46,7 @@
         </el-form-item>
       </el-form>
     </el-dialog>
-    <el-dialog v-model="rulesVisible" :title="T('ShareRules')" destroy-on-close top="5vh" width="80%">
+    <el-dialog v-model="rulesVisible" :title="T('ShareRules')" destroy-on-close append-to-body>
       <Rule :collection="clickRow" :is_my="1"></Rule>
     </el-dialog>
 
@@ -55,10 +55,10 @@
 
 <script setup>
   import { T } from '@/utils/i18n'
-  import { computed, ref } from 'vue'
-  import { useRepositories } from '@/views/address_book/collection'
-  import { onActivated, onMounted, watch } from 'vue'
-  import Rule from '@/views/address_book/rule.vue'
+import { computed, ref } from 'vue'
+import { useRepositories } from '@/views/address_book/collection'
+import { onMounted, watch } from 'vue'
+import Rule from '@/views/address_book/rule.vue'
 
   const {
     listRes,

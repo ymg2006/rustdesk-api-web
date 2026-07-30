@@ -68,6 +68,9 @@
   "Filter": {
     "One": "Filter"
   },
+  "Keyword": {
+    "One": "Keyword"
+  },
   "Add": {
     "One": "Add"
   },
@@ -88,6 +91,9 @@
   },
   "Delete": {
     "One": "Delete"
+  },
+  "DeleteExpired": {
+    "One": "Delete Expired"
   },
   "Create": {
     "One": "Create"
@@ -176,8 +182,8 @@
   "UserAddressBook": {
     "One": "User Address Book"
   },
-  "IsAdmin": {
-    "One": "Is Admin"
+  "Role": {
+    "One": "Role"
   },
   "PleaseInputNewPassword": {
     "One": "Please input new password"
@@ -213,7 +219,7 @@
     "One": "Device"
   },
   "ChangeLang": {
-    "One": "切换中文"
+    "One": "Switch to Chinese"
   },
   "My": {
     "One": "My"
@@ -295,6 +301,18 @@
   "Export": {
     "One": "Export"
   },
+  "BatchCreate": {
+    "One": "Batch Create"
+  },
+  "StatusUnused": {
+    "One": "Unused"
+  },
+  "StatusUsed": {
+    "One": "Used"
+  },
+  "StatusRevoked": {
+    "One": "Revoked"
+  },
   "AddToAddressBook": {
     "One": "Add To Address Book"
   },
@@ -354,6 +372,21 @@
   "RemoteDesktopOffline": {
     "One": "Remote desktop is offline"
   },
+  "CleanOldMessages": {
+    "One": "Clean Old Messages"
+  },
+  "CleanMessagesOlderThan1Year": {
+    "One": "Clean messages older than 1 year"
+  },
+  "CleanMessagesOlderThan3Years": {
+    "One": "Clean messages older than 3 years"
+  },
+  "OnlyMyMessages": { "One": "Only My Messages" },
+  "ShowAll": { "One": "Show All" },
+  "SearchUsername": { "One": "Search username" },
+  "AllUsers": { "One": "All Users" },
+  "MessageTitleOptional": { "One": "Message title (optional)" },
+  "PleaseEnterMessageContent": { "One": "Please enter message content" },
   "KeyMismatch": {
     "One": "Key mismatch"
   },
@@ -481,11 +514,8 @@
   "UserToken": {
     "One": "User Token"
   },
-  "BatchAddToAB": {
-    "One": "Batch Add To Address Book"
-  },
-  "BatchEditTags": {
-    "One": "Batch Edit Tags"
+  "BatchEdit": {
+    "One": "Batch Edit"
   },
   "User": {
     "One": "User"
@@ -835,9 +865,6 @@
   "ServerNotConfigured": {
     "One": "Not Configured"
   },
-  "ServerHost": {
-    "One": "Host"
-  },
   "Latency": {
     "One": "Latency"
   },
@@ -891,9 +918,6 @@
   },
   "Enabled": {
     "One": "Enabled"
-  },
-  "AutoRefresh": {
-    "One": "Auto Refresh"
   },
   "MfaRecoveryCode": {
     "One": "Recovery Code"
@@ -1046,10 +1070,10 @@
     "One": "Tip"
   },
   "Invitation": {
-    "One": "Invitation"
+    "One": "Coupon"
   },
   "CreateInvitation": {
-    "One": "Create Invitation"
+    "One": "Create Coupon"
   },
   "CopyInviteLink": {
     "One": "Copy Invite Link"
@@ -1069,9 +1093,7 @@
   "InviteCodePlaceholder": {
     "One": "Please contact admin to get one"
   },
-  "BatchCreateInvitation": {
-    "One": "Batch Generate Invite Codes"
-  },
+
   "GenerateCount": {
     "One": "Count"
   },
@@ -1102,6 +1124,9 @@
   "DefaultExpire1Day": {
     "One": "Default expires in 1 day"
   },
+  "ExpireAt": {
+    "One": "Expires At"
+  },
   "ExpiredAt": {
     "One": "Expires At"
   },
@@ -1129,10 +1154,519 @@
   "Active": {
     "One": "Active"
   },
+  "Administrator": {
+    "One": "Administrator"
+  },
   "AccountExpired": {
     "One": "Account has expired, please contact the administrator"
   },
   "RegisterSuccess": {
     "One": "Registration successful"
-  }
+  },
+  "MySubscription": {
+    "One": "My Subscription"
+  },
+  "SubscribeUpgrade": {
+    "One": "Upgrade Subscription"
+  },
+  "SubscribeUpgradeNow": {
+    "One": "Upgrade Now"
+  },
+  "SubscribeActive": {
+    "One": "Active"
+  },
+  "SubscribeExpired": {
+    "One": "Expired"
+  },
+  "SubscribeNone": {
+    "One": "None"
+  },
+  "SubscribeNoSubscription": {
+    "One": "You don't have an active subscription"
+  },
+  "SubscribeExpireAt": {
+    "One": "Expires At"
+  },
+  "SubscribeDaysLeft": {
+    "One": "Days Left"
+  },
+  "SubscribeExpiringSoon": {
+    "One": "Your subscription is expiring soon, please renew"
+  },
+  "SubscribeMonthly": {
+    "One": "Month"
+  },
+  "SubscribeRecommended": {
+    "One": "Recommended"
+  },
+  "SubscribeSelectChannel": {
+    "One": "Payment Method"
+  },
+  "SubscribeSelectChannelFirst": {
+    "One": "Please select a payment method"
+  },
+  "SubscribePayNow": {
+    "One": "Pay Now"
+  },
+  "SubscribeScanQR": {
+    "One": "Scan the QR code to pay"
+  },
+  "SubscribeOpenCashier": {
+    "One": "Open Payment Page"
+  },
+  "SubscribePolling": {
+    "One": "Waiting for payment result"
+  },
+  "SubscribeSuccess": {
+    "One": "Payment Successful!"
+  },
+  "SubscribeCodeTitle": {
+    "One": "Your invite code:"
+  },
+  "SubscribeCodeHint": {
+    "One": "Click to copy. You can also view it later in My Subscription."
+  },
+  "SubscribeSelectDuration": {
+    "One": "Select Duration"
+  },
+  "SubscribeCreateFailed": {
+    "One": "Failed to create order"
+  },
+  "SubscribeRedeemCode": {
+    "One": "Redeem Code"
+  },
+  "SubscribeInputCode": {
+    "One": "Enter Invite Code"
+  },
+  "SubscribeInputCodeFirst": {
+    "One": "Please enter the invite code first"
+  },
+  "SubscribeCodePlaceholder": {
+    "One": "32-digit invite code"
+  },
+  "SubscribeRedeem": {
+    "One": "Redeem"
+  },
+  "SubscribeRedeemSuccess": {
+    "One": "Redemption Successful"
+  },
+  "SubscribeRedeemSuccessDesc": {
+    "One": "Subscription activated. Thank you for your support!"
+  },
+  "SubscribeRedeemFailed": {
+    "One": "Redemption Failed"
+  },
+  "SubscribeExpireDays": {
+    "One": "Valid Days"
+  },
+  "CodeNotFound": {
+    "One": "Code not found"
+  },
+  "CodeUsed": {
+    "One": "Code already used"
+  },
+  "CodeRevoked": {
+    "One": "Code has been revoked"
+  },
+  "CodeExpired": {
+    "One": "Code has expired"
+  },
+  "GenerateInviteCode": {
+    "One": "Generate Invite Code"
+  },
+  "Generate": {
+    "One": "Generate"
+  },
+  "GenerateSuccess": {
+    "One": "Generation successful"
+  },
+  "GenerateFailed": {
+    "One": "Generation failed"
+  },
+  "Revoke": {
+    "One": "Revoke"
+  },
+  "RevokeSuccess": {
+    "One": "Revoked successfully"
+  },
+  "RevokeFailed": {
+    "One": "Revocation failed"
+  },
+  "ExportSuccess": {
+    "One": "Export successful"
+  },
+  "ExportFailed": {
+    "One": "Export failed"
+  },
+  "LoadFailed": {
+    "One": "Load failed"
+  },
+  "OrderNo": {
+    "One": "Order No."
+  },
+  "OrderNotFound": {
+    "One": "Order not found"
+  },
+  "OrderNotPaid": {
+    "One": "Order not paid"
+  },
+  "Plan": {
+    "One": "Plan"
+  },
+  "Alipay": {
+    "One": "Alipay"
+  },
+  "WechatPay": {
+    "One": "WeChat Pay"
+  },
+  "SubscribeMonth": {
+    "One": "Month"
+  },
+  "InviteCodeMgmt": {
+    "One": "Auth Code (Subscription)"
+  },
+  "All": {
+    "One": "All"
+  },
+  "UsedBy": {
+    "One": "Used By"
+  },
+  "UsedByName": {
+    "One": "Used Account"
+  },
+  "Action": {
+    "One": "Action"
+  },
+  "GotIt": {
+    "One": "Got It"
+  },
+  "SubscribeExpireSoon": {
+    "One": "Pro · {days}d"
+  },
+  "AdminInviteCode": {
+    "One": "Coupon"
+  },
+  "SubscribeInviteCodes": {
+    "One": "Auth Codes"
+  },
+  "RegistrationInviteCodes": {
+    "One": "Registration Codes"
+  },
+  "AdminOrder": {
+    "One": "Orders"
+  },
+  "AdminSubscription": {
+    "One": "Paid Members"
+  },
+  "ID": {
+    "One": "ID"
+  },
+  "Cpu": {
+    "One": "CPU"
+  },
+  "Total": {
+    "One": "Total"
+  },
+  "Highest": {
+    "One": "Highest"
+  },
+  "Avg": {
+    "One": "Avg"
+  },
+  "Speed": {
+    "One": "Speed"
+  },
+  "BlockList": {
+    "One": "Block List"
+  },
+  "BlackList": {
+    "One": "Black List"
+  },
+  "AlwaysUseRelay": {
+    "One": "Always Use Relay"
+  },
+  "Usage": {
+    "One": "Usage"
+  },
+  "WebClient": {
+    "One": "Web Client"
+  },
+  "ColumnSetting": {
+    "One": "Column Settings"
+  },
+  "SendToId": {
+    "One": "Send To ID Server"
+  },
+  "SendToRelay": {
+    "One": "Send To Relay Server"
+  },
+  "Cmd": {
+    "One": "Cmd"
+  },
+  "Option": {
+    "One": "Option"
+  },
+  "Explain": {
+    "One": "Explain"
+  },
+  "Target": {
+    "One": "Target"
+  },
+  "OrderStatusPending": {
+    "One": "Pending"
+  },
+  "OrderStatusPaid": {
+    "One": "Paid"
+  },
+  "OrderStatusClosed": {
+    "One": "Closed"
+  },
+  "SubscribePermanent": {
+    "One": "Permanent"
+  },
+  "Binding": {
+    "One": "Binding"
+  },
+  "NoData": {
+    "One": "No Data"
+  },
+  "Size": {
+    "One": "Size"
+  },
+  "More": {
+    "One": "More"
+  },
+  "Client": {
+    "One": "Client"
+  },
+  "Example": {
+    "One": "Example"
+  },
+  "PlatformUA": {
+    "One": "Platform/UA"
+  },
+  "Backend": {
+    "One": "Backend"
+  },
+  "SelectColor": {
+    "One": "Please select a color"
+  },
+  "MultipleIpSeparatorTip": {
+    "One": "Separate multiple IP addresses with |"
+  },
+  "DeleteAllIpTip": {
+    "One": "To delete all entries, enter"
+  },
+  "ConfigContentRequired": {
+    "One": "Configuration content is required"
+  },
+  "ForceUpdate": {
+    "One": "Force Update"
+  },
+  "ForceUpdateTip": {
+    "One": "Download and install silently without prompting the client"
+  },
+  "Forced": {
+    "One": "Forced"
+  },
+  "Normal": {
+    "One": "Normal"
+  },
+  "AlertConfigSummary": {
+    "One": "Configuration Summary"
+  },
+  "AlertChannelNamePlaceholder": {
+    "One": "Example: WeCom alerts"
+  },
+  "LeaveBlankUnchanged": {
+    "One": "Leave blank to keep unchanged"
+  },
+  "Required": {
+    "One": "Required"
+  },
+  "AlertChannelSmtpTip": {
+    "One": "Add recipients to an alert rule below; this channel only configures the sending server."
+  },
+  "AlertRecipientsPlaceholder": {
+    "One": "Recipient email addresses separated by commas, e.g. a@x.com,b@x.com"
+  },
+  "IsAdmin": {
+    "One": "Is Administrator"
+  },
+  "MyPeer": {
+    "One": "My Devices"
+  },
+  "View": {
+    "One": "View"
+  },
+  "Token": {
+    "One": "Token"
+  },
+  "AddressBookCollection": {
+    "One": "Address Book Collection"
+  },
+  "or login in with": {
+    "One": "or log in with"
+  },
+  "Optional, default is": {
+    "One": "Optional, default is"
+  },
+  "Check your IdP docs, without": {
+    "One": "Check your IdP documentation, excluding"
+  },
+  "For OIDC login without a password, enter any 4-20 letters": {
+    "One": "For OIDC login without a password, enter any 4-20 characters"
+  },
+  "Email": {
+    "One": "Email"
+  },
+  "Information": {
+    "One": "Information"
+  },
+  "Import": {
+    "One": "Import"
+  },
+  "Bind": { "One": "Bind" },
+  "Broadcast": { "One": "Broadcast" },
+  "Content": { "One": "Content" },
+  "Disable": { "One": "Disable" },
+  "Enable": { "One": "Enable" },
+  "Hint": { "One": "Hint" },
+  "Id": { "One": "ID" },
+  "InvalidParam": { "One": "Invalid parameter: {param}" },
+  "LoginFailed": { "One": "Login failed" },
+  "Op": { "One": "Identity Provider" },
+  "PkceEnable": { "One": "Enable PKCE" },
+  "PkceMethod": { "One": "PKCE Method" },
+  "Success": { "One": "Success" },
+  "Title": { "One": "Title" },
+  "Your IdP Name": { "One": "Your IdP name" },
+  "Amount": { "One": "Amount" },
+  "BatchAdd": { "One": "Batch Add" },
+  "BatchGenerateInviteCodes": { "One": "Batch Generate Invite Codes" },
+  "BatchGenerationFailed": { "One": "Batch generation failed" },
+  "BindingScope": { "One": "Binding Scope" },
+  "City": { "One": "City" },
+  "ClickToUpload": { "One": "Click to upload" },
+  "ClientId": { "One": "Client ID" },
+  "ClientSecret": { "One": "Client Secret" },
+  "Closed": { "One": "Closed" },
+  "CloseFailed": { "One": "Close failed" },
+  "ConfirmationFailed": { "One": "Confirmation failed" },
+  "ConfirmCloseOrder": { "One": "Close order {order}?" },
+  "ConfirmedSuccessfully": { "One": "Confirmed successfully" },
+  "ConfirmExtension": { "One": "Confirm Extension" },
+  "ConfirmOrderPaid": { "One": "Confirm order {order} as paid?" },
+  "ConfirmPaid": { "One": "Confirm Paid" },
+  "ConfirmRevokeInviteCode": { "One": "Are you sure you want to revoke invite code {code}?" },
+  "ConnectionTime": { "One": "Connection Time" },
+  "DaysCount": { "One": "{count} days" },
+  "DaysLeft": { "One": "Days Left" },
+  "DefaultThirtyDays": { "One": "Default is 30 days" },
+  "DeviceGroup": { "One": "Device Group" },
+  "Disabled": { "One": "Disabled" },
+  "District": { "One": "District" },
+  "DurationAutoFillTip": { "One": "Duration (auto-fills days after selection)" },
+  "EditStrategy": { "One": "Edit Strategy" },
+  "EndTime": { "One": "End Time" },
+  "ExpirationTime": { "One": "Expiration Time" },
+  "Extend": { "One": "Extend" },
+  "ExtendSubscription": { "One": "Extend Subscription" },
+  "ExtensionDuration": { "One": "Extension Duration" },
+  "ExtensionFailed": { "One": "Extension failed" },
+  "FileCountLimitExceeded": { "One": "File count limit exceeded" },
+  "GeneratedCount": { "One": "Generated ({count})" },
+  "Global": { "One": "Global" },
+  "HigherNumberHigherPriority": { "One": "Higher numbers have higher priority" },
+  "InProgress": { "One": "In Progress" },
+  "InviteCodesGeneratedSuccess": { "One": "Successfully generated {count} invite codes" },
+  "Issuer": { "One": "Issuer" },
+  "MerchantOrderNo": { "One": "Merchant Order No." },
+  "NewStrategy": { "One": "New Strategy" },
+  "OneMonth": { "One": "1 Month" },
+  "OneYear": { "One": "1 Year" },
+  "Optional": { "One": "Optional" },
+  "OrderExpired": { "One": "Order expired" },
+  "OrderListLoadFailed": { "One": "Failed to get order list" },
+  "OrderNoUsername": { "One": "Order No./Username" },
+  "OrderQrCodeExpired": { "One": "Order QR code expired" },
+  "OrderTime": { "One": "Order Time" },
+  "OrDragFilesHere": { "One": "or drag files here" },
+  "PaymentMethod": { "One": "Payment Method" },
+  "Permanent": { "One": "Permanent" },
+  "Plain": { "One": "Plain" },
+  "PleaseEnterValidDays": { "One": "Please enter valid days" },
+  "PleaseSelectPlan": { "One": "Please select a plan" },
+  "Priority": { "One": "Priority" },
+  "Province": { "One": "Province" },
+  "Quantity": { "One": "Quantity" },
+  "RdpPort": { "One": "RDP Port" },
+  "RdpUsername": { "One": "RDP Username" },
+  "RedirectUrl": { "One": "Redirect URL" },
+  "RegularUser": { "One": "Regular User" },
+  "S256Recommended": { "One": "S256 (Recommended)" },
+  "SameServer": { "One": "Same Server" },
+  "Scopes": { "One": "Scopes" },
+  "SearchStrategyName": { "One": "Search strategy name" },
+  "SelectDeviceGroup": { "One": "Select device group" },
+  "SelectGroup": { "One": "Select Group" },
+  "SelectPkceMethod": { "One": "Select PKCE Method" },
+  "SelectTag": { "One": "Select Tag" },
+  "SelectUser": { "One": "Select User" },
+  "SixMonths": { "One": "6 Months" },
+  "StrategyConfigCommentTip": { "One": "Tip: Lines starting with # are comments. Remove # to enable the corresponding config item." },
+  "StrategyConfigTemplate": { "One": "Strategy Config Template" },
+  "StrategyManagement": { "One": "Strategy Management" },
+  "StrategyName": { "One": "Strategy Name" },
+  "StrategyNameExample": { "One": "Example: Office Network Policy" },
+  "SubscriptionExtendedSuccess": { "One": "Extended subscription for user {username} by {duration}" },
+  "SubscriptionListLoadFailed": { "One": "Failed to get subscription list" },
+  "SubscriptionStatus": { "One": "Subscription Status" },
+  "Tag": { "One": "Tag" },
+  "TenYears": { "One": "10 Years" },
+  "ThreeMonths": { "One": "3 Months" },
+  "TwelveMonths": { "One": "12 Months" },
+  "UserIdUsername": { "One": "User ID/Username" },
+  "ValidDays": { "One": "Valid Days" },
+  "WeChatPay": { "One": "WeChat Pay" },
+  "Test": { "One": "Test" },
+  "SendTest": { "One": "Send Test" },
+  "OfflineAlertLogic": { "One": "Offline Alert Logic" },
+  "DeviceCheckedEveryFiveMinutes": { "One": "Device status is checked every five minutes." },
+  "OfflineThresholdWeightTip": { "One": "After the offline threshold is exceeded, the weight increases by one. An email is sent at 10 (about 50 minutes offline)." },
+  "AlertWeightResetsDaily": { "One": "The weight resets automatically each day." },
+  "MaxThreeAlertsPerDay": { "One": "Each device can send at most 3 alerts per day." },
+  "AlertsPauseAfterThreeDays": { "One": "Alerts stop after 3 consecutive days and resume when the device comes back online." },
+  "MinutesShort": { "One": "min" },
+  "ConfigItems": { "One": "Config Items" },
+  "ConfigItemsPlaceholder": { "One": "One config item per line, format: key=value\nExample:\nforce_relay=Y\nenable-udp-punch=N\nenable-clipboard=N\ncustom-rendezvous-server=192.0.2.1:21116" },
+  "CommonConfigItems": { "One": "Common config items: force_relay, enable-udp-punch, enable-ipv6-punch, enable-clipboard, enable-audio, enable-file-transfer, custom-rendezvous-server" },
+  "NatTraversal": { "One": "NAT Traversal" },
+  "ForceRelayHelp": { "One": "Force relay: Y forces relay and disables P2P punching; N allows P2P" },
+  "UdpPunchHelp": { "One": "Enable UDP punching; N uses TCP relay only" },
+  "Ipv6PunchHelp": { "One": "Enable IPv6 punching; N disables IPv6 traversal" },
+  "UpnpHelp": { "One": "Enable UPnP automatic port mapping; N disables it" },
+  "CustomRelayHelp": { "One": "Custom relay server address (for your own relay)" },
+  "DomainIpPortFormat": { "One": "Format: domain or IP:port" },
+  "FeatureSwitches": { "One": "Feature Switches" },
+  "ClipboardSharingHelp": { "One": "Enable clipboard sharing; N disables remote copy/paste" },
+  "AudioTransmissionHelp": { "One": "Enable audio transmission; N disables remote audio" },
+  "FileTransferHelp": { "One": "Enable file transfer; N disables remote file transfer" },
+  "EncryptionModeHelp": { "One": "Encryption modes: default / no_encryption / encrypted" },
+  "DisplayAndPerformance": { "One": "Display and Performance" },
+  "ImageQualityHelp": { "One": "Image quality options: quality / balanced / speed" },
+  "MaxFpsHelp": { "One": "Maximum FPS; 0 means unlimited" },
+  "SecurityPolicy": { "One": "Security Policy" },
+  "HideUsernameHelp": { "One": "Hide usernames in address book; Y shows device names only" },
+  "DirectConnectionVerificationHelp": { "One": "Enable direct-connection verification; Y requires handshake verification" },
+  "AlertRecipientsSpecifiedInRule": { "One": "recipients are specified in the rule" },
+  "TestRecipientPrompt": { "One": "Enter a test recipient address (leave blank to send to yourself)" },
+  "TestDeliveryFailed": { "One": "Test delivery failed: {message}" },
+  "TestMessageSent": { "One": "Test message sent. Please confirm receipt." },
+  "DeleteAlertChannelWarning": { "One": "Associated alert rules cannot send after deletion. Continue?" },
+  "StrategyNameRequired": { "One": "Strategy name cannot be empty" },
+  "DeleteStrategyConfirm": { "One": "Delete strategy \"{name}\"?" },
+  "Prompt": { "One": "Prompt" },
+  "NotImplementedYet": { "One": "Not implemented yet" },
+  "PleaseSelectReceiver": { "One": "Please select a receiver" }
 }

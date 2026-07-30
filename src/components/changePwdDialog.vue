@@ -1,6 +1,6 @@
 <template>
-  <el-dialog v-model="v" width="50%" :show-close="false">
-    <el-form ref="cpwd" :model="changePwdForm" :rules="chagePwdRules" label-width="150px" label-position="left" style="margin-top: 20px">
+  <el-dialog v-model="v" width="50%" :show-close="false" append-to-body>
+    <el-form ref="cpwd" :model="changePwdForm" :rules="chagePwdRules" label-position="left" style="margin-top: 20px">
       <el-form-item :label="T('OldPassword')" prop="old_password">
         <el-input v-model="changePwdForm.old_password" :placeholder="T('For OIDC login without a password, enter any 4-20 letters')" show-password></el-input>
       </el-form-item>
@@ -21,10 +21,10 @@
 <script setup>
 
   import { computed, reactive, ref } from 'vue'
-  import { ElMessageBox } from 'element-plus'
-  import { changeCurPwd } from '@/api/user'
-  import { useUserStore } from '@/store/user'
-  import { T } from '@/utils/i18n'
+import { ElMessageBox } from 'element-plus'
+import { changeCurPwd } from '@/api/user'
+import { useUserStore } from '@/store/user'
+import { T } from '@/utils/i18n'
 
   const props = defineProps({
     visible: Boolean,
@@ -59,7 +59,7 @@
       {
         validator: (rule, value, callback) => {
           if (value === changePwdForm.old_password) {
-            callback(new Error(T('NewPasswordEqualOldPassword'))) //'新密码不能与旧密码相同'
+            callback(new Error(T('NewPasswordEqualOldPassword'))) //'The new password cannot be the same as the old password'
           } else {
             callback()
           }
@@ -88,12 +88,11 @@
   const userStore = useUserStore()
 
   const changePassword = async () => {
-    //验证
+    // Validate
     const valid = await cpwd.value.validate().catch(_ => false)
     if (!valid) {
       return
     }
-    console.log('changePassword')
     const confirm = await ElMessageBox.confirm(T('Confirm?', { param: T('ChangePassword') }), {
       confirmButtonText: T('Confirm'),
       cancelButtonText: T('Cancel'),

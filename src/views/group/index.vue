@@ -1,6 +1,6 @@
 <template>
   <div class="org-wrap">
-    <!-- 左侧：部门树 -->
+    <!-- Left: department tree -->
     <el-card class="org-tree" shadow="hover">
       <template #header>
         <div class="tree-header">
@@ -27,7 +27,7 @@
       </el-tree>
     </el-card>
 
-    <!-- 右侧：部门成员 -->
+    <!-- Right: department members -->
     <el-card class="org-members" shadow="hover">
       <template #header>
         <div class="member-header">
@@ -48,19 +48,19 @@
         </el-form-item>
       </el-form>
       <el-table class="list-table" :data="listRes.list" v-loading="listRes.loading" border>
-        <el-table-column prop="id" label="ID" width="80" align="center" />
+        <el-table-column prop="id" :label="T('ID')" min-width="80" align="center" />
         <el-table-column prop="username" :label="T('Username')" />
         <el-table-column prop="nickname" :label="T('Nickname')" />
         <el-table-column :label="T('Group')">
           <template #default="{row}">{{ groupName(row.group_id) }}</template>
         </el-table-column>
-        <el-table-column :label="T('IsAdmin')" width="90" align="center">
+        <el-table-column :label="T('Role')" min-width="100" align="center">
           <template #default="{row}">
-            <el-tag v-if="row.is_admin" type="danger" size="small">Admin</el-tag>
-            <span v-else>-</span>
+            <el-tag v-if="row.role === 'admin'" type="danger" size="small">{{ T('Administrator') }}</el-tag>
+            <span v-else>{{ T('RegularUser') }}</span>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Status')" width="90" align="center">
+        <el-table-column :label="T('Status')" min-width="90" align="center">
           <template #default="{row}">
             <el-tag :type="row.status === 1 ? 'success' : 'info'" size="small">
               {{ row.status === 1 ? T('Enable') : T('Disable') }}
@@ -69,9 +69,8 @@
         </el-table-column>
         <el-table-column prop="remark" :label="T('Remark')" />
       </el-table>
-      <el-pagination
+      <el-pagination background
         class="member-page"
-        background
         layout="prev, pager, next, sizes, jumper"
         :page-sizes="[10,20,50,100]"
         v-model:page-size="listQuery.page_size"
@@ -82,9 +81,9 @@
       />
     </el-card>
 
-    <!-- 部门新增/编辑对话框 -->
-    <el-dialog v-model="formVisible" :title="!formData.id ? T('Add') : T('Update')" width="600">
-      <el-form :model="formData" label-width="120px">
+    <!-- Department add/edit dialog -->
+    <el-dialog v-model="formVisible" :title="!formData.id ? T('Add') : T('Update')" width="600" append-to-body>
+      <el-form :model="formData">
         <el-form-item :label="T('DepartmentName')" required>
           <el-input v-model="formData.name" />
         </el-form-item>
@@ -118,10 +117,10 @@
 
 <script setup>
   import { onMounted, reactive, ref, computed } from 'vue'
-  import { tree as groupTree, create, update, remove as removeGroup } from '@/api/group'
-  import { list as userList } from '@/api/user'
-  import { ElMessage, ElMessageBox } from 'element-plus'
-  import { T } from '@/utils/i18n'
+import { tree as groupTree, create, update, remove as removeGroup } from '@/api/group'
+import { list as userList } from '@/api/user'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { T } from '@/utils/i18n'
 
   const treeRef = ref(null)
   const treeData = ref([])
@@ -134,7 +133,7 @@
     }
   }
 
-  // 扁平化部门，便于按 id 取名称
+  // Flatten departments to make lookup by ID easier
   const flatGroups = computed(() => {
     const map = {}
     const walk = (nodes) => {
@@ -159,7 +158,7 @@
     getList()
   }
 
-  // 成员列表
+  // Member list
   const listRes = reactive({ list: [], total: 0, loading: false })
   const listQuery = reactive({ page: 1, page_size: 10, username: '' })
 
@@ -184,11 +183,11 @@
     }
   }
 
-  // 部门对话框
+  // Department dialog
   const formVisible = ref(false)
   const formData = reactive({ id: 0, name: '', type: 1, parent_id: 0 })
 
-  // 编辑时禁用自身及子孙部门作为上级
+  // Disable self and descendants as parent department during editing
   const parentTreeData = computed(() => {
     const forbidden = new Set()
     if (formData.id) {

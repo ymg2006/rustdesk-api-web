@@ -27,7 +27,7 @@
             </template>
           </el-input>
           <div style="margin-top:4px; font-size:12px; color:#909399;">
-            管理员：laiyouxing@foxmail.com
+            {{ T('Administrator') }}：administrator@site.com
           </div>
         </el-form-item>
         <el-form-item label="">
@@ -41,12 +41,12 @@
 
 <script setup>
   import { reactive, ref, computed } from 'vue'
-  import { ElMessage } from 'element-plus'
-  import { T } from '@/utils/i18n'
-  import { useRoute, useRouter } from 'vue-router'
-  import { register } from '@/api/user'
-  import { useUserStore } from '@/store/user'
-  import { useAppStore } from '@/store/app'
+import { ElMessage } from 'element-plus'
+import { T } from '@/utils/i18n'
+import { useRoute, useRouter } from 'vue-router'
+import { register } from '@/api/user'
+import { useUserStore } from '@/store/user'
+import { useAppStore } from '@/store/app'
 
   const route = useRoute()
   const router = useRouter()
@@ -86,7 +86,6 @@
   })
   const f = ref(null)
   const submit = async () => {
-    // 邀请模式下需要检查邀请码
     if (inviteOnly.value && !form.invite_code) {
       ElMessage.warning(T('InviteCodeRequired'))
       return

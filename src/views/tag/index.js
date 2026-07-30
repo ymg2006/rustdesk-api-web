@@ -11,9 +11,9 @@ const apis = {
   my: { list: my_list, remove: my_remove, create: my_create, update: my_update },
 }
 
-export function useRepositories (api_type = 'my') {
+export function useRepositories(api_type = 'my') {
 
-  //获取query
+  // Read the query.
   const route = useRoute()
   const user_id = route.query?.user_id
   const listRes = reactive({
@@ -27,45 +27,49 @@ export function useRepositories (api_type = 'my') {
   })
 
   const flutterColor2rgba = (color) => {
-    // color 是十进制的数字,先转成16进制
+    // The color is decimal; convert it to hexadecimal first.
     let hex = color.toString(16)
-    console.log('hex', hex)
     if (hex.length < 8) {
-      //前面补0
+      // Pad the beginning with zeroes.
       hex = '0'.repeat(8 - hex.length) + hex
     }
-    //前两位是透明度
+    // The first two digits represent opacity.
     let alpha = hex.slice(0, 2)
-    //后六位是颜色
+    // The final six digits represent the color.
     let rgba = hex.slice(2)
     return `rgba(${parseInt(rgba.slice(0, 2), 16)}, ${parseInt(rgba.slice(2, 4), 16)}, ${parseInt(rgba.slice(4, 6), 16)}, ${parseInt(alpha, 16) / 255})`
   }
 
   const rgba2flutterColor = (color) => {
-    console.log('color', color)
-    //rgba(133, 33, 33, 0.81)
-    let rgba = color.match(/rgba\((\d+),\s*(\d+),\s*(\d+),\s*(\d+(\.\d+)?)\)/)
-    console.log('rgba', rgba)
-    let alpha = Math.round(parseFloat(rgba[4]) * 255).toString(16)
-    let r = parseInt(rgba[1]).toString(16)
-    let g = parseInt(rgba[2]).toString(16)
-    let b = parseInt(rgba[3]).toString(16)
-    //如果是1位要补位
-    if (alpha.length === 1) {
-      alpha = '0' + alpha
+    // Supports:
+    // rgb(133, 33, 33)
+    // rgba(133, 33, 33, 0.81)
+
+    const match = color.match(
+      /^rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)(?:\s*,\s*(\d*\.?\d+))?\s*\)$/i
+    );
+
+    if (!match) {
+      throw new Error(`Invalid RGB/RGBA color: ${color}`);
     }
-    if (r.length === 1) {
-      r = '0' + r
-    }
-    if (g.length === 1) {
-      g = '0' + g
-    }
-    if (b.length === 1) {
-      b = '0' + b
-    }
-    console.log('to f color', alpha + r + g + b, parseInt(alpha + r + g + b, 16))
-    return parseInt(alpha + r + g + b, 16)
-  }
+
+    const rValue = Math.min(255, parseInt(match[1], 10));
+    const gValue = Math.min(255, parseInt(match[2], 10));
+    const bValue = Math.min(255, parseInt(match[3], 10));
+
+    // RGB has no alpha, so use fully opaque.
+    const alphaValue = match[4] === undefined
+      ? 255
+      : Math.round(Math.min(1, Math.max(0, parseFloat(match[4]))) * 255);
+
+    const alpha = alphaValue.toString(16).padStart(2, '0');
+    const r = rValue.toString(16).padStart(2, '0');
+    const g = gValue.toString(16).padStart(2, '0');
+    const b = bValue.toString(16).padStart(2, '0');
+
+    // Flutter Color format: 0xAARRGGBB
+    return parseInt(`${alpha}${r}${g}${b}`, 16);
+  };
 
   const getList = async () => {
     listRes.loading = true
@@ -117,7 +121,6 @@ export function useRepositories (api_type = 'my') {
     currentColor.value = c
   }
   const toEdit = (row) => {
-    console.log('row', row)
     formVisible.value = true
     formData.id = row.id
     formData.name = row.name
@@ -136,9 +139,8 @@ export function useRepositories (api_type = 'my') {
     formData.collection_id = null
   }
   const submit = async () => {
-    console.log(formData)
     if (!formData.color) {
-      ElMessage.error('请选择颜色')
+      ElMessage.error(T('SelectColor'))
       return
     }
     const api = formData.id ? apis[api_type].update : apis[api_type].create
@@ -146,7 +148,6 @@ export function useRepositories (api_type = 'my') {
       ...formData,
       color: rgba2flutterColor(formData.color),
     }
-    console.log(data)
     const res = await api(data).catch(_ => false)
     if (res) {
       ElMessage.success(T('OperationSuccess'))

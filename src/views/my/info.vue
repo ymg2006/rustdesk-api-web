@@ -1,12 +1,5 @@
 <template>
   <div class="profile-page">
-    <!-- 背景装饰光斑：为毛玻璃卡片提供虚化底色 -->
-    <div class="bg-blobs">
-      <span class="blob blob-1"></span>
-      <span class="blob blob-2"></span>
-      <span class="blob blob-3"></span>
-    </div>
-    <!-- ====== 毛玻璃个人资料横幅 ====== -->
     <div class="profile-hero apple-glass">
       <div class="hero-avatar">
         <div class="avatar-ring">
@@ -15,12 +8,12 @@
       </div>
       <div class="hero-info">
         <h1 class="hero-name">{{ userStore.username }}</h1>
-        <p class="hero-email">
+        <p v-if="userStore.email" class="hero-email">
           <svg class="hero-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           {{ userStore.email }}
         </p>
         <p class="hero-role">
-          <el-tag type="primary" size="small" effect="dark" round>管理员</el-tag>
+          <el-tag type="primary" size="small" round>{{T('Administrator')}}</el-tag>
         </p>
       </div>
       <div class="hero-actions">
@@ -31,11 +24,11 @@
       </div>
     </div>
 
-    <!-- ====== 内容网格 ====== -->
+    <!-- ====== Content grid ====== -->
     <div class="profile-grid">
-      <!-- 左列：OIDC + MFA -->
+      <!-- Left column: OIDC + MFA -->
       <div class="profile-col">
-        <!-- OIDC 卡片 -->
+        <!-- OIDC card -->
         <div class="glass-card">
           <div class="card-header">
             <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -66,11 +59,11 @@
           </div>
           <div v-else class="empty-state">
             <svg viewBox="0 0 64 64" fill="none" width="48" height="48" stroke="var(--apple-gray)" stroke-width="1.5"><circle cx="32" cy="32" r="28"/><path d="M32 20v16M32 42h.02"/></svg>
-            <span>{{ T('NoData') || '暂无数据' }}</span>
+            <span>{{ T('NoData') || 'No data' }}</span>
           </div>
         </div>
 
-        <!-- MFA 卡片 -->
+        <!-- MFA card -->
         <div class="glass-card">
           <div class="card-header">
             <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
@@ -113,7 +106,7 @@
         </div>
       </div>
 
-      <!-- 右列：欢迎信息 / 公告 -->
+      <!-- Right column: welcome message / announcement -->
       <div class="profile-col">
         <div class="glass-card welcome-card" v-if="html">
           <div class="welcome-content" v-html="html"></div>
@@ -121,14 +114,14 @@
       </div>
     </div>
 
-    <!-- 对话框保持不变 -->
-    <el-dialog v-model="setupVisible" :title="T('MfaSetup')" width="480px" class="glass-dialog">
+    <!-- Keep the dialog unchanged. -->
+    <el-dialog v-model="setupVisible" :title="T('MfaSetup')" width="480px" class="glass-dialog" append-to-body>
       <div v-if="setupData">
         <p>{{ T('MfaScanTip') }}</p>
         <div style="text-align:center;margin:12px 0">
           <img v-if="setupData.qr" :src="setupData.qr" alt="qr" style="width:200px;height:200px;border-radius:12px" />
         </div>
-        <el-form label-width="80px">
+        <el-form>
           <el-form-item :label="T('MfaSecret')">
             <el-input :model-value="setupData.secret" readonly>
               <template #append>
@@ -147,7 +140,7 @@
       </template>
     </el-dialog>
 
-    <el-dialog v-model="recoveryVisible" :title="T('MfaRecoveryCodes')" width="480px" class="glass-dialog">
+    <el-dialog v-model="recoveryVisible" :title="T('MfaRecoveryCodes')" width="480px" class="glass-dialog" append-to-body>
       <el-alert :title="T('MfaRecoveryTip')" type="warning" :closable="false" show-icon />
       <ul style="margin-top:12px;font-family:monospace;font-size:14px;line-height:1.8;padding-left:20px">
         <li v-for="(c, i) in recoveryCodes" :key="i">{{ c }}</li>
@@ -163,15 +156,15 @@
 
 <script setup>
   import changePwdDialog from '@/components/changePwdDialog.vue'
-  import { computed, ref } from 'vue'
-  import { useUserStore } from '@/store/user'
-  import { useAppStore } from '@/store/app'
-  import { bind, unbind } from '@/api/oauth'
-  import { myOauth, mfaSetup, mfaEnable, mfaDisable, mfaStatus } from '@/api/user'
-  import { ElMessage, ElMessageBox } from 'element-plus'
-  import { T } from '@/utils/i18n'
-  import { marked } from 'marked'
-  import DOMPurify from 'dompurify'
+import { computed, ref } from 'vue'
+import { useUserStore } from '@/store/user'
+import { useAppStore } from '@/store/app'
+import { bind, unbind } from '@/api/oauth'
+import { myOauth, mfaSetup, mfaEnable, mfaDisable, mfaStatus } from '@/api/user'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { T } from '@/utils/i18n'
+import { marked } from 'marked'
+import DOMPurify from 'dompurify'
 
   const appStore = useAppStore()
   const userStore = useUserStore()
@@ -180,7 +173,7 @@
     changePwdVisible.value = true
   }
 
-  // 头像首字母
+  // Avatar initial.
   const avatarLetter = computed(() => {
     const name = userStore.username || 'U'
     return name.charAt(0).toUpperCase()
@@ -282,7 +275,7 @@
     }
   }
 
-  // 公告来自管理员 Markdown，经 marked 转 HTML 后用 DOMPurify 净化，防止存储型 XSS
+  // Convert administrator-provided Markdown to HTML and sanitize it with DOMPurify to prevent stored XSS.
   const html = computed(_ => DOMPurify.sanitize(marked(appStore.setting.hello||'')))
 
 </script>
@@ -290,58 +283,19 @@
 <style scoped lang="scss">
 .profile-page {
   position: relative;
-  max-width: 1100px;
   margin: 0 auto;
   padding: var(--apple-spacing-6);
   min-height: calc(100vh - 130px);
   border-radius: var(--apple-radius-lg);
   overflow: hidden;
   background: linear-gradient(135deg, #eef2ff 0%, #faf5ff 48%, #ecfeff 100%);
-
-  // 背景装饰光斑（毛玻璃的虚化底色）
-  .bg-blobs {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-    pointer-events: none;
-  }
-  .blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(70px);
-    opacity: 0.85;
-  }
-  .blob-1 {
-    top: -90px;
-    left: -70px;
-    width: 380px;
-    height: 380px;
-    background: radial-gradient(circle, rgba(0, 122, 255, 0.55), transparent 70%);
-  }
-  .blob-2 {
-    bottom: -110px;
-    right: -50px;
-    width: 440px;
-    height: 440px;
-    background: radial-gradient(circle, rgba(168, 85, 247, 0.50), transparent 70%);
-  }
-  .blob-3 {
-    top: 40%;
-    left: 30%;
-    width: 300px;
-    height: 300px;
-    background: radial-gradient(circle, rgba(236, 72, 153, 0.40), transparent 70%);
-  }
 }
 
 html.dark .profile-page {
-  background: linear-gradient(135deg, #161827 0%, #1c1830 48%, #101a26 100%);
-  .blob-1 { background: radial-gradient(circle, rgba(10, 132, 255, 0.55), transparent 70%); }
-  .blob-2 { background: radial-gradient(circle, rgba(168, 85, 247, 0.48), transparent 70%); }
-  .blob-3 { background: radial-gradient(circle, rgba(236, 72, 153, 0.40), transparent 70%); }
+  background: transparent;
 }
 
-/* ========== 毛玻璃英雄横幅 ========== */
+/* ========== Glass hero banner ========== */
 .profile-hero {
   display: flex;
   align-items: center;
@@ -353,7 +307,7 @@ html.dark .profile-page {
   z-index: 1;
   overflow: hidden;
 
-  // 装饰性渐变光晕（毛玻璃底层）
+  // Decorative gradient glow beneath the glass layer.
   &::before {
     content: '';
     position: absolute;
@@ -433,7 +387,7 @@ html.dark .profile-page {
   }
 }
 
-/* ========== 内容网格 ========== */
+/* ========== Content grid ========== */
 .profile-grid {
   position: relative;
   z-index: 1;
@@ -452,7 +406,7 @@ html.dark .profile-page {
   gap: var(--apple-spacing-6);
 }
 
-/* ========== 毛玻璃卡片 ========== */
+/* ========== Glass cards ========== */
 .glass-card {
   background: rgba(255, 255, 255, 0.72);
   backdrop-filter: saturate(180%) blur(20px);
@@ -464,8 +418,7 @@ html.dark .profile-page {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+    box-shadow: var(--el-box-shadow-light);
   }
 }
 
@@ -474,7 +427,7 @@ html.dark .glass-card {
   border-color: rgba(255, 255, 255, 0.08);
 }
 
-/* 卡片头部 */
+/* Card header */
 .card-header {
   display: flex;
   align-items: center;
@@ -491,7 +444,7 @@ html.dark .glass-card {
   }
 }
 
-/* OIDC 列表 */
+/* OIDC list */
 .oidc-list {
   display: flex;
   flex-direction: column;
@@ -519,7 +472,7 @@ html.dark .glass-card {
   }
 }
 
-/* 空状态 */
+/* Empty state */
 .empty-state {
   display: flex;
   flex-direction: column;
@@ -530,7 +483,7 @@ html.dark .glass-card {
   font-size: var(--apple-font-sm);
 }
 
-/* MFA 区域 */
+/* MFA section */
 .mfa-body {
   padding-top: 4px;
 }
@@ -573,7 +526,7 @@ html.dark .glass-card {
   50% { opacity: 0.6; transform: scale(0.85); }
 }
 
-/* 欢迎卡片 */
+/* Welcome card */
 .welcome-card {
   .welcome-content {
     line-height: 1.7;
@@ -592,7 +545,7 @@ html.dark .glass-card {
   }
 }
 
-/* 深色模式英雄横幅微调 */
+/* Dark-mode hero banner adjustments */
 html.dark .profile-hero {
   &::before {
     background: radial-gradient(circle, rgba(10, 132, 255, 0.12), transparent 70%);

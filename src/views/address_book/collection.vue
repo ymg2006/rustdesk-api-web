@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card class="list-query query-card" shadow="hover">
-      <el-form inline label-width="80px">
+      <el-form inline>
         <el-form-item :label="T('Owner')">
           <el-select v-model="listQuery.user_id" clearable>
             <el-option
@@ -20,7 +20,7 @@
     </el-card>
     <el-card class="list-body" shadow="hover">
       <el-table class="list-table" :data="listRes.list" v-loading="listRes.loading" border>
-        <el-table-column prop="id" label="ID" align="center"/>
+        <el-table-column prop="id" :label="T('ID')" align="center"/>
         <el-table-column prop="user_id" :label="T('Owner')" align="center">
           <template #default="{row}">
             <span v-if="row.user_id"> <el-tag>{{ allUsers?.find(u => u.id === row.user_id)?.username }}</el-tag> </span>
@@ -28,12 +28,12 @@
         </el-table-column>
         <el-table-column prop="name" :label="T('AddressBook')" align="center"/>
         <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>
-        <!--        <el-table-column prop="updated_at" label="更新时间" align="center"/>-->
-        <el-table-column :label="T('Actions')" align="center" class-name="table-actions" width="600" fixed="right">
+        <!--        <el-table-column prop="updated_at" :label="T('UpdatedAt')"align="center"/>-->
+        <el-table-column :label="T('Actions')" align="center" width="300" fixed="right">
           <template #default="{row}">
-            <el-button type="primary" @click="showRules(row)">{{ T('ShareRules') }}</el-button>
-            <el-button @click="toEdit(row)">{{ T('Edit') }}</el-button>
-            <el-button type="danger" @click="del(row)">{{ T('Delete') }}</el-button>
+            <el-button type="primary" @click="showRules(row)" size="small">{{ T('ShareRules') }}</el-button>
+            <el-button @click="toEdit(row)" size="small">{{ T('Edit') }}</el-button>
+            <el-button type="danger" @click="del(row)" size="small">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -47,8 +47,8 @@
                      :total="listRes.total">
       </el-pagination>
     </el-card>
-    <el-dialog v-model="formVisible" width="800" :title="!formData.id?T('Create') :T('Update') ">
-      <el-form class="dialog-form" ref="form" :model="formData" label-width="120px">
+    <el-dialog v-model="formVisible" width="800" :title="!formData.id?T('Create') :T('Update')" append-to-body>
+      <el-form class="dialog-form" ref="form" :model="formData">
         <el-form-item :label="T('Owner')" prop="user_id" required>
           <el-select v-model="formData.user_id">
             <el-option
@@ -68,7 +68,7 @@
         </el-form-item>
       </el-form>
     </el-dialog>
-    <el-dialog v-model="rulesVisible" :title="T('ShareRules')" destroy-on-close top="5vh" width="80%">
+    <el-dialog v-model="rulesVisible" :title="T('ShareRules')" destroy-on-close append-to-body>
       <Rule :collection="clickRow" :is_my="0"></Rule>
     </el-dialog>
 
@@ -77,11 +77,11 @@
 
 <script setup>
   import { T } from '@/utils/i18n'
-  import { ref } from 'vue'
-  import { useRepositories } from '@/views/address_book/collection'
-  import { onActivated, onMounted, watch } from 'vue'
-  import Rule from '@/views/address_book/rule.vue'
-  import { loadAllUsers } from '@/global'
+import { ref } from 'vue'
+import { useRepositories } from '@/views/address_book/collection'
+import { onActivated, onMounted, watch } from 'vue'
+import Rule from '@/views/address_book/rule.vue'
+import { loadAllUsers } from '@/global'
 
   const { allUsers, getAllUsers } = loadAllUsers()
   getAllUsers()
@@ -112,7 +112,6 @@
   const showRules = (row) => {
     clickRow.value = row
     rulesVisible.value = true
-    console.log('showRules')
   }
 
 </script>

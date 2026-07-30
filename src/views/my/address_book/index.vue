@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card class="list-query" shadow="hover">
-      <el-form inline label-width="120px">
+      <el-form inline>
         <el-form-item :label="T('AddressBookName')">
           <el-select v-model="listQuery.collection_id" clearable>
             <el-option :value="0" :label="T('MyAddressBook')"></el-option>
@@ -20,16 +20,16 @@
         <el-form-item>
           <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
           <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
-          <el-button type="primary" @click="showBatchEditTags">{{ T('BatchEditTags') }}</el-button>
+          <el-button type="primary" @click="showBatchEditTags">{{ T('BatchEdit') }}</el-button>
         </el-form-item>
       </el-form>
     </el-card>
     <el-card class="list-body" shadow="hover">
       <el-table :data="listRes.list" v-loading="listRes.loading" border @selection-change="handleSelectionChange">
-        <el-table-column type="selection" width="50" align="center"></el-table-column>
-        <el-table-column prop="id" label="ID" align="center" width="200">
+        <el-table-column type="selection" align="center" width="50"/>
+        <el-table-column prop="id" :label="T('ID')" align="center" min-width="200">
           <template #default="{row}">
-            <div>
+            <div class="flex-center gap-5">
               <PlatformIcons :name="platformList.find(p=>p.label===row.platform)?.icon" style="width: 20px;height: 20px;display: inline-block" color="var(--basicBlack)"/>
               {{ row.id }}
               <el-icon @click="handleClipboard(row.id, $event)">
@@ -38,28 +38,28 @@
             </div>
           </template>
         </el-table-column>
-        <el-table-column prop="collection_id" :label="T('AddressBookName')" align="center" width="150">
+        <el-table-column prop="collection_id" :label="T('AddressBookName')" align="center" min-width="155">
           <template #default="{row}">
             <span v-if="row.collection_id === 0">{{ T('MyAddressBook') }}</span>
             <span v-else>{{ collectionListRes.list.find(c => c.id === row.collection_id)?.name }}</span>
           </template>
         </el-table-column>
-        <el-table-column prop="username" :label="T('Username')" align="center" width="150"/>
-        <el-table-column prop="hostname" :label="T('Hostname')" align="center" width="150"/>
-        <!--        <el-table-column prop="platform" :label="T('Platform')" align="center" width="120"/>-->
+        <el-table-column prop="username" :label="T('Username')" align="center" min-width="150"/>
+        <el-table-column prop="hostname" :label="T('Hostname')" align="center" min-width="150"/>
+        <!--        <el-table-column prop="platform" :label="T('Platform')" align="center" min-width="120"/>-->
         <el-table-column prop="tags" :label="T('Tags')" align="center"/>
-        <!--        <el-table-column prop="created_at" label="创建时间" align="center"/>-->
-        <!--        <el-table-column prop="updated_at" label="更新时间" align="center"/>-->
-        <el-table-column prop="alias" :label="T('Alias')" align="center" width="150"/>
-        <el-table-column prop="peer.version" :label="T('Version')" align="center" width="100"/>
-        <el-table-column prop="hash" :label="T('Hash')" align="center" width="150" show-overflow-tooltip/>
-        <el-table-column :label="T('Actions')" align="center" class-name="table-actions" width="600" fixed="right">
+        <!--        <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>-->
+        <!--        <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center"/>-->
+        <el-table-column prop="alias" :label="T('Alias')" align="center" min-width="150"/>
+        <el-table-column prop="peer.version" :label="T('Version')" align="center" min-width="100"/>
+        <el-table-column prop="hash" :label="T('Hash')" align="center" min-width="150" show-overflow-tooltip/>
+        <el-table-column :label="T('Actions')" align="center" width="500" fixed="right">
           <template #default="{row}">
-            <el-button type="success" @click="connectByClient(row.id)">{{ T('Link') }}</el-button>
-            <el-button v-if="appStore.setting.appConfig.web_client" type="success" @click="toWebClientLink(row)">Web Client</el-button>
-            <el-button v-if="appStore.setting.appConfig.web_client" type="primary" @click="toShowShare(row)">{{ T('ShareByWebClient') }}</el-button>
-            <el-button @click="toEdit(row)">{{ T('Edit') }}</el-button>
-            <el-button type="danger" @click="del(row)">{{ T('Delete') }}</el-button>
+            <el-button type="success" @click="connectByClient(row.id)" size="small">{{ T('Link') }}</el-button>
+            <el-button v-if="appStore.setting.appConfig.web_client" type="success" @click="toWebClientLink(row)" size="small">{{ T('WebClient') }}</el-button>
+            <el-button v-if="appStore.setting.appConfig.web_client" type="primary" @click="toShowShare(row)" size="small">{{ T('ShareByWebClient') }}</el-button>
+            <el-button @click="toEdit(row)" size="small">{{ T('Edit') }}</el-button>
+            <el-button type="danger" @click="del(row)" size="small">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -73,15 +73,15 @@
                      :total="listRes.total">
       </el-pagination>
     </el-card>
-    <el-dialog v-model="formVisible" width="800" :title="!formData.row_id?T('Create') :T('Update') ">
-      <el-form class="dialog-form" ref="form" :model="formData" label-width="120px">
+    <el-dialog v-model="formVisible" width="800" :title="!formData.row_id?T('Create') :T('Update')" append-to-body>
+      <el-form class="dialog-form" ref="form" :model="formData">
         <el-form-item :label="T('AddressBookName')" required prop="collection_id">
           <el-select v-model="formData.collection_id" clearable @change="changeCollectionForUpdate">
             <el-option :value="0" :label="T('MyAddressBook')"></el-option>
             <el-option v-for="c in collectionListResForUpdate.list" :key="c.id" :label="c.name" :value="c.id"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="ID" prop="id" required>
+        <el-form-item :label="T('ID')" prop="id" required>
           <el-input v-model="formData.id"></el-input>
         </el-form-item>
         <el-form-item :label="T('Username')" prop="username">
@@ -123,19 +123,19 @@
             ></el-option>
           </el-select>
         </el-form-item>
-        <!-- <el-form-item label="强制中继" prop="forceAlwaysRelay" required>
+        <!-- <el-form-item label="Force Relay" prop="forceAlwaysRelay" required>
                  <el-switch v-model="formData.forceAlwaysRelay"></el-switch>
                </el-form-item>
-          <el-form-item label="在线" prop="online">
+          <el-form-item label="Online" prop="online">
                  <el-switch v-model="formData.online"></el-switch>
                </el-form-item>
-               <el-form-item label="rdp端口" prop="rdpPort">
+               <el-form-item label="RDP Port" prop="rdpPort">
                  <el-input v-model="formData.rdpPort"></el-input>
                </el-form-item>
-               <el-form-item label="rdp用户名" prop="rdpUsername">
+               <el-form-item label="RDP Username" prop="rdpUsername">
                  <el-input v-model="formData.rdpUsername"></el-input>
                </el-form-item>
-               <el-form-item label="同一服务器" prop="sameServer">
+               <el-form-item label="Same Server" prop="sameServer">
                  <el-switch v-model="formData.sameServer"></el-switch>
                </el-form-item>-->
 
@@ -146,14 +146,14 @@
         </el-form-item>
       </el-form>
     </el-dialog>
-    <el-dialog v-model="shareToWebClientVisible" width="900" :close-on-click-modal="false">
+    <el-dialog v-model="shareToWebClientVisible" width="900" :close-on-click-modal="false" append-to-body>
       <shareByWebClient :id="shareToWebClientForm.id"
                         :hash="shareToWebClientForm.hash"
                         @cancel="shareToWebClientVisible=false"
                         @success=""/>
     </el-dialog>
-    <el-dialog v-model="batchEditTagVisible" width="800">
-      <el-form :model="batchEditTagsFormData" label-width="120px" class="dialog-form">
+    <el-dialog v-model="batchEditTagVisible" width="800" append-to-body>
+      <el-form :model="batchEditTagsFormData" class="dialog-form">
         <el-form-item :label="T('Tags')" prop="tags">
           <el-select v-model="batchEditTagsFormData.tags" multiple>
             <el-option

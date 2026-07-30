@@ -24,9 +24,9 @@
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Status')" width="160">
+        <el-table-column :label="T('Status')" min-width="160">
           <template #default="{ row }">
-            <el-tag :type="tagType(row.status)" effect="dark">{{ statusText(row.status) }}</el-tag>
+            <el-tag :type="tagType(row.status)">{{ statusText(row.status) }}</el-tag>
             <span v-if="row.status === 'up'" class="latency">{{ row.latency_ms }} ms</span>
           </template>
         </el-table-column>
@@ -36,22 +36,21 @@
             <span v-else>-</span>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Actions')" width="160" fixed="right">
+        <el-table-column :label="T('Actions')" align="center" width="200" fixed="right">
           <template #default="{ row }">
-            <el-button size="small" @click="openEdit(row)">{{ T('Edit') }}</el-button>
-            <el-button size="small" type="danger" @click="remove(row)">{{ T('Delete') }}</el-button>
+            <el-button @click="openEdit(row)" size="small">{{ T('Edit') }}</el-button>
+            <el-button type="danger" @click="remove(row)" size="small">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
         <template #empty>
           <div class="empty">
             <span>{{ T('NoServer') }}</span>
-            <el-button type="primary" size="small" @click="openCreate">{{ T('AddServer') }}</el-button>
           </div>
         </template>
       </el-table>
     </el-card>
 
-    <!-- HBBR 负载 / 连接数（仅 api-server 与 hbbr 同机时可用） -->
+    <!-- HBBR load / connections (available only when api-server and hbbr share a host) -->
     <el-card shadow="hover" class="stats-card" v-if="hbbrStats">
       <template #header>
         <div class="card-header">
@@ -98,30 +97,30 @@
           </el-col>
         </el-row>
 
-        <el-table :data="hbbrStats.connections || []" size="small" class="conn-table" max-height="320">
+        <el-table :data="hbbrStats.connections || []" class="conn-table" max-height="320">
           <el-table-column prop="ip" :label="T('ClientAddr')" min-width="160" />
-          <el-table-column :label="T('Duration')" width="110">
+          <el-table-column :label="T('Duration')" min-width="110">
             <template #default="{ row }">{{ row.seconds }}s</template>
           </el-table-column>
-          <el-table-column :label="T('Traffic')" width="120">
+          <el-table-column :label="T('Traffic')" min-width="120">
             <template #default="{ row }">{{ fmtMB(row.traffic_mb) }}</template>
           </el-table-column>
-          <el-table-column :label="T('HighestSpeed')" width="130">
+          <el-table-column :label="T('HighestSpeed')" min-width="130">
             <template #default="{ row }">{{ fmtKbps(row.highest_kbps) }}</template>
           </el-table-column>
-          <el-table-column :label="T('AvgSpeed')" width="120">
+          <el-table-column :label="T('AvgSpeed')" min-width="120">
             <template #default="{ row }">{{ fmtKbps(row.avg_kbps) }}</template>
           </el-table-column>
-          <el-table-column :label="T('CurrentSpeed')" width="130">
+          <el-table-column :label="T('CurrentSpeed')" min-width="130">
             <template #default="{ row }">{{ fmtKbps(row.speed_kbps) }}</template>
           </el-table-column>
         </el-table>
       </template>
     </el-card>
 
-    <!-- 新增/编辑对话框 -->
-    <el-dialog v-model="dialogVisible" :title="editing ? T('EditServer') : T('AddServer')" width="480px">
-      <el-form :model="form" label-width="90px">
+    <!-- Add/edit dialog -->
+    <el-dialog v-model="dialogVisible" :title="editing ? T('EditServer') : T('AddServer')" width="480px" append-to-body>
+      <el-form :model="form">
         <el-form-item :label="T('ServerName')">
           <el-input v-model="form.name" :placeholder="T('ServerNamePlaceholder')" />
         </el-form-item>
@@ -145,14 +144,14 @@
 
 <script setup>
   import { ref, onMounted, onUnmounted } from 'vue'
-  import {
-    serverStatus,
-    serverStatusCreate,
-    serverStatusUpdate,
-    serverStatusDelete,
-  } from '@/api/serverStatus'
-  import { T } from '@/utils/i18n'
-  import { ElMessage, ElMessageBox } from 'element-plus'
+import {
+  serverStatus,
+  serverStatusCreate,
+  serverStatusUpdate,
+  serverStatusDelete,
+} from '@/api/serverStatus'
+import { T } from '@/utils/i18n'
+import { ElMessage, ElMessageBox } from 'element-plus'
 
   const servers = ref([])
   const hbbrStats = ref(null)
@@ -237,6 +236,8 @@
   const remove = (row) => {
     ElMessageBox.confirm(T('ConfirmDeleteServer'), T('Hint'), {
       type: 'warning',
+      confirmButtonText: T('Confirm'),
+      cancelButtonText: T('Cancel'),
     }).then(async () => {
       const res = await serverStatusDelete(row.row_id).catch(e => {
         ElMessage.error(e?.message || T('OperationFailed'))

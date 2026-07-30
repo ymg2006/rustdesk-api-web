@@ -5,15 +5,15 @@
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <span>{{ T('ConfigFile') }}</span>
           <div>
-            <el-button size="small" @click="reset" :disabled="loading">{{ T('Reset') }}</el-button>
-            <el-button size="small" type="primary" @click="save" :loading="saving">{{ T('Save') }}</el-button>
+            <el-button @click="reset" :disabled="loading">{{ T('Reset') }}</el-button>
+            <el-button type="primary" @click="save" :loading="saving">{{ T('Save') }}</el-button>
           </div>
         </div>
       </template>
 
       <el-alert type="warning" :closable="false" show-icon style="margin-bottom: 12px" :title="T('ConfigFileTip')" />
 
-      <el-form label-width="110px" style="margin-bottom: 12px;">
+      <el-form style="margin-bottom: 12px;">
         <el-form-item :label="T('ConfigFilePath')">
           <el-input :model-value="path" readonly />
         </el-form-item>
@@ -70,7 +70,7 @@ const reset = () => {
 
 const save = async () => {
   if (!content.value) {
-    ElMessage.warning('配置内容不能为空')
+    ElMessage.warning(T('ConfigContentRequired'))
     return
   }
   saving.value = true
@@ -95,12 +95,12 @@ const restartService = async () => {
           done()
           return
         }
-        // 仅倒计时结束后允许确认关闭
+        // Allow confirmation only after the countdown finishes.
         if (restartState.done) done()
       }
     }
   )
-  // 确认框渲染后启动 10 秒倒计时
+  // Start the 10-second countdown after the confirmation box renders.
   setTimeout(startRestartCountdown, 50)
   const cf = await boxPromise.catch(_ => false)
   if (restartState.timer) { clearInterval(restartState.timer); restartState.timer = null }
@@ -109,14 +109,14 @@ const restartService = async () => {
   const res = await serviceRestart().catch(_ => false)
   if (res) {
     ElMessage.success(T('ServiceRestarting'))
-    // 服务即将重启，给予提示后刷新页面以重新建立连接
+    // The service is restarting; show a notice and refresh to reconnect.
     setTimeout(() => window.location.reload(), 3000)
   } else {
     restarting.value = false
   }
 }
 
-// 进入确认框即启动 10 秒倒计时，期间禁用确认按钮
+// Start a 10-second countdown on entry and disable confirmation until it finishes.
 const startRestartCountdown = () => {
   const boxes = document.querySelectorAll('.el-message-box')
   const box = boxes[boxes.length - 1]

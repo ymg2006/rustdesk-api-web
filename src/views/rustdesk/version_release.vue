@@ -5,8 +5,8 @@
       <div class="action-bar">
         <span style="font-size: 16px; font-weight: 500;">{{ T('PublishNewVersion') }}</span>
       </div>
-      <el-form inline label-width="80px">
-        <el-form-item label="Version">
+      <el-form inline>
+        <el-form-item :label="T('Version')">
           <el-input v-model="form.version" placeholder="1.4.8.2" style="width: 140px"></el-input>
         </el-form-item>
         <el-form-item :label="T('Platform')">
@@ -23,20 +23,20 @@
             <el-option :label="T('Disable')" :value="2"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="强制更新">
+        <el-form-item :label="T('ForceUpdate')">
           <el-switch v-model="form.force_update" :active-value="1" :inactive-value="0" />
-          <span class="hint-text" style="font-size:12px;margin-left:8px;">开启后客户端静默下载安装，不弹提示</span>
+          <span class="hint-text" style="font-size:12px;margin-left:8px;">{{ T('ForceUpdateTip') }}</span>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" :loading="submitting" @click="submitForm">{{ T('Publish') }}</el-button>
         </el-form-item>
       </el-form>
-      <el-form inline label-width="80px">
-        <el-form-item :label="T('DownloadUrl')" style="width: 500px">
-          <el-input v-model="form.url" placeholder="https://github.com/.../rustdesk-1.4.8.2-x86_64.exe"></el-input>
+      <el-form inline class="w-100">
+        <el-form-item :label="T('DownloadUrl')">
+          <el-input v-model="form.url" placeholder="https://github.com/.../rustdesk-1.4.9-x86_64.exe"></el-input>
         </el-form-item>
       </el-form>
-      <el-form label-width="80px">
+      <el-form>
         <el-form-item :label="T('ReleaseNotes')">
           <el-input v-model="form.note" type="textarea" :rows="3" :placeholder="T('ReleaseNotesPlaceholder')"></el-input>
         </el-form-item>
@@ -45,13 +45,13 @@
 
     <el-card class="list-body" shadow="hover" style="margin-top: 16px;">
       <el-table :data="listRes.list" v-loading="listRes.loading" border>
-        <el-table-column prop="id" label="ID" width="60" align="center"></el-table-column>
-        <el-table-column prop="version" label="Version" width="120" align="center">
+        <el-table-column prop="id" :label="T('ID')" min-width="60" align="center"></el-table-column>
+        <el-table-column prop="version" :label="T('Version')" min-width="120" align="center">
           <template #default="{row}">
             <strong>{{ row.version }}</strong>
           </template>
         </el-table-column>
-        <el-table-column prop="platform" :label="T('Platform')" width="100" align="center"></el-table-column>
+        <el-table-column prop="platform" :label="T('Platform')" min-width="100" align="center"></el-table-column>
         <el-table-column prop="url" :label="T('DownloadUrl')" min-width="200">
           <template #default="{row}">
             <el-text truncated>{{ row.url }}</el-text>
@@ -62,45 +62,43 @@
             <el-text truncated>{{ row.note }}</el-text>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Status')" width="80" align="center">
+        <el-table-column :label="T('Status')" min-width="80" align="center">
           <template #default="{row}">
             <el-tag v-if="row.status === 1" type="success" size="small">{{ T('Enable') }}</el-tag>
             <el-tag v-else type="danger" size="small">{{ T('Disable') }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="强制更新" width="90" align="center">
+        <el-table-column :label="T('ForceUpdate')" min-width="90" align="center">
           <template #default="{row}">
-            <el-tag v-if="row.force_update === 1" type="warning" size="small">强制</el-tag>
-            <el-tag v-else type="info" size="small">普通</el-tag>
+            <el-tag v-if="row.force_update === 1" type="warning" size="small">{{ T('Forced') }}</el-tag>
+            <el-tag v-else type="info" size="small">{{ T('Normal') }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column :label="T('CreatedAt')" width="170" align="center">
+        <el-table-column :label="T('CreatedAt')" min-width="170" align="center">
           <template #default="{row}">
             {{ row.created_at || '' }}
           </template>
         </el-table-column>
-        <el-table-column :label="T('Actions')" width="160" align="center" fixed="right">
+        <el-table-column :label="T('Actions')" align="center" width="200" fixed="right">
           <template #default="{row}">
-            <el-button
-              :type="row.status === 1 ? 'danger' : 'primary'"
-              size="small"
-              @click="toggleStatus(row)"
-            >{{ row.status === 1 ? T('Disable') : T('Enable') }}</el-button>
-            <el-button type="danger" size="small" @click="del(row)">{{ T('Delete') }}</el-button>
+            <el-button :type="row.status === 1 ? 'danger' : 'primary'" @click="toggleStatus(row)" size="small">
+              {{ row.status === 1 ? T('Disable') : T('Enable') }}
+            </el-button>
+            <el-button type="danger" @click="del(row)" size="small">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
-      <el-pagination
-        v-if="listRes.total > 0"
-        background
-        layout="prev, pager, next"
-        :total="listRes.total"
-        :page-size="listQuery.page_size"
-        v-model:current-page="listQuery.page"
-        @current-change="getList"
-      />
     </el-card>
-
+    <el-card class="list-page" shadow="hover">
+      <el-pagination background
+                     layout="prev, pager, next, sizes, jumper"
+                     :page-sizes="[10,20,50,100]"
+                     v-model:page-size="listQuery.page_size"
+                     v-model:current-page="listQuery.page"
+                     :total="listRes.total"
+                     @current-change="getList">
+      </el-pagination>
+    </el-card>
   </div>
 </template>
 

@@ -20,6 +20,20 @@ function filterRoute (routes, enableNames) {
   })
 }
 
+function collectRouteNames (routes, names = []) {
+  for (const route of routes) {
+    if (route.children?.length) {
+      collectRouteNames(route.children, names)
+    }
+
+    if (route.name) {
+      names.push(route.name)
+    }
+  }
+
+  return names
+}
+
 export const useRouteStore = defineStore({
   id: 'router',
   state: () => ({
@@ -55,7 +69,17 @@ export const useRouteStore = defineStore({
         this.keepAlive.push(route.name)
       }
     },
+    resetRoutes () {
+      const names = collectRouteNames(this.routes)
 
+      for (const name of names.reverse()) {
+        if (router.hasRoute(name)) {
+          router.removeRoute(name)
+        }
+      }
+
+      this.$reset()
+    },
   },
 })
 

@@ -1,6 +1,6 @@
 import request from '@/utils/request'
 
-// 获取服务器状态(探测当前用户自定义的所有服务器 + hbbr 负载)
+// Get server status (probe all custom servers for the current user + hbbr load)
 export function serverStatus () {
   return request({
     url: '/server_status',
@@ -8,7 +8,7 @@ export function serverStatus () {
   })
 }
 
-// 列出当前用户的服务器条目
+// List server entries for the current user
 export function serverStatusList () {
   return request({
     url: '/server_status/list',
@@ -16,7 +16,7 @@ export function serverStatusList () {
   })
 }
 
-// 新建服务器条目
+// Create a server entry
 export function serverStatusCreate (data) {
   return request({
     url: '/server_status/create',
@@ -25,7 +25,7 @@ export function serverStatusCreate (data) {
   })
 }
 
-// 更新服务器条目
+// Update a server entry
 export function serverStatusUpdate (data) {
   return request({
     url: '/server_status/update',
@@ -34,7 +34,7 @@ export function serverStatusUpdate (data) {
   })
 }
 
-// 删除服务器条目
+// Delete a server entry
 export function serverStatusDelete (id) {
   return request({
     url: '/server_status/delete',

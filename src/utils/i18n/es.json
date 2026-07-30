@@ -50,6 +50,9 @@
   "Confirm?": {
     "One": "¿Confirmar {param}?"
   },
+  "ConfirmRestartWithCountdown": {
+    "One": "¿{param}? Confirme las consecuencias ({seconds} s restantes antes de habilitar la confirmación)"
+  },
   "Cancel": {
     "One": "Cancelar"
   },
@@ -64,6 +67,9 @@
   },
   "Filter": {
     "One": "Filtrar"
+  },
+  "Keyword": {
+    "One": "Palabra clave"
   },
   "Add": {
     "One": "Agregar"
@@ -85,6 +91,9 @@
   },
   "Delete": {
     "One": "Eliminar"
+  },
+  "DeleteExpired": {
+    "One": "Eliminar caducados"
   },
   "Create": {
     "One": "Crear"
@@ -146,6 +155,24 @@
   "SharedGroupNote": {
     "One": "Todos los usuarios pueden ver a los miembros del grupo y sus dispositivos"
   },
+  "OrgStructure": {
+    "One": "Organización"
+  },
+  "AllMembers": {
+    "One": "Todos los miembros"
+  },
+  "AddRootDept": {
+    "One": "Agregar departamento"
+  },
+  "AddChildDept": {
+    "One": "Agregar subdepartamento"
+  },
+  "DepartmentName": {
+    "One": "Nombre del departamento"
+  },
+  "ParentDept": {
+    "One": "Departamento superior"
+  },
   "Nickname": {
     "One": "Apodo"
   },
@@ -155,8 +182,8 @@
   "UserAddressBook": {
     "One": "Libreta de direcciones de usuario"
   },
-  "IsAdmin": {
-    "One": "Es administrador"
+  "Role": {
+    "One": "Rol"
   },
   "PleaseInputNewPassword": {
     "One": "Por favor, introduzca una nueva contraseña"
@@ -274,6 +301,18 @@
   "Export": {
     "One": "Exportar"
   },
+  "BatchCreate": {
+    "One": "Creación por lotes"
+  },
+  "StatusUnused": {
+    "One": "Sin usar"
+  },
+  "StatusUsed": {
+    "One": "Usado"
+  },
+  "StatusRevoked": {
+    "One": "Revocado"
+  },
   "AddToAddressBook": {
     "One": "Agregar a la libreta de direcciones"
   },
@@ -333,6 +372,15 @@
   "RemoteDesktopOffline": {
     "One": "El escritorio remoto está fuera de línea"
   },
+  "CleanOldMessages": { "One": "Limpiar mensajes antiguos" },
+  "CleanMessagesOlderThan1Year": { "One": "Limpiar mensajes de hace más de 1 año" },
+  "CleanMessagesOlderThan3Years": { "One": "Limpiar mensajes de hace más de 3 años" },
+  "OnlyMyMessages": { "One": "Solo mis mensajes" },
+  "ShowAll": { "One": "Mostrar todo" },
+  "SearchUsername": { "One": "Buscar nombre de usuario" },
+  "AllUsers": { "One": "Todos los usuarios" },
+  "MessageTitleOptional": { "One": "Título del mensaje (opcional)" },
+  "PleaseEnterMessageContent": { "One": "Introduce el contenido del mensaje" },
   "KeyMismatch": {
     "One": "La clave no coincide"
   },
@@ -460,14 +508,8 @@
   "UserToken": {
     "One": "Token del usuario"
   },
-  "MyPeer": {
-    "One": "Mis pares"
-  },
-  "BatchAddToAB": {
-    "One": "Agregar en bloque a la libreta de direcciones"
-  },
-  "BatchEditTags": {
-    "One": "Editar etiquetas en bloque"
+  "BatchEdit": {
+    "One": "Edición por lotes"
   },
   "User": {
     "One": "Usuario"
@@ -505,6 +547,27 @@
   "Save": {
     "One": "Guardar"
   },
+  "Reset": {
+    "One": "Restablecer"
+  },
+  "ConfigFile": {
+    "One": "Archivo de configuración"
+  },
+  "ConfigFileTip": {
+    "One": "Edite aquí directamente el archivo config.yaml del backend. Los cambios se aplicarán después de reiniciar el servicio."
+  },
+  "ConfigFilePath": {
+    "One": "Ruta del archivo de configuración"
+  },
+  "RestartService": {
+    "One": "Reiniciar servicio"
+  },
+  "ServiceRestartTip": {
+    "One": "Después de guardar los cambios de configuración, haga clic aquí para reiniciar el servicio backend y aplicarlos."
+  },
+  "ServiceRestarting": {
+    "One": "El servicio se está reiniciando; la página se actualizará en breve"
+  },
   "SendCustom": {
     "One": "Enviar personalizado"
   },
@@ -516,6 +579,9 @@
   },
   "Result": {
     "One": "Resultado"
+  },
+  "DeviceGroupManage": {
+    "One": "Administración de grupos de dispositivos"
   },
   "Drop file here or click to upload": {
     "One": "Suelte el archivo aquí o haga clic para cargar"
@@ -531,5 +597,998 @@
   },
   "Remark": {
     "One": "Remark"
-  }
+  },
+  "VersionRelease": {
+    "One": "Publicación de versiones"
+  },
+  "PublishNewVersion": {
+    "One": "Publicar nueva versión"
+  },
+  "Publish": {
+    "One": "Publicar"
+  },
+  "DownloadUrl": {
+    "One": "URL de descarga"
+  },
+  "ReleaseNotes": {
+    "One": "Notas de la versión"
+  },
+  "ReleaseNotesPlaceholder": {
+    "One": "Novedades de esta versión..."
+  },
+  "TotalDevices": {
+    "One": "Total de dispositivos"
+  },
+  "Online": {
+    "One": "En línea"
+  },
+  "Offline": {
+    "One": "Sin conexión"
+  },
+  "TodayConnections": {
+    "One": "Conexiones de hoy"
+  },
+  "RecentDevices": {
+    "One": "Dispositivos desconectados recientemente"
+  },
+  "RecentConnections": {
+    "One": "Conexiones recientes"
+  },
+  "LastOnline": {
+    "One": "Última conexión"
+  },
+  "Time": {
+    "One": "Hora"
+  },
+  "AlertConfig": {
+    "One": "Configuración de alertas"
+  },
+  "AlertChannel": {
+    "One": "Canal de alertas"
+  },
+  "Channel": {
+    "One": "Canal"
+  },
+  "WebhookUrl": {
+    "One": "URL del webhook"
+  },
+  "SmtpHost": {
+    "One": "Servidor SMTP"
+  },
+  "SmtpPort": {
+    "One": "Puerto SMTP"
+  },
+  "SmtpUser": {
+    "One": "Usuario SMTP"
+  },
+  "SmtpPass": {
+    "One": "Contraseña SMTP"
+  },
+  "SmtpTo": {
+    "One": "Destinatarios"
+  },
+  "OfflineMin": {
+    "One": "Umbral sin conexión"
+  },
+  "StationMessages": {
+    "One": "Mensajes de la estación"
+  },
+  "MarkAllRead": {
+    "One": "Marcar todo como leído"
+  },
+  "MessageTitle": {
+    "One": "Título del mensaje"
+  },
+  "ViewAll": {
+    "One": "Ver todo"
+  },
+  "MarkRead": {
+    "One": "Marcar como leído"
+  },
+  "Unread": {
+    "One": "No leído"
+  },
+  "MonitorScope": {
+    "One": "Ámbito de supervisión"
+  },
+  "AllDevices": {
+    "One": "Todos los dispositivos"
+  },
+  "SelectTargets": {
+    "One": "Seleccionar grupos y dispositivos"
+  },
+  "Scope": {
+    "One": "Ámbito"
+  },
+  "LoadDevices": {
+    "One": "Cargar dispositivos"
+  },
+  "NoCollections": {
+    "One": "No hay grupos disponibles. Agréguelos primero en la libreta de direcciones."
+  },
+  "Home": {
+    "One": "Inicio"
+  },
+  "SendMessage": {
+    "One": "Enviar mensaje"
+  },
+  "Sender": {
+    "One": "Remitente"
+  },
+  "Receiver": {
+    "One": "Destinatario"
+  },
+  "AutoRefresh": {
+    "One": "Actualización automática"
+  },
+  "ClientType": {
+    "One": "Tipo de cliente"
+  },
+  "DeviceManage": {
+    "One": "Dispositivos"
+  },
+  "UserMgmt": {
+    "One": "Usuarios"
+  },
+  "AbMgmt": {
+    "One": "Libretas de direcciones"
+  },
+  "SystemMgmt": {
+    "One": "Sistema"
+  },
+  "AuditMgmt": {
+    "One": "Registros de auditoría"
+  },
+  "Strategy": {
+    "One": "Estrategias"
+  },
+  "MfaTitle": {
+    "One": "Autenticación multifactor (MFA)"
+  },
+  "MfaSetup": {
+    "One": "Configurar MFA"
+  },
+  "MfaEnable": {
+    "One": "Habilitar MFA"
+  },
+  "MfaDisable": {
+    "One": "Deshabilitar MFA"
+  },
+  "MfaSecret": {
+    "One": "Secreto"
+  },
+  "MfaCode": {
+    "One": "Código de verificación"
+  },
+  "MfaVerify": {
+    "One": "Verificar e iniciar sesión"
+  },
+  "MfaVerifyTip": {
+    "One": "Introduzca el código de 6 dígitos de su aplicación de autenticación (p. ej., Google Authenticator)"
+  },
+  "MfaCodeError": {
+    "One": "Código no válido. Inténtelo de nuevo"
+  },
+  "MfaTokenMissing": {
+    "One": "La sesión ha caducado. Inicie sesión de nuevo"
+  },
+  "MfaScanTip": {
+    "One": "Escanee el código QR siguiente con su aplicación de autenticación o introduzca el secreto manualmente"
+  },
+  "MfaRecoveryCodes": {
+    "One": "Códigos de recuperación de respaldo"
+  },
+  "MfaRecoveryTip": {
+    "One": "Guarde estos códigos de recuperación de forma segura. Cada uno solo puede usarse una vez para iniciar sesión cuando no pueda obtener un código de verificación."
+  },
+  "MfaCodeRequired": {
+    "One": "Introduzca el código de verificación"
+  },
+  "MfaEnabled": {
+    "One": "Habilitada"
+  },
+  "MfaDisabled": {
+    "One": "Deshabilitada"
+  },
+  "MfaDisableConfirm": {
+    "One": "Para deshabilitar MFA se requiere su contraseña de inicio de sesión"
+  },
+  "Copy": {
+    "One": "Copiar"
+  },
+  "Back": {
+    "One": "Atrás"
+  },
+  "IdP": {
+    "One": "Proveedor de identidad"
+  },
+  "Loading": {
+    "One": "Cargando..."
+  },
+  "ServerStatus": {
+    "One": "Estado del servidor"
+  },
+  "Hbbs": {
+    "One": "HBBS"
+  },
+  "HbbsDesc": {
+    "One": "Servidor de ID / encuentro"
+  },
+  "Hbbr": {
+    "One": "HBBR"
+  },
+  "HbbrDesc": {
+    "One": "Servidor de retransmisión"
+  },
+  "HbbrLoad": {
+    "One": "Carga / conexiones de HBBR"
+  },
+  "HbbrStatsUnavailable": {
+    "One": "No se pudieron obtener los datos de carga de HBBR"
+  },
+  "ConnectionCount": {
+    "One": "Conexiones de retransmisión"
+  },
+  "CurrentSpeed": {
+    "One": "Velocidad total actual"
+  },
+  "HighestSpeed": {
+    "One": "Velocidad máxima"
+  },
+  "TotalTraffic": {
+    "One": "Tráfico total"
+  },
+  "ClientAddr": {
+    "One": "Dirección del cliente"
+  },
+  "Duration": {
+    "One": "Duración"
+  },
+  "Traffic": {
+    "One": "Tráfico"
+  },
+  "AvgSpeed": {
+    "One": "Velocidad media"
+  },
+  "ServerUp": {
+    "One": "En ejecución"
+  },
+  "ServerDown": {
+    "One": "Inaccesible"
+  },
+  "ServerNotConfigured": {
+    "One": "No configurado"
+  },
+  "Latency": {
+    "One": "Latencia"
+  },
+  "ServerError": {
+    "One": "Error"
+  },
+  "ServerStatusTip": {
+    "One": "Agregue direcciones de servidores personalizados y compruebe la conectividad y la latencia en tiempo real (sondeo TCP, tiempo de espera de 3 s y actualización automática cada 10 s). Puede supervisar varios servidores."
+  },
+  "AddServer": {
+    "One": "Agregar servidor"
+  },
+  "EditServer": {
+    "One": "Editar servidor"
+  },
+  "ServerName": {
+    "One": "Nombre"
+  },
+  "ServerAddress": {
+    "One": "Dirección"
+  },
+  "ServerHost": {
+    "One": "Host / IP"
+  },
+  "ServerPort": {
+    "One": "Puerto"
+  },
+  "ServerHostPlaceholder": {
+    "One": "Introduzca el host o la IP, p. ej., 192.0.2.1 o hbbs.example.com"
+  },
+  "ServerPortPlaceholder": {
+    "One": "Puerto (opcional; 0 significa solo host)"
+  },
+  "ServerNamePlaceholder": {
+    "One": "Introduzca un nombre para mostrar del servidor"
+  },
+  "ServerNameHostRequired": {
+    "One": "El nombre y la dirección del host son obligatorios"
+  },
+  "NoServer": {
+    "One": "Aún no se ha agregado ningún servidor. Haga clic en «Agregar servidor» arriba a la derecha."
+  },
+  "ConfirmDeleteServer": {
+    "One": "¿Eliminar esta supervisión de servidor?"
+  },
+  "Saved": {
+    "One": "Guardado"
+  },
+  "Deleted": {
+    "One": "Eliminado"
+  },
+  "Enabled": {
+    "One": "Habilitado"
+  },
+  "MfaRecoveryCode": {
+    "One": "Código de recuperación"
+  },
+  "MfaUseCode": {
+    "One": "Usar código de verificación"
+  },
+  "MfaUseRecovery": {
+    "One": "Usar código de recuperación"
+  },
+  "MfaReset": {
+    "One": "Restablecer MFA"
+  },
+  "MfaResetConfirm": {
+    "One": "¿Restablecer la autenticación multifactor (MFA) del usuario {username}? Esto borrará su secreto MFA y sus códigos de recuperación, permitiéndole iniciar sesión solo con la contraseña."
+  },
+  "OperationFailed": {
+    "One": "La operación falló"
+  },
+  "ProcessMonitor": {
+    "One": "Supervisión de procesos"
+  },
+  "ProcessMonitorTip": {
+    "One": "Configure de forma centralizada los procesos o puertos que se deben supervisar. Los clientes informan periódicamente de su estado; se genera una alerta cuando un proceso o puerto permanece inactivo más allá del umbral."
+  },
+  "ProcessStatusTip": {
+    "One": "Estado en tiempo real de los elementos supervisados por dispositivo (informado por los clientes)"
+  },
+  "ProcessTargetMode": {
+    "One": "Modo de destino"
+  },
+  "ProcessModeManual": {
+    "One": "Manual"
+  },
+  "ProcessModeDeviceGroup": {
+    "One": "Por grupo de dispositivos"
+  },
+  "ProcessModeAbTags": {
+    "One": "Por etiquetas de la libreta de direcciones"
+  },
+  "ProcessSelectDeviceGroup": {
+    "One": "Seleccione un grupo de dispositivos (se crea para todos los dispositivos del grupo)"
+  },
+  "ProcessSelectAbTags": {
+    "One": "Seleccione etiquetas de la libreta de direcciones (se crea para los dispositivos con las etiquetas seleccionadas)"
+  },
+  "ProcessBatchResult": {
+    "One": "Creación por lotes: {created} agregados, {skipped} omitidos (ya existen)"
+  },
+  "ProcessSourceGroup": {
+    "One": "Grupo de dispositivos"
+  },
+  "ProcessSourceTag": {
+    "One": "Etiqueta de la libreta de direcciones"
+  },
+  "ProcessDeviceCount": {
+    "One": "Cantidad de dispositivos"
+  },
+  "ProcessPeers": {
+    "One": "Lista de dispositivos"
+  },
+  "ProcessPeerOverride": {
+    "One": "Reemplazar"
+  },
+  "ProcessInherit": {
+    "One": "Heredar"
+  },
+  "ProcessPeerId": {
+    "One": "ID del dispositivo"
+  },
+  "ProcessPeerIdTip": {
+    "One": "El ID del dispositivo que se debe supervisar (consulte Administración de dispositivos)"
+  },
+  "ProcessName": {
+    "One": "Nombre de supervisión"
+  },
+  "ProcessType": {
+    "One": "Tipo"
+  },
+  "ProcessProcess": {
+    "One": "Proceso"
+  },
+  "ProcessPort": {
+    "One": "Puerto"
+  },
+  "ProcessTarget": {
+    "One": "Destino"
+  },
+  "ProcessTargetTip": {
+    "One": "Nombre del proceso (p. ej., notepad.exe) o número de puerto (p. ej., 8080)"
+  },
+  "ProcessInterval": {
+    "One": "Intervalo de comprobación (s)"
+  },
+  "ProcessDownThreshold": {
+    "One": "Umbral de inactividad (s)"
+  },
+  "ProcessAlertRule": {
+    "One": "Regla de alerta"
+  },
+  "ProcessAlertRuleTip": {
+    "One": "Vincule una configuración de alerta existente para notificar cuando esté inactivo; déjelo vacío para no enviar alertas"
+  },
+  "ProcessEnabled": {
+    "One": "Habilitado"
+  },
+  "ProcessOperation": {
+    "One": "Acciones"
+  },
+  "ProcessAdd": {
+    "One": "Agregar regla"
+  },
+  "ProcessEdit": {
+    "One": "Editar"
+  },
+  "ProcessDelete": {
+    "One": "Eliminar"
+  },
+  "ProcessRefresh": {
+    "One": "Actualizar"
+  },
+  "ProcessRunning": {
+    "One": "En ejecución"
+  },
+  "ProcessUp": {
+    "One": "Activo"
+  },
+  "ProcessDown": {
+    "One": "Inactivo"
+  },
+  "ProcessDownSince": {
+    "One": "Inactivo desde"
+  },
+  "ProcessCancel": {
+    "One": "Cancelar"
+  },
+  "ProcessSave": {
+    "One": "Guardar"
+  },
+  "ProcessSaved": {
+    "One": "Guardado"
+  },
+  "ProcessDeleted": {
+    "One": "Eliminado"
+  },
+  "ProcessConfirmDelete": {
+    "One": "¿Eliminar esta regla de supervisión?"
+  },
+  "ProcessTip": {
+    "One": "Consejo"
+  },
+  "Invitation": {
+    "One": "Código de autorización"
+  },
+  "CreateInvitation": {
+    "One": "Crear código de autorización"
+  },
+  "CopyInviteLink": {
+    "One": "Copiar enlace de invitación"
+  },
+  "CopyLink": {
+    "One": "Copiar enlace"
+  },
+  "LinkCopied": {
+    "One": "Enlace copiado al portapapeles"
+  },
+  "InviteCode": {
+    "One": "Código de invitación"
+  },
+  "InviteCodeRequired": {
+    "One": "El código de invitación es obligatorio"
+  },
+  "InviteCodePlaceholder": {
+    "One": "Póngase en contacto con el administrador para obtener uno"
+  },
+  "GenerateCount": {
+    "One": "Cantidad"
+  },
+  "GenerateCountPlaceholder": {
+    "One": "Máximo 200"
+  },
+  "GeneratedCodes": {
+    "One": "Códigos generados"
+  },
+  "CopyAll": {
+    "One": "Copiar todo"
+  },
+  "AllCopied": {
+    "One": "Todos los códigos se copiaron al portapapeles"
+  },
+  "AutoGenerate": {
+    "One": "Generar automáticamente"
+  },
+  "MaxUsers": {
+    "One": "Usos máximos"
+  },
+  "MaxUsersPlaceholder": {
+    "One": "0 significa ilimitado"
+  },
+  "MaxUsersFixedTip": {
+    "One": "Solo un uso"
+  },
+  "DefaultExpire1Day": {
+    "One": "Caduca de forma predeterminada en 1 día"
+  },
+  "ExpireAt": {
+    "One": "Caduca el"
+  },
+  "ExpiredAt": {
+    "One": "Caduca el"
+  },
+  "ExpiredAtPlaceholder": {
+    "One": "Déjelo vacío para que no caduque"
+  },
+  "ExpiredAtTip": {
+    "One": "Déjelo vacío para que no caduque"
+  },
+  "UserExpiredAt": {
+    "One": "El usuario caduca el"
+  },
+  "UserExpiredAtTip": {
+    "One": "Déjelo vacío para que los usuarios creados con este código no caduquen nunca"
+  },
+  "UsageCount": {
+    "One": "Usado"
+  },
+  "Expired": {
+    "One": "Caducado"
+  },
+  "UsedUp": {
+    "One": "Agotado"
+  },
+  "Active": {
+    "One": "Activo"
+  },
+  "Administrator": {
+    "One": "Administrador"
+  },
+  "AccountExpired": {
+    "One": "La cuenta ha caducado. Póngase en contacto con el administrador"
+  },
+  "RegisterSuccess": {
+    "One": "Registro completado correctamente"
+  },
+  "MySubscription": {
+    "One": "Mi suscripción"
+  },
+  "SubscribeUpgrade": {
+    "One": "Mejorar suscripción"
+  },
+  "SubscribeUpgradeNow": {
+    "One": "Mejorar ahora"
+  },
+  "SubscribeActive": {
+    "One": "Activa"
+  },
+  "SubscribeExpired": {
+    "One": "Caducada"
+  },
+  "SubscribeNone": {
+    "One": "Ninguna"
+  },
+  "SubscribeNoSubscription": {
+    "One": "No tiene una suscripción activa"
+  },
+  "SubscribeExpireAt": {
+    "One": "Caduca el"
+  },
+  "SubscribeDaysLeft": {
+    "One": "Días restantes"
+  },
+  "SubscribeExpiringSoon": {
+    "One": "Su suscripción caducará pronto. Renuévela"
+  },
+  "SubscribeMonthly": {
+    "One": "Mes"
+  },
+  "SubscribeRecommended": {
+    "One": "Recomendado"
+  },
+  "SubscribeSelectChannel": {
+    "One": "Método de pago"
+  },
+  "SubscribeSelectChannelFirst": {
+    "One": "Seleccione un método de pago"
+  },
+  "SubscribePayNow": {
+    "One": "Pagar ahora"
+  },
+  "SubscribeScanQR": {
+    "One": "Escanee el código QR para pagar"
+  },
+  "SubscribeOpenCashier": {
+    "One": "Abrir página de pago"
+  },
+  "SubscribePolling": {
+    "One": "Esperando el resultado del pago"
+  },
+  "SubscribeSuccess": {
+    "One": "¡Pago completado correctamente!"
+  },
+  "SubscribeCodeTitle": {
+    "One": "Su código de invitación:"
+  },
+  "SubscribeCodeHint": {
+    "One": "Haga clic para copiarlo. También puede verlo más tarde en Mi suscripción."
+  },
+  "SubscribeSelectDuration": {
+    "One": "Seleccionar duración"
+  },
+  "SubscribeCreateFailed": {
+    "One": "No se pudo crear el pedido"
+  },
+  "SubscribeRedeemCode": {
+    "One": "Canjear código"
+  },
+  "SubscribeInputCode": {
+    "One": "Introducir código de invitación"
+  },
+  "SubscribeInputCodeFirst": {
+    "One": "Introduzca primero el código de invitación"
+  },
+  "SubscribeCodePlaceholder": {
+    "One": "Código de invitación de 32 dígitos"
+  },
+  "SubscribeRedeem": {
+    "One": "Canjear"
+  },
+  "SubscribeRedeemSuccess": {
+    "One": "Canje completado correctamente"
+  },
+  "SubscribeRedeemSuccessDesc": {
+    "One": "Suscripción activada. ¡Gracias por su apoyo!"
+  },
+  "SubscribeRedeemFailed": {
+    "One": "El canje falló"
+  },
+  "SubscribeExpireDays": {
+    "One": "Días de validez"
+  },
+  "CodeNotFound": {
+    "One": "Código no encontrado"
+  },
+  "CodeUsed": {
+    "One": "El código ya se ha usado"
+  },
+  "CodeRevoked": {
+    "One": "El código ha sido revocado"
+  },
+  "CodeExpired": {
+    "One": "El código ha caducado"
+  },
+  "GenerateInviteCode": {
+    "One": "Generar código de invitación"
+  },
+  "Generate": {
+    "One": "Generar"
+  },
+  "GenerateSuccess": {
+    "One": "Generación completada correctamente"
+  },
+  "GenerateFailed": {
+    "One": "La generación falló"
+  },
+  "Revoke": {
+    "One": "Revocar"
+  },
+  "RevokeSuccess": {
+    "One": "Revocado correctamente"
+  },
+  "RevokeFailed": {
+    "One": "La revocación falló"
+  },
+  "ExportSuccess": {
+    "One": "Exportación completada correctamente"
+  },
+  "ExportFailed": {
+    "One": "La exportación falló"
+  },
+  "LoadFailed": {
+    "One": "Error al cargar"
+  },
+  "OrderNo": {
+    "One": "N.º de pedido"
+  },
+  "OrderNotFound": {
+    "One": "Pedido no encontrado"
+  },
+  "OrderNotPaid": {
+    "One": "Pedido no pagado"
+  },
+  "Plan": {
+    "One": "Plan"
+  },
+  "Alipay": {
+    "One": "Alipay"
+  },
+  "WechatPay": {
+    "One": "WeChat Pay"
+  },
+  "SubscribeMonth": {
+    "One": "Mes"
+  },
+  "InviteCodeMgmt": {
+    "One": "Código de autorización (suscripción)"
+  },
+  "All": {
+    "One": "Todos"
+  },
+  "UsedBy": {
+    "One": "Usado por"
+  },
+  "UsedByName": {
+    "One": "Cuenta utilizada"
+  },
+  "Action": {
+    "One": "Acción"
+  },
+  "GotIt": {
+    "One": "Entendido"
+  },
+  "SubscribeExpireSoon": {
+    "One": "Pro · {days} d"
+  },
+  "AdminInviteCode": {
+    "One": "Código de autorización"
+  },
+  "SubscribeInviteCodes": {
+    "One": "Códigos de autorización"
+  },
+  "RegistrationInviteCodes": {
+    "One": "Códigos de registro"
+  },
+  "AdminOrder": {
+    "One": "Pedidos"
+  },
+  "AdminSubscription": {
+    "One": "Miembros de pago"
+  },
+  "ID": {
+    "One": "ID"
+  },
+  "Cpu": {
+    "One": "CPU"
+  },
+  "Total": {
+    "One": "Total"
+  },
+  "Highest": {
+    "One": "Máximo"
+  },
+  "Avg": {
+    "One": "Media"
+  },
+  "Speed": {
+    "One": "Velocidad"
+  },
+  "BlockList": {
+    "One": "Lista de bloqueados"
+  },
+  "BlackList": {
+    "One": "Lista negra"
+  },
+  "AlwaysUseRelay": {
+    "One": "Usar siempre retransmisión"
+  },
+  "Usage": {
+    "One": "Uso"
+  },
+  "WebClient": {
+    "One": "Cliente web"
+  },
+  "ColumnSetting": {
+    "One": "Configuración de columnas"
+  },
+  "SendToId": {
+    "One": "Enviar al servidor de ID"
+  },
+  "SendToRelay": {
+    "One": "Enviar al servidor de retransmisión"
+  },
+  "Cmd": {
+    "One": "Comando"
+  },
+  "Option": {
+    "One": "Opción"
+  },
+  "Explain": {
+    "One": "Explicación"
+  },
+  "Target": {
+    "One": "Destino"
+  },
+  "OrderStatusPending": {
+    "One": "Pendiente"
+  },
+  "OrderStatusPaid": {
+    "One": "Pagado"
+  },
+  "OrderStatusClosed": {
+    "One": "Cerrado"
+  },
+  "SubscribePermanent": {
+    "One": "Permanente"
+  },
+  "Binding": {
+    "One": "Vinculación"
+  },
+  "NoData": {
+    "One": "Sin datos"
+  },
+  "Size": {
+    "One": "Tamaño"
+  },
+  "More": {
+    "One": "Más"
+  },
+  "Client": {
+    "One": "Cliente"
+  },
+  "Example": {
+    "One": "Ejemplo"
+  },
+  "PlatformUA": {
+    "One": "Plataforma/UA"
+  },
+  "Backend": {
+    "One": "Backend"
+  },
+  "IsAdmin": {
+    "One": "Es administrador"
+  },
+  "MyPeer": {
+    "One": "Mis pares"
+  },
+  "SelectColor": {
+    "One": "Seleccione un color"
+  },
+  "MultipleIpSeparatorTip": {
+    "One": "Separe varias direcciones IP con |"
+  },
+  "DeleteAllIpTip": {
+    "One": "Para eliminar todas las entradas, introduzca"
+  },
+  "ConfigContentRequired": {
+    "One": "El contenido de la configuración es obligatorio"
+  },
+  "ForceUpdate": {
+    "One": "Forzar actualización"
+  },
+  "ForceUpdateTip": {
+    "One": "Descargar e instalar silenciosamente sin avisar al cliente"
+  },
+  "Forced": {
+    "One": "Forzada"
+  },
+  "Normal": {
+    "One": "Normal"
+  },
+  "AlertConfigSummary": {
+    "One": "Resumen de configuración"
+  },
+  "AlertChannelNamePlaceholder": {
+    "One": "Ejemplo: alertas de WeCom"
+  },
+  "LeaveBlankUnchanged": {
+    "One": "Déjelo vacío para mantenerlo sin cambios"
+  },
+  "Required": {
+    "One": "Obligatorio"
+  },
+  "AlertChannelSmtpTip": {
+    "One": "Añada destinatarios a una regla de alerta; este canal solo configura el servidor de envío."
+  },
+  "AlertRecipientsPlaceholder": {
+    "One": "Correos de destinatarios separados por comas, p. ej. a@x.com,b@x.com"
+  },
+  "View": {
+    "One": "Ver"
+  },
+  "Token": {
+    "One": "Token"
+  },
+  "AddressBookCollection": {
+    "One": "Colección de libretas de direcciones"
+  },
+  "or login in with": {
+    "One": "o inicie sesión con"
+  },
+  "Optional, default is": {
+    "One": "Opcional, el valor predeterminado es"
+  },
+  "Check your IdP docs, without": {
+    "One": "Consulte la documentación de su IdP, sin incluir"
+  },
+  "For OIDC login without a password, enter any 4-20 letters": {
+    "One": "Para iniciar sesión mediante OIDC sin contraseña, introduzca entre 4 y 20 caracteres"
+  },
+  "Email": {
+    "One": "Correo electrónico"
+  },
+  "Information": {
+    "One": "Información"
+  },
+  "Import": {
+    "One": "Importar"
+  },
+  "Bind": { "One": "Vincular" },
+  "Broadcast": { "One": "Difusión" },
+  "Content": { "One": "Contenido" },
+  "Disable": { "One": "Desactivar" },
+  "Enable": { "One": "Activar" },
+  "Hint": { "One": "Aviso" },
+  "Id": { "One": "ID" },
+  "InvalidParam": { "One": "Parámetro no válido: {param}" },
+  "LoginFailed": { "One": "Error de inicio de sesión" },
+  "Op": { "One": "Proveedor de identidad" },
+  "PkceEnable": { "One": "Activar PKCE" },
+  "PkceMethod": { "One": "Método PKCE" },
+  "Success": { "One": "Éxito" },
+  "Title": { "One": "Título" },
+  "Your IdP Name": { "One": "Nombre de su proveedor de identidad" },
+  "CopyAll": { "One": "Copiar todo" }, "Permanent": { "One": "Permanente" }, "ValidDays": { "One": "Días de validez" },
+  "Optional": { "One": "Opcional" }, "Quantity": { "One": "Cantidad" }, "GeneratedCount": { "One": "Generados ({count})" },
+  "ConnectionTime": { "One": "Hora de conexión" }, "EndTime": { "One": "Hora de finalización" }, "InProgress": { "One": "En curso" },
+  "RegularUser": { "One": "Usuario normal" }, "PaymentMethod": { "One": "Método de pago" }, "Amount": { "One": "Importe" },
+  "OrderTime": { "One": "Hora del pedido" }, "Test": { "One": "Probar" }, "SendTest": { "One": "Enviar prueba" },
+  "BatchAdd": { "One": "Añadir por lotes" }, "BatchGenerateInviteCodes": { "One": "Generar códigos de invitación por lotes" }, "BatchGenerationFailed": { "One": "Error en la generación por lotes" },
+  "BindingScope": { "One": "Ámbito de vinculación" }, "City": { "One": "Ciudad" }, "ClickToUpload": { "One": "Haz clic para subir" },
+  "ClientId": { "One": "ID de cliente" }, "ClientSecret": { "One": "Secreto de cliente" }, "Closed": { "One": "Cerrado" },
+  "CloseFailed": { "One": "Error al cerrar" }, "ConfirmationFailed": { "One": "Error de confirmación" }, "ConfirmCloseOrder": { "One": "¿Cerrar el pedido {order}?" },
+  "ConfirmedSuccessfully": { "One": "Confirmado correctamente" }, "ConfirmExtension": { "One": "Confirmar ampliación" }, "ConfirmOrderPaid": { "One": "¿Confirmar el pedido {order} como pagado?" },
+  "ConfirmPaid": { "One": "Confirmar pagado" }, "ConfirmRevokeInviteCode": { "One": "¿Seguro que deseas revocar el código {code}?" },
+  "DaysCount": { "One": "{count} días" }, "DaysLeft": { "One": "Días restantes" }, "DefaultThirtyDays": { "One": "El valor predeterminado es 30 días" },
+  "DeviceGroup": { "One": "Grupo de dispositivos" }, "Disabled": { "One": "Desactivado" }, "District": { "One": "Distrito" },
+  "DurationAutoFillTip": { "One": "Duración (rellena los días automáticamente)" }, "EditStrategy": { "One": "Editar estrategia" }, "ExpirationTime": { "One": "Hora de vencimiento" },
+  "Extend": { "One": "Ampliar" }, "ExtendSubscription": { "One": "Ampliar suscripción" }, "ExtensionDuration": { "One": "Duración de la ampliación" },
+  "ExtensionFailed": { "One": "Error al ampliar" }, "FileCountLimitExceeded": { "One": "Se superó el límite de archivos" }, "Global": { "One": "Global" },
+  "HigherNumberHigherPriority": { "One": "Los números más altos tienen mayor prioridad" }, "InviteCodesGeneratedSuccess": { "One": "Se generaron {count} códigos de invitación" },
+  "Issuer": { "One": "Emisor" }, "MerchantOrderNo": { "One": "N.º de pedido del comercio" }, "NewStrategy": { "One": "Nueva estrategia" },
+  "OneMonth": { "One": "1 mes" }, "OneYear": { "One": "1 año" }, "OrderExpired": { "One": "Pedido caducado" },
+  "OrderListLoadFailed": { "One": "Error al obtener la lista de pedidos" }, "OrderNoUsername": { "One": "N.º de pedido/usuario" }, "OrderQrCodeExpired": { "One": "El QR del pedido ha caducado" },
+  "OrDragFilesHere": { "One": "o arrastra archivos aquí" }, "Plain": { "One": "Plano" }, "PleaseEnterValidDays": { "One": "Introduce días válidos" },
+  "PleaseSelectPlan": { "One": "Selecciona un plan" }, "Priority": { "One": "Prioridad" }, "Province": { "One": "Provincia" },
+  "RdpPort": { "One": "Puerto RDP" }, "RdpUsername": { "One": "Usuario RDP" }, "RedirectUrl": { "One": "URL de redirección" },
+  "S256Recommended": { "One": "S256 (recomendado)" }, "SameServer": { "One": "Mismo servidor" }, "Scopes": { "One": "Ámbitos" },
+  "SearchStrategyName": { "One": "Buscar nombre de estrategia" }, "SelectDeviceGroup": { "One": "Seleccionar grupo de dispositivos" }, "SelectGroup": { "One": "Seleccionar grupo" },
+  "SelectPkceMethod": { "One": "Seleccionar método PKCE" }, "SelectTag": { "One": "Seleccionar etiqueta" }, "SelectUser": { "One": "Seleccionar usuario" },
+  "SixMonths": { "One": "6 meses" }, "StrategyConfigCommentTip": { "One": "Consejo: las líneas que empiezan por # son comentarios. Quita # para activar la opción." },
+  "StrategyConfigTemplate": { "One": "Plantilla de configuración de estrategia" }, "StrategyManagement": { "One": "Gestión de estrategias" }, "StrategyName": { "One": "Nombre de la estrategia" },
+  "StrategyNameExample": { "One": "Ejemplo: política de red de oficina" }, "SubscriptionExtendedSuccess": { "One": "Suscripción de {username} ampliada por {duration}" },
+  "SubscriptionListLoadFailed": { "One": "Error al obtener las suscripciones" }, "SubscriptionStatus": { "One": "Estado de suscripción" }, "Tag": { "One": "Etiqueta" },
+  "TenYears": { "One": "10 años" }, "ThreeMonths": { "One": "3 meses" }, "TwelveMonths": { "One": "12 meses" },
+  "UserIdUsername": { "One": "ID de usuario/nombre" }, "WeChatPay": { "One": "WeChat Pay" }, "OfflineAlertLogic": { "One": "Lógica de alerta sin conexión" },
+  "DeviceCheckedEveryFiveMinutes": { "One": "El estado del dispositivo se comprueba cada cinco minutos." }, "OfflineThresholdWeightTip": { "One": "Tras superar el umbral, el peso aumenta en 1. Se envía un correo al llegar a 10 (unos 50 minutos)." },
+  "AlertWeightResetsDaily": { "One": "El peso se restablece cada día." }, "MaxThreeAlertsPerDay": { "One": "Cada dispositivo puede enviar como máximo 3 alertas al día." },
+  "AlertsPauseAfterThreeDays": { "One": "Las alertas se detienen tras 3 días consecutivos y se reanudan al volver en línea." }, "MinutesShort": { "One": "min" },
+  "ConfigItems": { "One": "Elementos de configuración" }, "ConfigItemsPlaceholder": { "One": "Un elemento por línea, formato: key=value\nEjemplo:\nforce_relay=Y\nenable-udp-punch=N\nenable-clipboard=N\ncustom-rendezvous-server=192.0.2.1:21116" },
+  "CommonConfigItems": { "One": "Elementos comunes: force_relay, enable-udp-punch, enable-ipv6-punch, enable-clipboard, enable-audio, enable-file-transfer, custom-rendezvous-server" },
+  "NatTraversal": { "One": "Travesía NAT" }, "ForceRelayHelp": { "One": "Forzar relé: Y fuerza el relé y desactiva P2P; N permite P2P" },
+  "UdpPunchHelp": { "One": "Activar perforación UDP; N usa solo relé TCP" }, "Ipv6PunchHelp": { "One": "Activar perforación IPv6; N desactiva la travesía IPv6" },
+  "UpnpHelp": { "One": "Activar asignación automática UPnP; N la desactiva" }, "CustomRelayHelp": { "One": "Dirección del servidor de relé personalizado" },
+  "DomainIpPortFormat": { "One": "Formato: dominio o IP:puerto" }, "FeatureSwitches": { "One": "Interruptores de funciones" },
+  "ClipboardSharingHelp": { "One": "Activar portapapeles; N desactiva copiar/pegar remoto" }, "AudioTransmissionHelp": { "One": "Activar audio; N desactiva el audio remoto" },
+  "FileTransferHelp": { "One": "Activar transferencia de archivos; N la desactiva" }, "EncryptionModeHelp": { "One": "Modos de cifrado: default / no_encryption / encrypted" },
+  "DisplayAndPerformance": { "One": "Pantalla y rendimiento" }, "ImageQualityHelp": { "One": "Calidad de imagen: quality / balanced / speed" },
+  "MaxFpsHelp": { "One": "FPS máximo; 0 significa ilimitado" }, "SecurityPolicy": { "One": "Política de seguridad" },
+  "HideUsernameHelp": { "One": "Ocultar usuarios en la libreta; Y muestra solo nombres de dispositivos" },
+  "DirectConnectionVerificationHelp": { "One": "Activar verificación de conexión directa; Y exige verificación de enlace" },
+  "AlertRecipientsSpecifiedInRule": { "One": "los destinatarios se especifican en la regla" },
+  "TestRecipientPrompt": { "One": "Introduce la dirección de un destinatario de prueba (déjala vacía para enviártelo a ti)" },
+  "TestDeliveryFailed": { "One": "Error al enviar la prueba: {message}" },
+  "TestMessageSent": { "One": "Mensaje de prueba enviado. Confirma que lo has recibido." },
+  "DeleteAlertChannelWarning": { "One": "Las reglas de alerta asociadas no podrán enviar mensajes después de eliminarlo. ¿Continuar?" },
+  "StrategyNameRequired": { "One": "El nombre de la estrategia no puede estar vacío" },
+  "DeleteStrategyConfirm": { "One": "¿Eliminar la estrategia «{name}»?" },
+  "Prompt": { "One": "Confirmación" },
+  "NotImplementedYet": { "One": "Aún no implementado" },
+  "PleaseSelectReceiver": { "One": "Selecciona un destinatario" }
 }

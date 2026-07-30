@@ -25,7 +25,7 @@
               <el-icon class="default-icon">
                 <plus/>
               </el-icon>
-              <div class="drag-tips">点击上传<span v-if="drag">或直接拖入文件</span></div>
+              <div class="drag-tips">{{ T('ClickToUpload') }}<span v-if="drag"> {{ T('OrDragFilesHere') }}</span></div>
             </div>
           </slot>
         </div>
@@ -58,11 +58,12 @@
   </div>
 </template>
 <script>
-  import { defineComponent, ref, computed, reactive, unref, readonly, toRefs } from 'vue'
-  import { Plus, ZoomIn, Delete, ArrowLeft, ArrowRight, Check } from '@element-plus/icons'
-  import { useOss } from '@/components/form/upload/oss'
-  import { ElMessage } from 'element-plus'
-  import { useLocal } from '@/components/form/upload/local'
+  import { defineComponent, computed, reactive, unref, toRefs } from 'vue'
+import { Plus, ZoomIn, Delete, ArrowLeft, ArrowRight, Check } from '@element-plus/icons'
+import { useOss } from '@/components/form/upload/oss'
+import { ElMessage } from 'element-plus'
+import { useLocal } from '@/components/form/upload/local'
+import { T } from '@/utils/i18n'
 
   export default defineComponent({
     name: 'imagesUpload',
@@ -173,7 +174,7 @@
       }
 
       function onExceed () {
-        ElMessage.error('超出数量限制')
+        ElMessage.error(T('FileCountLimitExceeded'))
       }
 
       return {
@@ -189,6 +190,7 @@
         leftImage,
         rightImage,
         removeImage,
+        T,
       }
     },
   })

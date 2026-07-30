@@ -2,12 +2,12 @@
   <div>
     <el-card class="list-query" shadow="hover">
       <div style="margin-bottom:12px;">
-        <el-button :type="quickFilter === 'all' ? 'primary' : 'default'" size="small" @click="setQuickFilter('all')">全部</el-button>
-        <el-button :type="quickFilter === 'online' ? 'success' : 'default'" size="small" @click="setQuickFilter('online')">在线</el-button>
-        <el-button :type="quickFilter === 'offline' ? 'danger' : 'default'" size="small" @click="setQuickFilter('offline')">离线</el-button>
+        <el-button :type="quickFilter === 'all' ? 'primary' : 'default'" size="small" @click="setQuickFilter('all')">{{ T('All') }}</el-button>
+        <el-button :type="quickFilter === 'online' ? 'success' : 'default'" size="small" @click="setQuickFilter('online')">{{ T('Online') }}</el-button>
+        <el-button :type="quickFilter === 'offline' ? 'danger' : 'default'" size="small" @click="setQuickFilter('offline')">{{ T('Offline') }}</el-button>
       </div>
-      <el-form inline label-width="150px">
-        <el-form-item label="ID">
+      <el-form inline>
+        <el-form-item :label="T('ID')">
           <el-input v-model="listQuery.id" clearable/>
         </el-form-item>
         <el-form-item :label="T('Hostname')">
@@ -28,23 +28,23 @@
           <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
           <el-button type="success" @click="toExport">{{ T('Export') }}</el-button>
           <!--          <el-button type="danger" @click="toBatchDelete">{{ T('BatchDelete') }}</el-button>-->
-          <el-button type="primary" @click="toBatchAddToAB">{{ T('BatchAddToAB') }}</el-button>
+          <el-button type="primary" @click="toBatchAddToAB">{{ T('BatchAdd') }}</el-button>
 
         </el-form-item>
       </el-form>
     </el-card>
     <el-card class="list-body" shadow="hover">
-      <el-table :data="listRes.list" v-loading="listRes.loading" border size="small" @selection-change="handleSelectionChange">
-        <el-table-column type="selection" width="55" align="center"/>
-        <el-table-column prop="id" label="ID" align="center" width="150">
+      <el-table :data="listRes.list" v-loading="listRes.loading" border @selection-change="handleSelectionChange">
+        <el-table-column type="selection" align="center" width="50"/>
+        <el-table-column prop="id" :label="T('ID')" align="center" min-width="150">
           <template #default="{row}">
             <span>{{ row.id }} <el-icon @click="handleClipboard(row.id, $event)"><CopyDocument/></el-icon></span>
           </template>
         </el-table-column>
-        <el-table-column prop="cpu" label="CPU" align="center" width="100" show-overflow-tooltip/>
-        <el-table-column prop="hostname" :label="T('Hostname')" align="center" width="120"/>
-        <el-table-column prop="memory" :label="T('Memory')" align="center" width="120"/>
-        <el-table-column prop="os" :label="T('Os')" align="center" width="120" show-overflow-tooltip/>
+        <el-table-column prop="cpu" :label="T('Cpu')" align="center" min-width="100" show-overflow-tooltip/>
+        <el-table-column prop="hostname" :label="T('Hostname')" align="center" min-width="120"/>
+        <el-table-column prop="memory" :label="T('Memory')" align="center" min-width="120"/>
+        <el-table-column prop="os" :label="T('Os')" align="center" min-width="120" show-overflow-tooltip/>
         <el-table-column prop="last_online_time" :label="T('LastOnlineTime')" align="center" min-width="120">
           <template #default="{row}">
             <div class="last_oline_time">
@@ -53,18 +53,20 @@
           </template>
         </el-table-column>
         <el-table-column prop="last_online_ip" :label="T('LastOnlineIp')" align="center" min-width="120"/>
-        <el-table-column prop="username" :label="T('Username')" align="center" width="120"/>
-        <el-table-column prop="uuid" :label="T('Uuid')" align="center" width="120" show-overflow-tooltip/>
-        <el-table-column prop="version" :label="T('Version')" align="center" width="80"/>
-        <el-table-column prop="alias" :label="T('Alias')" align="center" width="80"/>
-        <el-table-column prop="created_at" :label="T('CreatedAt')" align="center" width="150"/>
-        <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center" width="150"/>
-        <el-table-column :label="T('Actions')" align="center" width="500" class-name="table-actions" fixed="right">
+        <el-table-column prop="username" :label="T('Username')" align="center" min-width="120"/>
+        <el-table-column prop="uuid" :label="T('Uuid')" align="center" min-width="120" show-overflow-tooltip/>
+        <el-table-column prop="version" :label="T('Version')" align="center" min-width="80"/>
+        <el-table-column prop="alias" :label="T('Alias')" align="center" min-width="80"/>
+        <el-table-column prop="created_at" :label="T('CreatedAt')" align="center" min-width="150"/>
+        <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center" min-width="150"/>
+        <el-table-column :label="T('Actions')" align="center" width="400" fixed="right">
           <template #default="{row}">
-            <el-button type="success" @click="connectByClient(row.id)">{{ T('Link') }}</el-button>
-            <el-button v-if="appStore.setting.appConfig.web_client" type="success" @click="toWebClientLink(row)">Web Client</el-button>
-            <el-button type="primary" @click="toAddressBook(row)">{{ T('AddToAddressBook') }}</el-button>
-            <el-button @click="toView(row)">{{ T('View') }}</el-button>
+            <el-button type="success" @click="connectByClient(row.id)" size="small">{{ T('Link') }}</el-button>
+            <el-button v-if="appStore.setting.appConfig.web_client" type="success" @click="toWebClientLink(row)" size="small">
+              {{ T('WebClient') }}
+            </el-button>
+            <el-button type="primary" @click="toAddressBook(row)" size="small">{{ T('AddToAddressBook') }}</el-button>
+            <el-button @click="toView(row)" size="small">{{ T('View') }}</el-button>
             <!--            <el-button type="danger" @click="del(row)">{{ T('Delete') }}</el-button>-->
           </template>
         </el-table-column>
@@ -79,9 +81,9 @@
                      :total="listRes.total">
       </el-pagination>
     </el-card>
-    <el-dialog v-model="formVisible" :title="T('Information')" width="800" :style="{ textAlign: 'center' }">
-      <el-form class="dialog-form" ref="form" :model="formData" label-width="120px">
-        <el-form-item label="ID" prop="id">
+    <el-dialog v-model="formVisible" :title="T('Information')" width="800" :style="{ textAlign: 'center' }" append-to-body>
+      <el-form class="dialog-form" ref="form" :model="formData">
+        <el-form-item :label="T('ID')" prop="id">
           <el-input v-model="formData.id" disabled></el-input>
         </el-form-item>
         <el-form-item :label="T('Username')" prop="username">
@@ -90,7 +92,7 @@
         <el-form-item :label="T('Hostname')" prop="hostname">
           <el-input v-model="formData.hostname" disabled></el-input>
         </el-form-item>
-        <el-form-item label="CPU" prop="cpu">
+        <el-form-item :label="T('Cpu')" prop="cpu">
           <el-input v-model="formData.cpu" disabled></el-input>
         </el-form-item>
         <el-form-item :label="T('Memory')" prop="memory">
@@ -108,15 +110,15 @@
       </el-form>
     </el-dialog>
 
-    <el-dialog v-model="ABFormVisible" width="800" :title="T('Create')">
-      <el-form class="dialog-form" ref="form" :model="ABFormData" label-width="120px">
+    <el-dialog v-model="ABFormVisible" width="800" :title="T('Create')" append-to-body>
+      <el-form class="dialog-form" ref="form" :model="ABFormData">
         <el-form-item :label="T('AddressBookName')" required prop="collection_id">
           <el-select v-model="ABFormData.collection_id" clearable @change="changeCollectionForUpdate">
             <el-option :value="0" :label="T('MyAddressBook')"></el-option>
             <el-option v-for="c in collectionListResForUpdate.list" :key="c.id" :label="c.name" :value="c.id"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item label="ID" prop="id" required>
+        <el-form-item :label="T('ID')" prop="id" required>
           <el-input v-model="ABFormData.id"></el-input>
         </el-form-item>
         <el-form-item :label="T('Username')" prop="username">
@@ -156,8 +158,8 @@
       </el-form>
     </el-dialog>
 
-    <el-dialog v-model="batchABFormVisible" width="800" :title="T('Create')">
-      <el-form class="dialog-form" ref="form" :model="batchABFormData" label-width="120px">
+    <el-dialog v-model="batchABFormVisible" width="800" :title="T('Create')" append-to-body>
+      <el-form class="dialog-form" ref="form" :model="batchABFormData">
         <el-form-item :label="T('AddressBookName')" required prop="collection_id">
           <el-select v-model="batchABFormData.collection_id" clearable @change="changeCollectionForBatchCreateAB">
             <el-option :value="0" :label="T('MyAddressBook')"></el-option>
@@ -185,19 +187,19 @@
 
 <script setup>
   import { computed, onActivated, onMounted, reactive, ref, watch } from 'vue'
-  import { useRoute } from 'vue-router'
-  import { list } from '@/api/my/peer'
-  import { ElMessage, ElMessageBox } from 'element-plus'
-  import { toWebClientLink } from '@/utils/webclient'
-  import { T } from '@/utils/i18n'
-  import { timeAgo } from '@/utils/time'
-  import { jsonToCsv, downBlob } from '@/utils/file'
-  import { useRepositories as useABRepositories } from '@/views/address_book/index'
-  import { useAppStore } from '@/store/app'
-  import { connectByClient } from '@/utils/peer'
-  import { CopyDocument } from '@element-plus/icons'
-  import { handleClipboard } from '@/utils/clipboard'
-  import { batchCreateFromPeers } from '@/api/my/address_book'
+import { useRoute } from 'vue-router'
+import { list } from '@/api/my/peer'
+import { ElMessage } from 'element-plus'
+import { toWebClientLink } from '@/utils/webclient'
+import { T } from '@/utils/i18n'
+import { timeAgo } from '@/utils/time'
+import { jsonToCsv, downBlob } from '@/utils/file'
+import { useRepositories as useABRepositories } from '@/views/address_book/index'
+import { useAppStore } from '@/store/app'
+import { connectByClient } from '@/utils/peer'
+import { CopyDocument } from '@element-plus/icons'
+import { handleClipboard } from '@/utils/clipboard'
+import { batchCreateFromPeers } from '@/api/my/address_book'
 
   const appStore = useAppStore()
   const route = useRoute()
@@ -244,7 +246,7 @@
     }
   }
 
-  // 首次进入时应用首页跳转带来的 time_ago 过滤（必须在 listQuery / handlerQuery 定义之后，避免 TDZ 崩溃）
+  // Apply time_ago filter from home-page navigation on first entry (must run after listQuery / handlerQuery to avoid TDZ crashes)
   if (route.query.time_ago) {
     const ta = Number(route.query.time_ago)
     if (ta < 0) { setQuickFilter('online'); listQuery.time_ago = ta }
@@ -268,7 +270,7 @@
     }
   }*/
   onMounted(() => {
-    // query 过滤已在 setup 末尾处理；无 query 时才在此加载全部
+    // Query filtering is handled at the end of setup; load all here only when there is no query
     if (route.query.time_ago == null) getList()
   })
   onActivated(() => {
@@ -294,7 +296,7 @@
 
   const toView = (row) => {
     formVisible.value = true
-    //将row中的数据赋值给formData
+    // Copy row data into formData
     Object.keys(formData).forEach(key => {
       formData[key] = row[key]
     })

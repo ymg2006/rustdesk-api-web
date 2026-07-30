@@ -1,7 +1,7 @@
 <template>
   <el-config-provider :locale="appStore.setting.locale.value">
     <el-container :style="{'--sideBarWidth': sideBarWidth}">
-      <!-- 移动端侧边栏浮层 -->
+      <!-- Mobile sidebar overlay -->
       <template v-if="isMobile">
         <transition name="el-fade-in-linear">
           <div v-if="!appStore.setting.sideIsCollapse" class="mobile-overlay" @click="appStore.sideCollapse()"></div>
@@ -12,7 +12,7 @@
           </el-aside>
         </transition>
       </template>
-      <!-- 桌面端正常侧边栏 -->
+      <!-- Normal desktop sidebar -->
       <el-aside v-else :width="leftWidth" class="app-left">
         <g-aside></g-aside>
       </el-aside>
@@ -39,11 +39,11 @@
 
 <script setup>
   import { useAppStore } from '@/store/app'
-  import { useTagsStore } from '@/store/tags'
-  import { ref, computed, onMounted, onUnmounted } from 'vue'
-  import Tags from '@/layout/components/tags/index.vue'
-  import GAside from '@/layout/components/aside.vue'
-  import GHeader from '@/layout/components/header.vue'
+import { useTagsStore } from '@/store/tags'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
+import Tags from '@/layout/components/tags/index.vue'
+import GAside from '@/layout/components/aside.vue'
+import GHeader from '@/layout/components/header.vue'
 
   const appStore = useAppStore()
   const tagStore = useTagsStore()
@@ -63,7 +63,7 @@
       isMobile.value = window.innerWidth < 768
     }
     window.addEventListener('resize', resizeHandler)
-    // 首次加载时如果是手机，自动收起侧边栏
+    // Collapse the sidebar automatically on first load for mobile screens
     if (window.innerWidth < 768) {
       appStore.setting.sideIsCollapse = true
     }
@@ -96,6 +96,7 @@ html.dark .app-header {
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   display: flex;
   padding: 0;
+  overflow-x: auto;
 }
 
 html.dark .header-tags {
@@ -132,7 +133,7 @@ html.dark .header-tags {
   overflow-y: auto;
 }
 
-// 侧边栏滑入动画
+// Sidebar slide-in animation
 .slide-left-enter-active,
 .slide-left-leave-active {
   transition: transform 0.3s ease;
@@ -144,15 +145,15 @@ html.dark .header-tags {
 </style>
 
 <style lang="scss">
-// ===== 移动端响应式（非 scoped，影响全局子元素）=====
+// ===== Mobile responsive styles (not scoped; affects global child elements) =====
 @media (max-width: 768px) {
-  // 主内容区撑满 + 减少内边距
+  // Let the main content fill the width and reduce padding
   .app-main {
     padding: 8px !important;
     overflow-x: hidden;
   }
 
-  // Element Plus 表格在小屏幕自动横向滚动 + 字体缩小
+  // Reduce Element Plus table font size on small screens
   .el-table {
     font-size: 13px;
     .el-table__cell {
@@ -160,7 +161,7 @@ html.dark .header-tags {
     }
   }
 
-  // 搜索表单竖排
+  // Stack search form fields vertically
   .el-form .el-form-item {
     display: block;
     margin-bottom: 10px;
@@ -170,7 +171,7 @@ html.dark .header-tags {
     }
   }
 
-  // 按钮触屏化
+  // Make buttons touch-friendly
   .el-button {
     min-height: 42px;
     padding-left: 14px;
@@ -184,7 +185,7 @@ html.dark .header-tags {
     }
   }
 
-  // 对话框全宽
+  // Make dialogs nearly full width
   .el-dialog {
     width: 92vw !important;
     margin: 20px auto !important;
@@ -193,22 +194,23 @@ html.dark .header-tags {
     }
   }
 
-  // 分页换行居中
+  // Wrap and center pagination
   .el-pagination {
     flex-wrap: wrap;
     justify-content: center;
   }
 
-  // 卡片内边距
+  // Card inner padding
   .el-card__body {
     padding: 10px 8px;
   }
 
-  // 统计行间距
+  // Statistic row spacing
   .el-row .el-col {
     margin-bottom: 8px;
   }
 }
 </style>
+
 
 

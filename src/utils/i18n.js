@@ -5,8 +5,7 @@ import ko from '@/utils/i18n/ko.json'
 import ru from '@/utils/i18n/ru.json'
 import es from '@/utils/i18n/es.json'
 import zhTW from '@/utils/i18n/zh_TW.json'
-import { useAppStore } from '@/store/app'
-
+import { resolveLang, useAppStore } from '@/store/app'
 const trans = {
   'en': en,
   'fr': fr,
@@ -18,16 +17,16 @@ const trans = {
 }
 export function T (key, params, num = 0) {
   const appStore = useAppStore()
-  const lang = appStore.setting.lang
-  const tran = trans[lang]?.[key]
+  const lang = resolveLang(appStore.setting.lang)
+  const tran = trans[lang]?.[key] || trans.en?.[key]
   if (!tran) {
     return key
   }
   const msg = num > 1 ? (tran.Other ? tran.Other : tran.One) : tran.One
-  //msg 是这样 {name} is name
-  //params 是这样 {name: 'zhangsan'}
-  //替换
+  // msg example: {name} is name
+  // params example: {name: 'zhangsan'}
+  // Replace placeholders
   return msg.replace(/{(\w+)}/g, function (match, key) {
-    return params[key] || match
+    return (params && params[key]) || match
   })
 }

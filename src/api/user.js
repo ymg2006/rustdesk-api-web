@@ -1,207 +1,154 @@
 import request from '@/utils/request'
 
-export function userLogin(data) {
+export function login (data) {
   return request({
     url: '/login',
     method: 'post',
     data,
   })
 }
-export function userMfaLogin(data) {
-  return request({
-    url: '/login/mfa',
-    method: 'post',
-    data,
-  })
-}
-export function userInfo(data) {
+
+export function current () {
   return request({
     url: '/user/current',
     method: 'get',
-    data,
   })
 }
-export function userLogout(data) {
-  return request({
-    url: '/logout',
-    method: 'post',
-    data,
-  })
-}
-export function userCaptcha(data) {
-  return request({
-    url: '/captcha',
-    method: 'get',
-    data,
-  })
-}
-export function userLoginOptions(data) {
-  return request({
-    url: '/login-options',
-    method: 'get',
-    data,
-  })
-}
-export function changeCurPwd(data) {
-  return request({
-    url: '/user/changeCurPwd',
-    method: 'post',
-    data,
-  })
-}
-export function groupUsersList(data) {
-  return request({
-    url: '/user/groupUsers',
-    method: 'post',
-    data,
-  })
-}
-export function getUserList(data) {
+
+export function list (params) {
   return request({
     url: '/user/list',
-    method: 'get',
-    data,
+    params,
   })
 }
-export function getUserDetail(id) {
+
+export function detail (id) {
   return request({
-    url: '/user/detail/' + id,
-    method: 'get',
+    url: `/user/detail/${id}`,
   })
 }
-export function userCreate(data) {
+
+export function create (data) {
   return request({
     url: '/user/create',
     method: 'post',
     data,
   })
 }
-export function userUpdate(data) {
+
+export function update (data) {
   return request({
     url: '/user/update',
     method: 'post',
     data,
   })
 }
-export function userDelete(data) {
+
+export function remove (data) {
   return request({
     url: '/user/delete',
     method: 'post',
     data,
   })
 }
-export function changePwd(data) {
+
+export function changePwd (data) {
   return request({
     url: '/user/changePwd',
     method: 'post',
     data,
   })
 }
-export function userMyOauth(data) {
+
+export function changeCurPwd (data) {
+  return request({
+    url: '/user/changeCurPwd',
+    method: 'post',
+    data,
+  })
+}
+
+export function myOauth () {
   return request({
     url: '/user/myOauth',
     method: 'post',
-    data,
   })
 }
-export function userRegister(data) {
-  return request({
-    url: '/user/register',
-    method: 'post',
-    data,
-  })
-}
-export function mfaSetup(data) {
+
+export function mfaSetup () {
   return request({
     url: '/user/mfa/setup',
     method: 'post',
-    data,
   })
 }
-export function mfaEnable(data) {
+
+export function mfaEnable (data) {
   return request({
     url: '/user/mfa/enable',
     method: 'post',
     data,
   })
 }
-export function mfaDisable(data) {
+
+export function mfaDisable (data) {
   return request({
     url: '/user/mfa/disable',
     method: 'post',
     data,
   })
 }
-export function mfaReset(data) {
+
+export function mfaStatus () {
+  return request({
+    url: '/user/mfa/status',
+    method: 'get',
+  })
+}
+
+// Admin-forced MFA reset for a specific user (recovery when authenticator/recovery codes are lost)
+export function mfaReset (data) {
   return request({
     url: '/user/mfa/reset',
     method: 'post',
     data,
   })
 }
-export function mfaStatus(data) {
+
+export function groupUsers (data) {
   return request({
-    url: '/user/mfa/status',
-    method: 'get',
-    data,
-  })
-}
-export function userTokenBatchDelete(data) {
-  return request({
-    url: '/user_tokens/batchDelete',
+    url: '/user/groupUsers',
     method: 'post',
     data,
   })
 }
 
-export function loginOptions(data) {
+export function register (data) {
   return request({
-    url: '/login-options',
-    method: 'get',
-    data,
-  })
-}
-
-export function oidcAuth(data) {
-  return request({
-    url: '/oidc/auth',
+    url: '/user/register',
     method: 'post',
     data,
   })
 }
-export function oidcAuthQuery(params) {
+
+// Invite code management (new InviteCode API)
+export function invitationList (params) {
   return request({
-    url: '/oidc/auth-query',
-    method: 'get',
+    url: '/invite-codes',
     params,
   })
 }
 
-export function invitationList(data) {
+export function invitationCreate (data) {
   return request({
-    url: '/invitation/list',
-    method: 'get',
-    data,
-  })
-}
-export function invitationCreate(data) {
-  return request({
-    url: '/invitation/create',
+    url: '/invite-codes',
     method: 'post',
     data,
   })
 }
-export function invitationDelete(data) {
+
+export function invitationRevoke (id) {
   return request({
-    url: '/invitation/delete',
+    url: `/invite-codes/${id}/revoke`,
     method: 'post',
-    data,
-  })
-}
-export function invitationBatchCreate(data) {
-  return request({
-    url: '/invitation/batchCreate',
-    method: 'post',
-    data,
   })
 }

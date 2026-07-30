@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card class="list-query query-card" shadow="hover">
-      <el-form inline label-width="80px">
+      <el-form inline>
         <el-form-item :label="T('Username')">
           <el-input v-model="listQuery.username"></el-input>
         </el-form-item>
@@ -14,11 +14,11 @@
     </el-card>
     <el-card class="list-body" shadow="hover">
       <el-table class="list-table" :data="listRes.list" v-loading="listRes.loading" border>
-        <el-table-column prop="id" label="ID" align="center"></el-table-column>
+        <el-table-column prop="id" :label="T('ID')" align="center"></el-table-column>
         <el-table-column prop="username" :label="T('Username')" align="center"/>
         <el-table-column prop="email" :label="T('Email')" align="center"/>
         <el-table-column prop="nickname" :label="T('Nickname')" align="center"/>
-        <el-table-column prop="expired_at" :label="T('ExpiredAt')" width="180" align="center">
+        <el-table-column prop="expired_at" :label="T('ExpiredAt')" min-width="170" align="center">
           <template #default="{row}">
             <span v-if="row.expired_at > 0 && row.expired_at * 1000 < Date.now()"
                   style="color: red; font-weight: bold;">{{ formatDate(row.expired_at) }}</span>
@@ -26,7 +26,7 @@
             <span v-else>-</span>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Group')" align="center">
+        <el-table-column :label="T('Group')" align="center" min-width="125">
           <template #default="{row}">
             <span v-if="row.group_id"> <el-tag>{{ listRes.groups?.find(g => g.id === row.group_id)?.name }} </el-tag> </span>
             <span v-else> - </span>
@@ -42,16 +42,16 @@
           </template>
         </el-table-column>
         <el-table-column prop="remark" :label="T('Remark')" align="center"/>
-        <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>
-        <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center"/>
-        <el-table-column :label="T('Actions')" align="center" width="650">
+        <el-table-column prop="created_at" :label="T('CreatedAt')" align="center" min-width="170"/>
+        <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center" min-width="170"/>
+        <el-table-column :label="T('Actions')" align="center" width="600" fixed="right">
           <template #default="{row}">
-            <el-button @click="toTag(row)">{{ T('UserTags') }}</el-button>
-            <el-button @click="toAddressBook(row)">{{ T('UserAddressBook') }}</el-button>
-            <el-button @click="toEdit(row)">{{ T('Edit') }}</el-button>
-            <el-button type="warning" @click="changePass(row)">{{ T('ResetPassword') }}</el-button>
-            <el-button type="info" @click="resetMfa(row)">{{ T('MfaReset') }}</el-button>
-            <el-button type="danger" @click="remove(row)">{{ T('Delete') }}</el-button>
+            <el-button @click="toTag(row)" size="small">{{ T('UserTags') }}</el-button>
+            <el-button @click="toAddressBook(row)" size="small">{{ T('UserAddressBook') }}</el-button>
+            <el-button @click="toEdit(row)" size="small">{{ T('Edit') }}</el-button>
+            <el-button type="warning" @click="changePass(row)" size="small">{{ T('ResetPassword') }}</el-button>
+            <el-button type="info" @click="resetMfa(row)" size="small">{{ T('MfaReset') }}</el-button>
+            <el-button type="danger" @click="remove(row)" size="small">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -70,18 +70,18 @@
 
 <script setup>
   import { useRepositories, useDel, useToEditOrAdd, useChangePwd } from '@/views/user/composables'
-  import { T } from '@/utils/i18n'
-  import { DISABLE_STATUS, ENABLE_STATUS } from '@/utils/common_options'
-  import { update, mfaReset } from '@/api/user'
-  import { ElMessageBox, ElMessage } from 'element-plus'
-  import { onMounted, watch } from 'vue'
+import { T } from '@/utils/i18n'
+import { DISABLE_STATUS, ENABLE_STATUS } from '@/utils/common_options'
+import { update, mfaReset } from '@/api/user'
+import { ElMessageBox, ElMessage } from 'element-plus'
+import { onMounted, watch } from 'vue'
 
   const formatDate = (ts) => {
     if (!ts || ts <= 0) return '-'
     const d = new Date(ts * 1000)
     return d.toLocaleString()
   }
-  //列表
+  // List
   const {
     listRes,
     listQuery,
@@ -102,7 +102,7 @@
 
   const { changePass } = useChangePwd()
 
-  //删除
+  // Delete
   const { del } = useDel()
   const remove = async (row) => {
     const res = await del(row.id)
@@ -126,7 +126,7 @@
     }
   }
 
-  // 管理员强制重置用户 MFA
+  // Admin-forced user MFA reset
   const resetMfa = async (row) => {
     const cf = await ElMessageBox.confirm(
       T('MfaResetConfirm', { username: row.username }),

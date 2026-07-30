@@ -23,8 +23,8 @@
 </template>
 
 <script>
-  import { defineComponent } from 'vue'
-  import { T } from '@/utils/i18n'
+  import { defineComponent } from 'vue';
+import { T } from '@/utils/i18n';
 
   export default defineComponent({
     name: 'MenuItem',
@@ -34,7 +34,7 @@
     mounted () {
     },
     setup (props) {
-      //判断仅有一个子项的route
+      // Handle routes with only one child item
       const parseRoute = (route) => {
         if (route.children && route.children.filter(c => !c.meta?.hide).length === 1) {
           return route.children.filter(c => !c.meta?.hide)[0]

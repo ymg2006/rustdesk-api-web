@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card class="list-query" shadow="hover">
-      <el-form inline label-width="80px">
+      <el-form inline>
         <el-form-item :label="T('User')">
           <el-select v-model="listQuery.user_id" clearable>
             <el-option
@@ -22,26 +22,26 @@
     <el-card class="list-body" shadow="hover">
       <el-table :data="listRes.list" v-loading="listRes.loading" border @selection-change="handleSelectionChange">
         <el-table-column type="selection" align="center" width="50"/>
-        <el-table-column prop="id" label="ID" align="center" width="100"/>
-        <el-table-column :label="T('Owner')" align="center" width="120">
+        <el-table-column prop="id" :label="T('ID')" align="center" min-width="100"/>
+        <el-table-column :label="T('Owner')" align="center" min-width="120">
           <template #default="{row}">
             <span v-if="row.user_id"> <el-tag>{{ allUsers?.find(u => u.id === row.user_id)?.username }}</el-tag> </span>
           </template>
         </el-table-column>
-        <el-table-column prop="client" label="client" align="center" width="120"/>
+        <el-table-column prop="client" :label="T('Client')" align="center" min-width="120"/>
         <el-table-column prop="peer.id" :label="T('Peer')" align="center">
           <template #default="{row}">
             {{ row.device_id ? row.device_id : peer?.id }}
           </template>
         </el-table-column>
-        <el-table-column prop="uuid" label="uuid" align="center"/>
-        <el-table-column prop="ip" label="ip" align="center" width="150"/>
-        <el-table-column prop="type" label="type" align="center" width="100"/>
-        <el-table-column prop="platform" label="Platform/UA" align="center" width="120" show-overflow-tooltip/>
-        <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>
-        <el-table-column :label="T('Actions')" align="center" width="400">
+        <el-table-column prop="uuid" :label="T('Uuid')" align="center"/>
+        <el-table-column prop="ip" :label="T('Ip')" align="center" min-width="150"/>
+        <el-table-column prop="type" :label="T('Type')" align="center" min-width="100"/>
+        <el-table-column prop="platform" :label="T('PlatformUA')" align="center" min-width="120" show-overflow-tooltip/>
+        <el-table-column prop="created_at" :label="T('CreatedAt')" min-width="170" align="center"/>
+        <el-table-column :label="T('Actions')" align="center" width="100" fixed="right">
           <template #default="{row}">
-            <el-button type="danger" @click="del(row)">{{ T('Delete') }}</el-button>
+            <el-button type="danger" @click="del(row)" size="small">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -60,11 +60,9 @@
 
 <script setup>
   import { onActivated, onMounted, ref, watch } from 'vue'
-  import { loadAllUsers } from '@/global'
-  import { useRepositories } from '@/views/login/log.js'
-  import { T } from '@/utils/i18n'
-  import { list } from '@/api/peer'
-  import { downBlob, jsonToCsv } from '@/utils/file'
+import { loadAllUsers } from '@/global'
+import { useRepositories } from '@/views/login/log.js'
+import { T } from '@/utils/i18n'
 
   const { allUsers, getAllUsers } = loadAllUsers()
   getAllUsers()

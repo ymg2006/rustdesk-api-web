@@ -1,11 +1,11 @@
-// ===== Apple 风格设计系统（基于 Apple HIG: Clarity / Deference / Depth）=====
-// 覆盖 Element Plus 主题变量 + 全局材质/排版
+// ===== Apple-style design system (based on Apple HIG: Clarity / Deference / Depth) =====
+// Element Plus theme overrides and global materials/typography.
 
 $basicBlack: #000000;
 $basicWhite: #ffffff;
 
 :root {
-  // —— Element Plus 品牌色（Apple System Blue 等）——
+  // —— Element Plus brand colors (Apple System Blue, etc.) ——
   --el-color-primary: #007AFF;
   --el-color-primary-light-3: #4DA3FF;
   --el-color-primary-light-5: #80BDFF;
@@ -19,22 +19,22 @@ $basicWhite: #ffffff;
   --el-color-danger: #FF3B30;
   --el-color-error: #FF3B30;
 
-  // —— 圆角（Apple：大卡片 16 / 控件 10）——
+  // —— Border radii (Apple: large cards 16 / controls 10) ——
   --el-border-radius-base: 10px;
   --el-border-radius-small: 8px;
   --el-border-radius-round: 999px;
 
-  // —— 字体（SF Pro 优先）——
+  // —— Typography (prefer SF Pro) ——
   --el-font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text",
     "SF Pro Display", "Helvetica Neue", "PingFang SC", "Microsoft YaHei",
     sans-serif;
 
-  // —— 背景（Apple 浅灰页面 + 白卡片）——
+  // —— Backgrounds (Apple light-gray page + white cards) ——
   --el-bg-color: #ffffff;
   --el-bg-color-page: #f5f5f7;
   --el-bg-color-overlay: #ffffff;
 
-  // —— 细边框（Apple 用极浅灰分割线）——
+  // —— Thin borders (Apple uses very light-gray separators) ——
   --el-border-color: #e5e5ea;
   --el-border-color-light: #e5e5ea;
   --el-border-color-lighter: #f2f2f7;
@@ -45,26 +45,26 @@ $basicWhite: #ffffff;
   --el-fill-color-lighter: #fafafc;
   --el-fill-color-blank: #ffffff;
 
-  // —— 文本层级 ——
+  // —— Text hierarchy ——
   --el-text-color-primary: #1c1c1e;
   --el-text-color-regular: #3a3a3c;
   --el-text-color-secondary: #8e8e93;
   --el-text-color-placeholder: #c7c7cc;
 
-  // —— 标签/芯片底色（地址簿等）——
+  // —— Tag/chip backgrounds (address book, etc.) ——
   --tag-bg-color: #e5e5ea;
 
-  // —— 柔和阴影 ——
+  // —— Soft shadows ——
   --el-box-shadow-light: 0 4px 24px rgba(0, 0, 0, 0.08);
   --el-box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 
-  // —— 菜单（选中浅蓝圆角高亮，非实色块）——
+  // —— Menu (selected items use a rounded light-blue highlight) ——
   --el-menu-bg-color: transparent;
   --el-menu-text-color: #1c1c1e;
   --el-menu-active-color: #007aff;
   --el-menu-hover-bg-color: rgba(0, 0, 0, 0.04);
 
-  // —— Apple 设计 token ——
+  // —— Apple design tokens ——
   --apple-blue: #007aff;
   --apple-green: #34c759;
   --apple-red: #ff3b30;
@@ -77,7 +77,7 @@ $basicWhite: #ffffff;
   --apple-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
   --apple-glass: saturate(180%) blur(20px);
 
-  // —— Apple 间距 token ——
+  // —— Apple spacing tokens ——
   --apple-spacing-1: 4px;
   --apple-spacing-2: 8px;
   --apple-spacing-3: 12px;
@@ -85,7 +85,7 @@ $basicWhite: #ffffff;
   --apple-spacing-6: 24px;
   --apple-spacing-8: 32px;
 
-  // —— Apple 字号 token ——
+  // —— Apple font-size tokens ——
   --apple-font-xs: 12px;
   --apple-font-sm: 13px;
   --apple-font-base: 14px;
@@ -94,12 +94,12 @@ $basicWhite: #ffffff;
   --apple-font-xl: 24px;
   --apple-font-2xl: 32px;
 
-  // —— Apple 文本 / 边框 token ——
+  // —— Apple text / border tokens ——
   --apple-text-primary: #1d1d1f;
   --apple-text-secondary: #8e8e93;
   --apple-border: #e5e5ea;
 
-  // —— Tag 浅底 subtle 底色 ——
+  // —— Subtle light tag backgrounds ——
   --apple-green-subtle: rgba(52, 199, 89, 0.12);
   --apple-orange-subtle: rgba(255, 149, 0, 0.12);
   --apple-blue-subtle: rgba(0, 122, 255, 0.10);
@@ -107,7 +107,35 @@ $basicWhite: #ffffff;
   --apple-gray-subtle: rgba(142, 142, 147, 0.12);
 }
 
-// ===== 深色模式（Apple Dark: #1C1C1E / #2C2C2E）=====
+.w-100 {
+  width: 100%;
+  div {
+    width: 100%;
+  }
+}
+
+.ms-8px {
+  margin-left: 8px;
+}
+
+.me-8px {
+  margin-right: 8px;
+}
+
+.el-form--inline .el-form-item {
+  margin-right: 8px;
+  margin-bottom: 0;
+}
+
+.el-dialog__body .el-form-item {
+  margin-right: 8px;
+}
+
+.d-contents {
+  display: contents;
+}
+
+// ===== Dark mode (Apple Dark: #1C1C1E / #2C2C2E) =====
 html.dark {
   --el-color-primary: #0a84ff;
   --el-color-primary-light-3: #4aa6ff;
@@ -142,7 +170,7 @@ html.dark {
   --tag-bg-color: #2c2c2e;
   --basicBlack: #fff;
 
-  // —— Apple 间距 / 字号 token（深色与浅色一致，双写）——
+  // —— Apple spacing / font-size tokens (duplicated for consistent dark and light modes) ——
   --apple-spacing-1: 4px;
   --apple-spacing-2: 8px;
   --apple-spacing-3: 12px;
@@ -157,12 +185,12 @@ html.dark {
   --apple-font-xl: 24px;
   --apple-font-2xl: 32px;
 
-  // —— Apple 文本 / 边框 token（深色覆盖）——
+  // —— Apple text / border tokens (dark-mode overrides) ——
   --apple-text-primary: #f5f5f7;
   --apple-text-secondary: #98989d;
   --apple-border: #38383a;
 
-  // —— Tag 浅底 subtle 底色（深色 alpha 提升）——
+  // —— Subtle tag backgrounds (higher alpha in dark mode) ——
   --apple-green-subtle: rgba(52, 199, 89, 0.22);
   --apple-orange-subtle: rgba(255, 149, 0, 0.22);
   --apple-blue-subtle: rgba(0, 122, 255, 0.22);
@@ -170,9 +198,9 @@ html.dark {
   --apple-gray-subtle: rgba(142, 142, 147, 0.22);
 }
 
-// ===== 全局基础 =====
-// 底层用 Apple 风 mesh 渐变（柔和彩色光晕），让顶栏/侧边栏/标签栏的毛玻璃
-// 有"可模糊的内容"——否则纯色背景下 backdrop-filter 看不出效果。
+// ===== Global base =====
+// Use an Apple-style mesh gradient with soft colored glows beneath the layout so
+// the header, sidebar, and tab bar have content for the glass blur effect.
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
     "Helvetica Neue", "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
@@ -187,7 +215,7 @@ body {
   letter-spacing: 0.1px;
 }
 
-// 深色模式：同结构但提高彩色 alpha，配合深色毛玻璃框架
+// Dark mode: retain the structure but increase color alpha for the dark glass frame.
 html.dark body {
   background-color: #1c1c1e;
   background-image:
@@ -197,21 +225,23 @@ html.dark body {
     radial-gradient(1000px 600px at 0% 100%, rgba(175, 82, 222, 0.18), transparent 55%);
 }
 
-// ===== 卡片（大圆角 + 细边框 + 柔和阴影）=====
+// ===== Cards (large radius + thin border + soft shadow) =====
 .el-card {
   border-radius: var(--apple-radius-lg);
   border-color: var(--el-border-color-lighter);
   box-shadow: var(--apple-shadow);
 }
 
-// ===== 菜单项圆角高亮 =====
+// ===== Rounded menu-item highlights =====
 .el-menu {
   border-right: none;
 }
 .el-menu-item,
 .el-sub-menu__title {
   border-radius: 8px;
-  margin: 4px 8px;
+}
+.el-menu--popup {
+  padding: 0;
 }
 .el-menu-item.is-active {
   background: var(--el-color-primary-light-9);
@@ -222,29 +252,30 @@ html.dark body {
   border-radius: 8px;
 }
 
-// ===== 按钮（更圆润）=====
+// ===== Buttons (more rounded) =====
 .el-button {
   border-radius: var(--apple-radius-sm);
   font-weight: 500;
 }
 
-// ===== 表格（细分割线）=====
-.el-table {
-  border-radius: var(--apple-radius-md);
-  overflow: hidden;
-}
+// ===== Tables (thin separators) =====
 .el-table th.el-table__cell {
   background: var(--el-fill-color-light);
   font-weight: 600;
 }
 
-// ===== 对话框（毛玻璃）=====
+// ===== Dialogs (glass effect) =====
 .el-dialog {
   border-radius: var(--apple-radius-lg);
   backdrop-filter: var(--apple-glass);
 }
 
-// ===== 通用工具类 =====
+.el-table__body tr.hover-row > td.el-table-fixed-column--left,
+.el-table__body tr.hover-row > td.el-table-fixed-column--right {
+  background-color: var(--el-fill-color-light) !important;
+}
+
+// ===== Utility classes =====
 .apple-glass {
   background: rgba(255, 255, 255, 0.72);
   backdrop-filter: var(--apple-glass);
@@ -269,29 +300,41 @@ html.dark .apple-glass {
     --el-input-width: 160px;
   }
 }
-.table-actions {
-  .el-button {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    margin-left: 5px;
-    margin-right: 5px;
-  }
+
+.el-form-item--label-right .el-form-item__label {
+  text-align: left;
+  justify-content: flex-start;
 }
 
-// ===== Apple 美化补充：通用片段 =====
-// 次要灰提示文字
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.gap-5 {
+  gap: 5px;
+}
+
+.toolbar{
+  margin-bottom: 10px;
+
+}
+
+// ===== Additional Apple-style shared elements =====
+// Secondary gray helper text.
 .hint-text {
   color: var(--apple-gray);
   font-size: var(--apple-font-sm);
 }
-// 查询区卡片
+// Query-section card.
 .query-card {
   border-radius: var(--apple-radius-lg);
   border: 1px solid var(--el-border-color-lighter);
   box-shadow: var(--apple-shadow);
   background: var(--el-bg-color);
 }
-// 列表表格
+// List table.
 .list-table {
   border-radius: var(--apple-radius-md);
   overflow: hidden;
@@ -305,7 +348,7 @@ html.dark .apple-glass {
   }
 }
 
-// ===== 滚动条（Apple 细滚动条）=====
+// ===== Scrollbar (thin Apple style) =====
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -332,7 +375,39 @@ html.dark ::-webkit-scrollbar-thumb:hover {
   background-clip: content-box;
 }
 
-// ===== 表格行 hover（极浅灰，Apple 风）=====
+/* Replace Element Plus's right edge with one complete rounded frame */
+.el-table--border::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: auto;
+  height: auto;
+  box-sizing: border-box;
+  border: 1px solid var(--el-table-border-color);
+  border-radius: inherit;
+  background: transparent;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.el-table--border::before {
+  content: none !important;
+}
+
+.el-table__inner-wrapper::before,
+.el-table__inner-wrapper::after,
+.el-table__border-left-patch,
+.el-table__border-top-patch,
+.el-table__border-right-patch,
+.el-table__border-bottom-patch {
+  content: none !important;
+  display: none !important;
+}
+
+.el-button + .el-button {
+  margin-left: 8px;
+}
+// ===== Table-row hover (very light gray, Apple style) =====
 .el-table {
   --el-table-row-hover-bg-color: rgba(0, 0, 0, 0.03);
   border-radius: var(--apple-radius-md);
@@ -346,33 +421,32 @@ html.dark .el-table {
   font-weight: 600;
 }
 
-// ===== 标签：Apple 浅底 subtle 风格 =====
+// ===== Tags: subtle Apple-style backgrounds =====
 .el-tag {
   border: none;
   border-radius: 6px;
   font-weight: 500;
-  // 默认 / info：浅蓝 subtle
-  background: var(--apple-blue-subtle);
+  height: 35px;
+  // Default / info: subtle light blue.
   color: var(--apple-blue);
   &.el-tag--info {
-    background: var(--apple-blue-subtle);
+    color: var(--el-menu-text-color);
+  }
+  &.el-tag--primary {
     color: var(--apple-blue);
   }
   &.el-tag--success {
-    background: var(--apple-green-subtle);
     color: var(--apple-green);
   }
   &.el-tag--warning {
-    background: var(--apple-orange-subtle);
     color: var(--apple-orange);
   }
   &.el-tag--danger {
-    background: var(--apple-red-subtle);
     color: var(--apple-red);
   }
 }
 
-// ===== 分页圆角 =====
+// ===== Rounded pagination =====
 .el-pagination {
   .btn-prev,
   .btn-next,
@@ -381,42 +455,48 @@ html.dark .el-table {
   }
 }
 
-// ===== 警告/提示圆角 =====
+// ===== Rounded alerts / notifications =====
 .el-alert {
   border-radius: 12px;
 }
 
-// ===== 弹框毛玻璃 =====
+// ===== Glass message boxes =====
 .el-message-box {
   border-radius: var(--apple-radius-lg);
   backdrop-filter: var(--apple-glass);
   -webkit-backdrop-filter: var(--apple-glass);
 }
 
-// ===== 下拉菜单 / Popper 圆角 =====
+// ===== Rounded dropdowns / poppers =====
 .el-dropdown-menu {
   border-radius: 12px;
-  padding: 6px;
+  padding: 0;
 }
+.el-dropdown-menu__item {
+  border-radius: 12px;
+  height: calc(var(--el-menu-sub-item-height) - 20px);
+  line-height: calc(var(--el-menu-sub-item-height) - 20px);
+}
+
 .el-popper.is-light,
 .el-popper.is-dark {
   border-radius: 12px;
 }
 
-// ===== 菜单项过渡（更柔）=====
+// ===== Softer menu-item transitions =====
 .el-menu-item,
 .el-sub-menu__title {
   transition: background-color 0.25s ease, color 0.25s ease;
 }
 
-// ===== 卡片头部 =====
+// ===== Card headers =====
 .el-card__header {
   border-bottom: 1px solid var(--el-border-color-lighter);
   font-weight: 600;
   color: var(--el-text-color-primary);
 }
 
-// ===== 主内容区背景（让 body 浅灰透出）=====
+// ===== Main content background (allow the light-gray body to show through) =====
 .app-main {
   background: transparent;
 }

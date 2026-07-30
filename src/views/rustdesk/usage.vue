@@ -2,18 +2,18 @@
   <el-card class="simple-card" shadow="hover" v-loading="form.loading">
     <template #header>
       <div class="card-header">
-        <span>USAGE</span>
+        <span>{{ T('Usage') }}</span>
       </div>
     </template>
     <el-form :disabled="!canSend">
       <el-form-item>
-        <el-table :data="form.list" size="small">
-          <el-table-column prop="0" label="IP"></el-table-column>
-          <el-table-column prop="1" label="TIME"></el-table-column>
-          <el-table-column prop="2" label="TOTAL"></el-table-column>
-          <el-table-column prop="3" label="HIGHEST"></el-table-column>
-          <el-table-column prop="4" label="AVG"></el-table-column>
-          <el-table-column prop="5" label="SPEED"></el-table-column>
+        <el-table :data="form.list">
+          <el-table-column prop="0" :label="T('Ip')"></el-table-column>
+          <el-table-column prop="1" :label="T('Time')"></el-table-column>
+          <el-table-column prop="2" :label="T('Total')"></el-table-column>
+          <el-table-column prop="3" :label="T('Highest')"></el-table-column>
+          <el-table-column prop="4" :label="T('Avg')"></el-table-column>
+          <el-table-column prop="5" :label="T('Speed')"></el-table-column>
         </el-table>
       </el-form-item>
       <el-form-item>
@@ -25,9 +25,9 @@
 <script setup>
 
   import { T } from '@/utils/i18n'
-  import { reactive, watch } from 'vue'
-  import { sendCmd } from '@/api/rustdesk'
-  import { RELAY_TARGET } from '@/views/rustdesk/options'
+import { reactive, watch } from 'vue'
+import { sendCmd } from '@/api/rustdesk'
+import { RELAY_TARGET } from '@/views/rustdesk/options'
 
   const props = defineProps({
     canSend: Boolean,

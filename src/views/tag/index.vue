@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card class="list-query" shadow="hover">
-      <el-form inline label-width="120px">
+      <el-form inline>
         <el-form-item :label="T('Owner')">
           <el-select v-model="listQuery.user_id" clearable @change="changeUser">
             <el-option
@@ -26,13 +26,13 @@
     </el-card>
     <el-card class="list-body" shadow="hover">
       <el-table :data="listRes.list" v-loading="listRes.loading" border>
-        <el-table-column prop="id" label="ID" align="center"/>
+        <el-table-column prop="id" :label="T('ID')" align="center"/>
         <el-table-column :label="T('Owner')" align="center">
           <template #default="{row}">
             <span v-if="row.user_id"> <el-tag>{{ allUsers?.find(u => u.id === row.user_id)?.username }}</el-tag> </span>
           </template>
         </el-table-column>
-        <el-table-column prop="collection_id" :label="T('AddressBookName')" align="center" width="150">
+        <el-table-column prop="collection_id" :label="T('AddressBookName')" align="center" min-width="155">
           <template #default="{row}">
             <span v-if="row.collection_id === 0">{{ T('MyAddressBook') }}</span>
             <span v-else>{{ row.collection?.name }}</span>
@@ -51,10 +51,10 @@
         </el-table-column>
         <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>
         <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center"/>
-        <el-table-column :label="T('Actions')" align="center" width="250">
+        <el-table-column :label="T('Actions')" align="center" width="200" fixed="right">
           <template #default="{row}">
-            <el-button @click="toEdit(row)">{{ T('Edit') }}</el-button>
-            <el-button type="danger" @click="del(row)">{{ T('Delete') }}</el-button>
+            <el-button @click="toEdit(row)" size="small">{{ T('Edit') }}</el-button>
+            <el-button type="danger" @click="del(row)" size="small">{{ T('Delete') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -68,8 +68,8 @@
                      :total="listRes.total">
       </el-pagination>
     </el-card>
-    <el-dialog v-model="formVisible" :title="!formData.id?T('Create'):T('Update')" width="800">
-      <el-form class="dialog-form" ref="form" :model="formData" label-width="120px">
+    <el-dialog v-model="formVisible" :title="!formData.id?T('Create'):T('Update')" width="800" append-to-body>
+      <el-form class="dialog-form" ref="form" :model="formData">
         <el-form-item :label="T('Owner')" prop="user_id" required>
           <el-select v-model="formData.user_id" @change="changeUserForUpdate">
             <el-option
@@ -108,10 +108,10 @@
 </template>
 
 <script setup>
-  import { onMounted, reactive, watch, ref, onActivated } from 'vue'
-  import { useRepositories } from '@/views/tag/index'
-  import { T } from '@/utils/i18n'
-  import { loadAllUsers } from '@/global'
+  import { onMounted, watch, onActivated } from 'vue'
+import { useRepositories } from '@/views/tag/index'
+import { T } from '@/utils/i18n'
+import { loadAllUsers } from '@/global'
 
   const { allUsers, getAllUsers } = loadAllUsers()
   onMounted(getAllUsers)

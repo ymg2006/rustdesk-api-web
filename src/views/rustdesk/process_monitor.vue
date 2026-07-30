@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- 监控规则管理 -->
+    <!-- Monitoring-rule management -->
     <el-card shadow="hover">
       <div class="toolbar">
         <span class="tip">{{ T('ProcessMonitorTip') }}</span>
@@ -42,7 +42,7 @@
       </el-table>
     </el-card>
 
-    <!-- 实时状态 -->
+    <!-- Live status -->
     <el-card shadow="hover" style="margin-top:20px">
       <div class="toolbar">
         <span class="tip">{{ T('ProcessStatusTip') }}</span>
@@ -60,7 +60,7 @@
         <el-table-column prop="target" :label="T('ProcessTarget')" min-width="120" />
         <el-table-column :label="T('ProcessRunning')" min-width="100">
           <template #default="{row}">
-            <el-tag :type="row.running === 1 ? 'success' : 'danger'" effect="dark">
+            <el-tag :type="row.running === 1 ? 'success' : 'danger'">
               {{ row.running === 1 ? T('ProcessUp') : T('ProcessDown') }}
             </el-tag>
           </template>
@@ -71,9 +71,9 @@
       </el-table>
     </el-card>
 
-    <!-- 规则编辑对话框 -->
-    <el-dialog v-model="dialogVisible" :title="dialogTitle" width="640px">
-      <el-form :model="form" label-width="120px">
+    <!-- Rule editor dialog -->
+    <el-dialog v-model="dialogVisible" :title="dialogTitle" width="640px" append-to-body>
+      <el-form :model="form">
         <el-form-item v-if="!editing" :label="T('ProcessTargetMode')">
           <el-radio-group v-model="sourceType" @change="onSourceTypeChange">
             <el-radio-button label="peers">{{ T('ProcessModeManual') }}</el-radio-button>
@@ -82,17 +82,17 @@
           </el-radio-group>
         </el-form-item>
 
-        <!-- 手动单个设备（新增） -->
+        <!-- Add one device manually -->
         <el-form-item v-if="!editing && sourceType === 'peers'" :label="T('ProcessPeerId')">
           <el-input v-model="form.peer_id" :placeholder="T('ProcessPeerIdTip')" />
         </el-form-item>
 
-        <!-- 编辑单设备规则 -->
+        <!-- Edit a single-device rule -->
         <el-form-item v-if="editing && form.source_type === 'peers'" :label="T('ProcessPeerId')">
           <el-input v-model="form.peer_id" disabled />
         </el-form-item>
 
-        <!-- 按设备组 -->
+        <!-- By device group -->
         <el-form-item v-if="!editing && sourceType === 'device_group'" :label="T('ProcessModeDeviceGroup')">
           <el-select v-model="selectedGroupId" filterable :placeholder="T('ProcessSelectDeviceGroup')" style="width:100%">
             <el-option
@@ -104,7 +104,7 @@
           </el-select>
         </el-form-item>
 
-        <!-- 按地址簿标签 -->
+        <!-- By address-book tag -->
         <el-form-item v-if="!editing && sourceType === 'ab_tags'" :label="T('ProcessModeAbTags')">
           <el-select v-model="selectedTags" multiple filterable collapse-tags :placeholder="T('ProcessSelectAbTags')" style="width:100%">
             <el-option
@@ -116,7 +116,7 @@
           </el-select>
         </el-form-item>
 
-        <!-- 编辑集合规则时展示来源 -->
+        <!-- Show the source when editing a collection rule -->
         <el-form-item v-if="editing && isCollection" :label="T('ProcessTargetMode')">
           <el-tag type="info">{{ form.source_type === 'device_group' ? T('ProcessSourceGroup') : T('ProcessSourceTag') }}</el-tag>
           <span style="margin-left:8px">{{ form.source_name || form.source_id }}</span>
@@ -149,7 +149,7 @@
           <el-switch v-model="form.enabledBool" />
         </el-form-item>
 
-        <!-- 集合规则：单设备覆盖配置 -->
+        <!-- Collection rule: per-device override -->
         <template v-if="editing && isCollection">
           <el-divider />
           <div class="peers-title">{{ T('ProcessPeers') }}</div>
@@ -211,7 +211,7 @@ const form = ref({
 })
 const isCollection = computed(() => form.value.source_type === 'device_group' || form.value.source_type === 'ab_tags')
 
-// 批量配置来源
+// Bulk-configuration source.
 const sourceType = ref('peers') // peers | device_group | ab_tags
 const deviceGroups = ref([])
 const abTags = ref([])
@@ -306,7 +306,7 @@ const buildPeerOverrides = () => {
 }
 const save = async () => {
   if (!form.value.target) { ElMessage.warning(T('ProcessTargetTip')); return }
-  // 新增 + 批量来源（设备组 / 地址簿标签）
+  // Add from a bulk source (device group / address-book tag).
   if (!editing.value && sourceType.value !== 'peers') {
     if (sourceType.value === 'device_group' && !selectedGroupId.value) { ElMessage.warning(T('ProcessSelectDeviceGroup')); return }
     if (sourceType.value === 'ab_tags' && !selectedTags.value.length) { ElMessage.warning(T('ProcessSelectAbTags')); return }
@@ -329,7 +329,7 @@ const save = async () => {
     }
     return
   }
-  // 单个新增 / 编辑
+  // Add or edit a single item.
   if (!editing.value && !form.value.peer_id) { ElMessage.warning(T('ProcessPeerIdTip')); return }
   saving.value = true
   const payload = {
@@ -348,7 +348,11 @@ const save = async () => {
   if (res) { ElMessage.success(T('ProcessSaved')); dialogVisible.value = false; loadRules() }
 }
 const remove = (row) => {
-  ElMessageBox.confirm(T('ProcessConfirmDelete'), T('ProcessTip'), { type: 'warning' }).then(async () => {
+  ElMessageBox.confirm(T('ProcessConfirmDelete'), T('ProcessTip'), {
+    type: 'warning',
+    confirmButtonText: T('Confirm'),
+    cancelButtonText: T('Cancel'),
+  }).then(async () => {
     const res = await deleteProcessRule({ id: row.row_id }).catch(e => { ElMessage.error(e?.message || T('OperationFailed')); return false })
     if (res) { ElMessage.success(T('ProcessDeleted')); loadRules() }
   }).catch(() => {})

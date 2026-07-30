@@ -22,3 +22,10 @@ export function batchRemove (data) {
     data,
   })
 }
+
+export function deleteExpired () {
+  return request({
+    url: '/user_token/deleteExpired',
+    method: 'post',
+  })
+}

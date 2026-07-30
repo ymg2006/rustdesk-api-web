@@ -33,7 +33,7 @@ export function useRepositories () {
       getList()
     } else {
       listQuery.page = 1
-      //由watch 触发
+      // Triggered by the watcher.
     }
   }
 
@@ -76,7 +76,7 @@ export function useToEditOrAdd () {
     router.push('/user/tag/?user_id=' + row.id)
   }
   const toAddressBook = (row) => {
-    router.push('/user/addressBook/?user_id=' + row.id)
+    router.push('/ab/addressBook/?user_id=' + row.id)
   }
   return {
     toAdd,

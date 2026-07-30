@@ -8,31 +8,31 @@
             <el-switch
               v-if="isAdmin"
               v-model="scopeOwn"
-              active-text="仅看我的消息"
-              inactive-text="显示全部"
+              :active-text="T('OnlyMyMessages')"
+              :inactive-text="T('ShowAll')"
               @change="getList"
               style="margin-right: 10px;"
             />
-            <el-button size="small" type="primary" @click="showSendDialog">发送消息</el-button>
-            <el-button v-if="isAdmin" size="small" type="danger" @click="showBroadcastDialog">全体推送</el-button>
-            <el-dropdown v-if="isAdmin" trigger="click" @command="cleanup">
-              <el-button size="small" type="warning">清理旧消息</el-button>
+            <el-button size="small" type="primary" @click="showSendDialog">{{ T('SendMessage') }}</el-button>
+            <el-button v-if="isAdmin" size="small" type="danger" @click="showBroadcastDialog" class="me-8px">{{ T('Broadcast') }}</el-button>
+            <el-dropdown size="small" v-if="isAdmin" trigger="click" @command="cleanup" class="d-contents">
+              <el-button size="small" type="warning">{{ T('CleanOldMessages') }}</el-button>
               <template #dropdown>
                 <el-dropdown-menu>
-                  <el-dropdown-item command="1">清理超过1年的消息</el-dropdown-item>
-                  <el-dropdown-item command="3">清理超过3年的消息</el-dropdown-item>
+                  <el-dropdown-item command="1">{{ T('CleanMessagesOlderThan1Year') }}</el-dropdown-item>
+                  <el-dropdown-item command="3">{{ T('CleanMessagesOlderThan3Years') }}</el-dropdown-item>
                 </el-dropdown-menu>
               </template>
             </el-dropdown>
-            <el-button size="small" @click="markAllRead">{{ T('MarkAllRead') }}</el-button>
+            <el-button size="small" @click="markAllRead" class="ms-8px">{{ T('MarkAllRead') }}</el-button>
           </div>
         </div>
       </template>
       <el-table :data="messages" v-loading="loading" border>
-        <el-table-column prop="sender_name" :label="T('Sender')" width="120">
+        <el-table-column prop="sender_name" :label="T('Sender')" min-width="120">
           <template #default="{row}">
             <span v-if="row.sender_name">{{ row.sender_name }}</span>
-            <span v-else class="hint-text">系统</span>
+            <span v-else class="hint-text">{{ T('System') }}</span>
           </template>
         </el-table-column>
         <el-table-column prop="title" :label="T('Title')" min-width="140">
@@ -46,41 +46,41 @@
             <el-text truncated>{{ row.content }}</el-text>
           </template>
         </el-table-column>
-        <el-table-column prop="created_at" :label="T('Time')" width="170">
+        <el-table-column prop="created_at" :label="T('Time')" min-width="170">
           <template #default="{row}">
             {{ formatTime(row.created_at) }}
           </template>
         </el-table-column>
-        <el-table-column :label="T('Status')" width="80" align="center">
+        <el-table-column :label="T('Status')" min-width="80" align="center">
           <template #default="{row}">
             <el-tag v-if="row.is_read === 0" type="danger" size="small">{{ T('Unread') }}</el-tag>
             <el-tag v-else size="small">{{ T('Read') }}</el-tag>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Actions')" width="80" align="center">
+        <el-table-column :label="T('Actions')" align="center" width="100" fixed="right">
           <template #default="{row}">
-            <el-button v-if="row.is_read === 0" size="small" @click="markRead(row)">{{ T('MarkRead') }}</el-button>
+            <el-button v-if="row.is_read === 0" @click="markRead(row)" size="small">{{ T('MarkRead') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
     </el-card>
 
     <!-- Send message dialog -->
-    <el-dialog v-model="sendVisible" :title="isBroadcast ? '全体推送' : '发送消息'" width="500px">
-      <el-form label-width="80px">
+    <el-dialog v-model="sendVisible" :title="isBroadcast ? T('Broadcast') : T('SendMessage')" width="500px" append-to-body>
+      <el-form>
         <el-form-item v-if="!isBroadcast" :label="T('Receiver')">
-          <el-select v-model="sendForm.receiver_id" filterable remote :remote-method="searchUsers" :loading="userLoading" style="width: 100%" placeholder="搜索用户名">
+          <el-select v-model="sendForm.receiver_id" filterable remote :remote-method="searchUsers" :loading="userLoading" style="width: 100%" :placeholder="T('SearchUsername')">
             <el-option v-for="u in userList" :key="u.id" :label="u.username" :value="u.id"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item v-if="isBroadcast" label="推送对象">
-          <el-tag type="danger">全体用户</el-tag>
+        <el-form-item v-if="isBroadcast" :label="T('Target')">
+          <el-tag type="danger">{{ T('AllUsers') }}</el-tag>
         </el-form-item>
         <el-form-item :label="T('Title')">
-          <el-input v-model="sendForm.title" placeholder="消息标题（可选）"></el-input>
+          <el-input v-model="sendForm.title" :placeholder="T('MessageTitleOptional')"></el-input>
         </el-form-item>
         <el-form-item :label="T('Content')">
-          <el-input v-model="sendForm.content" type="textarea" :rows="4" placeholder="请输入消息内容"></el-input>
+          <el-input v-model="sendForm.content" type="textarea" :rows="4" :placeholder="T('PleaseEnterMessageContent')"></el-input>
         </el-form-item>
         <el-form-item>
           <el-button type="primary" @click="doSend">{{ T('Submit') }}</el-button>
@@ -95,7 +95,7 @@
 import { onMounted, ref } from 'vue'
 import { T } from '@/utils/i18n'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { list as getMessages, markRead as markMsgRead, unreadCount, send, broadcast, cleanup as apiCleanup } from '@/api/message'
+import { list as getMessages, markRead as markMsgRead, send, broadcast, cleanup as apiCleanup } from '@/api/message'
 import request from '@/utils/request'
 import { useUserStore } from '@/store/user'
 
@@ -140,11 +140,11 @@ const markRead = async (row) => {
 }
 
 const cleanup = async (years) => {
-  const cf = await ElMessageBox.confirm(`确定删除超过 ${years} 年的消息？此操作不可恢复。`, { type: 'warning', confirmButtonText: '确认删除', cancelButtonText: '取消' }).catch(_ => false)
+  const cf = await ElMessageBox.confirm(`Delete messages older than ${years} year(s)? This cannot be undone.`, { type: 'warning', confirmButtonText: 'Confirm Delete', cancelButtonText: 'Cancel' }).catch(_ => false)
   if (!cf) return
   const res = await apiCleanup({ years }).catch(_ => false)
   if (res) {
-    ElMessage.success(`已清理 ${res.data.deleted} 条消息`)
+    ElMessage.success(`Cleaned ${res.data.deleted} messages`)
     getList()
   }
 }
@@ -152,12 +152,12 @@ const cleanup = async (years) => {
 const searchUsers = async (query) => {
   if (!query) return
   userLoading.value = true
-  // groupUsers 接口无需管理员权限，返回所有用户
+  // groupUsers does not require admin permissions and returns all users
   const res = await request({ url: '/user/groupUsers', method: 'post' }).catch(_ => false)
   userLoading.value = false
   if (res && res.data && res.data.users) {
-    // groupUsers 返回 users 为数组，但 UserList 使用了 `json:"list,omitempty"`
-    // 兼容两种格式：直接数组 或 { list: [...] }
+    // groupUsers returns users as an array, but UserList uses `json:"list,omitempty"`
+    // Support both formats: direct array or { list: [...] }
     let users = []
     if (Array.isArray(res.data.users)) {
       users = res.data.users
@@ -185,7 +185,7 @@ const showBroadcastDialog = () => {
 
 const doSend = async () => {
   if (!sendForm.value.title && !sendForm.value.content) {
-    ElMessage.warning('请输入消息内容')
+    ElMessage.warning(T('PleaseEnterMessageContent'))
     return
   }
   let res
@@ -193,7 +193,7 @@ const doSend = async () => {
     res = await broadcast({ title: sendForm.value.title, content: sendForm.value.content }).catch(_ => false)
   } else {
     if (!sendForm.value.receiver_id) {
-      ElMessage.warning('请选择接收人')
+      ElMessage.warning(T('PleaseSelectReceiver'))
       return
     }
     res = await send({

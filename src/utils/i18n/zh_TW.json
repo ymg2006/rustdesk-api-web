@@ -50,6 +50,9 @@
   "Confirm?": {
     "One": "確定{param}?"
   },
+  "ConfirmRestartWithCountdown": {
+    "One": "確定要{param}嗎？請確認操作後果（{seconds} 秒後可確認）"
+  },
   "Cancel": {
     "One": "取消"
   },
@@ -64,6 +67,9 @@
   },
   "Filter": {
     "One": "篩選"
+  },
+  "Keyword": {
+    "One": "關鍵字"
   },
   "Add": {
     "One": "新增"
@@ -85,6 +91,9 @@
   },
   "Delete": {
     "One": "刪除"
+  },
+  "DeleteExpired": {
+    "One": "刪除已過期項目"
   },
   "Create": {
     "One": "建立"
@@ -146,6 +155,24 @@
   "SharedGroupNote": {
     "One": "所有使用者都可以檢視群組成員及其裝置"
   },
+  "OrgStructure": {
+    "One": "組織架構"
+  },
+  "AllMembers": {
+    "One": "所有成員"
+  },
+  "AddRootDept": {
+    "One": "新增部門"
+  },
+  "AddChildDept": {
+    "One": "新增子部門"
+  },
+  "DepartmentName": {
+    "One": "部門名稱"
+  },
+  "ParentDept": {
+    "One": "上層部門"
+  },
   "Nickname": {
     "One": "暱稱"
   },
@@ -155,8 +182,8 @@
   "UserAddressBook": {
     "One": "使用者地址簿"
   },
-  "IsAdmin": {
-    "One": "是否管理員"
+  "Role": {
+    "One": "角色"
   },
   "PleaseInputNewPassword": {
     "One": "請輸入新密碼"
@@ -240,31 +267,51 @@
     "One": "剛剛"
   },
   "MinutesAgo": {
-    "One": "{param} 分鐘前"
+    "One": "{param} 分鐘前",
+    "Other": "{param} 分鐘前"
   },
   "HoursAgo": {
-    "One": "{param} 小時前"
+    "One": "{param} 小時前",
+    "Other": "{param} 小時前"
   },
   "DaysAgo": {
-    "One": "{param} 天前"
+    "One": "{param} 天前",
+    "Other": "{param} 天前"
   },
   "MonthsAgo": {
-    "One": "{param} 月前"
+    "One": "{param} 月前",
+    "Other": "{param} 月前"
   },
   "YearsAgo": {
-    "One": "{param} 年前"
+    "One": "{param} 年前",
+    "Other": "{param} 年前"
   },
   "MinutesLess": {
-    "One": "{param} 分鐘內"
+    "One": "{param} 分鐘內",
+    "Other": "{param} 分鐘內"
   },
   "HoursLess": {
-    "One": "{param} 小時內"
+    "One": "{param} 小時內",
+    "Other": "{param} 小時內"
   },
   "DaysLess": {
-    "One": "{param} 天內"
+    "One": "{param} 天內",
+    "Other": "{param} 天內"
   },
   "Export": {
     "One": "匯出"
+  },
+  "BatchCreate": {
+    "One": "批次建立"
+  },
+  "StatusUnused": {
+    "One": "未使用"
+  },
+  "StatusUsed": {
+    "One": "已使用"
+  },
+  "StatusRevoked": {
+    "One": "已撤銷"
   },
   "AddToAddressBook": {
     "One": "新增到地址簿"
@@ -294,19 +341,24 @@
     "One": "通過 Web Client 分享"
   },
   "Minutes": {
-    "One": "{param} 分鐘"
+    "One": "{param} 分鐘",
+    "Other": "{param} 分鐘"
   },
   "Hours": {
-    "One": "{param} 小時"
+    "One": "{param} 小時",
+    "Other": "{param} 小時"
   },
   "Days": {
-    "One": "{param} 天"
+    "One": "{param} 天",
+    "Other": "{param} 天"
   },
   "Weeks": {
-    "One": "{param} 周"
+    "One": "{param} 周",
+    "Other": "{param} 周"
   },
   "Months": {
-    "One": "{param} 月"
+    "One": "{param} 月",
+    "Other": "{param} 月"
   },
   "Forever": {
     "One": "永久"
@@ -320,6 +372,15 @@
   "RemoteDesktopOffline": {
     "One": "遠端電腦不線上"
   },
+  "CleanOldMessages": { "One": "清理舊訊息" },
+  "CleanMessagesOlderThan1Year": { "One": "清理 1 年前的訊息" },
+  "CleanMessagesOlderThan3Years": { "One": "清理 3 年前的訊息" },
+  "OnlyMyMessages": { "One": "僅我的訊息" },
+  "ShowAll": { "One": "顯示全部" },
+  "SearchUsername": { "One": "搜尋使用者名稱" },
+  "AllUsers": { "One": "所有使用者" },
+  "MessageTitleOptional": { "One": "訊息標題（選填）" },
+  "PleaseEnterMessageContent": { "One": "請輸入訊息內容" },
   "KeyMismatch": {
     "One": "KEY 不匹配"
   },
@@ -342,7 +403,8 @@
     "One": "連線日誌"
   },
   "Peer": {
-    "One": "裝置"
+    "One": "裝置",
+    "Other": "裝置"
   },
   "FromPeer": {
     "One": "來源裝置"
@@ -389,9 +451,6 @@
   "AddressBookName": {
     "One": "地址簿名稱"
   },
-  "AddressBookCollection": {
-    "One": "地址簿集"
-  },
   "AddRule": {
     "One": "新增規則"
   },
@@ -428,26 +487,14 @@
   "LastOnlineIp": {
     "One": "最後線上 IP"
   },
-  "or login in with": {
-    "One": "或使用以下登陸"
-  },
-  "Optional, default is": {
-    "One": "可選, 預設值是"
-  },
-  "Check your IdP docs, without": {
-    "One": "檢查 IdP 的文件, 不包含"
-  },
-  "For OIDC login without a password, enter any 4-20 letters": {
-    "One": "如果通過 OIDC 登入且未設定密碼，請輸入任意 4-20 個字元"
-  },
   "OldPassword": {
     "One": "舊密碼"
   },
-  "NewPassword": {
-    "One": "新密碼"
-  },
   "NewPasswordEqualOldPassword": {
     "One": "新密碼不能與舊密碼相同"
+  },
+  "NewPassword": {
+    "One": "新密碼"
   },
   "ConfirmPassword": {
     "One": "確認密碼"
@@ -461,23 +508,8 @@
   "UserToken": {
     "One": "使用者 Token"
   },
-  "Email": {
-    "One": "電子信箱"
-  },
-  "MyPeer": {
-    "One": "我的裝置"
-  },
-  "View": {
-    "One": "檢視"
-  },
-  "Information": {
-    "One": "資訊"
-  },
-  "BatchAddToAB": {
-    "One": "批量新增到地址簿"
-  },
-  "BatchEditTags": {
-    "One": "批量編輯標籤"
+  "BatchEdit": {
+    "One": "批量編輯"
   },
   "User": {
     "One": "使用者"
@@ -515,6 +547,27 @@
   "Save": {
     "One": "儲存"
   },
+  "Reset": {
+    "One": "重設"
+  },
+  "ConfigFile": {
+    "One": "設定檔"
+  },
+  "ConfigFileTip": {
+    "One": "可在此直接編輯後端 config.yaml 設定檔。儲存後必須重新啟動服務才會生效。"
+  },
+  "ConfigFilePath": {
+    "One": "設定檔路徑"
+  },
+  "RestartService": {
+    "One": "重新啟動服務"
+  },
+  "ServiceRestartTip": {
+    "One": "儲存設定變更後，請按此重新啟動後端服務以套用設定。"
+  },
+  "ServiceRestarting": {
+    "One": "服務正在重新啟動，頁面稍後將自動重新整理"
+  },
   "SendCustom": {
     "One": "傳送自定義"
   },
@@ -530,9 +583,6 @@
   "DeviceGroupManage": {
     "One": "設備組管理"
   },
-  "Import": {
-    "One": "導入"
-  },
   "Drop file here or click to upload": {
     "One": "將檔案拖到這裡，或點擊上傳"
   },
@@ -547,5 +597,999 @@
   },
   "Remark": {
     "One": "備註"
-  }
+  },
+  "VersionRelease": {
+    "One": "版本發佈"
+  },
+  "PublishNewVersion": {
+    "One": "發佈新版本"
+  },
+  "Publish": {
+    "One": "發佈"
+  },
+  "DownloadUrl": {
+    "One": "下載網址"
+  },
+  "ReleaseNotes": {
+    "One": "版本說明"
+  },
+  "ReleaseNotesPlaceholder": {
+    "One": "此版本有哪些新內容..."
+  },
+  "TotalDevices": {
+    "One": "裝置總數"
+  },
+  "Online": {
+    "One": "上線"
+  },
+  "Offline": {
+    "One": "離線"
+  },
+  "TodayConnections": {
+    "One": "今日連線"
+  },
+  "RecentDevices": {
+    "One": "最近離線的裝置"
+  },
+  "RecentConnections": {
+    "One": "最近連線"
+  },
+  "LastOnline": {
+    "One": "最後上線時間"
+  },
+  "Time": {
+    "One": "時間"
+  },
+  "AlertConfig": {
+    "One": "警示設定"
+  },
+  "AlertChannel": {
+    "One": "警示管道"
+  },
+  "Channel": {
+    "One": "管道"
+  },
+  "WebhookUrl": {
+    "One": "Webhook 網址"
+  },
+  "SmtpHost": {
+    "One": "SMTP 伺服器"
+  },
+  "SmtpPort": {
+    "One": "SMTP 連接埠"
+  },
+  "SmtpUser": {
+    "One": "SMTP 使用者"
+  },
+  "SmtpPass": {
+    "One": "SMTP 密碼"
+  },
+  "SmtpTo": {
+    "One": "收件者"
+  },
+  "OfflineMin": {
+    "One": "離線門檻"
+  },
+  "StationMessages": {
+    "One": "站內訊息"
+  },
+  "MarkAllRead": {
+    "One": "全部標示為已讀"
+  },
+  "MessageTitle": {
+    "One": "訊息標題"
+  },
+  "ViewAll": {
+    "One": "檢視全部"
+  },
+  "MarkRead": {
+    "One": "標示為已讀"
+  },
+  "Unread": {
+    "One": "未讀"
+  },
+  "MonitorScope": {
+    "One": "監控範圍"
+  },
+  "AllDevices": {
+    "One": "所有裝置"
+  },
+  "SelectTargets": {
+    "One": "選擇群組與裝置"
+  },
+  "Scope": {
+    "One": "範圍"
+  },
+  "LoadDevices": {
+    "One": "載入裝置"
+  },
+  "NoCollections": {
+    "One": "目前沒有可用群組。請先在地址簿中新增群組。"
+  },
+  "Home": {
+    "One": "首頁"
+  },
+  "SendMessage": {
+    "One": "傳送訊息"
+  },
+  "Sender": {
+    "One": "寄件者"
+  },
+  "Receiver": {
+    "One": "收件者"
+  },
+  "AutoRefresh": {
+    "One": "自動重新整理"
+  },
+  "ClientType": {
+    "One": "用戶端類型"
+  },
+  "DeviceManage": {
+    "One": "裝置"
+  },
+  "UserMgmt": {
+    "One": "使用者"
+  },
+  "AbMgmt": {
+    "One": "地址簿"
+  },
+  "SystemMgmt": {
+    "One": "系統"
+  },
+  "AuditMgmt": {
+    "One": "稽核記錄"
+  },
+  "Strategy": {
+    "One": "策略"
+  },
+  "MfaTitle": {
+    "One": "多重要素驗證 (MFA)"
+  },
+  "MfaSetup": {
+    "One": "設定 MFA"
+  },
+  "MfaEnable": {
+    "One": "啟用 MFA"
+  },
+  "MfaDisable": {
+    "One": "停用 MFA"
+  },
+  "MfaSecret": {
+    "One": "密鑰"
+  },
+  "MfaCode": {
+    "One": "驗證碼"
+  },
+  "MfaVerify": {
+    "One": "驗證並登入"
+  },
+  "MfaVerifyTip": {
+    "One": "請輸入驗證器應用程式（例如 Google Authenticator）中的 6 位數驗證碼"
+  },
+  "MfaCodeError": {
+    "One": "驗證碼無效，請再試一次"
+  },
+  "MfaTokenMissing": {
+    "One": "工作階段已過期，請重新登入"
+  },
+  "MfaScanTip": {
+    "One": "請使用驗證器應用程式掃描下方 QR Code，或手動輸入密鑰"
+  },
+  "MfaRecoveryCodes": {
+    "One": "備用復原碼"
+  },
+  "MfaRecoveryTip": {
+    "One": "請妥善保存這些復原碼。無法取得驗證碼時，每組復原碼只能使用一次來登入。"
+  },
+  "MfaCodeRequired": {
+    "One": "請輸入驗證碼"
+  },
+  "MfaEnabled": {
+    "One": "已啟用"
+  },
+  "MfaDisabled": {
+    "One": "已停用"
+  },
+  "MfaDisableConfirm": {
+    "One": "停用 MFA 需要輸入登入密碼"
+  },
+  "Copy": {
+    "One": "複製"
+  },
+  "Back": {
+    "One": "返回"
+  },
+  "IdP": {
+    "One": "身分識別提供者"
+  },
+  "Loading": {
+    "One": "載入中..."
+  },
+  "ServerStatus": {
+    "One": "伺服器狀態"
+  },
+  "Hbbs": {
+    "One": "HBBS"
+  },
+  "HbbsDesc": {
+    "One": "ID / 協調伺服器"
+  },
+  "Hbbr": {
+    "One": "HBBR"
+  },
+  "HbbrDesc": {
+    "One": "中繼伺服器"
+  },
+  "HbbrLoad": {
+    "One": "HBBR 負載 / 連線數"
+  },
+  "HbbrStatsUnavailable": {
+    "One": "無法取得 HBBR 負載資料"
+  },
+  "ConnectionCount": {
+    "One": "中繼連線數"
+  },
+  "CurrentSpeed": {
+    "One": "目前總速度"
+  },
+  "HighestSpeed": {
+    "One": "尖峰速度"
+  },
+  "TotalTraffic": {
+    "One": "總流量"
+  },
+  "ClientAddr": {
+    "One": "用戶端位址"
+  },
+  "Duration": {
+    "One": "持續時間"
+  },
+  "Traffic": {
+    "One": "流量"
+  },
+  "AvgSpeed": {
+    "One": "平均速度"
+  },
+  "ServerUp": {
+    "One": "執行中"
+  },
+  "ServerDown": {
+    "One": "無法連線"
+  },
+  "ServerNotConfigured": {
+    "One": "尚未設定"
+  },
+  "Latency": {
+    "One": "延遲"
+  },
+  "ServerError": {
+    "One": "錯誤"
+  },
+  "ServerStatusTip": {
+    "One": "新增自訂伺服器位址，並即時探測連線狀態與延遲（TCP 探測、3 秒逾時、每 10 秒自動重新整理）。可同時監控多台伺服器。"
+  },
+  "AddServer": {
+    "One": "新增伺服器"
+  },
+  "EditServer": {
+    "One": "編輯伺服器"
+  },
+  "ServerName": {
+    "One": "名稱"
+  },
+  "ServerAddress": {
+    "One": "位址"
+  },
+  "ServerHost": {
+    "One": "主機 / IP"
+  },
+  "ServerPort": {
+    "One": "連接埠"
+  },
+  "ServerHostPlaceholder": {
+    "One": "請輸入主機或 IP，例如 192.0.2.1 或 hbbs.example.com"
+  },
+  "ServerPortPlaceholder": {
+    "One": "連接埠（選填，0 表示只探測主機）"
+  },
+  "ServerNamePlaceholder": {
+    "One": "請輸入伺服器顯示名稱"
+  },
+  "ServerNameHostRequired": {
+    "One": "名稱與主機位址為必填"
+  },
+  "NoServer": {
+    "One": "尚未新增任何伺服器。請按右上角的「新增伺服器」。"
+  },
+  "ConfirmDeleteServer": {
+    "One": "確定要刪除此伺服器監控項目嗎？"
+  },
+  "Saved": {
+    "One": "已儲存"
+  },
+  "Deleted": {
+    "One": "已刪除"
+  },
+  "Enabled": {
+    "One": "已啟用"
+  },
+  "MfaRecoveryCode": {
+    "One": "復原碼"
+  },
+  "MfaUseCode": {
+    "One": "使用驗證碼"
+  },
+  "MfaUseRecovery": {
+    "One": "使用復原碼"
+  },
+  "MfaReset": {
+    "One": "重設 MFA"
+  },
+  "MfaResetConfirm": {
+    "One": "確定要重設使用者 {username} 的多重要素驗證 (MFA) 嗎？此操作會清除其 MFA 密鑰與復原碼，使其只能使用密碼登入。"
+  },
+  "OperationFailed": {
+    "One": "操作失敗"
+  },
+  "ProcessMonitor": {
+    "One": "程序監控"
+  },
+  "ProcessMonitorTip": {
+    "One": "集中設定要監控的程序或連接埠。用戶端會定期回報狀態；當程序或連接埠停止超過門檻時，系統將觸發警示。"
+  },
+  "ProcessStatusTip": {
+    "One": "每台裝置上受監控項目的即時狀態（由用戶端回報）"
+  },
+  "ProcessTargetMode": {
+    "One": "目標模式"
+  },
+  "ProcessModeManual": {
+    "One": "手動"
+  },
+  "ProcessModeDeviceGroup": {
+    "One": "依裝置群組"
+  },
+  "ProcessModeAbTags": {
+    "One": "依地址簿標籤"
+  },
+  "ProcessSelectDeviceGroup": {
+    "One": "選擇裝置群組（將為群組內所有裝置建立規則）"
+  },
+  "ProcessSelectAbTags": {
+    "One": "選擇地址簿標籤（將為具有所選標籤的裝置建立規則）"
+  },
+  "ProcessBatchResult": {
+    "One": "批次建立完成：已新增 {created} 個，已略過 {skipped} 個（已存在）"
+  },
+  "ProcessSourceGroup": {
+    "One": "裝置群組"
+  },
+  "ProcessSourceTag": {
+    "One": "地址簿標籤"
+  },
+  "ProcessDeviceCount": {
+    "One": "裝置數量"
+  },
+  "ProcessPeers": {
+    "One": "裝置清單"
+  },
+  "ProcessPeerOverride": {
+    "One": "覆寫"
+  },
+  "ProcessInherit": {
+    "One": "繼承"
+  },
+  "ProcessPeerId": {
+    "One": "裝置 ID"
+  },
+  "ProcessPeerIdTip": {
+    "One": "要監控的裝置 Peer ID（請參閱裝置管理）"
+  },
+  "ProcessName": {
+    "One": "監控名稱"
+  },
+  "ProcessType": {
+    "One": "類型"
+  },
+  "ProcessProcess": {
+    "One": "程序"
+  },
+  "ProcessPort": {
+    "One": "連接埠"
+  },
+  "ProcessTarget": {
+    "One": "目標"
+  },
+  "ProcessTargetTip": {
+    "One": "程序名稱（例如 notepad.exe）或連接埠號碼（例如 8080）"
+  },
+  "ProcessInterval": {
+    "One": "檢查間隔（秒）"
+  },
+  "ProcessDownThreshold": {
+    "One": "停止門檻（秒）"
+  },
+  "ProcessAlertRule": {
+    "One": "警示規則"
+  },
+  "ProcessAlertRuleTip": {
+    "One": "連結現有警示設定，以便在停止時傳送通知；留空則不發出警示"
+  },
+  "ProcessEnabled": {
+    "One": "已啟用"
+  },
+  "ProcessOperation": {
+    "One": "操作"
+  },
+  "ProcessAdd": {
+    "One": "新增規則"
+  },
+  "ProcessEdit": {
+    "One": "編輯"
+  },
+  "ProcessDelete": {
+    "One": "刪除"
+  },
+  "ProcessRefresh": {
+    "One": "重新整理"
+  },
+  "ProcessRunning": {
+    "One": "執行中"
+  },
+  "ProcessUp": {
+    "One": "正常"
+  },
+  "ProcessDown": {
+    "One": "停止"
+  },
+  "ProcessDownSince": {
+    "One": "停止時間"
+  },
+  "ProcessCancel": {
+    "One": "取消"
+  },
+  "ProcessSave": {
+    "One": "儲存"
+  },
+  "ProcessSaved": {
+    "One": "已儲存"
+  },
+  "ProcessDeleted": {
+    "One": "已刪除"
+  },
+  "ProcessConfirmDelete": {
+    "One": "確定要刪除此監控規則嗎？"
+  },
+  "ProcessTip": {
+    "One": "提示"
+  },
+  "Invitation": {
+    "One": "授權碼"
+  },
+  "CreateInvitation": {
+    "One": "建立授權碼"
+  },
+  "CopyInviteLink": {
+    "One": "複製邀請連結"
+  },
+  "CopyLink": {
+    "One": "複製連結"
+  },
+  "LinkCopied": {
+    "One": "連結已複製到剪貼簿"
+  },
+  "InviteCode": {
+    "One": "邀請碼"
+  },
+  "InviteCodeRequired": {
+    "One": "邀請碼為必填"
+  },
+  "InviteCodePlaceholder": {
+    "One": "請聯絡管理員取得邀請碼"
+  },
+  "GenerateCount": {
+    "One": "數量"
+  },
+  "GenerateCountPlaceholder": {
+    "One": "最多 200 個"
+  },
+  "GeneratedCodes": {
+    "One": "已產生的代碼"
+  },
+  "CopyAll": {
+    "One": "全部複製"
+  },
+  "AllCopied": {
+    "One": "所有代碼已複製到剪貼簿"
+  },
+  "AutoGenerate": {
+    "One": "自動產生"
+  },
+  "MaxUsers": {
+    "One": "最大使用次數"
+  },
+  "MaxUsersPlaceholder": {
+    "One": "0 表示不限次數"
+  },
+  "MaxUsersFixedTip": {
+    "One": "僅限使用一次"
+  },
+  "DefaultExpire1Day": {
+    "One": "預設於 1 天後到期"
+  },
+  "ExpireAt": {
+    "One": "到期時間"
+  },
+  "ExpiredAt": {
+    "One": "到期時間"
+  },
+  "ExpiredAtPlaceholder": {
+    "One": "留空表示永不過期"
+  },
+  "ExpiredAtTip": {
+    "One": "留空表示永不過期"
+  },
+  "UserExpiredAt": {
+    "One": "使用者到期時間"
+  },
+  "UserExpiredAtTip": {
+    "One": "留空表示使用此代碼建立的使用者永不過期"
+  },
+  "UsageCount": {
+    "One": "已使用"
+  },
+  "Expired": {
+    "One": "已過期"
+  },
+  "UsedUp": {
+    "One": "已用盡"
+  },
+  "Active": {
+    "One": "有效"
+  },
+  "Administrator": {
+    "One": "管理員"
+  },
+  "AccountExpired": {
+    "One": "帳戶已過期，請聯絡管理員"
+  },
+  "RegisterSuccess": {
+    "One": "註冊成功"
+  },
+  "MySubscription": {
+    "One": "我的訂閱"
+  },
+  "SubscribeUpgrade": {
+    "One": "升級訂閱"
+  },
+  "SubscribeUpgradeNow": {
+    "One": "立即升級"
+  },
+  "SubscribeActive": {
+    "One": "有效"
+  },
+  "SubscribeExpired": {
+    "One": "已過期"
+  },
+  "SubscribeNone": {
+    "One": "無"
+  },
+  "SubscribeNoSubscription": {
+    "One": "您目前沒有有效的訂閱"
+  },
+  "SubscribeExpireAt": {
+    "One": "到期時間"
+  },
+  "SubscribeDaysLeft": {
+    "One": "剩餘天數"
+  },
+  "SubscribeExpiringSoon": {
+    "One": "您的訂閱即將到期，請續訂"
+  },
+  "SubscribeMonthly": {
+    "One": "月"
+  },
+  "SubscribeRecommended": {
+    "One": "推薦"
+  },
+  "SubscribeSelectChannel": {
+    "One": "付款方式"
+  },
+  "SubscribeSelectChannelFirst": {
+    "One": "請先選擇付款方式"
+  },
+  "SubscribePayNow": {
+    "One": "立即付款"
+  },
+  "SubscribeScanQR": {
+    "One": "請掃描 QR Code 付款"
+  },
+  "SubscribeOpenCashier": {
+    "One": "開啟付款頁面"
+  },
+  "SubscribePolling": {
+    "One": "正在等待付款結果"
+  },
+  "SubscribeSuccess": {
+    "One": "付款成功！"
+  },
+  "SubscribeCodeTitle": {
+    "One": "您的邀請碼："
+  },
+  "SubscribeCodeHint": {
+    "One": "按一下即可複製。您稍後也可以在「我的訂閱」中查看。"
+  },
+  "SubscribeSelectDuration": {
+    "One": "選擇期間"
+  },
+  "SubscribeCreateFailed": {
+    "One": "建立訂單失敗"
+  },
+  "SubscribeRedeemCode": {
+    "One": "兌換代碼"
+  },
+  "SubscribeInputCode": {
+    "One": "輸入邀請碼"
+  },
+  "SubscribeInputCodeFirst": {
+    "One": "請先輸入邀請碼"
+  },
+  "SubscribeCodePlaceholder": {
+    "One": "32 位邀請碼"
+  },
+  "SubscribeRedeem": {
+    "One": "兌換"
+  },
+  "SubscribeRedeemSuccess": {
+    "One": "兌換成功"
+  },
+  "SubscribeRedeemSuccessDesc": {
+    "One": "訂閱已啟用，感謝您的支持！"
+  },
+  "SubscribeRedeemFailed": {
+    "One": "兌換失敗"
+  },
+  "SubscribeExpireDays": {
+    "One": "有效天數"
+  },
+  "CodeNotFound": {
+    "One": "找不到代碼"
+  },
+  "CodeUsed": {
+    "One": "代碼已使用"
+  },
+  "CodeRevoked": {
+    "One": "代碼已撤銷"
+  },
+  "CodeExpired": {
+    "One": "代碼已過期"
+  },
+  "GenerateInviteCode": {
+    "One": "產生邀請碼"
+  },
+  "Generate": {
+    "One": "產生"
+  },
+  "GenerateSuccess": {
+    "One": "產生成功"
+  },
+  "GenerateFailed": {
+    "One": "產生失敗"
+  },
+  "Revoke": {
+    "One": "撤銷"
+  },
+  "RevokeSuccess": {
+    "One": "撤銷成功"
+  },
+  "RevokeFailed": {
+    "One": "撤銷失敗"
+  },
+  "ExportSuccess": {
+    "One": "匯出成功"
+  },
+  "ExportFailed": {
+    "One": "匯出失敗"
+  },
+  "LoadFailed": {
+    "One": "載入失敗"
+  },
+  "OrderNo": {
+    "One": "訂單編號"
+  },
+  "OrderNotFound": {
+    "One": "找不到訂單"
+  },
+  "OrderNotPaid": {
+    "One": "訂單尚未付款"
+  },
+  "Plan": {
+    "One": "方案"
+  },
+  "Alipay": {
+    "One": "Alipay"
+  },
+  "WechatPay": {
+    "One": "WeChat Pay"
+  },
+  "SubscribeMonth": {
+    "One": "月"
+  },
+  "InviteCodeMgmt": {
+    "One": "授權碼（訂閱）"
+  },
+  "All": {
+    "One": "全部"
+  },
+  "UsedBy": {
+    "One": "使用者"
+  },
+  "UsedByName": {
+    "One": "使用帳戶"
+  },
+  "Action": {
+    "One": "操作"
+  },
+  "GotIt": {
+    "One": "知道了"
+  },
+  "SubscribeExpireSoon": {
+    "One": "專業版 · {days} 天"
+  },
+  "AdminInviteCode": {
+    "One": "授權碼"
+  },
+  "SubscribeInviteCodes": {
+    "One": "授權碼"
+  },
+  "RegistrationInviteCodes": {
+    "One": "註冊碼"
+  },
+  "AdminOrder": {
+    "One": "訂單"
+  },
+  "AdminSubscription": {
+    "One": "付費會員"
+  },
+  "ID": {
+    "One": "ID"
+  },
+  "Cpu": {
+    "One": "CPU"
+  },
+  "Total": {
+    "One": "總計"
+  },
+  "Highest": {
+    "One": "最高"
+  },
+  "Avg": {
+    "One": "平均"
+  },
+  "Speed": {
+    "One": "速度"
+  },
+  "BlockList": {
+    "One": "封鎖清單"
+  },
+  "BlackList": {
+    "One": "黑名單"
+  },
+  "AlwaysUseRelay": {
+    "One": "一律使用中繼"
+  },
+  "Usage": {
+    "One": "使用量"
+  },
+  "WebClient": {
+    "One": "Web 用戶端"
+  },
+  "ColumnSetting": {
+    "One": "欄位設定"
+  },
+  "SendToId": {
+    "One": "傳送至 ID 伺服器"
+  },
+  "SendToRelay": {
+    "One": "傳送至中繼伺服器"
+  },
+  "Cmd": {
+    "One": "命令"
+  },
+  "Option": {
+    "One": "選項"
+  },
+  "Explain": {
+    "One": "說明"
+  },
+  "Target": {
+    "One": "目標"
+  },
+  "OrderStatusPending": {
+    "One": "待付款"
+  },
+  "OrderStatusPaid": {
+    "One": "已付款"
+  },
+  "OrderStatusClosed": {
+    "One": "已關閉"
+  },
+  "SubscribePermanent": {
+    "One": "永久"
+  },
+  "Binding": {
+    "One": "綁定"
+  },
+  "NoData": {
+    "One": "沒有資料"
+  },
+  "Size": {
+    "One": "大小"
+  },
+  "More": {
+    "One": "更多"
+  },
+  "Client": {
+    "One": "用戶端"
+  },
+  "Example": {
+    "One": "範例"
+  },
+  "PlatformUA": {
+    "One": "平台/UA"
+  },
+  "Backend": {
+    "One": "後端"
+  },
+  "IsAdmin": {
+    "One": "是否管理員"
+  },
+  "AddressBookCollection": {
+    "One": "地址簿集"
+  },
+  "or login in with": {
+    "One": "或使用以下登陸"
+  },
+  "Optional, default is": {
+    "One": "可選, 預設值是"
+  },
+  "Check your IdP docs, without": {
+    "One": "檢查 IdP 的文件, 不包含"
+  },
+  "For OIDC login without a password, enter any 4-20 letters": {
+    "One": "如果通過 OIDC 登入且未設定密碼，請輸入任意 4-20 個字元"
+  },
+  "Email": {
+    "One": "電子信箱"
+  },
+  "MyPeer": {
+    "One": "我的裝置"
+  },
+  "View": {
+    "One": "檢視"
+  },
+  "Information": {
+    "One": "資訊"
+  },
+  "Import": {
+    "One": "導入"
+  },
+  "SelectColor": {
+    "One": "請選擇顏色"
+  },
+  "MultipleIpSeparatorTip": {
+    "One": "多個 IP 位址請使用 | 分隔"
+  },
+  "DeleteAllIpTip": {
+    "One": "如需刪除全部項目，請輸入"
+  },
+  "ConfigContentRequired": {
+    "One": "設定內容不可為空"
+  },
+  "ForceUpdate": {
+    "One": "強制更新"
+  },
+  "ForceUpdateTip": {
+    "One": "啟用後用戶端將靜默下載並安裝，不顯示提示"
+  },
+  "Forced": {
+    "One": "強制"
+  },
+  "Normal": {
+    "One": "一般"
+  },
+  "AlertConfigSummary": {
+    "One": "設定摘要"
+  },
+  "AlertChannelNamePlaceholder": {
+    "One": "例如：企業微信警示"
+  },
+  "LeaveBlankUnchanged": {
+    "One": "不修改請留空"
+  },
+  "Required": {
+    "One": "必填"
+  },
+  "AlertChannelSmtpTip": {
+    "One": "請在下方警示規則中新增收件者；此管道僅設定寄件伺服器。"
+  },
+  "AlertRecipientsPlaceholder": {
+    "One": "收件者電子郵件，多個位址用逗號分隔，例如 a@x.com,b@x.com"
+  },
+  "Token": {
+    "One": "權杖"
+  },
+  "Bind": { "One": "綁定" },
+  "Broadcast": { "One": "廣播" },
+  "Content": { "One": "內容" },
+  "Disable": { "One": "停用" },
+  "Enable": { "One": "啟用" },
+  "Hint": { "One": "提示" },
+  "Id": { "One": "ID" },
+  "InvalidParam": { "One": "無效參數：{param}" },
+  "LoginFailed": { "One": "登入失敗" },
+  "Op": { "One": "身分識別提供者" },
+  "PkceEnable": { "One": "啟用 PKCE" },
+  "PkceMethod": { "One": "PKCE 方法" },
+  "Success": { "One": "成功" },
+  "Title": { "One": "標題" },
+  "Your IdP Name": { "One": "身分識別提供者名稱" },
+  "CopyAll": { "One": "全部複製" }, "Permanent": { "One": "永久" }, "ValidDays": { "One": "有效天數" },
+  "Optional": { "One": "選填" }, "Quantity": { "One": "數量" }, "GeneratedCount": { "One": "已產生（{count}）" },
+  "ConnectionTime": { "One": "連線時間" }, "EndTime": { "One": "結束時間" }, "InProgress": { "One": "進行中" },
+  "RegularUser": { "One": "一般使用者" }, "PaymentMethod": { "One": "付款方式" }, "Amount": { "One": "金額" },
+  "OrderTime": { "One": "下單時間" }, "Test": { "One": "測試" }, "SendTest": { "One": "傳送測試" },
+  "BatchAdd": { "One": "批次新增" }, "BatchGenerateInviteCodes": { "One": "批次產生邀請碼" }, "BatchGenerationFailed": { "One": "批次產生失敗" },
+  "BindingScope": { "One": "綁定範圍" }, "City": { "One": "城市" }, "ClickToUpload": { "One": "點擊上傳" },
+  "ClientId": { "One": "用戶端 ID" }, "ClientSecret": { "One": "用戶端密鑰" }, "Closed": { "One": "已關閉" },
+  "CloseFailed": { "One": "關閉失敗" }, "ConfirmationFailed": { "One": "確認失敗" }, "ConfirmCloseOrder": { "One": "確認關閉訂單 {order}？" },
+  "ConfirmedSuccessfully": { "One": "確認成功" }, "ConfirmExtension": { "One": "確認延長" }, "ConfirmOrderPaid": { "One": "確認訂單 {order} 已付款？" },
+  "ConfirmPaid": { "One": "確認已付款" }, "ConfirmRevokeInviteCode": { "One": "確定要撤銷邀請碼 {code} 嗎？" },
+  "DaysCount": { "One": "{count} 天" }, "DaysLeft": { "One": "剩餘天數" }, "DefaultThirtyDays": { "One": "預設 30 天" },
+  "DeviceGroup": { "One": "裝置群組" }, "Disabled": { "One": "已停用" }, "District": { "One": "區/縣" },
+  "DurationAutoFillTip": { "One": "時長（選取後自動填入天數）" }, "EditStrategy": { "One": "編輯策略" }, "ExpirationTime": { "One": "到期時間" },
+  "Extend": { "One": "延長" }, "ExtendSubscription": { "One": "延長訂閱" }, "ExtensionDuration": { "One": "延長時長" },
+  "ExtensionFailed": { "One": "延長失敗" }, "FileCountLimitExceeded": { "One": "檔案數量超出限制" }, "Global": { "One": "全域" },
+  "HigherNumberHigherPriority": { "One": "數字越大，優先順序越高" }, "InviteCodesGeneratedSuccess": { "One": "成功產生 {count} 個邀請碼" },
+  "Issuer": { "One": "簽發者" }, "MerchantOrderNo": { "One": "商戶訂單編號" }, "NewStrategy": { "One": "新增策略" },
+  "OneMonth": { "One": "1 個月" }, "OneYear": { "One": "1 年" }, "OrderExpired": { "One": "訂單已過期" },
+  "OrderListLoadFailed": { "One": "取得訂單清單失敗" }, "OrderNoUsername": { "One": "訂單編號/使用者名稱" }, "OrderQrCodeExpired": { "One": "訂單 QR 碼已過期" },
+  "OrDragFilesHere": { "One": "或將檔案拖曳到此處" }, "Plain": { "One": "明文" }, "PleaseEnterValidDays": { "One": "請輸入有效天數" },
+  "PleaseSelectPlan": { "One": "請選擇方案" }, "Priority": { "One": "優先順序" }, "Province": { "One": "省份" },
+  "RdpPort": { "One": "RDP 連接埠" }, "RdpUsername": { "One": "RDP 使用者名稱" }, "RedirectUrl": { "One": "重新導向 URL" },
+  "S256Recommended": { "One": "S256（建議）" }, "SameServer": { "One": "同一伺服器" }, "Scopes": { "One": "權限範圍" },
+  "SearchStrategyName": { "One": "搜尋策略名稱" }, "SelectDeviceGroup": { "One": "選擇裝置群組" }, "SelectGroup": { "One": "選擇群組" },
+  "SelectPkceMethod": { "One": "選擇 PKCE 方法" }, "SelectTag": { "One": "選擇標籤" }, "SelectUser": { "One": "選擇使用者" },
+  "SixMonths": { "One": "6 個月" }, "StrategyConfigCommentTip": { "One": "提示：以 # 開頭的行是註解，不會生效。移除 # 可啟用對應的設定項目。" },
+  "StrategyConfigTemplate": { "One": "策略設定範本" }, "StrategyManagement": { "One": "策略管理" }, "StrategyName": { "One": "策略名稱" },
+  "StrategyNameExample": { "One": "例如：辦公網路策略" }, "SubscriptionExtendedSuccess": { "One": "已為使用者 {username} 延長訂閱 {duration}" },
+  "SubscriptionListLoadFailed": { "One": "取得訂閱清單失敗" }, "SubscriptionStatus": { "One": "訂閱狀態" }, "Tag": { "One": "標籤" },
+  "TenYears": { "One": "10 年" }, "ThreeMonths": { "One": "3 個月" }, "TwelveMonths": { "One": "12 個月" },
+  "UserIdUsername": { "One": "使用者 ID/使用者名稱" }, "WeChatPay": { "One": "微信支付" }, "OfflineAlertLogic": { "One": "離線警示邏輯" },
+  "DeviceCheckedEveryFiveMinutes": { "One": "每五分鐘檢查一次裝置狀態。" },
+  "OfflineThresholdWeightTip": { "One": "超過離線閾值後，權重增加 1；達到 10 時傳送電子郵件（約離線 50 分鐘）。" },
+  "AlertWeightResetsDaily": { "One": "權重每天自動重設。" }, "MaxThreeAlertsPerDay": { "One": "每台裝置每天最多傳送 3 次警示。" },
+  "AlertsPauseAfterThreeDays": { "One": "連續警示 3 天後停止；裝置重新上線後自動恢復。" }, "MinutesShort": { "One": "分鐘" },
+  "ConfigItems": { "One": "設定項目" }, "ConfigItemsPlaceholder": { "One": "每行一個設定項目，格式：key=value\n範例：\nforce_relay=Y\nenable-udp-punch=N\nenable-clipboard=N\ncustom-rendezvous-server=192.0.2.1:21116" },
+  "CommonConfigItems": { "One": "常用設定項目：force_relay、enable-udp-punch、enable-ipv6-punch、enable-clipboard、enable-audio、enable-file-transfer、custom-rendezvous-server" },
+  "NatTraversal": { "One": "NAT 穿透" }, "ForceRelayHelp": { "One": "強制中繼：Y 強制使用中繼並停用 P2P 打洞；N 允許 P2P" },
+  "UdpPunchHelp": { "One": "啟用 UDP 打洞；N 表示僅使用 TCP 中繼" }, "Ipv6PunchHelp": { "One": "啟用 IPv6 打洞；N 表示停用 IPv6 穿透" },
+  "UpnpHelp": { "One": "啟用 UPnP 自動連接埠對應；N 表示停用" }, "CustomRelayHelp": { "One": "自訂中繼伺服器位址（用於自建中繼）" },
+  "DomainIpPortFormat": { "One": "格式：網域或 IP:連接埠" }, "FeatureSwitches": { "One": "功能開關" },
+  "ClipboardSharingHelp": { "One": "啟用剪貼簿共用；N 表示停用遠端複製/貼上" }, "AudioTransmissionHelp": { "One": "啟用音訊傳輸；N 表示停用遠端音訊" },
+  "FileTransferHelp": { "One": "啟用檔案傳輸；N 表示停用遠端檔案傳輸" }, "EncryptionModeHelp": { "One": "加密模式：default / no_encryption / encrypted" },
+  "DisplayAndPerformance": { "One": "顯示與效能" }, "ImageQualityHelp": { "One": "影像品質選項：quality / balanced / speed" },
+  "MaxFpsHelp": { "One": "最大 FPS；0 表示不限制" }, "SecurityPolicy": { "One": "安全性原則" },
+  "HideUsernameHelp": { "One": "隱藏通訊錄中的使用者名稱；Y 表示僅顯示裝置名稱" },
+  "DirectConnectionVerificationHelp": { "One": "啟用直接連線驗證；Y 表示需要交握驗證" },
+  "AlertRecipientsSpecifiedInRule": { "One": "收件者在規則中指定" },
+  "TestRecipientPrompt": { "One": "請輸入測試收件者地址（留空則傳送給自己）" },
+  "TestDeliveryFailed": { "One": "測試傳送失敗：{message}" },
+  "TestMessageSent": { "One": "測試訊息已傳送，請確認是否收到。" },
+  "DeleteAlertChannelWarning": { "One": "刪除後，關聯的警示規則將無法傳送訊息。是否繼續？" },
+  "StrategyNameRequired": { "One": "策略名稱不可為空" },
+  "DeleteStrategyConfirm": { "One": "確定刪除策略「{name}」嗎？" },
+  "Prompt": { "One": "提示" },
+  "NotImplementedYet": { "One": "尚未實作" },
+  "PleaseSelectReceiver": { "One": "請選擇接收者" }
 }

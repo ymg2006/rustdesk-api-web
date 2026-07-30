@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h4 v-html="T('ServerCmdTips', {wiki: '<a target=\'_blank\' href=\'https://github.com/laiyouxing/rustdesk-api/wiki/Rustdesk-Command\'>WIKI</a>'})"></h4>
+    <h4 v-html="T('ServerCmdTips', {wiki: '<a target=\'_blank\' href=\'https://github.com/ymg2006/rustdesk-api/wiki/Rustdesk-Command\'>WIKI</a>'})"></h4>
     <h5>
       <span>ID {{ T('Status') }}: </span>
       <el-tag v-if="canSendIdServerCmd" type="success">{{ T('Available') }}</el-tag>
@@ -31,48 +31,48 @@
       </el-tab-pane>
       <el-tab-pane :label="T('Advanced')" name="Advanced">
         <el-card class="list-query" shadow="hover">
-          <el-form inline label-width="80px">
+          <el-form inline>
             <el-form-item>
               <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
               <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
-              <el-button type="success" :disabled="!canSendIdServerCmd" @click="showCmd({cmd:'',option:'',target:ID_TARGET})">{{ T('Send') }} To Id</el-button>
-              <el-button type="success" :disabled="!canSendRelayServerCmd" @click="showCmd({cmd:'',option:'',target:RELAY_TARGET})">{{ T('Send') }} To Relay</el-button>
+              <el-button type="success" :disabled="!canSendIdServerCmd" @click="showCmd({cmd:'',option:'',target:ID_TARGET})">{{ T('SendToId') }}</el-button>
+              <el-button type="success" :disabled="!canSendRelayServerCmd" @click="showCmd({cmd:'',option:'',target:RELAY_TARGET})">{{ T('SendToRelay') }}</el-button>
             </el-form-item>
           </el-form>
         </el-card>
         <el-card class="list-body" shadow="hover">
           <el-table :data="listRes.list" v-loading="listRes.loading" border>
-            <el-table-column prop="cmd" label="cmd" align="center"></el-table-column>
-            <el-table-column prop="alias" label="alias" align="center"></el-table-column>
-            <el-table-column prop="option" label="option" align="center"></el-table-column>
-            <el-table-column prop="explain" label="explain" align="center"></el-table-column>
-            <el-table-column label="actions" align="center">
+            <el-table-column prop="cmd" :label="T('Cmd')" align="center"></el-table-column>
+            <el-table-column prop="alias" :label="T('Alias')" align="center"></el-table-column>
+            <el-table-column prop="option" :label="T('Option')" align="center"></el-table-column>
+            <el-table-column prop="explain" :label="T('Explain')" align="center"></el-table-column>
+            <el-table-column :label="T('Actions')" align="center" width="300" fixed="right">
               <template #default="{row}">
-                <el-button type="success" :disabled="!canSendCmd(row.target)" @click="showCmd(row)">{{ T('Send') }}</el-button>
-                <el-button v-if="row.id" type="primary" @click="toUpdate(row)">{{ T('Edit') }}</el-button>
-                <el-button v-if="row.id" type="danger" @click="del(row)">{{ T('Delete') }}</el-button>
+                <el-button type="success" :disabled="!canSendCmd(row.target)" @click="showCmd(row)" size="small">{{ T('Send') }}</el-button>
+                <el-button v-if="row.id" type="primary" @click="toUpdate(row)" size="small">{{ T('Edit') }}</el-button>
+                <el-button v-if="row.id" type="danger" @click="del(row)" size="small">{{ T('Delete') }}</el-button>
               </template>
             </el-table-column>
           </el-table>
 
-          <el-dialog v-model="formVisible">
-            <el-form label-width="150">
-              <el-form-item label="cmd">
+          <el-dialog v-model="formVisible" append-to-body>
+            <el-form>
+              <el-form-item :label="T('Cmd')">
                 <el-input v-model="formData.cmd"></el-input>
               </el-form-item>
-              <el-form-item label="alias">
+              <el-form-item :label="T('Alias')">
                 <el-input v-model="formData.alias"></el-input>
               </el-form-item>
-              <el-form-item label="option">
+              <el-form-item :label="T('Option')">
                 <el-input v-model="formData.option"></el-input>
               </el-form-item>
-              <el-form-item label="target">
+              <el-form-item :label="T('Target')">
                 <el-radio-group v-model="formData.target">
                   <el-radio label="id_server" value="21115"></el-radio>
                   <el-radio label="relay_server" value="21117"></el-radio>
                 </el-radio-group>
               </el-form-item>
-              <el-form-item label="explain">
+              <el-form-item :label="T('Explain')">
                 <el-input v-model="formData.explain"></el-input>
               </el-form-item>
               <el-form-item>
@@ -82,14 +82,14 @@
             </el-form>
           </el-dialog>
 
-          <el-dialog :title="T('SendCmd')" v-model="showCmdForm">
-            <el-form label-width="150" :disabled="!canSendCmd(customCmd.target)">
-              <el-form-item label="cmd">
+          <el-dialog :title="T('SendCmd')" v-model="showCmdForm" append-to-body>
+            <el-form :disabled="!canSendCmd(customCmd.target)">
+              <el-form-item :label="T('Cmd')">
                 <el-input v-model="customCmd.cmd"></el-input>
               </el-form-item>
-              <el-form-item label="option">
+              <el-form-item :label="T('Option')">
                 <el-input v-model="customCmd.option"></el-input>
-                <el-text v-if="customCmd.example.trim()" style="margin-top: 5px">Example:
+                <el-text v-if="customCmd.example.trim()" style="margin-top: 5px">{{ T('Example') }}:
                   <el-text type="primary">{{ customCmd.example }}</el-text>
                 </el-text>
               </el-form-item>
@@ -117,16 +117,16 @@
 
 <script setup>
   import { create, list, remove, sendCmd, update } from '@/api/rustdesk'
-  import { onMounted, reactive, ref } from 'vue'
-  import { T } from '@/utils/i18n'
-  import { ElMessage, ElMessageBox } from 'element-plus'
-  import { ID_TARGET, RELAY_TARGET } from '@/views/rustdesk/options'
-  import blocklist from '@/views/rustdesk/blocklist.vue'
-  import blacklist from '@/views/rustdesk/blacklist.vue'
-  import alwaysUseRelay from '@/views/rustdesk/always_use_relay.vue'
-  import RelayServers from '@/views/rustdesk/relay_servers.vue'
-  import mustLogin from '@/views/rustdesk/must_login.vue'
-  import usage from '@/views/rustdesk/usage.vue'
+import { onMounted, reactive, ref } from 'vue'
+import { T } from '@/utils/i18n'
+import { ElMessage, ElMessageBox } from 'element-plus'
+import { ID_TARGET, RELAY_TARGET } from '@/views/rustdesk/options'
+import blocklist from '@/views/rustdesk/blocklist.vue'
+import blacklist from '@/views/rustdesk/blacklist.vue'
+import alwaysUseRelay from '@/views/rustdesk/always_use_relay.vue'
+import RelayServers from '@/views/rustdesk/relay_servers.vue'
+import mustLogin from '@/views/rustdesk/must_login.vue'
+import usage from '@/views/rustdesk/usage.vue'
 
   const activeName = ref('Simple')
 
@@ -136,7 +136,6 @@
     canSendIdServerCmd.value = !!res.data
     if (canSendIdServerCmd.value) {
       const commands = res.data.split('\n').filter(i => i)
-      console.log(commands)
       canControlMustLogin.value = commands.some(i => i.includes('must-login'))
     }
   }
@@ -272,7 +271,6 @@
   }
   const submitCmd = async () => {
     sendCmd(customCmd).then(res => {
-      console.log(res)
       customCmd.res = res.data
       ElMessage.success(T('OperationSuccess'))
     })

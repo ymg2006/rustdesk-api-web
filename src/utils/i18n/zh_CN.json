@@ -68,6 +68,9 @@
   "Filter": {
     "One": "筛选"
   },
+  "Keyword": {
+    "One": "关键词"
+  },
   "Add": {
     "One": "添加"
   },
@@ -88,6 +91,9 @@
   },
   "Delete": {
     "One": "删除"
+  },
+  "DeleteExpired": {
+    "One": "删除过期"
   },
   "Create": {
     "One": "创建"
@@ -176,8 +182,8 @@
   "UserAddressBook": {
     "One": "用户地址簿"
   },
-  "IsAdmin": {
-    "One": "是否管理员"
+  "Role": {
+    "One": "角色"
   },
   "PleaseInputNewPassword": {
     "One": "请输入新密码"
@@ -261,31 +267,51 @@
     "One": "刚刚"
   },
   "MinutesAgo": {
-    "One": "{param} 分钟前"
+    "One": "{param} 分钟前",
+    "Other": "{param} 分钟前"
   },
   "HoursAgo": {
-    "One": "{param} 小时前"
+    "One": "{param} 小时前",
+    "Other": "{param} 小时前"
   },
   "DaysAgo": {
-    "One": "{param} 天前"
+    "One": "{param} 天前",
+    "Other": "{param} 天前"
   },
   "MonthsAgo": {
-    "One": "{param} 月前"
+    "One": "{param} 月前",
+    "Other": "{param} 月前"
   },
   "YearsAgo": {
-    "One": "{param} 年前"
+    "One": "{param} 年前",
+    "Other": "{param} 年前"
   },
   "MinutesLess": {
-    "One": "{param} 分钟内"
+    "One": "{param} 分钟内",
+    "Other": "{param} 分钟内"
   },
   "HoursLess": {
-    "One": "{param} 小时内"
+    "One": "{param} 小时内",
+    "Other": "{param} 小时内"
   },
   "DaysLess": {
-    "One": "{param} 天内"
+    "One": "{param} 天内",
+    "Other": "{param} 天内"
   },
   "Export": {
     "One": "导出"
+  },
+  "BatchCreate": {
+    "One": "批量生成"
+  },
+  "StatusUnused": {
+    "One": "未使用"
+  },
+  "StatusUsed": {
+    "One": "已使用"
+  },
+  "StatusRevoked": {
+    "One": "已失效"
   },
   "AddToAddressBook": {
     "One": "添加到地址簿"
@@ -315,19 +341,24 @@
     "One": "通过 Web Client 分享"
   },
   "Minutes": {
-    "One": "{param} 分钟"
+    "One": "{param} 分钟",
+    "Other": "{param} 分钟"
   },
   "Hours": {
-    "One": "{param} 小时"
+    "One": "{param} 小时",
+    "Other": "{param} 小时"
   },
   "Days": {
-    "One": "{param} 天"
+    "One": "{param} 天",
+    "Other": "{param} 天"
   },
   "Weeks": {
-    "One": "{param} 周"
+    "One": "{param} 周",
+    "Other": "{param} 周"
   },
   "Months": {
-    "One": "{param} 月"
+    "One": "{param} 月",
+    "Other": "{param} 月"
   },
   "Forever": {
     "One": "永久"
@@ -341,6 +372,15 @@
   "RemoteDesktopOffline": {
     "One": "远程电脑不在线"
   },
+  "CleanOldMessages": { "One": "清理旧消息" },
+  "CleanMessagesOlderThan1Year": { "One": "清理 1 年前的消息" },
+  "CleanMessagesOlderThan3Years": { "One": "清理 3 年前的消息" },
+  "OnlyMyMessages": { "One": "仅我的消息" },
+  "ShowAll": { "One": "显示全部" },
+  "SearchUsername": { "One": "搜索用户名" },
+  "AllUsers": { "One": "所有用户" },
+  "MessageTitleOptional": { "One": "消息标题（可选）" },
+  "PleaseEnterMessageContent": { "One": "请输入消息内容" },
   "KeyMismatch": {
     "One": "KEY不匹配"
   },
@@ -363,7 +403,8 @@
     "One": "连接日志"
   },
   "Peer": {
-    "One": "设备"
+    "One": "设备",
+    "Other": "设备"
   },
   "FromPeer": {
     "One": "来源设备"
@@ -410,9 +451,6 @@
   "AddressBookName": {
     "One": "地址簿名称"
   },
-  "AddressBookCollection": {
-    "One": "地址簿集"
-  },
   "AddRule": {
     "One": "添加规则"
   },
@@ -449,26 +487,14 @@
   "LastOnlineIp": {
     "One": "最后在线IP"
   },
-  "or login in with": {
-    "One": "或使用以下登陆"
-  },
-  "Optional, default is": {
-    "One": "可选, 默认值是"
-  },
-  "Check your IdP docs, without": {
-    "One": "检查IdP的文档, 不包含"
-  },
-  "For OIDC login without a password, enter any 4-20 letters": {
-    "One": "如果通过 OIDC 登录且未设置密码，请输入任意 4-20 个字符"
-  },
   "OldPassword": {
     "One": "旧密码"
   },
-  "NewPassword": {
-    "One": "新密码"
-  },
   "NewPasswordEqualOldPassword": {
     "One": "新密码不能与旧密码相同"
+  },
+  "NewPassword": {
+    "One": "新密码"
   },
   "ConfirmPassword": {
     "One": "确认密码"
@@ -482,23 +508,8 @@
   "UserToken": {
     "One": "用户Token"
   },
-  "Email": {
-    "One": "邮箱"
-  },
-  "MyPeer": {
-    "One": "我的设备"
-  },
-  "View": {
-    "One": "查看"
-  },
-  "Information": {
-    "One": "信息"
-  },
-  "BatchAddToAB": {
-    "One": "批量添加到地址簿"
-  },
-  "BatchEditTags": {
-    "One": "批量编辑标签"
+  "BatchEdit": {
+    "One": "批量编辑"
   },
   "User": {
     "One": "用户"
@@ -539,6 +550,24 @@
   "Reset": {
     "One": "重置"
   },
+  "ConfigFile": {
+    "One": "配置文件"
+  },
+  "ConfigFileTip": {
+    "One": "此处直接编辑后端 config.yaml 配置文件，保存后需重启服务生效。"
+  },
+  "ConfigFilePath": {
+    "One": "配置文件路径"
+  },
+  "RestartService": {
+    "One": "重启服务"
+  },
+  "ServiceRestartTip": {
+    "One": "修改配置保存后，点击此处重启后端服务进程使配置生效。"
+  },
+  "ServiceRestarting": {
+    "One": "服务正在重启，稍后将自动刷新页面"
+  },
   "SendCustom": {
     "One": "发送自定义"
   },
@@ -553,9 +582,6 @@
   },
   "DeviceGroupManage": {
     "One": "设备组管理"
-  },
-  "Import": {
-    "One": "导入"
   },
   "Drop file here or click to upload": {
     "One": "将文件拖到此处或单击上传"
@@ -619,24 +645,6 @@
   },
   "AlertChannel": {
     "One": "告警通道"
-  },
-  "ConfigFile": {
-    "One": "配置文件"
-  },
-  "ConfigFileTip": {
-    "One": "此处直接编辑后端 config.yaml 配置文件，保存后需重启服务生效。"
-  },
-  "ConfigFilePath": {
-    "One": "配置文件路径"
-  },
-  "RestartService": {
-    "One": "重启服务"
-  },
-  "ServiceRestartTip": {
-    "One": "修改配置保存后，点击此处重启后端服务进程使配置生效。"
-  },
-  "ServiceRestarting": {
-    "One": "服务正在重启，稍后将自动刷新页面"
   },
   "Channel": {
     "One": "推送通道"
@@ -851,9 +859,6 @@
   "ServerNotConfigured": {
     "One": "未配置"
   },
-  "ServerHost": {
-    "One": "地址"
-  },
   "Latency": {
     "One": "延迟"
   },
@@ -876,7 +881,7 @@
     "One": "地址"
   },
   "ServerHost": {
-    "One": "主机 / IP"
+    "One": "地址"
   },
   "ServerPort": {
     "One": "端口"
@@ -907,9 +912,6 @@
   },
   "Enabled": {
     "One": "启用"
-  },
-  "AutoRefresh": {
-    "One": "自动刷新"
   },
   "MfaRecoveryCode": {
     "One": "恢复码"
@@ -1062,10 +1064,10 @@
     "One": "提示"
   },
   "Invitation": {
-    "One": "邀请码管理"
+    "One": "授权码管理"
   },
   "CreateInvitation": {
-    "One": "创建邀请码"
+    "One": "创建授权码"
   },
   "CopyInviteLink": {
     "One": "复制邀请链接"
@@ -1077,16 +1079,13 @@
     "One": "链接已复制到剪贴板"
   },
   "InviteCode": {
-    "One": "邀请码"
+    "One": "授权码"
   },
   "InviteCodeRequired": {
-    "One": "请输入邀请码"
+    "One": "请输入授权码"
   },
   "InviteCodePlaceholder": {
     "One": "请联系管理员获取"
-  },
-  "BatchCreateInvitation": {
-    "One": "批量生成邀请码"
   },
   "GenerateCount": {
     "One": "生成数量"
@@ -1095,13 +1094,13 @@
     "One": "最多 200 个"
   },
   "GeneratedCodes": {
-    "One": "生成的邀请码"
+    "One": "生成的授权码"
   },
   "CopyAll": {
     "One": "复制全部"
   },
   "AllCopied": {
-    "One": "已复制全部邀请码"
+    "One": "已复制全部授权码"
   },
   "AutoGenerate": {
     "One": "自动生成"
@@ -1118,6 +1117,9 @@
   "DefaultExpire1Day": {
     "One": "默认 1 天后过期"
   },
+  "ExpireAt": {
+    "One": "过期时间"
+  },
   "ExpiredAt": {
     "One": "过期时间"
   },
@@ -1131,7 +1133,7 @@
     "One": "用户过期时间"
   },
   "UserExpiredAtTip": {
-    "One": "留空表示该邀请码创建的用户永不过期"
+    "One": "留空表示该授权码创建的用户永不过期"
   },
   "UsageCount": {
     "One": "使用次数"
@@ -1145,10 +1147,449 @@
   "Active": {
     "One": "有效"
   },
+  "Administrator": {
+    "One": "行政人员"
+  },
   "AccountExpired": {
     "One": "账户已过期，请联系管理员"
   },
   "RegisterSuccess": {
     "One": "注册成功"
-  }
+  },
+  "MySubscription": {
+    "One": "我的订阅"
+  },
+  "SubscribeUpgrade": {
+    "One": "升级订阅"
+  },
+  "SubscribeUpgradeNow": {
+    "One": "立即升级"
+  },
+  "SubscribeActive": {
+    "One": "已激活"
+  },
+  "SubscribeExpired": {
+    "One": "已过期"
+  },
+  "SubscribeNone": {
+    "One": "未订阅"
+  },
+  "SubscribeNoSubscription": {
+    "One": "您尚未开通任何订阅"
+  },
+  "SubscribeExpireAt": {
+    "One": "订阅过期时间"
+  },
+  "SubscribeDaysLeft": {
+    "One": "剩余天数"
+  },
+  "SubscribeExpiringSoon": {
+    "One": "您的订阅即将过期，请及时续费"
+  },
+  "SubscribeMonthly": {
+    "One": "月"
+  },
+  "SubscribeRecommended": {
+    "One": "推荐"
+  },
+  "SubscribeSelectChannel": {
+    "One": "选择支付渠道"
+  },
+  "SubscribeSelectChannelFirst": {
+    "One": "请先选择支付渠道"
+  },
+  "SubscribePayNow": {
+    "One": "立即支付"
+  },
+  "SubscribeScanQR": {
+    "One": "请使用手机扫码支付"
+  },
+  "SubscribeOpenCashier": {
+    "One": "打开支付页面"
+  },
+  "SubscribePolling": {
+    "One": "等待支付结果"
+  },
+  "SubscribeSuccess": {
+    "One": "支付成功！"
+  },
+  "SubscribeCodeTitle": {
+    "One": "您的授权码如下，请妥善保管："
+  },
+  "SubscribeCodeHint": {
+    "One": "点击授权码可复制，您也可以稍后在「我的订阅」中查看"
+  },
+  "SubscribeSelectDuration": {
+    "One": "选择时长"
+  },
+  "SubscribeCreateFailed": {
+    "One": "创建订单失败"
+  },
+  "SubscribeRedeemCode": {
+    "One": "兑换授权码"
+  },
+  "SubscribeInputCode": {
+    "One": "请输入授权码"
+  },
+  "SubscribeInputCodeFirst": {
+    "One": "请先输入授权码"
+  },
+  "SubscribeCodePlaceholder": {
+    "One": "32 位授权码"
+  },
+  "SubscribeRedeem": {
+    "One": "兑换"
+  },
+  "SubscribeRedeemSuccess": {
+    "One": "兑换成功"
+  },
+  "SubscribeRedeemSuccessDesc": {
+    "One": "订阅已激活，感谢您的支持！"
+  },
+  "SubscribeRedeemFailed": {
+    "One": "兑换失败"
+  },
+  "SubscribeExpireDays": {
+    "One": "有效天数"
+  },
+  "CodeNotFound": {
+    "One": "授权码不存在"
+  },
+  "CodeUsed": {
+    "One": "授权码已被使用"
+  },
+  "CodeRevoked": {
+    "One": "授权码已被撤销"
+  },
+  "CodeExpired": {
+    "One": "授权码已过期"
+  },
+  "GenerateInviteCode": {
+    "One": "生成授权码"
+  },
+  "Generate": {
+    "One": "生成"
+  },
+  "GenerateSuccess": {
+    "One": "生成成功"
+  },
+  "GenerateFailed": {
+    "One": "生成失败"
+  },
+  "Revoke": {
+    "One": "撤销"
+  },
+  "RevokeSuccess": {
+    "One": "撤销成功"
+  },
+  "RevokeFailed": {
+    "One": "撤销失败"
+  },
+  "ExportSuccess": {
+    "One": "导出成功"
+  },
+  "ExportFailed": {
+    "One": "导出失败"
+  },
+  "LoadFailed": {
+    "One": "加载失败"
+  },
+  "OrderNo": {
+    "One": "订单号"
+  },
+  "OrderNotFound": {
+    "One": "订单不存在"
+  },
+  "OrderNotPaid": {
+    "One": "订单未支付"
+  },
+  "Plan": {
+    "One": "套餐"
+  },
+  "Alipay": {
+    "One": "支付宝"
+  },
+  "WechatPay": {
+    "One": "微信支付"
+  },
+  "SubscribeMonth": {
+    "One": "月"
+  },
+  "InviteCodeMgmt": {
+    "One": "授权码管理（订阅）"
+  },
+  "All": {
+    "One": "全部"
+  },
+  "UsedBy": {
+    "One": "使用者"
+  },
+  "UsedByName": {
+    "One": "使用账户"
+  },
+  "Action": {
+    "One": "操作"
+  },
+  "GotIt": {
+    "One": "知道了"
+  },
+  "SubscribeExpireSoon": {
+    "One": "专业版 · {days}天"
+  },
+  "AdminInviteCode": {
+    "One": "授权码管理"
+  },
+  "SubscribeInviteCodes": {
+    "One": "授权码"
+  },
+  "RegistrationInviteCodes": {
+    "One": "注册授权码"
+  },
+  "AdminOrder": {
+    "One": "订单管理"
+  },
+  "AdminSubscription": {
+    "One": "付费会员"
+  },
+  "ID": {
+    "One": "ID"
+  },
+  "Cpu": {
+    "One": "CPU"
+  },
+  "Total": {
+    "One": "总计"
+  },
+  "Highest": {
+    "One": "最高"
+  },
+  "Avg": {
+    "One": "平均"
+  },
+  "Speed": {
+    "One": "速率"
+  },
+  "BlockList": {
+    "One": "阻断列表"
+  },
+  "BlackList": {
+    "One": "黑名单"
+  },
+  "AlwaysUseRelay": {
+    "One": "始终使用中继"
+  },
+  "Usage": {
+    "One": "使用统计"
+  },
+  "WebClient": {
+    "One": "网页客户端"
+  },
+  "ColumnSetting": {
+    "One": "列设置"
+  },
+  "SendToId": {
+    "One": "发送到ID服务器"
+  },
+  "SendToRelay": {
+    "One": "发送到中继服务器"
+  },
+  "Cmd": {
+    "One": "命令"
+  },
+  "Option": {
+    "One": "选项"
+  },
+  "Explain": {
+    "One": "说明"
+  },
+  "Target": {
+    "One": "目标"
+  },
+  "OrderStatusPending": {
+    "One": "待支付"
+  },
+  "OrderStatusPaid": {
+    "One": "已支付"
+  },
+  "OrderStatusClosed": {
+    "One": "已关闭"
+  },
+  "SubscribePermanent": {
+    "One": "永久"
+  },
+  "Binding": {
+    "One": "绑定"
+  },
+  "NoData": {
+    "One": "暂无数据"
+  },
+  "Size": {
+    "One": "大小"
+  },
+  "More": {
+    "One": "更多"
+  },
+  "Client": {
+    "One": "客户端"
+  },
+  "Example": {
+    "One": "示例"
+  },
+  "PlatformUA": {
+    "One": "平台/UA"
+  },
+  "Backend": {
+    "One": "后端"
+  },
+  "AddressBookCollection": {
+    "One": "地址簿集"
+  },
+  "or login in with": {
+    "One": "或使用以下登陆"
+  },
+  "Optional, default is": {
+    "One": "可选, 默认值是"
+  },
+  "Check your IdP docs, without": {
+    "One": "检查IdP的文档, 不包含"
+  },
+  "For OIDC login without a password, enter any 4-20 letters": {
+    "One": "如果通过 OIDC 登录且未设置密码，请输入任意 4-20 个字符"
+  },
+  "Email": {
+    "One": "邮箱"
+  },
+  "MyPeer": {
+    "One": "我的设备"
+  },
+  "View": {
+    "One": "查看"
+  },
+  "Information": {
+    "One": "信息"
+  },
+  "Import": {
+    "One": "导入"
+  },
+  "SelectColor": {
+    "One": "请选择颜色"
+  },
+  "MultipleIpSeparatorTip": {
+    "One": "多个 IP 地址请使用 | 分隔"
+  },
+  "DeleteAllIpTip": {
+    "One": "如需删除全部条目，请输入"
+  },
+  "ConfigContentRequired": {
+    "One": "配置内容不能为空"
+  },
+  "ForceUpdate": {
+    "One": "强制更新"
+  },
+  "ForceUpdateTip": {
+    "One": "启用后客户端将静默下载并安装，不显示提示"
+  },
+  "Forced": {
+    "One": "强制"
+  },
+  "Normal": {
+    "One": "普通"
+  },
+  "AlertConfigSummary": {
+    "One": "配置摘要"
+  },
+  "AlertChannelNamePlaceholder": {
+    "One": "例如：企业微信告警"
+  },
+  "LeaveBlankUnchanged": {
+    "One": "不修改请留空"
+  },
+  "Required": {
+    "One": "必填"
+  },
+  "AlertChannelSmtpTip": {
+    "One": "请在下方告警规则中添加收件人；此通道仅配置发件服务器。"
+  },
+  "AlertRecipientsPlaceholder": {
+    "One": "收件人邮箱，多个地址用逗号分隔，例如 a@x.com,b@x.com"
+  },
+  "IsAdmin": {
+    "One": "是否为管理员"
+  },
+  "Token": {
+    "One": "令牌"
+  },
+  "Bind": { "One": "绑定" },
+  "Broadcast": { "One": "广播" },
+  "Content": { "One": "内容" },
+  "Disable": { "One": "禁用" },
+  "Enable": { "One": "启用" },
+  "Hint": { "One": "提示" },
+  "Id": { "One": "ID" },
+  "InvalidParam": { "One": "无效参数：{param}" },
+  "LoginFailed": { "One": "登录失败" },
+  "Op": { "One": "身份提供商" },
+  "PkceEnable": { "One": "启用 PKCE" },
+  "PkceMethod": { "One": "PKCE 方法" },
+  "Success": { "One": "成功" },
+  "Title": { "One": "标题" },
+  "Your IdP Name": { "One": "身份提供商名称" },
+  "CopyAll": { "One": "全部复制" }, "Permanent": { "One": "永久" }, "ValidDays": { "One": "有效天数" },
+  "Optional": { "One": "可选" }, "Quantity": { "One": "数量" }, "GeneratedCount": { "One": "已生成（{count}）" },
+  "ConnectionTime": { "One": "连接时间" }, "EndTime": { "One": "结束时间" }, "InProgress": { "One": "进行中" },
+  "RegularUser": { "One": "普通用户" }, "PaymentMethod": { "One": "支付方式" }, "Amount": { "One": "金额" },
+  "OrderTime": { "One": "下单时间" }, "Test": { "One": "测试" }, "SendTest": { "One": "发送测试" },
+  "BatchAdd": { "One": "批量添加" }, "BatchGenerateInviteCodes": { "One": "批量生成邀请码" }, "BatchGenerationFailed": { "One": "批量生成失败" },
+  "BindingScope": { "One": "绑定范围" }, "City": { "One": "城市" }, "ClickToUpload": { "One": "点击上传" },
+  "ClientId": { "One": "客户端 ID" }, "ClientSecret": { "One": "客户端密钥" }, "Closed": { "One": "已关闭" },
+  "CloseFailed": { "One": "关闭失败" }, "ConfirmationFailed": { "One": "确认失败" }, "ConfirmCloseOrder": { "One": "确认关闭订单 {order}？" },
+  "ConfirmedSuccessfully": { "One": "确认成功" }, "ConfirmExtension": { "One": "确认延长" }, "ConfirmOrderPaid": { "One": "确认订单 {order} 已支付？" },
+  "ConfirmPaid": { "One": "确认已支付" }, "ConfirmRevokeInviteCode": { "One": "确定要撤销邀请码 {code} 吗？" },
+  "DaysCount": { "One": "{count} 天" }, "DaysLeft": { "One": "剩余天数" }, "DefaultThirtyDays": { "One": "默认 30 天" },
+  "DeviceGroup": { "One": "设备组" }, "Disabled": { "One": "已禁用" }, "District": { "One": "区/县" },
+  "DurationAutoFillTip": { "One": "时长（选择后自动填写天数）" }, "EditStrategy": { "One": "编辑策略" }, "ExpirationTime": { "One": "到期时间" },
+  "Extend": { "One": "延长" }, "ExtendSubscription": { "One": "延长订阅" }, "ExtensionDuration": { "One": "延长时长" },
+  "ExtensionFailed": { "One": "延长失败" }, "FileCountLimitExceeded": { "One": "文件数量超出限制" }, "Global": { "One": "全局" },
+  "HigherNumberHigherPriority": { "One": "数字越大，优先级越高" }, "InviteCodesGeneratedSuccess": { "One": "成功生成 {count} 个邀请码" },
+  "Issuer": { "One": "颁发者" }, "MerchantOrderNo": { "One": "商户订单号" }, "NewStrategy": { "One": "新建策略" },
+  "OneMonth": { "One": "1 个月" }, "OneYear": { "One": "1 年" }, "OrderExpired": { "One": "订单已过期" },
+  "OrderListLoadFailed": { "One": "获取订单列表失败" }, "OrderNoUsername": { "One": "订单号/用户名" }, "OrderQrCodeExpired": { "One": "订单二维码已过期" },
+  "OrDragFilesHere": { "One": "或将文件拖到此处" }, "Plain": { "One": "明文" }, "PleaseEnterValidDays": { "One": "请输入有效天数" },
+  "PleaseSelectPlan": { "One": "请选择套餐" }, "Priority": { "One": "优先级" }, "Province": { "One": "省份" },
+  "RdpPort": { "One": "RDP 端口" }, "RdpUsername": { "One": "RDP 用户名" }, "RedirectUrl": { "One": "重定向 URL" },
+  "S256Recommended": { "One": "S256（推荐）" }, "SameServer": { "One": "同一服务器" }, "Scopes": { "One": "权限范围" },
+  "SearchStrategyName": { "One": "搜索策略名称" }, "SelectDeviceGroup": { "One": "选择设备组" }, "SelectGroup": { "One": "选择组" },
+  "SelectPkceMethod": { "One": "选择 PKCE 方法" }, "SelectTag": { "One": "选择标签" }, "SelectUser": { "One": "选择用户" },
+  "SixMonths": { "One": "6 个月" }, "StrategyConfigCommentTip": { "One": "提示：以 # 开头的行为注释，不会生效。删除 # 可启用相应配置项。" },
+  "StrategyConfigTemplate": { "One": "策略配置模板" }, "StrategyManagement": { "One": "策略管理" }, "StrategyName": { "One": "策略名称" },
+  "StrategyNameExample": { "One": "例如：办公网络策略" }, "SubscriptionExtendedSuccess": { "One": "已为用户 {username} 延长订阅 {duration}" },
+  "SubscriptionListLoadFailed": { "One": "获取订阅列表失败" }, "SubscriptionStatus": { "One": "订阅状态" }, "Tag": { "One": "标签" },
+  "TenYears": { "One": "10 年" }, "ThreeMonths": { "One": "3 个月" }, "TwelveMonths": { "One": "12 个月" },
+  "UserIdUsername": { "One": "用户 ID/用户名" }, "WeChatPay": { "One": "微信支付" }, "OfflineAlertLogic": { "One": "离线告警逻辑" },
+  "DeviceCheckedEveryFiveMinutes": { "One": "每五分钟检查一次设备状态。" },
+  "OfflineThresholdWeightTip": { "One": "超过离线阈值后，权重增加 1；达到 10 时发送邮件（约离线 50 分钟）。" },
+  "AlertWeightResetsDaily": { "One": "权重每天自动重置。" }, "MaxThreeAlertsPerDay": { "One": "每台设备每天最多发送 3 次告警。" },
+  "AlertsPauseAfterThreeDays": { "One": "连续告警 3 天后停止；设备重新上线后自动恢复。" }, "MinutesShort": { "One": "分钟" },
+  "ConfigItems": { "One": "配置项" }, "ConfigItemsPlaceholder": { "One": "每行一个配置项，格式：key=value\n示例：\nforce_relay=Y\nenable-udp-punch=N\nenable-clipboard=N\ncustom-rendezvous-server=192.0.2.1:21116" },
+  "CommonConfigItems": { "One": "常用配置项：force_relay、enable-udp-punch、enable-ipv6-punch、enable-clipboard、enable-audio、enable-file-transfer、custom-rendezvous-server" },
+  "NatTraversal": { "One": "NAT 穿透" }, "ForceRelayHelp": { "One": "强制中继：Y 强制使用中继并禁用 P2P 打洞；N 允许 P2P" },
+  "UdpPunchHelp": { "One": "启用 UDP 打洞；N 表示仅使用 TCP 中继" }, "Ipv6PunchHelp": { "One": "启用 IPv6 打洞；N 表示禁用 IPv6 穿透" },
+  "UpnpHelp": { "One": "启用 UPnP 自动端口映射；N 表示禁用" }, "CustomRelayHelp": { "One": "自定义中继服务器地址（用于自建中继）" },
+  "DomainIpPortFormat": { "One": "格式：域名或 IP:端口" }, "FeatureSwitches": { "One": "功能开关" },
+  "ClipboardSharingHelp": { "One": "启用剪贴板共享；N 表示禁用远程复制/粘贴" }, "AudioTransmissionHelp": { "One": "启用音频传输；N 表示禁用远程音频" },
+  "FileTransferHelp": { "One": "启用文件传输；N 表示禁用远程文件传输" }, "EncryptionModeHelp": { "One": "加密模式：default / no_encryption / encrypted" },
+  "DisplayAndPerformance": { "One": "显示与性能" }, "ImageQualityHelp": { "One": "图像质量选项：quality / balanced / speed" },
+  "MaxFpsHelp": { "One": "最大 FPS；0 表示不限制" }, "SecurityPolicy": { "One": "安全策略" },
+  "HideUsernameHelp": { "One": "隐藏地址簿中的用户名；Y 表示仅显示设备名称" },
+  "DirectConnectionVerificationHelp": { "One": "启用直连验证；Y 表示需要握手验证" },
+  "AlertRecipientsSpecifiedInRule": { "One": "收件人在规则中指定" },
+  "TestRecipientPrompt": { "One": "请输入测试收件人地址（留空则发送给自己）" },
+  "TestDeliveryFailed": { "One": "测试发送失败：{message}" },
+  "TestMessageSent": { "One": "测试消息已发送，请确认是否收到。" },
+  "DeleteAlertChannelWarning": { "One": "删除后，关联的告警规则将无法发送消息。是否继续？" },
+  "StrategyNameRequired": { "One": "策略名称不能为空" },
+  "DeleteStrategyConfirm": { "One": "确定删除策略“{name}”吗？" },
+  "Prompt": { "One": "提示" },
+  "NotImplementedYet": { "One": "暂未实现" },
+  "PleaseSelectReceiver": { "One": "请选择接收人" }
 }

@@ -17,26 +17,26 @@ let alias = {
 }
 
 const conf = {
-  base: './', // index.html文件所在位置
-  root: './', // js导入的资源路径，src
+  base: './', // Location of index.html
+  root: './', // Resource path imported by JS, src
   server: {
     open: true,
     port: process.env.VITE_DEV_PORT,
     proxy: {
       [process.env.VITE_SERVER_API]: {
         target: process.env.VITE_SERVER_PATH,
-        // rewrite: path => path.replace(/^\/api/, '/api'), //为了模拟
+        // rewrite: path => path.replace(/^\/api/, '/api'), // For local simulation
         changeOrigin: true,
       },
     },
   },
   build: {
     target: 'es2020',
-    minify: 'esbuild', // 是否进行压缩,boolean | 'terser' | 'esbuild',默认使用 esbuild
-    manifest: false, // 是否产出maifest.json
-    sourcemap: false, // 是否产出soucemap.json
+    minify: 'esbuild', // Whether to minify: boolean | 'terser' | 'esbuild'; esbuild is used by default
+    manifest: false, // Whether to output manifest.json
+    sourcemap: false, // Whether to output sourcemap.json
     emptyOutDir: true,
-    outDir: 'dist', // 产出目录
+    outDir: 'dist', // Output directory
     rollupOptions: {
       output: {
         manualChunks (id) {
@@ -53,7 +53,7 @@ const conf = {
                 return '__vendor'
             }
           }else if(id.includes('Gwen-admin/src')){
-            //src 下的都打包到一起 不然很多小文件
+            // Bundle everything under src together to avoid many small files
             return 'gwen'
           }
         },
