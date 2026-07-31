@@ -2,18 +2,18 @@
   <div>
     <el-card class="list-query query-card" shadow="hover">
       <el-form inline>
-        <!--        <el-form-item label="Name">
-                  <el-input v-model="listQuery.name"></el-input>
-                </el-form-item>-->
-        <el-form-item>
+        <el-form-item label="Name">
+          <el-input v-model="listQuery.name"></el-input>
           <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
+        </el-form-item>
+        <el-form-item>
           <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
         </el-form-item>
       </el-form>
     </el-card>
     <el-card class="list-body" shadow="hover">
       <el-table class="list-table" :data="listRes.list" v-loading="listRes.loading" border>
-        <el-table-column prop="id" :label="T('ID')" align="center"></el-table-column>
+        <el-table-column prop="id" :label="T('Id')" align="center"></el-table-column>
         <el-table-column prop="name" :label="T('Name')" align="center"/>
         <el-table-column prop="created_at" :label="T('CreatedAt')" align="center"/>
         <el-table-column prop="updated_at" :label="T('UpdatedAt')" align="center"/>
@@ -60,6 +60,7 @@ import { T } from '@/utils/i18n'
   const listQuery = reactive({
     page: 1,
     page_size: 10,
+    name: null
   })
 
   const getList = async () => {

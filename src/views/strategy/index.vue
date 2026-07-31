@@ -35,7 +35,7 @@
                 v-loading="listRes.loading"
                 border>
         <el-table-column prop="id"
-                         :label="T('ID')"
+                         :label="T('Id')"
                          min-width="60"
                          align="center"></el-table-column>
         <el-table-column prop="name"

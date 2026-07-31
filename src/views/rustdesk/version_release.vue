@@ -45,7 +45,7 @@
 
     <el-card class="list-body" shadow="hover" style="margin-top: 16px;">
       <el-table :data="listRes.list" v-loading="listRes.loading" border>
-        <el-table-column prop="id" :label="T('ID')" min-width="60" align="center"></el-table-column>
+        <el-table-column prop="id" :label="T('Id')" min-width="60" align="center"></el-table-column>
         <el-table-column prop="version" :label="T('Version')" min-width="120" align="center">
           <template #default="{row}">
             <strong>{{ row.version }}</strong>

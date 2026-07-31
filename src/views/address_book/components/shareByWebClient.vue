@@ -1,6 +1,6 @@
 <template>
   <el-form ref="shareform" :model="formData" label-suffix=" :">
-    <el-form-item :label="T('ID')" prop="id" required>
+    <el-form-item :label="T('Id')" prop="id" required>
       {{ formData.id }}
     </el-form-item>
     <!--    <el-form-item :label="T('PasswordType')">

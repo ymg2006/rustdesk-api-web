@@ -46,7 +46,7 @@
       <el-card class="list-body" shadow="hover">
         <!--      <el-tag type="danger" style="margin-bottom: 10px">Editing the address book here is not recommended because data may become inconsistent.</el-tag>-->
         <el-table :data="listRes.list" v-loading="listRes.loading" border>
-          <el-table-column prop="id" :label="T('ID')" align="center" min-width="200">
+          <el-table-column prop="id" :label="T('Id')" align="center" min-width="200">
             <template #default="{row}">
               <span>{{ row.id }} <el-icon @click="handleClipboard(row.id, $event)"><CopyDocument/></el-icon></span>
             </template>
@@ -90,7 +90,7 @@
 
     <el-dialog v-model="formVisible" width="800" :title="!formData.row_id?T('Create') :T('Update')" append-to-body>
       <el-form class="dialog-form" ref="form" :model="formData">
-        <el-form-item :label="T('ID')" prop="id" required>
+        <el-form-item :label="T('Id')" prop="id" required>
           <el-input v-model="formData.id"></el-input>
         </el-form-item>
         <el-form-item :label="T('Username')" prop="username">

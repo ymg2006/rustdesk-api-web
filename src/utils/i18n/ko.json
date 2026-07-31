@@ -1351,9 +1351,6 @@
   "AdminSubscription": {
     "One": "유료 회원"
   },
-  "ID": {
-    "One": "ID"
-  },
   "Cpu": {
     "One": "CPU"
   },

@@ -1351,9 +1351,6 @@
   "AdminSubscription": {
     "One": "付费会员"
   },
-  "ID": {
-    "One": "ID"
-  },
   "Cpu": {
     "One": "CPU"
   },

@@ -20,7 +20,7 @@
 
     <el-card shadow="hover" class="list-card query-card">
       <el-table :data="list" v-loading="loading" border>
-        <el-table-column prop="id" :label="T('ID')" min-width="60" align="center" />
+        <el-table-column prop="id" :label="T('Id')" min-width="60" align="center" />
         <el-table-column prop="out_trade_no" :label="T('OrderNo')" min-width="220" />
         <el-table-column prop="username" :label="T('User')" min-width="120" align="center" />
         <el-table-column :label="T('Duration')" min-width="80" align="center">

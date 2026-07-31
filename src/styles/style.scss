@@ -105,6 +105,9 @@ $basicWhite: #ffffff;
   --apple-blue-subtle: rgba(0, 122, 255, 0.10);
   --apple-red-subtle: rgba(255, 59, 48, 0.10);
   --apple-gray-subtle: rgba(142, 142, 147, 0.12);
+
+  --el-menu-item-height: 44px;
+  --el-menu-sub-item-height: 44px;
 }
 
 .w-100 {
@@ -405,7 +408,7 @@ html.dark ::-webkit-scrollbar-thumb:hover {
 }
 
 .el-button + .el-button {
-  margin-left: 8px;
+  margin-left: 6px;
 }
 // ===== Table-row hover (very light gray, Apple style) =====
 .el-table {
@@ -444,6 +447,46 @@ html.dark .el-table {
   &.el-tag--danger {
     color: var(--apple-red);
   }
+}
+
+@media (min-width: 767.98px) {
+  .filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+
+@media (max-width: 767.98px) {
+  .card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .card-actions > .el-button {
+    margin: 0;
+  }
+}
+
+.filter-form {
+  .el-button + .el-button {
+    margin-left: 0;
+  }
+}
+
+.filter-form-ex>.el-form-item__content {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+}
+
+.w-100 {
+  width: 100%;
 }
 
 // ===== Rounded pagination =====

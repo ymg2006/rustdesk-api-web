@@ -1351,9 +1351,6 @@
   "AdminSubscription": {
     "One": "Платные участники"
   },
-  "ID": {
-    "One": "ID"
-  },
   "Cpu": {
     "One": "ЦП"
   },

@@ -7,7 +7,7 @@
         <el-button :type="quickFilter === 'offline' ? 'danger' : 'default'" size="small" @click="setQuickFilter('offline')">{{ T('Offline') }}</el-button>
       </div>
       <el-form inline>
-        <el-form-item :label="T('ID')">
+        <el-form-item :label="T('Id')">
           <el-input v-model="listQuery.id" clearable/>
         </el-form-item>
         <el-form-item :label="T('Hostname')">
@@ -36,7 +36,7 @@
     <el-card class="list-body" shadow="hover">
       <el-table :data="listRes.list" v-loading="listRes.loading" border @selection-change="handleSelectionChange">
         <el-table-column type="selection" align="center" width="50"/>
-        <el-table-column prop="id" :label="T('ID')" align="center" min-width="150">
+        <el-table-column prop="id" :label="T('Id')" align="center" min-width="150">
           <template #default="{row}">
             <span>{{ row.id }} <el-icon @click="handleClipboard(row.id, $event)"><CopyDocument/></el-icon></span>
           </template>
@@ -83,7 +83,7 @@
     </el-card>
     <el-dialog v-model="formVisible" :title="T('Information')" width="800" :style="{ textAlign: 'center' }" append-to-body>
       <el-form class="dialog-form" ref="form" :model="formData">
-        <el-form-item :label="T('ID')" prop="id">
+        <el-form-item :label="T('Id')" prop="id">
           <el-input v-model="formData.id" disabled></el-input>
         </el-form-item>
         <el-form-item :label="T('Username')" prop="username">
@@ -118,7 +118,7 @@
             <el-option v-for="c in collectionListResForUpdate.list" :key="c.id" :label="c.name" :value="c.id"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item :label="T('ID')" prop="id" required>
+        <el-form-item :label="T('Id')" prop="id" required>
           <el-input v-model="ABFormData.id"></el-input>
         </el-form-item>
         <el-form-item :label="T('Username')" prop="username">

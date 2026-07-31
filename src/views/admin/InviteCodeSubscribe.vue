@@ -24,7 +24,7 @@
     </el-card>
     <el-card shadow="hover" class="list-card query-card">
       <el-table :data="list" v-loading="loading" border>
-        <el-table-column prop="id" :label="T('ID')" min-width="60" align="center" />
+        <el-table-column prop="id" :label="T('Id')" min-width="60" align="center" />
         <el-table-column prop="code" :label="T('InviteCode')" min-width="280" align="center">
           <template #default="{ row }">
             <code class="code-text">{{ row.code }}</code>

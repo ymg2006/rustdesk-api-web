@@ -13,8 +13,8 @@
                    size="small"
                    @click="setQuickFilter('offline')">{{ T('Offline') }}</el-button>
       </div>
-      <el-form inline>
-        <el-form-item :label="T('ID')">
+      <el-form inline class="filter-form">
+        <el-form-item :label="T('Id')">
           <el-input v-model="listQuery.id"
                     clearable />
         </el-form-item>
@@ -41,15 +41,18 @@
                     clearable />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary"
-                     @click="handlerQuery">{{ T('Filter') }}</el-button>
+        <el-button type="primary" class="w-100"
+                    @click="handlerQuery">{{ T('Filter') }}</el-button>
+        </el-form-item>
+        <el-form-item class="filter-form-ex">
           <el-button type="danger"
                      @click="toAdd">{{ T('Add') }}</el-button>
           <el-button type="success"
                      @click="toExport">{{ T('Export') }}</el-button>
           <el-popover :visible="showImport"
                       placement="bottom"
-                      :width="600">
+                      width="min(600px, calc(100vw - 16px))"
+                      :popper-style="{ margin: '0 8px' }">
             <el-upload class="upload-demo"
                        drag
                        accept=".csv"
@@ -104,7 +107,7 @@
                     :key="c">
             <el-table-column v-if="c.name === 'id'"
                              prop="id"
-                             :label="T('ID')"
+                             :label="T('Id')"
                              align="center"
                              min-width="150">
               <template #default="{ row }">
@@ -282,7 +285,7 @@
       <el-form class="dialog-form"
                ref="form"
                :model="formData">
-        <el-form-item :label="T('ID')"
+        <el-form-item :label="T('Id')"
                       prop="id"
                       required>
           <el-input v-model="formData.id"></el-input>
@@ -898,18 +901,6 @@ const visibleColumns = ref(savedColumns || allColumns.value)
         display: flex;
         align-items: center;
         gap: 4px;
-      }
-    }
-
-    .card-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-
-      .el-button {
-        min-height: 36px;
-        padding: 6px 12px;
-        font-size: 13px;
       }
     }
   }

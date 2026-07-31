@@ -21,7 +21,7 @@
     <el-card class="list-body" shadow="hover">
       <el-table :data="listRes.list" v-loading="listRes.loading" border @selection-change="handleSelectionChange">
         <el-table-column type="selection" align="center" width="50"/>
-        <el-table-column prop="id" :label="T('ID')" align="center" min-width="100"/>
+        <el-table-column prop="id" :label="T('Id')" align="center" min-width="100"/>
         <el-table-column :label="T('User')" align="center" min-width="120">
           <template #default="{row}">
             <span v-if="row.user_id"> <el-tag>{{ allUsers?.find(u => u.id === row.user_id)?.username }}</el-tag> </span>

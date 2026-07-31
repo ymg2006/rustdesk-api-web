@@ -10,7 +10,7 @@
     </el-card>
     <el-card class="list-body" shadow="hover">
       <el-table :data="listRes.list" v-loading="listRes.loading" border>
-        <el-table-column prop="id" :label="T('ID')" align="center"/>
+        <el-table-column prop="id" :label="T('Id')" align="center"/>
         <el-table-column prop="op" :label="T('IdP')" align="center"/>
         <el-table-column prop="oauth_type" :label="T('Type')" align="center"/>
         <el-table-column prop="auto_register" :label="T('AutoRegister')" align="center"/>

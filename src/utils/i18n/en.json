@@ -1358,9 +1358,6 @@
   "AdminSubscription": {
     "One": "Paid Members"
   },
-  "ID": {
-    "One": "ID"
-  },
   "Cpu": {
     "One": "CPU"
   },

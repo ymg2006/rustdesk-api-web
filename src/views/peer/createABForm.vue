@@ -17,7 +17,7 @@
         <el-option v-for="c in collectionListResForUpdate.list" :key="c.id" :label="c.name" :value="c.id"></el-option>
       </el-select>
     </el-form-item>
-    <el-form-item :label="T('ID')" prop="id" required>
+    <el-form-item :label="T('Id')" prop="id" required>
       <el-input v-model="ABFormData.id"></el-input>
     </el-form-item>
     <el-form-item :label="T('Username')" prop="username">

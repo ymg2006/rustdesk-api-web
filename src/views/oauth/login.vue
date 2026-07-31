@@ -6,7 +6,7 @@
         <el-form-item :label="T('Device')">
           <div class="impt">{{ oauthInfo.device_name }}</div>
         </el-form-item>
-        <el-form-item :label="T('ID')">
+        <el-form-item :label="T('Id')">
           <div class="impt">{{ oauthInfo.id }}</div>
         </el-form-item>
         <el-form-item>

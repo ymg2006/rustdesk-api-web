@@ -48,7 +48,7 @@
         </el-form-item>
       </el-form>
       <el-table class="list-table" :data="listRes.list" v-loading="listRes.loading" border>
-        <el-table-column prop="id" :label="T('ID')" min-width="80" align="center" />
+        <el-table-column prop="id" :label="T('Id')" min-width="80" align="center" />
         <el-table-column prop="username" :label="T('Username')" />
         <el-table-column prop="nickname" :label="T('Nickname')" />
         <el-table-column :label="T('Group')">

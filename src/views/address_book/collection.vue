@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card class="list-query query-card" shadow="hover">
-      <el-form inline>
+      <el-form inline class="filter-form">
         <el-form-item :label="T('Owner')">
           <el-select v-model="listQuery.user_id" clearable>
             <el-option
@@ -12,15 +12,15 @@
             ></el-option>
           </el-select>
         </el-form-item>
+        <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
         <el-form-item>
-          <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
           <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
         </el-form-item>
       </el-form>
     </el-card>
     <el-card class="list-body" shadow="hover">
       <el-table class="list-table" :data="listRes.list" v-loading="listRes.loading" border>
-        <el-table-column prop="id" :label="T('ID')" align="center"/>
+        <el-table-column prop="id" :label="T('Id')" align="center"/>
         <el-table-column prop="user_id" :label="T('Owner')" align="center">
           <template #default="{row}">
             <span v-if="row.user_id"> <el-tag>{{ allUsers?.find(u => u.id === row.user_id)?.username }}</el-tag> </span>
@@ -76,7 +76,7 @@
 </template>
 
 <script setup>
-  import { T } from '@/utils/i18n'
+import { T } from '@/utils/i18n'
 import { ref } from 'vue'
 import { useRepositories } from '@/views/address_book/collection'
 import { onActivated, onMounted, watch } from 'vue'
@@ -116,6 +116,3 @@ import { loadAllUsers } from '@/global'
 
 </script>
 
-<style scoped lang="scss">
-
-</style>

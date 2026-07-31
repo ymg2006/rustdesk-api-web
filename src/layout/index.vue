@@ -171,20 +171,6 @@ html.dark .header-tags {
     }
   }
 
-  // Make buttons touch-friendly
-  .el-button {
-    min-height: 42px;
-    padding-left: 14px;
-    padding-right: 14px;
-    font-size: 14px;
-    &--small {
-      min-height: 34px;
-      padding-left: 12px;
-      padding-right: 12px;
-      font-size: 13px;
-    }
-  }
-
   // Make dialogs nearly full width
   .el-dialog {
     width: 92vw !important;

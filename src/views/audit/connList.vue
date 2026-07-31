@@ -18,7 +18,7 @@
     <el-card class="list-body" shadow="hover">
       <el-table :data="listRes.list" v-loading="listRes.loading" border @selection-change="handleSelectionChange">
         <el-table-column type="selection" align="center" width="50"/>
-        <el-table-column prop="id" :label="T('ID')" align="center" min-width="100"/>
+        <el-table-column prop="id" :label="T('Id')" align="center" min-width="100"/>
         <el-table-column :label="T('Peer')" prop="peer_id" align="center" min-width="120"/>
         <el-table-column :label="T('FromPeer')" prop="from_peer" align="center" min-width="120"/>
         <el-table-column :label="T('FromName')" prop="from_name" align="center" min-width="120"/>

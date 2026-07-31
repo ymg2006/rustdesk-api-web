@@ -36,7 +36,7 @@
     <el-card class="list-body" shadow="hover">
       <!--      <el-tag type="danger" style="margin-bottom: 10px">Editing the address book here is not recommended because data may become inconsistent.</el-tag>-->
       <el-table class="list-table" :data="listRes.list" v-loading="listRes.loading" border>
-        <el-table-column prop="id" :label="T('ID')" align="center" min-width="200">
+        <el-table-column prop="id" :label="T('Id')" align="center" min-width="200">
           <template #default="{row}">
             <div class="flex-center gap-5">
               <PlatformIcons :name="platformList.find(p=>p.label===row.platform)?.icon" style="width: 20px;height: 20px;display: inline-block" color="var(--basicBlack)"/>
@@ -104,7 +104,7 @@
             <el-option v-for="c in collectionListResForUpdate.list" :key="c.id" :label="c.name" :value="c.id"></el-option>
           </el-select>
         </el-form-item>
-        <el-form-item :label="T('ID')" prop="id" required>
+        <el-form-item :label="T('Id')" prop="id" required>
           <el-input v-model="formData.id"></el-input>
         </el-form-item>
         <el-form-item :label="T('Username')" prop="username">
