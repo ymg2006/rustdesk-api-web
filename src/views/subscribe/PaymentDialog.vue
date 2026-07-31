@@ -38,7 +38,7 @@
           </el-radio>
           <el-radio value="wechat" border class="channel-radio">
             <el-icon><el-icon-chat-dot-round /></el-icon>
-            {{ T('WechatPay') }}
+            {{ T('WeChatPay') }}
           </el-radio>
         </el-radio-group>
       </div>

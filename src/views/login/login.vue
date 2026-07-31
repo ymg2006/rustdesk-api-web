@@ -40,7 +40,7 @@
       </el-form>
 
       <div class="divider" v-if="options.length > 0 && !disablePwd">
-        <span>{{ T('or login in with') }}</span>
+        <span>{{ T('OrLoginInWith') }}</span>
       </div>
 
       <div class="oidc-options">

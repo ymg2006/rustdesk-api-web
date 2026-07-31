@@ -61,15 +61,15 @@
                 <upload-filled />
               </el-icon>
               <div class="el-upload__text">
-                {{ T('Drop file here or click to upload') }}
+                {{ T('DropFileHereOrClickToUpload') }}
               </div>
               <template #tip>
                 <div class="el-upload__tip">
-                  {{ T('Please upload csv file') }} <br>
+                  {{ T('PleaseUploadCsvFile') }} <br>
                   {{ T('Columns') }}: <span
                         style="font-weight: bold;font-size: 15px">id,cpu,hostname,memory,os,username,uuid,version,group_id</span>
                   <br>
-                  <span>{{ T('You can reference export file') }}</span>
+                  <span>{{ T('YouCanReferenceExportFile') }}</span>
                 </div>
               </template>
             </el-upload>

@@ -377,15 +377,33 @@
   "RemoteDesktopOffline": {
     "One": "Le bureau à distance est hors ligne"
   },
-  "CleanOldMessages": { "One": "Nettoyer les anciens messages" },
-  "CleanMessagesOlderThan1Year": { "One": "Nettoyer les messages datant de plus d’un an" },
-  "CleanMessagesOlderThan3Years": { "One": "Nettoyer les messages datant de plus de 3 ans" },
-  "OnlyMyMessages": { "One": "Uniquement mes messages" },
-  "ShowAll": { "One": "Tout afficher" },
-  "SearchUsername": { "One": "Rechercher un nom d’utilisateur" },
-  "AllUsers": { "One": "Tous les utilisateurs" },
-  "MessageTitleOptional": { "One": "Titre du message (facultatif)" },
-  "PleaseEnterMessageContent": { "One": "Saisissez le contenu du message" },
+  "CleanOldMessages": {
+    "One": "Nettoyer les anciens messages"
+  },
+  "CleanMessagesOlderThan1Year": {
+    "One": "Nettoyer les messages datant de plus d’un an"
+  },
+  "CleanMessagesOlderThan3Years": {
+    "One": "Nettoyer les messages datant de plus de 3 ans"
+  },
+  "OnlyMyMessages": {
+    "One": "Uniquement mes messages"
+  },
+  "ShowAll": {
+    "One": "Tout afficher"
+  },
+  "SearchUsername": {
+    "One": "Rechercher un nom d’utilisateur"
+  },
+  "AllUsers": {
+    "One": "Tous les utilisateurs"
+  },
+  "MessageTitleOptional": {
+    "One": "Titre du message (facultatif)"
+  },
+  "PleaseEnterMessageContent": {
+    "One": "Saisissez le contenu du message"
+  },
   "KeyMismatch": {
     "One": "Non-correspondance de clé"
   },
@@ -588,16 +606,16 @@
   "DeviceGroupManage": {
     "One": "Gestion des groupes d’appareils"
   },
-  "Drop file here or click to upload": {
+  "DropFileHereOrClickToUpload": {
     "One": "Déposez le fichier ici ou cliquez pour télécharger"
   },
-  "Please upload csv file": {
+  "PleaseUploadCsvFile": {
     "One": "Veuillez télécharger le fichier csv"
   },
   "Columns": {
     "One": "Colonnes"
   },
-  "You can reference export file": {
+  "YouCanReferenceExportFile": {
     "One": "Vous pouvez vous référer au fichier d'exportation"
   },
   "Remark": {
@@ -1314,9 +1332,6 @@
   "Alipay": {
     "One": "Alipay"
   },
-  "WechatPay": {
-    "One": "WeChat Pay"
-  },
   "SubscribeMonth": {
     "One": "Mois"
   },
@@ -1500,16 +1515,16 @@
   "AddressBookCollection": {
     "One": "Collection de carnets d’adresses"
   },
-  "or login in with": {
+  "OrLoginInWith": {
     "One": "ou connectez-vous avec"
   },
-  "Optional, default is": {
+  "OptionalDefaultIs": {
     "One": "Facultatif, la valeur par défaut est"
   },
-  "Check your IdP docs, without": {
+  "CheckYourIdPDocsWithout": {
     "One": "Consultez la documentation de votre IdP, sans inclure"
   },
-  "For OIDC login without a password, enter any 4-20 letters": {
+  "ForOIDCLoginWithoutAPasswordEnterAny420Letters": {
     "One": "Pour une connexion OIDC sans mot de passe, saisissez entre 4 et 20 caractères"
   },
   "Email": {
@@ -1521,76 +1536,436 @@
   "Import": {
     "One": "Importer"
   },
-  "Bind": { "One": "Lier" },
-  "Broadcast": { "One": "Diffusion" },
-  "Content": { "One": "Contenu" },
-  "Disable": { "One": "Désactiver" },
-  "Enable": { "One": "Activer" },
-  "Hint": { "One": "Conseil" },
-  "Id": { "One": "ID" },
-  "InvalidParam": { "One": "Paramètre non valide : {param}" },
-  "LoginFailed": { "One": "Échec de la connexion" },
-  "Op": { "One": "Fournisseur d’identité" },
-  "PkceEnable": { "One": "Activer PKCE" },
-  "PkceMethod": { "One": "Méthode PKCE" },
-  "Success": { "One": "Succès" },
-  "Title": { "One": "Titre" },
-  "Your IdP Name": { "One": "Nom de votre fournisseur d’identité" },
-  "CopyAll": { "One": "Tout copier" }, "Permanent": { "One": "Permanent" }, "ValidDays": { "One": "Jours de validité" },
-  "Optional": { "One": "Facultatif" }, "Quantity": { "One": "Quantité" }, "GeneratedCount": { "One": "Générés ({count})" },
-  "ConnectionTime": { "One": "Heure de connexion" }, "EndTime": { "One": "Heure de fin" }, "InProgress": { "One": "En cours" },
-  "RegularUser": { "One": "Utilisateur standard" }, "PaymentMethod": { "One": "Mode de paiement" }, "Amount": { "One": "Montant" },
-  "OrderTime": { "One": "Heure de commande" }, "Test": { "One": "Tester" }, "SendTest": { "One": "Envoyer un test" },
-  "BatchAdd": { "One": "Ajout par lots" }, "BatchGenerateInviteCodes": { "One": "Générer des codes d’invitation par lots" }, "BatchGenerationFailed": { "One": "Échec de la génération par lots" },
-  "BindingScope": { "One": "Portée de liaison" }, "City": { "One": "Ville" }, "ClickToUpload": { "One": "Cliquer pour téléverser" },
-  "ClientId": { "One": "ID client" }, "ClientSecret": { "One": "Secret client" }, "Closed": { "One": "Fermé" },
-  "CloseFailed": { "One": "Échec de la fermeture" }, "ConfirmationFailed": { "One": "Échec de la confirmation" }, "ConfirmCloseOrder": { "One": "Fermer la commande {order} ?" },
-  "ConfirmedSuccessfully": { "One": "Confirmation réussie" }, "ConfirmExtension": { "One": "Confirmer la prolongation" }, "ConfirmOrderPaid": { "One": "Confirmer la commande {order} comme payée ?" },
-  "ConfirmPaid": { "One": "Confirmer le paiement" }, "ConfirmRevokeInviteCode": { "One": "Voulez-vous vraiment révoquer le code d’invitation {code} ?" },
-  "DaysCount": { "One": "{count} jours" }, "DaysLeft": { "One": "Jours restants" }, "DefaultThirtyDays": { "One": "30 jours par défaut" },
-  "DeviceGroup": { "One": "Groupe d’appareils" }, "Disabled": { "One": "Désactivé" }, "District": { "One": "District" },
-  "DurationAutoFillTip": { "One": "Durée (remplit automatiquement les jours)" }, "EditStrategy": { "One": "Modifier la stratégie" }, "ExpirationTime": { "One": "Date d’expiration" },
-  "Extend": { "One": "Prolonger" }, "ExtendSubscription": { "One": "Prolonger l’abonnement" }, "ExtensionDuration": { "One": "Durée de prolongation" },
-  "ExtensionFailed": { "One": "Échec de la prolongation" }, "FileCountLimitExceeded": { "One": "Limite du nombre de fichiers dépassée" }, "Global": { "One": "Global" },
-  "HigherNumberHigherPriority": { "One": "Un nombre plus élevé donne une priorité supérieure" }, "InviteCodesGeneratedSuccess": { "One": "{count} codes d’invitation générés" },
-  "Issuer": { "One": "Émetteur" }, "MerchantOrderNo": { "One": "N° de commande marchand" }, "NewStrategy": { "One": "Nouvelle stratégie" },
-  "OneMonth": { "One": "1 mois" }, "OneYear": { "One": "1 an" }, "OrderExpired": { "One": "Commande expirée" },
-  "OrderListLoadFailed": { "One": "Échec du chargement des commandes" }, "OrderNoUsername": { "One": "N° de commande/nom d’utilisateur" }, "OrderQrCodeExpired": { "One": "Code QR de commande expiré" },
-  "OrDragFilesHere": { "One": "ou glisser les fichiers ici" }, "Plain": { "One": "Simple" }, "PleaseEnterValidDays": { "One": "Veuillez saisir des jours valides" },
-  "PleaseSelectPlan": { "One": "Veuillez sélectionner une offre" }, "Priority": { "One": "Priorité" }, "Province": { "One": "Province" },
-  "RdpPort": { "One": "Port RDP" }, "RdpUsername": { "One": "Nom d’utilisateur RDP" }, "RedirectUrl": { "One": "URL de redirection" },
-  "S256Recommended": { "One": "S256 (recommandé)" }, "SameServer": { "One": "Même serveur" }, "Scopes": { "One": "Portées" },
-  "SearchStrategyName": { "One": "Rechercher une stratégie" }, "SelectDeviceGroup": { "One": "Sélectionner un groupe d’appareils" }, "SelectGroup": { "One": "Sélectionner un groupe" },
-  "SelectPkceMethod": { "One": "Sélectionner la méthode PKCE" }, "SelectTag": { "One": "Sélectionner une étiquette" }, "SelectUser": { "One": "Sélectionner un utilisateur" },
-  "SixMonths": { "One": "6 mois" }, "StrategyConfigCommentTip": { "One": "Astuce : les lignes commençant par # sont des commentaires. Retirez # pour activer l’option." },
-  "StrategyConfigTemplate": { "One": "Modèle de configuration de stratégie" }, "StrategyManagement": { "One": "Gestion des stratégies" }, "StrategyName": { "One": "Nom de la stratégie" },
-  "StrategyNameExample": { "One": "Exemple : politique réseau du bureau" }, "SubscriptionExtendedSuccess": { "One": "Abonnement de {username} prolongé de {duration}" },
-  "SubscriptionListLoadFailed": { "One": "Échec du chargement des abonnements" }, "SubscriptionStatus": { "One": "État de l’abonnement" }, "Tag": { "One": "Étiquette" },
-  "TenYears": { "One": "10 ans" }, "ThreeMonths": { "One": "3 mois" }, "TwelveMonths": { "One": "12 mois" },
-  "UserIdUsername": { "One": "ID utilisateur/nom d’utilisateur" }, "WeChatPay": { "One": "WeChat Pay" }, "OfflineAlertLogic": { "One": "Logique d’alerte hors ligne" },
-  "DeviceCheckedEveryFiveMinutes": { "One": "L’état des appareils est vérifié toutes les cinq minutes." }, "OfflineThresholdWeightTip": { "One": "Après le seuil hors ligne, le poids augmente de 1. Un e-mail est envoyé à 10 (environ 50 minutes)." },
-  "AlertWeightResetsDaily": { "One": "Le poids est réinitialisé chaque jour." }, "MaxThreeAlertsPerDay": { "One": "Chaque appareil peut envoyer au maximum 3 alertes par jour." },
-  "AlertsPauseAfterThreeDays": { "One": "Les alertes cessent après 3 jours consécutifs et reprennent au retour en ligne." }, "MinutesShort": { "One": "min" },
-  "ConfigItems": { "One": "Éléments de configuration" }, "ConfigItemsPlaceholder": { "One": "Un élément par ligne, format : key=value\nExemple :\nforce_relay=Y\nenable-udp-punch=N\nenable-clipboard=N\ncustom-rendezvous-server=192.0.2.1:21116" },
-  "CommonConfigItems": { "One": "Éléments courants : force_relay, enable-udp-punch, enable-ipv6-punch, enable-clipboard, enable-audio, enable-file-transfer, custom-rendezvous-server" },
-  "NatTraversal": { "One": "Traversée NAT" }, "ForceRelayHelp": { "One": "Forcer le relais : Y force le relais et désactive le P2P ; N autorise le P2P" },
-  "UdpPunchHelp": { "One": "Activer le perçage UDP ; N utilise uniquement le relais TCP" }, "Ipv6PunchHelp": { "One": "Activer le perçage IPv6 ; N désactive la traversée IPv6" },
-  "UpnpHelp": { "One": "Activer le mappage automatique UPnP ; N le désactive" }, "CustomRelayHelp": { "One": "Adresse du serveur relais personnalisé" },
-  "DomainIpPortFormat": { "One": "Format : domaine ou IP:port" }, "FeatureSwitches": { "One": "Options de fonctionnalités" },
-  "ClipboardSharingHelp": { "One": "Activer le presse-papiers ; N désactive le copier-coller distant" }, "AudioTransmissionHelp": { "One": "Activer l’audio ; N désactive l’audio distant" },
-  "FileTransferHelp": { "One": "Activer le transfert de fichiers ; N le désactive" }, "EncryptionModeHelp": { "One": "Modes de chiffrement : default / no_encryption / encrypted" },
-  "DisplayAndPerformance": { "One": "Affichage et performances" }, "ImageQualityHelp": { "One": "Qualité d’image : quality / balanced / speed" },
-  "MaxFpsHelp": { "One": "FPS maximal ; 0 signifie illimité" }, "SecurityPolicy": { "One": "Politique de sécurité" },
-  "HideUsernameHelp": { "One": "Masquer les noms d’utilisateur du carnet d’adresses ; Y affiche seulement les appareils" },
-  "DirectConnectionVerificationHelp": { "One": "Activer la vérification de connexion directe ; Y exige une poignée de main" },
-  "AlertRecipientsSpecifiedInRule": { "One": "les destinataires sont définis dans la règle" },
-  "TestRecipientPrompt": { "One": "Saisissez l’adresse d’un destinataire de test (laissez vide pour vous l’envoyer)" },
-  "TestDeliveryFailed": { "One": "Échec de l’envoi du test : {message}" },
-  "TestMessageSent": { "One": "Message de test envoyé. Veuillez confirmer sa réception." },
-  "DeleteAlertChannelWarning": { "One": "Les règles d’alerte associées ne pourront plus envoyer de messages après la suppression. Continuer ?" },
-  "StrategyNameRequired": { "One": "Le nom de la stratégie ne peut pas être vide" },
-  "DeleteStrategyConfirm": { "One": "Supprimer la stratégie « {name} » ?" },
-  "Prompt": { "One": "Confirmation" },
-  "NotImplementedYet": { "One": "Pas encore implémenté" },
-  "PleaseSelectReceiver": { "One": "Veuillez sélectionner un destinataire" }
+  "Bind": {
+    "One": "Lier"
+  },
+  "Broadcast": {
+    "One": "Diffusion"
+  },
+  "Content": {
+    "One": "Contenu"
+  },
+  "Disable": {
+    "One": "Désactiver"
+  },
+  "Enable": {
+    "One": "Activer"
+  },
+  "Hint": {
+    "One": "Conseil"
+  },
+  "Id": {
+    "One": "ID"
+  },
+  "InvalidParam": {
+    "One": "Paramètre non valide : {param}"
+  },
+  "LoginFailed": {
+    "One": "Échec de la connexion"
+  },
+  "Op": {
+    "One": "Fournisseur d’identité"
+  },
+  "PkceEnable": {
+    "One": "Activer PKCE"
+  },
+  "PkceMethod": {
+    "One": "Méthode PKCE"
+  },
+  "Success": {
+    "One": "Succès"
+  },
+  "Title": {
+    "One": "Titre"
+  },
+  "YourIdPName": {
+    "One": "Nom de votre fournisseur d’identité"
+  },
+  "CopyAll": {
+    "One": "Tout copier"
+  },
+  "Permanent": {
+    "One": "Permanent"
+  },
+  "ValidDays": {
+    "One": "Jours de validité"
+  },
+  "Optional": {
+    "One": "Facultatif"
+  },
+  "Quantity": {
+    "One": "Quantité"
+  },
+  "GeneratedCount": {
+    "One": "Générés ({count})"
+  },
+  "ConnectionTime": {
+    "One": "Heure de connexion"
+  },
+  "EndTime": {
+    "One": "Heure de fin"
+  },
+  "InProgress": {
+    "One": "En cours"
+  },
+  "RegularUser": {
+    "One": "Utilisateur standard"
+  },
+  "PaymentMethod": {
+    "One": "Mode de paiement"
+  },
+  "Amount": {
+    "One": "Montant"
+  },
+  "OrderTime": {
+    "One": "Heure de commande"
+  },
+  "Test": {
+    "One": "Tester"
+  },
+  "SendTest": {
+    "One": "Envoyer un test"
+  },
+  "BatchAdd": {
+    "One": "Ajout par lots"
+  },
+  "BatchGenerateInviteCodes": {
+    "One": "Générer des codes d’invitation par lots"
+  },
+  "BatchGenerationFailed": {
+    "One": "Échec de la génération par lots"
+  },
+  "BindingScope": {
+    "One": "Portée de liaison"
+  },
+  "City": {
+    "One": "Ville"
+  },
+  "ClickToUpload": {
+    "One": "Cliquer pour téléverser"
+  },
+  "ClientId": {
+    "One": "ID client"
+  },
+  "ClientSecret": {
+    "One": "Secret client"
+  },
+  "Closed": {
+    "One": "Fermé"
+  },
+  "CloseFailed": {
+    "One": "Échec de la fermeture"
+  },
+  "ConfirmationFailed": {
+    "One": "Échec de la confirmation"
+  },
+  "ConfirmCloseOrder": {
+    "One": "Fermer la commande {order} ?"
+  },
+  "ConfirmedSuccessfully": {
+    "One": "Confirmation réussie"
+  },
+  "ConfirmExtension": {
+    "One": "Confirmer la prolongation"
+  },
+  "ConfirmOrderPaid": {
+    "One": "Confirmer la commande {order} comme payée ?"
+  },
+  "ConfirmPaid": {
+    "One": "Confirmer le paiement"
+  },
+  "ConfirmRevokeInviteCode": {
+    "One": "Voulez-vous vraiment révoquer le code d’invitation {code} ?"
+  },
+  "DaysCount": {
+    "One": "{count} jours"
+  },
+  "DaysLeft": {
+    "One": "Jours restants"
+  },
+  "DefaultThirtyDays": {
+    "One": "30 jours par défaut"
+  },
+  "DeviceGroup": {
+    "One": "Groupe d’appareils"
+  },
+  "Disabled": {
+    "One": "Désactivé"
+  },
+  "District": {
+    "One": "District"
+  },
+  "DurationAutoFillTip": {
+    "One": "Durée (remplit automatiquement les jours)"
+  },
+  "EditStrategy": {
+    "One": "Modifier la stratégie"
+  },
+  "ExpirationTime": {
+    "One": "Date d’expiration"
+  },
+  "Extend": {
+    "One": "Prolonger"
+  },
+  "ExtendSubscription": {
+    "One": "Prolonger l’abonnement"
+  },
+  "ExtensionDuration": {
+    "One": "Durée de prolongation"
+  },
+  "ExtensionFailed": {
+    "One": "Échec de la prolongation"
+  },
+  "FileCountLimitExceeded": {
+    "One": "Limite du nombre de fichiers dépassée"
+  },
+  "Global": {
+    "One": "Global"
+  },
+  "HigherNumberHigherPriority": {
+    "One": "Un nombre plus élevé donne une priorité supérieure"
+  },
+  "InviteCodesGeneratedSuccess": {
+    "One": "{count} codes d’invitation générés"
+  },
+  "Issuer": {
+    "One": "Émetteur"
+  },
+  "MerchantOrderNo": {
+    "One": "N° de commande marchand"
+  },
+  "NewStrategy": {
+    "One": "Nouvelle stratégie"
+  },
+  "OneMonth": {
+    "One": "1 mois"
+  },
+  "OneYear": {
+    "One": "1 an"
+  },
+  "OrderExpired": {
+    "One": "Commande expirée"
+  },
+  "OrderListLoadFailed": {
+    "One": "Échec du chargement des commandes"
+  },
+  "OrderNoUsername": {
+    "One": "N° de commande/nom d’utilisateur"
+  },
+  "OrderQrCodeExpired": {
+    "One": "Code QR de commande expiré"
+  },
+  "OrDragFilesHere": {
+    "One": "ou glisser les fichiers ici"
+  },
+  "Plain": {
+    "One": "Simple"
+  },
+  "PleaseEnterValidDays": {
+    "One": "Veuillez saisir des jours valides"
+  },
+  "PleaseSelectPlan": {
+    "One": "Veuillez sélectionner une offre"
+  },
+  "Priority": {
+    "One": "Priorité"
+  },
+  "Province": {
+    "One": "Province"
+  },
+  "RdpPort": {
+    "One": "Port RDP"
+  },
+  "RdpUsername": {
+    "One": "Nom d’utilisateur RDP"
+  },
+  "RedirectUrl": {
+    "One": "URL de redirection"
+  },
+  "S256Recommended": {
+    "One": "S256 (recommandé)"
+  },
+  "SameServer": {
+    "One": "Même serveur"
+  },
+  "Scopes": {
+    "One": "Portées"
+  },
+  "SearchStrategyName": {
+    "One": "Rechercher une stratégie"
+  },
+  "SelectDeviceGroup": {
+    "One": "Sélectionner un groupe d’appareils"
+  },
+  "SelectGroup": {
+    "One": "Sélectionner un groupe"
+  },
+  "SelectPkceMethod": {
+    "One": "Sélectionner la méthode PKCE"
+  },
+  "SelectTag": {
+    "One": "Sélectionner une étiquette"
+  },
+  "SelectUser": {
+    "One": "Sélectionner un utilisateur"
+  },
+  "SixMonths": {
+    "One": "6 mois"
+  },
+  "StrategyConfigCommentTip": {
+    "One": "Astuce : les lignes commençant par # sont des commentaires. Retirez # pour activer l’option."
+  },
+  "StrategyConfigTemplate": {
+    "One": "Modèle de configuration de stratégie"
+  },
+  "StrategyManagement": {
+    "One": "Gestion des stratégies"
+  },
+  "StrategyName": {
+    "One": "Nom de la stratégie"
+  },
+  "StrategyNameExample": {
+    "One": "Exemple : politique réseau du bureau"
+  },
+  "SubscriptionExtendedSuccess": {
+    "One": "Abonnement de {username} prolongé de {duration}"
+  },
+  "SubscriptionListLoadFailed": {
+    "One": "Échec du chargement des abonnements"
+  },
+  "SubscriptionStatus": {
+    "One": "État de l’abonnement"
+  },
+  "Tag": {
+    "One": "Étiquette"
+  },
+  "TenYears": {
+    "One": "10 ans"
+  },
+  "ThreeMonths": {
+    "One": "3 mois"
+  },
+  "TwelveMonths": {
+    "One": "12 mois"
+  },
+  "UserIdUsername": {
+    "One": "ID utilisateur/nom d’utilisateur"
+  },
+  "WeChatPay": {
+    "One": "WeChat Pay"
+  },
+  "OfflineAlertLogic": {
+    "One": "Logique d’alerte hors ligne"
+  },
+  "DeviceCheckedEveryFiveMinutes": {
+    "One": "L’état des appareils est vérifié toutes les cinq minutes."
+  },
+  "OfflineThresholdWeightTip": {
+    "One": "Après le seuil hors ligne, le poids augmente de 1. Un e-mail est envoyé à 10 (environ 50 minutes)."
+  },
+  "AlertWeightResetsDaily": {
+    "One": "Le poids est réinitialisé chaque jour."
+  },
+  "MaxThreeAlertsPerDay": {
+    "One": "Chaque appareil peut envoyer au maximum 3 alertes par jour."
+  },
+  "AlertsPauseAfterThreeDays": {
+    "One": "Les alertes cessent après 3 jours consécutifs et reprennent au retour en ligne."
+  },
+  "MinutesShort": {
+    "One": "min"
+  },
+  "ConfigItems": {
+    "One": "Éléments de configuration"
+  },
+  "ConfigItemsPlaceholder": {
+    "One": "Un élément par ligne, format : key=value\nExemple :\nforce_relay=Y\nenable-udp-punch=N\nenable-clipboard=N\ncustom-rendezvous-server=192.0.2.1:21116"
+  },
+  "CommonConfigItems": {
+    "One": "Éléments courants : force_relay, enable-udp-punch, enable-ipv6-punch, enable-clipboard, enable-audio, enable-file-transfer, custom-rendezvous-server"
+  },
+  "NatTraversal": {
+    "One": "Traversée NAT"
+  },
+  "ForceRelayHelp": {
+    "One": "Forcer le relais : Y force le relais et désactive le P2P ; N autorise le P2P"
+  },
+  "UdpPunchHelp": {
+    "One": "Activer le perçage UDP ; N utilise uniquement le relais TCP"
+  },
+  "Ipv6PunchHelp": {
+    "One": "Activer le perçage IPv6 ; N désactive la traversée IPv6"
+  },
+  "UpnpHelp": {
+    "One": "Activer le mappage automatique UPnP ; N le désactive"
+  },
+  "CustomRelayHelp": {
+    "One": "Adresse du serveur relais personnalisé"
+  },
+  "DomainIpPortFormat": {
+    "One": "Format : domaine ou IP:port"
+  },
+  "FeatureSwitches": {
+    "One": "Options de fonctionnalités"
+  },
+  "ClipboardSharingHelp": {
+    "One": "Activer le presse-papiers ; N désactive le copier-coller distant"
+  },
+  "AudioTransmissionHelp": {
+    "One": "Activer l’audio ; N désactive l’audio distant"
+  },
+  "FileTransferHelp": {
+    "One": "Activer le transfert de fichiers ; N le désactive"
+  },
+  "EncryptionModeHelp": {
+    "One": "Modes de chiffrement : default / no_encryption / encrypted"
+  },
+  "DisplayAndPerformance": {
+    "One": "Affichage et performances"
+  },
+  "ImageQualityHelp": {
+    "One": "Qualité d’image : quality / balanced / speed"
+  },
+  "MaxFpsHelp": {
+    "One": "FPS maximal ; 0 signifie illimité"
+  },
+  "SecurityPolicy": {
+    "One": "Politique de sécurité"
+  },
+  "HideUsernameHelp": {
+    "One": "Masquer les noms d’utilisateur du carnet d’adresses ; Y affiche seulement les appareils"
+  },
+  "DirectConnectionVerificationHelp": {
+    "One": "Activer la vérification de connexion directe ; Y exige une poignée de main"
+  },
+  "AlertRecipientsSpecifiedInRule": {
+    "One": "les destinataires sont définis dans la règle"
+  },
+  "TestRecipientPrompt": {
+    "One": "Saisissez l’adresse d’un destinataire de test (laissez vide pour vous l’envoyer)"
+  },
+  "TestDeliveryFailed": {
+    "One": "Échec de l’envoi du test : {message}"
+  },
+  "TestMessageSent": {
+    "One": "Message de test envoyé. Veuillez confirmer sa réception."
+  },
+  "DeleteAlertChannelWarning": {
+    "One": "Les règles d’alerte associées ne pourront plus envoyer de messages après la suppression. Continuer ?"
+  },
+  "StrategyNameRequired": {
+    "One": "Le nom de la stratégie ne peut pas être vide"
+  },
+  "DeleteStrategyConfirm": {
+    "One": "Supprimer la stratégie « {name} » ?"
+  },
+  "Prompt": {
+    "One": "Confirmation"
+  },
+  "NotImplementedYet": {
+    "One": "Pas encore implémenté"
+  },
+  "PleaseSelectReceiver": {
+    "One": "Veuillez sélectionner un destinataire"
+  }
 }

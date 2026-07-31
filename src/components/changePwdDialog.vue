@@ -2,7 +2,7 @@
   <el-dialog v-model="v" width="50%" :show-close="false" append-to-body>
     <el-form ref="cpwd" :model="changePwdForm" :rules="chagePwdRules" label-position="left" style="margin-top: 20px">
       <el-form-item :label="T('OldPassword')" prop="old_password">
-        <el-input v-model="changePwdForm.old_password" :placeholder="T('For OIDC login without a password, enter any 4-20 letters')" show-password></el-input>
+        <el-input v-model="changePwdForm.old_password" :placeholder="T('ForOIDCLoginWithoutAPasswordEnterAny420Letters')" show-password></el-input>
       </el-form-item>
       <el-form-item :label="T('NewPassword')" prop="new_password">
         <el-input v-model="changePwdForm.new_password" show-password></el-input>

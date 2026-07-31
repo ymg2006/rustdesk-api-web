@@ -45,13 +45,13 @@
           </el-radio-group>
         </el-form-item>
         <el-form-item v-if="formData.oauth_type === 'oidc'" :label="T('IdP')" prop="op">
-          <el-input v-model="formData.op" :placeholder="T('Your IdP Name')"></el-input>
+          <el-input v-model="formData.op" :placeholder="T('YourIdPName')"></el-input>
         </el-form-item>
         <el-form-item v-if="formData.oauth_type === 'oidc'" :label="T('Issuer')" prop="issuer">
-          <el-input v-model="formData.issuer" :placeholder="`${T('Check your IdP docs, without')} '/.well-known/openid-configuration'`"></el-input>
+          <el-input v-model="formData.issuer" :placeholder="`${T('CheckYourIdPDocsWithout')} '/.well-known/openid-configuration'`"></el-input>
         </el-form-item>
         <el-form-item v-show="formData.oauth_type === 'oidc'" :label="T('Scopes')" prop="scopes">
-          <el-input v-model="formData.scopes" :placeholder="`${T('Optional, default is')} 'openid,profile,email'`"></el-input>
+          <el-input v-model="formData.scopes" :placeholder="`${T('OptionalDefaultIs')} 'openid,profile,email'`"></el-input>
         </el-form-item>
         <el-form-item :label="T('ClientId')" prop="client_id">
           <el-input v-model="formData.client_id"></el-input>
