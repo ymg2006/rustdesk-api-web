@@ -106,7 +106,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { T } from '@/utils/i18n'
 import { handleClipboard } from '@/utils/clipboard'
 import { useAppStore } from '@/store/app'
-import { CopyDocument } from '@element-plus/icons'
+import { CopyDocument } from '@element-plus/icons-vue'
 
   const app = useAppStore()
 

@@ -55,12 +55,12 @@
 
 <script setup>
   import { useUserStore } from '@/store/user'
-  import { useAppStore } from '@/store/app'
-  import changePwdDialog from '@/components/changePwdDialog.vue'
-  import { ref } from 'vue'
-  import { T } from '@/utils/i18n'
-  import { useDark } from '@vueuse/core'
-  import { Sunny, Moon } from '@element-plus/icons'
+import { useAppStore } from '@/store/app'
+import changePwdDialog from '@/components/changePwdDialog.vue'
+import { ref } from 'vue'
+import { T } from '@/utils/i18n'
+import { useDark } from '@vueuse/core'
+import { Sunny, Moon } from '@element-plus/icons-vue'
 
   const userStore = useUserStore()
   const user = userStore

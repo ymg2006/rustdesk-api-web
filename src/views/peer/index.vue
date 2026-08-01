@@ -49,13 +49,14 @@
                      @click="toAdd">{{ T('Add') }}</el-button>
           <el-button type="success"
                      @click="toExport">{{ T('Export') }}</el-button>
-          <el-popover :visible="showImport"
+          <el-popover trigger="click"
+                      ref="importPopoverRef"
                       placement="bottom"
                       width="min(600px, calc(100vw - 16px))"
                       :popper-style="{ margin: '0 8px' }">
             <el-upload class="upload-demo"
                        drag
-                       accept=".csv"
+                       accept=".csv,text/csv"
                        :before-upload="parseCsv">
               <el-icon class="el-icon--upload">
                 <upload-filled />
@@ -73,10 +74,10 @@
                 </div>
               </template>
             </el-upload>
-            <el-button @click="showImport = false"
-                       type="primary">{{ T('Cancel') }}</el-button>
+            <!-- <el-button @click="toggleImport(false)"
+                       type="primary">{{ T('Cancel') }}</el-button> -->
             <template #reference>
-              <el-button @click="showImport = true"
+              <el-button @click="toggleImport(true)"
                          type="danger"
                          :icon="ArrowDown">{{ T('Import') }}</el-button>
             </template>
@@ -387,12 +388,11 @@ import { jsonToCsv, downBlob } from '@/utils/file'
 import { loadAllUsers } from '@/global'
 import { useAppStore } from '@/store/app'
 import { connectByClient } from '@/utils/peer'
-import { ArrowDown, CopyDocument } from '@element-plus/icons'
 import { handleClipboard } from '@/utils/clipboard'
 import { batchCreateFromPeers } from '@/api/address_book'
 import { useRepositories as useCollectionRepositories } from '@/views/address_book/collection'
 import createABForm from '@/views/peer/createABForm.vue'
-import { UploadFilled } from '@element-plus/icons-vue'
+import { ArrowDown, CopyDocument, UploadFilled } from '@element-plus/icons-vue'
 
 const appStore = useAppStore()
 const route = useRoute()
@@ -593,7 +593,17 @@ const toExport = async () => {
   }
 }
 
-const showImport = ref(false)
+const importPopoverRef = ref(null);
+
+const toggleImport = (show) => {
+  if (show) {
+    importPopoverRef.value?.show();
+  }
+  else {
+    importPopoverRef.value?.hide();
+  }
+};
+
 const canKeys = ['id', 'cpu', 'hostname', 'memory', 'os', 'username', 'uuid', 'version', 'group_id']
 const parseCsv = (file) => {
   const reader = new FileReader()
@@ -633,9 +643,6 @@ const parseCsv = (file) => {
   reader.readAsText(file)
   return false
 }
-/*   const toImport = () => {
-    ElMessage.warning(T('NotImplementedYet'))
-  } */
 
 const ABFormVisible = ref(false)
 const clickRow = ref({})
