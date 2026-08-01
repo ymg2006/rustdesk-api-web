@@ -90,8 +90,6 @@
     </el-card>
     <el-card class="list-body"
              shadow="hover">
-      <!-- Desktop: column settings + table -->
-      <div class="table-view">
         <!-- <div style="margin-bottom: 10px">
           <el-button :icon="Setting" @click="showColumnSetting"></el-button>
         </div> -->
@@ -221,49 +219,6 @@
             </template>
           </el-table-column>
         </el-table>
-      </div>
-
-      <!-- Mobile: card list -->
-      <div class="mobile-card-view"
-           v-loading="listRes.loading">
-        <div v-for="row in listRes.list"
-             :key="row.row_id"
-             class="peer-card">
-          <div class="card-header">
-            <span class="card-id">{{ row.id }}</span>
-            <span class="dot"
-                  :class="{ red: timeDis(row.last_online_time) >= 60, green: timeDis(row.last_online_time) < 60 }"
-                  style="display:inline-block; margin-left:6px;"></span>
-          </div>
-          <div class="card-meta">
-            <span class="meta-item">{{ row.hostname || '-' }}</span>
-            <span class="meta-item">{{ row.username || '-' }}</span>
-            <span v-if="row.group_id"
-                  class="meta-item"><el-tag size="small">{{groupListRes.list?.find(g => g.id ===
-                    row.group_id)?.name }}</el-tag></span>
-            <span class="meta-item">{{ row.version || '-' }}</span>
-            <span class="meta-item">{{ T('Ip') }}: {{ row.last_online_ip || '-' }}</span>
-            <span class="meta-item">{{ row.last_online_time ? timeAgo(row.last_online_time * 1000) : '-' }}</span>
-          </div>
-          <div class="card-actions">
-            <el-button type="success"
-                       size="small"
-                       @click="connectByClient(row.id)">{{ T('Link') }}</el-button>
-            <el-button v-if="appStore.setting.appConfig.web_client"
-                       type="success"
-                       size="small"
-                       @click="toWebClientLink(row)">{{ T('WebClient') }}</el-button>
-            <el-button type="primary"
-                       size="small"
-                       @click="toAddressBook(row)">{{ T('AddToAddressBook') }}</el-button>
-            <el-button size="small"
-                       @click="toEdit(row)">{{ T('Edit') }}</el-button>
-            <el-button type="danger"
-                       size="small"
-                       @click="del(row)">{{ T('Delete') }}</el-button>
-          </div>
-        </div>
-      </div>
     </el-card>
     <el-card class="list-page"
              shadow="hover">
@@ -806,10 +761,6 @@ const visibleColumns = ref(savedColumns || allColumns.value)
 </script>
 
 <style scoped lang="scss">
-.list-query .el-select {
-  --el-select-width: 180px;
-}
-
 .last_oline_time {
   display: flex;
   justify-content: center;
@@ -829,77 +780,6 @@ const visibleColumns = ref(savedColumns || allColumns.value)
 
   &.green {
     background-color: green;
-  }
-}
-
-// Mobile: replace table with card list
-.table-view {
-  display: block;
-}
-
-.mobile-card-view {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .table-view {
-    display: none;
-  }
-
-  .mobile-card-view {
-    display: block;
-  }
-
-  .list-query .el-form {
-    display: flex;
-    flex-direction: column;
-
-    .el-form-item {
-      margin-right: 0;
-      margin-bottom: 8px;
-
-      .el-select,
-      .el-input {
-        width: 100% !important;
-      }
-    }
-  }
-
-  .peer-card {
-    background: var(--el-bg-color);
-    border: 1px solid var(--el-border-color-lighter);
-    border-radius: 8px;
-    padding: 12px 14px;
-    margin-bottom: 10px;
-
-    .card-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 8px;
-      font-size: 14px;
-      font-weight: 500;
-
-      .card-id {
-        color: var(--el-color-primary);
-        word-break: break-all;
-      }
-    }
-
-    .card-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 4px 12px;
-      font-size: 12px;
-      color: var(--el-text-color-secondary);
-      margin-bottom: 10px;
-
-      .meta-item {
-        display: flex;
-        align-items: center;
-        gap: 4px;
-      }
-    }
   }
 }
 </style>

@@ -117,6 +117,23 @@ $basicWhite: #ffffff;
   }
 }
 
+@media (max-width: 1023.98px) {
+  .el-table .el-table-fixed-column--left,
+  .el-table .el-table-fixed-column--right {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    z-index: auto !important;
+  }
+
+  /* Remove fixed-column shadows */
+  .el-table .el-table-fixed-column--left::before,
+  .el-table .el-table-fixed-column--right::before {
+    display: none !important;
+    box-shadow: none !important;
+  }
+}
+
 .el-form--inline .el-form-item {
   margin-right: 8px;
   margin-bottom: 0;
