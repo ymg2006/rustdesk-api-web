@@ -10,7 +10,7 @@
                    style="margin-left: 4px; font-size: 16px; color: var(--apple-blue);"
                    @click="showHelp = true">?</el-button>
       </div>
-      <el-form inline>
+      <el-form inline class="filter-form">
         <el-form-item :label="T('StrategyName')">
           <el-input v-model="query.name"
                     :placeholder="T('SearchStrategyName')"
@@ -18,10 +18,10 @@
                     style="width: 200px"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary"
+          <el-button type="primary" class="w-100"
                      @click="getList">{{ T('Filter') }}</el-button>
         </el-form-item>
-        <el-form-item>
+        <el-form-item class="filter-form-ex">
           <el-button type="danger"
                      @click="showEdit(null)">{{ T('Add') }}</el-button>
         </el-form-item>
@@ -81,10 +81,7 @@
             <span style="margin-left: 4px; font-size: 12px;">{{ getBindName(row) }}</span>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Actions')"
-                         min-width="200"
-                         align="center"
-                         fixed="right">
+        <el-table-column :label="T('Actions')" min-width="200" align="center" fixed="right">
           <template #default="{ row }">
             <el-button type="primary"
                        size="small"

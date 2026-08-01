@@ -1,7 +1,7 @@
 <template>
   <div class="subscription-page">
     <el-card shadow="hover" class="query-card">
-      <el-form inline>
+      <el-form inline class="filter-form">
         <el-form-item :label="T('Status')">
           <el-select v-model="filter.status" :placeholder="T('All')" clearable style="width:140px">
             <el-option :label="T('SubscribeActive')" value="active" />
@@ -14,7 +14,7 @@
           <el-input v-model="filter.keyword" :placeholder="T('UserIdUsername')" clearable style="width:200px" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="getList">{{ T('Filter') }}</el-button>
+          <el-button type="primary" class="w-100" @click="getList">{{ T('Filter') }}</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -49,7 +49,7 @@
             <span v-else>{{ formatTime(row.subscription_expire_at) }}</span>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Action')" min-width="160" align="center" fixed="right">
+        <el-table-column :label="T('Actions')" min-width="160" align="center" fixed="right">
           <template #default="{ row }">
             <el-button type="primary" size="small" @click="showExtend(row)">
               {{ T('Extend') }}

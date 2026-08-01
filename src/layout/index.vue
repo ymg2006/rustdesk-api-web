@@ -169,6 +169,9 @@ html.dark .header-tags {
     .el-input {
       width: 100% !important;
     }
+    &.filter-form-ex {
+      margin-bottom: 0px;
+    }
   }
 
   // Make dialogs nearly full width

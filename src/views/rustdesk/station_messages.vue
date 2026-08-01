@@ -2,21 +2,34 @@
   <div>
     <el-card shadow="hover">
       <template #header>
-        <div style="display: flex; justify-content: space-between; align-items: center;">
-          <span>{{ T('StationMessages') }} ({{ total }})</span>
-          <div>
-            <el-switch
-              v-if="isAdmin"
-              v-model="scopeOwn"
-              :active-text="T('OnlyMyMessages')"
-              :inactive-text="T('ShowAll')"
-              @change="getList"
-              style="margin-right: 10px;"
-            />
-            <el-button size="small" type="primary" @click="showSendDialog">{{ T('SendMessage') }}</el-button>
-            <el-button v-if="isAdmin" size="small" type="danger" @click="showBroadcastDialog" class="me-8px">{{ T('Broadcast') }}</el-button>
-            <el-dropdown size="small" v-if="isAdmin" trigger="click" @command="cleanup" class="d-contents">
-              <el-button size="small" type="warning">{{ T('CleanOldMessages') }}</el-button>
+       <el-form inline class="filter-form">
+          <el-form-item>
+            <span>{{ T('StationMessages') }} ({{ total }})</span>
+          </el-form-item>
+          <el-form-item>
+            <el-switch v-if="isAdmin"
+                       v-model="scopeOwn"
+                       :active-text="T('OnlyMyMessages')"
+                       :inactive-text="T('ShowAll')"
+                       @change="getList"
+                       style="margin-right: 10px;" />
+          </el-form-item>
+          <el-form-item class="filter-form-ex">
+            <el-button size="small"
+                       type="primary"
+                       @click="showSendDialog">{{ T('SendMessage') }}</el-button>
+            <el-button v-if="isAdmin"
+                       size="small"
+                       type="danger"
+                       @click="showBroadcastDialog">
+                       {{ T('Broadcast') }}</el-button>
+            <el-dropdown size="small"
+                         v-if="isAdmin"
+                         trigger="click"
+                         @command="cleanup"
+                         class="d-contents">
+              <el-button size="small"
+                         type="warning">{{ T('CleanOldMessages') }}</el-button>
               <template #dropdown>
                 <el-dropdown-menu>
                   <el-dropdown-item command="1">{{ T('CleanMessagesOlderThan1Year') }}</el-dropdown-item>
@@ -24,9 +37,10 @@
                 </el-dropdown-menu>
               </template>
             </el-dropdown>
-            <el-button size="small" @click="markAllRead" class="ms-8px">{{ T('MarkAllRead') }}</el-button>
-          </div>
-        </div>
+            <el-button size="small"
+                       @click="markAllRead">{{ T('MarkAllRead') }}</el-button>
+          </el-form-item>
+        </el-form>
       </template>
       <el-table :data="messages" v-loading="loading" border>
         <el-table-column prop="sender_name" :label="T('Sender')" min-width="120">

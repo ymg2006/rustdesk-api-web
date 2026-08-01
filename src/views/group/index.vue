@@ -39,12 +39,12 @@
           </span>
         </div>
       </template>
-      <el-form inline class="member-query">
+      <el-form inline class="member-query filter-form">
         <el-form-item :label="T('Username')">
           <el-input v-model="listQuery.username" clearable @keyup.enter="handlerQuery" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
+          <el-button type="primary" class="w-100" @click="handlerQuery">{{ T('Filter') }}</el-button>
         </el-form-item>
       </el-form>
       <el-table class="list-table" :data="listRes.list" v-loading="listRes.loading" border>

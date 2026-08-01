@@ -31,9 +31,11 @@
       </el-tab-pane>
       <el-tab-pane :label="T('Advanced')" name="Advanced">
         <el-card class="list-query" shadow="hover">
-          <el-form inline>
+          <el-form inline class="filter-form">
             <el-form-item>
-              <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
+              <el-button type="primary" class="w-100" @click="handlerQuery">{{ T('Filter') }}</el-button>
+            </el-form-item>
+            <el-form-item class="filter-form-ex">
               <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
               <el-button type="success" :disabled="!canSendIdServerCmd" @click="showCmd({cmd:'',option:'',target:ID_TARGET})">{{ T('SendToId') }}</el-button>
               <el-button type="success" :disabled="!canSendRelayServerCmd" @click="showCmd({cmd:'',option:'',target:RELAY_TARGET})">{{ T('SendToRelay') }}</el-button>

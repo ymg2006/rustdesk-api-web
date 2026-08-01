@@ -200,10 +200,7 @@
                              min-width="150" />
           </template>
 
-          <el-table-column :label="T('Actions')"
-                           align="center"
-                           width="500"
-                           fixed="right">
+          <el-table-column :label="T('Actions')" align="center" width="500" fixed="right">
             <template #default="{ row }">
               <el-button type="success"
                          @click="connectByClient(row.id)"

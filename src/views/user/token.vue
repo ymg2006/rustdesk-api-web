@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card class="list-query query-card" shadow="hover">
-      <el-form inline>
+      <el-form inline class="filter-form">
         <el-form-item :label="T('User')">
           <el-select v-model="listQuery.user_id" clearable>
             <el-option
@@ -11,7 +11,11 @@
                 :value="item.id"
             ></el-option>
           </el-select>
-          <el-button type="primary" @click="handlerQuery" class="ms-8px">{{ T('Filter') }}</el-button>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" class="w-100" @click="handlerQuery">{{ T('Filter') }}</el-button>
+        </el-form-item>
+        <el-form-item class="filter-form-ex">
           <el-button type="danger" @click="toBatchDelete">{{ T('BatchDelete') }}</el-button>
           <el-button type="warning" @click="delExpired">{{ T('DeleteExpired') }}</el-button>
         </el-form-item>

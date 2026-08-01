@@ -1,7 +1,7 @@
 <template>
   <div class="invite-code-page">
     <el-card shadow="hover" class="query-card">
-      <el-form inline>
+      <el-form inline class="filter-form">
         <el-form-item :label="T('Status')">
           <el-select v-model="filter.status" :placeholder="T('All')" clearable style="width:140px">
             <el-option :label="T('StatusUnused')" value="unused" />
@@ -15,7 +15,9 @@
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="getList">{{ T('Filter') }}</el-button>
+          <el-button type="primary" class="w-100" @click="getList">{{ T('Filter') }}</el-button>
+        </el-form-item>
+        <el-form-item class="filter-form-ex">
           <el-button type="success" @click="showCreate = true">{{ T('Generate') }}</el-button>
           <el-button type="success" @click="showBatchCreate = true">{{ T('BatchCreate') }}</el-button>
           <el-button @click="handleExport">{{ T('Export') }}</el-button>
@@ -69,7 +71,7 @@
             <span class="remark-text">{{ row.remark || '-' }}</span>
           </template>
         </el-table-column>
-        <el-table-column :label="T('Action')" min-width="150" align="center" fixed="right">
+        <el-table-column :label="T('Actions')" min-width="150" align="center" fixed="right">
           <template #default="{ row }">
             <el-button
               v-if="row.status === 'unused'"

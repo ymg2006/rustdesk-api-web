@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card class="list-query" shadow="hover">
-      <el-form inline>
+      <el-form inline class="filter-form">
         <el-form-item :label="T('AddressBookName')">
           <el-select v-model="listQuery.collection_id" clearable>
             <el-option :value="0" :label="T('MyAddressBook')"></el-option>
@@ -9,7 +9,9 @@
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
+          <el-button type="primary" class="w-100" @click="handlerQuery">{{ T('Filter') }}</el-button>
+        </el-form-item>
+        <el-form-item class="filter-form-ex">
           <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
         </el-form-item>
       </el-form>

@@ -117,14 +117,6 @@ $basicWhite: #ffffff;
   }
 }
 
-.ms-8px {
-  margin-left: 8px;
-}
-
-.me-8px {
-  margin-right: 8px;
-}
-
 .el-form--inline .el-form-item {
   margin-right: 8px;
   margin-bottom: 0;
@@ -447,6 +439,10 @@ html.dark .el-table {
   &.el-tag--danger {
     color: var(--apple-red);
   }
+}
+
+.filter-form .el-form-item {
+    margin-right: 0 !important;
 }
 
 @media (min-width: 767.98px) {

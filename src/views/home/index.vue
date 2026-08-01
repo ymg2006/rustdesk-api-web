@@ -136,7 +136,7 @@
                 {{ formatTime(row.created_at) }}
               </template>
             </el-table-column>
-            <el-table-column :label="T('Actions')" min-width="80">
+            <el-table-column :label="T('Actions')" min-width="80" fixed="right">
               <template #default="{row}">
                 <el-button v-if="!row.is_read" text size="small" @click="markRead(row.row_id)">
                   {{ T('MarkRead') }}

@@ -1,7 +1,7 @@
 <template>
   <div class="order-page">
     <el-card shadow="hover" class="query-card">
-      <el-form inline>
+      <el-form inline class="filter-form">
         <el-form-item :label="T('Status')">
           <el-select v-model="filter.status" :placeholder="T('All')" clearable style="width:130px">
             <el-option :label="T('OrderStatusPending')" value="pending" />
@@ -13,7 +13,7 @@
           <el-input v-model="filter.keyword" :placeholder="T('OrderNoUsername')" clearable style="width:200px" />
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="getList">{{ T('Filter') }}</el-button>
+          <el-button type="primary" class="w-100" @click="getList">{{ T('Filter') }}</el-button>
         </el-form-item>
       </el-form>
     </el-card>
@@ -48,7 +48,7 @@
             {{ formatTime(row.created_at) }}
           </template>
         </el-table-column>
-        <el-table-column :label="T('Action')" min-width="180" align="center" fixed="right">
+        <el-table-column :label="T('Actions')" min-width="180" align="center" fixed="right">
           <template #default="{ row }">
             <el-button v-if="row.status === 'pending'" type="success" size="small" @click="handleConfirm(row)">
               {{ T('ConfirmPaid') }}

@@ -1,8 +1,8 @@
 <template>
   <div>
     <el-card class="list-query query-card" shadow="hover">
-      <el-form inline>
-        <el-form-item>
+      <el-form inline class="filter-form">
+        <el-form-item class="filter-form-ex">
           <el-button type="primary" @click="showCreate = true">{{ T('CreateInvitation') }}</el-button>
         </el-form-item>
       </el-form>

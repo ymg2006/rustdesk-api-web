@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-card class="list-query" shadow="hover">
-      <el-form inline>
+      <el-form inline class="filter-form">
         <el-form-item :label="T('Peer')">
           <el-input v-model="listQuery.peer_id" clearable></el-input>
         </el-form-item>
@@ -9,7 +9,9 @@
           <el-input v-model="listQuery.from_peer" clearable></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
+          <el-button type="primary" class="w-100" @click="handlerQuery">{{ T('Filter') }}</el-button>
+        </el-form-item>
+        <el-form-item class="filter-form-ex">
           <el-button type="danger" @click="toBatchDelete">{{ T('BatchDelete') }}</el-button>
           <el-button type="success" @click="toExport">{{ T('Export') }}</el-button>
         </el-form-item>

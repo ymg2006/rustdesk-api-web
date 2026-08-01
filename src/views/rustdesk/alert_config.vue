@@ -25,7 +25,7 @@
         <el-table-column :label="T('CreatedAt')" min-width="160">
           <template #default="{row}">{{ row.created_at || '-' }}</template>
         </el-table-column>
-        <el-table-column :label="T('Actions')" min-width="220" align="center">
+        <el-table-column :label="T('Actions')" min-width="220" align="center" fixed="right">
           <template #default="{row}">
             <el-button size="small" @click="showChannelForm(row)">{{ T('Edit') }}</el-button>
             <el-button size="small" @click="testChannel(row)">{{ T('Test') }}</el-button>

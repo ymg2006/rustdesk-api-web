@@ -6,7 +6,7 @@
         <el-button :type="quickFilter === 'online' ? 'success' : 'default'" size="small" @click="setQuickFilter('online')">{{ T('Online') }}</el-button>
         <el-button :type="quickFilter === 'offline' ? 'danger' : 'default'" size="small" @click="setQuickFilter('offline')">{{ T('Offline') }}</el-button>
       </div>
-      <el-form inline>
+      <el-form inline class="filter-form">
         <el-form-item :label="T('Id')">
           <el-input v-model="listQuery.id" clearable/>
         </el-form-item>
@@ -25,7 +25,9 @@
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button>
+          <el-button type="primary" class="w-100" @click="handlerQuery">{{ T('Filter') }}</el-button>
+        </el-form-item>
+        <el-form-item class="filter-form-ex">
           <el-button type="success" @click="toExport">{{ T('Export') }}</el-button>
           <!--          <el-button type="danger" @click="toBatchDelete">{{ T('BatchDelete') }}</el-button>-->
           <el-button type="primary" @click="toBatchAddToAB">{{ T('BatchAdd') }}</el-button>

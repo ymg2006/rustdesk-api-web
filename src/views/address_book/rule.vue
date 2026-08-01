@@ -1,9 +1,8 @@
 <template>
   <div>
     <el-card class="list-query query-card" shadow="hover">
-      <el-form inline>
-        <el-form-item>
-          <!-- <el-button type="primary" @click="handlerQuery">{{ T('Filter') }}</el-button> -->
+      <el-form inline class="filter-form">
+        <el-form-item class="filter-form-ex">
           <el-button type="danger" @click="toAdd">{{ T('Add') }}</el-button>
         </el-form-item>
       </el-form>
