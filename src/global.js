@@ -1,7 +1,6 @@
-import { ref, reactive, watch } from 'vue'
-import { list as fetchUsers } from '@/api/user'
+import { ref } from 'vue';
+import { list as fetchUsers } from '@/api/user';
 
-// TODO: Cache all user information.
 export function loadAllUsers () {
   const allUsers = ref([])
   const getAllUsers = async () => {
@@ -15,6 +14,5 @@ export function loadAllUsers () {
     allUsers,
     getAllUsers,
   }
-
 }
 
