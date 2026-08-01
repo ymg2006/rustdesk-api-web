@@ -1357,9 +1357,6 @@
   "RegistrationInviteCodes": {
     "One": "注册授权码"
   },
-  "AdminOrder": {
-    "One": "订单管理"
-  },
   "AdminSubscription": {
     "One": "付费会员"
   },

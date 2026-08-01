@@ -1362,9 +1362,6 @@
   "RegistrationInviteCodes": {
     "One": "Codes d’inscription"
   },
-  "AdminOrder": {
-    "One": "Commandes"
-  },
   "AdminSubscription": {
     "One": "Membres payants"
   },

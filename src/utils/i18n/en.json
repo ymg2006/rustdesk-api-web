@@ -1357,9 +1357,6 @@
   "RegistrationInviteCodes": {
     "One": "Registration Codes"
   },
-  "AdminOrder": {
-    "One": "Orders"
-  },
   "AdminSubscription": {
     "One": "Paid Members"
   },

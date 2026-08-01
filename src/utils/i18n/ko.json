@@ -1357,9 +1357,6 @@
   "RegistrationInviteCodes": {
     "One": "등록 코드"
   },
-  "AdminOrder": {
-    "One": "주문"
-  },
   "AdminSubscription": {
     "One": "유료 회원"
   },

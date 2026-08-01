@@ -1357,9 +1357,6 @@
   "RegistrationInviteCodes": {
     "One": "Коды регистрации"
   },
-  "AdminOrder": {
-    "One": "Заказы"
-  },
   "AdminSubscription": {
     "One": "Платные участники"
   },

@@ -1357,9 +1357,6 @@
   "RegistrationInviteCodes": {
     "One": "Códigos de registro"
   },
-  "AdminOrder": {
-    "One": "Pedidos"
-  },
   "AdminSubscription": {
     "One": "Miembros de pago"
   },

@@ -129,8 +129,6 @@ export function adminExportCodes (params) {
   })
 }
 
-// ========== Admin Order Management ==========
-
 /**
  * Paginated order list query
  * @param {Object} params - { status, keyword, page, size }
